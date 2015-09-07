@@ -10,16 +10,16 @@ namespace :book do
   desc 'build basic book formats'
   task :build => :prebuild do
     puts "Converting to HTML..."
-    `bundle exec asciidoctor NMDM.asc`
-    puts " -- HTML output at NMDM_book.html"
+    `bundle exec asciidoctor LSDTT_docs.asc`
+    puts " -- HTML output at LSDTT_book.html"
 
     puts "Converting to EPub..."
-    `bundle exec asciidoctor-epub3 NMDM.asc`
-    puts " -- Epub output at NMDM_book.epub"
+    `bundle exec asciidoctor-epub3 LSDTT_docs.asc`
+    puts " -- Epub output at LSDTT_book.epub"
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf NMDM.asc`
-    puts " -- PDF  output at NMDM_book.pdf"
+    `bundle exec asciidoctor-pdf LSDTT_docs.asc`
+    puts " -- PDF  output at LSDTT_book.pdf"
   end
 end
 
