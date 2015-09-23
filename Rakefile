@@ -23,4 +23,11 @@ namespace :book do
   end
 end
 
+desc 'build html only'
+task :build_html => :prebuild do
+  puts "Converting to HTML..."
+  `bundle exec asciidoctor LSDTT_docs.asc`
+  puts " -- HTML output at LSDTT_book.html"
+end
+
 task :default => "book:build"
