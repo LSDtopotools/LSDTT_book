@@ -24,6 +24,13 @@ namespace :book do
     `bundle exec asciidoctor LSDTT_docs.asc`
     puts " -- HTML output at LSDTT_book.html"
   end  
+    
+    desc 'build html with github stylesheet'
+  task :build_html_gitcss => :prebuild do
+      puts "Converting to HTML with github stylesheet..."
+      `bundle exec asciidoctor LSDTT_docs.asc -a stylesheet=github.css -a stylesdir=./stylesheets -o index.html`
+      puts " -- HTML output at index.html"
+  end      
 end
 
 
