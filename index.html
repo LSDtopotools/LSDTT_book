@@ -4569,7 +4569,7 @@ are described by <a href="http://web.mit.edu/perron/www/files/PerronRoyden13.pdf
 <div class="sect3">
 <h4 id="_steps_involved_to_perform_channel_analysis">7.4.1. Steps involved to perform channel analysis</h4>
 <div class="paragraph">
-<p>After preparing the data (:ref:`chi-analysis-get-profiles`),
+<p>After preparing the data (see section <a href="#Chi part 1">[Chi part 1]</a>),
 performing the channel analysis involves 3 steps, including visualization of the data.</p>
 </div>
 <div class="olist arabic">
@@ -4989,6 +4989,7 @@ The following columns are the standard deviations of the \(AICc\) values for tha
 <p>Here is an example file:</p>
 </div>
 <div class="listingblock">
+<div class="title">An example movern file</div>
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">-99 0.15 0.175
 -99 4008 4008
@@ -5019,6 +5020,21 @@ To facilitate this, we provide a python script, <code>movern_sensitivity_driver_
 that generates a number of driver files with the parameters minimum_segment_length, sigma,
 mean_skip and target_nodes that vary systematically.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">To get the python scripts</div>
+<div class="paragraph">
+<p>Python scripts for automating the code are in a github repository: <a href="https://github.com/LSDtopotools/LSDAutomation" class="bare">https://github.com/LSDtopotools/LSDAutomation</a>
+You can either clone this repository (<code>git clone <a href="https://github.com/LSDtopotools/LSDAutomation.git" class="bare">https://github.com/LSDtopotools/LSDAutomation.git</a></code>)
+or you can get the scripts directly using wget:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/movern_sensitivity_driver_generation.py</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>To run this script you will need to change the data directory and the filename of the original driver file within the script.</p>
 </div>
@@ -5035,11 +5051,12 @@ DriverFileName = "chi_parameters.driver"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you are running this file in Spyder from a windows machine, the path name will have slightly different formatting:</p>
+<p>If you are running this file in Spyder from a windows machine, the path name will have slightly different formatting (you will need <code>\\</code> speperators):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">DataDirectory =  "m:\\topographic_tools\\test_suites\\Mandakini\\"</code></pre>
+<pre class="highlight"><code class="language-python" data-lang="python"># set the directory and filename
+DataDirectory =  "m:\\topographic_tools\\test_suites\\Mandakini\\"</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -5053,6 +5070,40 @@ If you run from the command line you will need to navigate to the folder that co
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The script will generate driver functions with varied skip, sigma, minimum segment length and total nodes values.
+These will <strong>NOT</strong> be derived from the driver file you have identified, but rather will be set within the python script.</p>
+</div>
+<div class="listingblock">
+<div class="title">Near the top of movern_sensitivity_driver_generation.py</div>
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">    # these are the number of different parameter values you want to use
+    n_skip = 2
+    n_sigma = 1
+    n_msl = 2
+    n_tn = 2
+
+    # this is the starting value of the parameter values
+    start_skip = 1
+    start_sigma = 3.0
+    start_msl = 10
+    start_tn = 80
+
+    # these are the change to the parameter value each time you iterate
+    d_skip = 1
+    d_sigma = 3
+    d_msl = 5
+    d_tn = 10</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The top four variable (that start with <code>n_</code>) tell you how many parameter values you want to loop through,
+the next four (<code>start_</code>) dictate where the parameter will start, and the next four (<code>d_</code>) dictate the change in the parameter values.</p>
+</div>
+<div class="paragraph">
+<p>For example, if <code>n_sigma = 3</code>, <code>start_sigma = 5</code> and <code>d_sigma = 4</code>, then the sigma values to be generated in <code>.driver</code> files will be
+5, 9, and 13.</p>
 </div>
 <div class="paragraph">
 <p>The driver files will be numbered (e.g., <code>my_driver.1.driver</code>, <code>my_driver.2.driver</code>, etc.):</p>
