@@ -898,13 +898,19 @@ MathJax.Hub.Config({
 <li><a href="#_embarrassingly_parallel_shielding">8.2.3. Embarrassingly parallel shielding</a></li>
 </ul>
 </li>
-<li><a href="#_calculating_erosion_rates">8.3. Calculating erosion rates</a>
+<li><a href="#_snow_shielding_calculations">8.3. Snow shielding calculations</a>
 <ul class="sectlevel3">
-<li><a href="#_compiling_the_code_3">8.3.1. Compiling the code</a></li>
-<li><a href="#_the_output_files">8.3.2. The output files</a></li>
+<li><a href="#_using_previously_reported_snow_shielding">8.3.1. Using previously reported snow shielding</a></li>
 </ul>
 </li>
-<li><a href="#_summary_9">8.4. Summary</a></li>
+<li><a href="#_calculating_erosion_rates">8.4. Calculating erosion rates</a>
+<ul class="sectlevel3">
+<li><a href="#_compiling_the_code_3">8.4.1. Compiling the code</a></li>
+<li><a href="#_running_the_basinwide_erosion_rate_calculator">8.4.2. Running the basinwide erosion rate calculator</a></li>
+<li><a href="#_the_output_files">8.4.3. The output files</a></li>
+</ul>
+</li>
+<li><a href="#_summary_9">8.5. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_software">Appendix A: Software</a>
@@ -5906,7 +5912,7 @@ The extension is case sensitive.
 </div>
 <div class="paragraph">
 <p>The first row is a header that names the columns,
-after that there should be 7 columns (separated by commas) and unlimited rows. The seven columns are::</p>
+after that there should be 7 columns (separated by commas) and unlimited rows. The seven columns are:</p>
 </div>
 <div class="paragraph">
 <p>sample_name, sample_latitude, sample_longitude, nuclide, concentration, AMS_uncertainty, standardisation</p>
@@ -5917,7 +5923,10 @@ after that there should be 7 columns (separated by commas) and unlimited rows. T
 <div class="ulist">
 <ul>
 <li>
-<p>The sample name should not start with a number or have spaces.</p>
+<p>The sample name should not have spaces or an underscore. If it has an underscore, you can run our script
+<code>EliminateUnderscoreFromCRNDataSampleNames.py</code>, which is located here: <a href="https://github.com/LSDtopotools/LSDAutomation" class="bare">https://github.com/LSDtopotools/LSDAutomation</a>
+The script will replace underscores with <code>-</code> characters. The reason for this is that our code uses the <code>_</code> as a seperator
+in filenames.</p>
 </li>
 <li>
 <p>The latitude and longitude should be in decimal degrees. Negative latitude indicates southern hemisphere.</p>
@@ -5933,11 +5942,11 @@ after that there should be 7 columns (separated by commas) and unlimited rows. T
 </li>
 <li>
 <p>Standardisation is the name of the standards used in the AMS measurements. This is not always so easy to find
-in published papers!! The defaults are "07KNSTD" for 10Be and "KNSTD" for 26Al. These seem to be used by many
+in published papers!! The defaults are "07KNSTD" for <sup>10</sup>Be and "KNSTD" for <sup>26</sup>Al. These seem to be used by many
 people after 2007 when <a href="http://www.ssl.berkeley.edu/cosmochem/about.html">Kuni Nishiizumi</a> made them available (or at least that is when he published the paper).
-If the samples are from before 2007 and you don&#8217;t know the standard use, you should use "KNSTD" for 10Be and 26Al.
+If the samples are from before 2007 and you don&#8217;t know the standard use, you should use "KNSTD" for <sup>10</sup>Be and <sup>26</sup>Al.
 There are many more standards floating around, but the Nishiizumi one seem the most widely used.
-The options are (take a deep breath), for 10Be:</p>
+The options are (take a deep breath), for <sup>10</sup>Be:</p>
 <div class="listingblock">
 <div class="title">Options for <sup>10</sup>Be standardisation</div>
 <div class="content">
@@ -5947,7 +5956,7 @@ The options are (take a deep breath), for 10Be:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>And for 26Al:</p>
+<p>And for <sup>26</sup>Al:</p>
 </div>
 <div class="listingblock">
 <div class="title">Options for <sup>26</sup>Al standardisation</div>
@@ -5955,6 +5964,12 @@ The options are (take a deep breath), for 10Be:</p>
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">"KNSTD", "ZAL94", "SMAL11", "0", "ZAL94N", "ASTER", "Z92-0222"</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>In addition, you can have an <strong>optional</strong> column for the snow shielding.
+This is intended to be used for places where you are attempting to reproduce erosion rates from previously reported snow shielding values.
+We describe the snow shielding options later in the documentation, but if you include this number it will be a float between 0 (for total sheilding)
+and 1 (for no shielding).</p>
 </li>
 </ul>
 </div>
@@ -6019,7 +6034,7 @@ the default is 0.</p>
 </li>
 <li>
 <p>The next column is <strong>either</strong> a full path name to a self shielding raster <strong>or</strong> a self shielding effective depth.
-Both the raster and the single value should have units of g/cm^2 shielding depth. If there is no number here
+Both the raster and the single value should have units of g/cm<sup>2</sup> shielding depth. If there is no number here
 the default is 0.</p>
 </li>
 <li>
@@ -6099,25 +6114,24 @@ you should navigate to the folder with the data (for this example, the folder is
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
 /home/ExampleDatasets/SanBernardino/
 $ ls
-Binnie_CRNData.csv  SanBern_data_analysis.CRNfiles  SanBern.hdr
-SanBern.bil         SanBern_data_analysis.CRNparam</code></pre>
+SanBern_CRNData.csv  SanBern_CRNRasters.csv  SanBern.hdr
+SanBern.bil         SanBern.CRNparam</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You will then need to modify <code>SanBern_data_analysis.CRNfiles</code> to reflect your directory:</p>
+<p>You will then need to modify <code>SanBern_CRNRasters.csv</code> to reflect your directory:</p>
 </div>
 <div class="listingblock">
+<div class="title">Modify your <code>SanBern_CRNRasters.csv</code> file</div>
 <div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">/home/ExampleDatasets/SanBernardino/Binnie_CRNdata.csv
-/home/ExampleDatasets/SanBernardino/SanBern</code></pre>
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">/home/ExampleDatasets/SanBernardino/SanBern</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first line points to the CRNdata.csv file, and the second points to the DEM that will be analyzed.
-Note that if you are doing this on your own data you can have multiple lines for different DEMs.</p>
+<p>Each line in this file points to a directory holding the rasters to be analyzed.</p>
 </div>
 <div class="paragraph">
-<p>In addition in this case we are not supplying and shielding rasters.
+<p>In this case we are not supplying and shielding rasters.
 For more details about the format of this file see the section: <a href="#_the_raster_names_file">The raster names file</a>.</p>
 </div>
 </li>
@@ -6202,7 +6216,7 @@ You need to give this program two arguments.</p>
 </li>
 <li>
 <p>You need to give <code>Spawn_DEMs_for_CRN.exe</code>, the path to the data files (i.e., <code>_CRNRasters.csv</code> and <code>_CRNData.csv</code>),
-and the prefix, so if they are called  <code>YoMa_CRNRaster.csv</code> the prefix is <code>YoMa</code>).
+and the prefix, so if they are called  <code>YoMa_CRNRaster.csv</code> the prefix is <code>YoMa</code>). In this example the prefix will be <code>SanBern</code>.
 Run this with:</p>
 <div class="listingblock">
 <div class="content">
@@ -6303,6 +6317,27 @@ If you only wanted to do a subset of the basins, you can just delete rows from t
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>This will produce a large number of topographic shielding rasters (with <code>_SH</code> in the filename), for example:</p>
+</div>
+<div class="listingblock">
+<div class="title">A partial list of files generated by spawning operation</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">smudd@burn SanBern $ ls
+SpawnedBasin_10.bil  SpawnedBasin_17.bil  SpawnedBasin_7.bil       SpawnedBasin_MHC-13.bil
+SpawnedBasin_10.hdr  SpawnedBasin_17.hdr  SpawnedBasin_7.hdr       SpawnedBasin_MHC-13.hdr
+SpawnedBasin_11.bil  SpawnedBasin_18.bil  SpawnedBasin_8.bil       SpawnedBasin_MHC-14.bil
+SpawnedBasin_11.hdr  SpawnedBasin_18.hdr  SpawnedBasin_8.hdr       SpawnedBasin_MHC-14.hdr
+SpawnedBasin_12.bil  SpawnedBasin_19.bil  SpawnedBasin_9.bil       SpawnedBasin_MHC-15.bil
+SpawnedBasin_12.hdr  SpawnedBasin_19.hdr  SpawnedBasin_9.hdr       SpawnedBasin_MHC-15.hdr</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Shielding.jpg" alt="Shielding raster">
+</div>
+<div class="title">Figure 13. One of the shielding rasters (for sample name <code>18</code>) from the San Bernardino dataset (viewed in QGIS2.2)</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_embarrassingly_parallel_shielding">8.2.3. Embarrassingly parallel shielding</h4>
@@ -6374,19 +6409,85 @@ shielding rasters so that the updated parameter files can be fed directly into t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_calculating_erosion_rates">8.3. Calculating erosion rates</h3>
+<h3 id="_snow_shielding_calculations">8.3. Snow shielding calculations</h3>
+<div class="paragraph">
+<p>Snow blocks cosmic rays and so CRN concentrations in sediments can be affected
+by snow that has been present in the basin during the period that eroded materials were exposed to cosmic rays.</p>
+</div>
+<div class="paragraph">
+<p>Snow shielding is notoriously difficult
+(how is one to rigorously determine the thickness of snow averaged over the last few thousand years?),
+and our software does not proscribe a method for calculating snow shielding.</p>
+</div>
+<div class="paragraph">
+<p>Rather, our tools allow the user to set snow shielding in 3 ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use a previously reported basinwide average snow shielding factor</p>
+</li>
+<li>
+<p>Assign a single effective average depth of snow over a catchment (in g cm<sup>-2</sup>).</p>
+</li>
+<li>
+<p>Pass a raster of effective average depth of snow over a catchment (in g cm<sup>-2</sup>).</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_using_previously_reported_snow_shielding">8.3.1. Using previously reported snow shielding</h4>
+<div class="paragraph">
+<p>Some authors report a snow shielding factor in their publications.
+The underlying information about snow and ice thickness used to generate the snow shielding factor is usually missing.
+Because under typical circumstances the spatial distribution of snow thicknesses is not reported, we use reported snow shielding factors
+to calculate an effective snow thickness across the basin.</p>
+</div>
+<div class="paragraph">
+<p>This approach is only compatible with our spawning method (see the section on <a href="#_spawning_the_basins">Spawning the basins</a>),
+because this average snow thickness will only apply to the raster containing an individual sample&#8217;s basin.</p>
+</div>
+<div class="paragraph">
+<p>The effective snow thickness is calculated by:</p>
+</div>
+<div class="paragraph">
+<p>+
+\(d_{eff} = -/Gamma_0*ln(S_s)\)</p>
+</div>
+<div class="paragraph">
+<p>+
+where \(d_{eff}\) is the effective depth (g cm<sup>-2</sup>), \(/Gamma_0\) is the attenuation mass (g cm<sup>-2</sup>) for spallation (we do not consider the blocking of muons by snow), and, \(S_s\) is the reproted snow shielding.</p>
+</div>
+<div class="paragraph">
+<p>The reported snow sheilding values should be inserted as the 8th column in the <code>CRNData.csv</code> file.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_calculating_erosion_rates">8.4. Calculating erosion rates</h3>
 <div class="paragraph">
 <p>Okay, now you are ready to get the erosion rates.
 You&#8217;ll need to run the function from the directory where the compiled code is located
 (in our example, <code>/home/LSDTT_repositories/LSDTopoTools_CRNBasinwide/</code>), but it can work on data in some arbitrary location.</p>
 </div>
 <div class="sect3">
-<h4 id="_compiling_the_code_3">8.3.1. Compiling the code</h4>
+<h4 id="_compiling_the_code_3">8.4.1. Compiling the code</h4>
 <div class="paragraph">
 <p>To compile the code, go to the driver function folder
 (in the example, <code>/home/LSDTT_repositories/LSDTopoTools_CRNBasinwide/driver_functions_CRNBasinwide</code>)
 and type:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f Basinwide_CRN.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in a program called <strong>Basinwide_CRN.exe</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_basinwide_erosion_rate_calculator">8.4.2. Running the basinwide erosion rate calculator</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ./Basinwide_CRN.exe pathname_of_data file_prefix</code></pre>
@@ -6418,7 +6519,7 @@ In the example this prefix is <code>SanBern</code> (or <code>SanBern_Spawned</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_output_files">8.3.2. The output files</h4>
+<h4 id="_the_output_files">8.4.3. The output files</h4>
 <div class="paragraph">
 <p>There are two output files. Both of these files will end up in the <code>pathname</code> that you designated when calling the program.</p>
 </div>
@@ -6651,7 +6752,7 @@ cosmocalc. Assumes 2650 kg m<sup>-2</sup>.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_9">8.4. Summary</h3>
+<h3 id="_summary_9">8.5. Summary</h3>
 <div class="paragraph">
 <p>You should now be able take date from basinwide cosmogenics and convert these into erosion rates.</p>
 </div>
@@ -7021,7 +7122,7 @@ You can install the 2013 version using chocolatey:</p>
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 13. Cygwin setup.</div>
+<div class="title">Figure 14. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
