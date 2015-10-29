@@ -1009,6 +1009,23 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
+<li><a href="#_analysis_driver_options">Appendix E: Analysis Driver Options</a>
+<ul class="sectlevel2">
+<li><a href="#_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</a></li>
+<li><a href="#_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</a></li>
+<li><a href="#_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</a></li>
+<li><a href="#_parameters_for_hillshading">E.3.2. Parameters for hillshading</a></li>
+<li><a href="#_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</a></li>
+<li><a href="#_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</a></li>
+<li><a href="#_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</a></li>
+<li><a href="#_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</a></li>
+<li><a href="#_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -5534,9 +5551,131 @@ Currently <sup>10</sup>Be and <sup>26</sup>Al are supported.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The toolkit then produces
-  * A csv file that contains results of the analysis.
-  * A text file that can be copied into the <a href="http://hess.ess.washington.edu/math/al_be_v22/al_be_erosion_multiple_v22.php&gt;">CRONUS online calculator</a> for data comparison.</p>
+<p>The toolkit then produces:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A csv file that contains results of the analysis.</p>
+</li>
+<li>
+<p>A text file that can be copied into the <a href="http://hess.ess.washington.edu/math/al_be_v22/al_be_erosion_multiple_v22.php&gt;">CRONUS online calculator</a> for data comparison.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick guide if you already know what you are doing</div>
+<div class="paragraph">
+<p>If you already know what you are doing, here is a quick guide to walk you thorugh the process.
+If one of these steps doesn&#8217;t make sence see the full documentation.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will want a directory for both the source code and the data. Make these directories.</p>
+</li>
+<li>
+<p>Get the latest version of the source code from <a href="https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide" class="bare">https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide</a>
+If you don&#8217;t have it, use</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or if you have it use</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git pull -u origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in your source code directory.</p>
+</div>
+</li>
+<li>
+<p>If you have just downloaded the source code, or if it has updates, you need to compile the code.
+Go into the folder <strong>driver_functions_CRNBasinwide</strong> and use make:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f Spawn_DEMS_for_CRN.make
+$ make -f Shielding_for_CRN.make
+$ make -f Basinwide_CRN.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After each call to <code>make</code> there will be a bunch of warnings that you can ignore.</p>
+</div>
+</li>
+<li>
+<p>In your data folder you will need a <code><strong>_CRNRasters.csv</code> file, a <code>*_CRNData.csv</code> file,
+and a <code></strong>.CRNParams</code> file. If you don&#8217;t know what these are read the relevent parts of the full documentation</p>
+</li>
+<li>
+<p>In your data folder you will also need some python scripts, which you can download individually:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/JoinSnowShielding.py
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/LSDOSystemTools.py
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/EliminateUnderscoreFromCRNDataSampleNames.py
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareDirectoriesForBasinSpawn.py</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In your data folder, run <code>PrepareDirectoriesForBasinSpawn.py</code>.
+You will need to updtate the path and the prefix at the bottom of this file.</p>
+</li>
+<li>
+<p>In addition, sample names with the underscapre character (<code><em></code>) are not allowed. The script
+<code>EliminateUnderscoreFromCRNDataSampleNames.py</code> will replace all <code></em></code> characters with <code>-</code> characters.
+You need to open this file and change the target directory before running. It will modify all <code>*_CRNData.csv</code> files it finds in that directory.</p>
+</li>
+<li>
+<p>Next up, spawn the basins. Go into the source code directory and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./Spawn_DEMs_for_CRN.exe PATHNAME DATAPREFIX</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now, you are ready to calculate topographic shielding. You should run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./Shielding_for_CRN.exe PATHNAME DATAPREFIX</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you ran the spawning the data prefix will now have a <code>*_spawned</code> in it.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is the most computationally expensive component of the process. It could take a while. In the full documentation there is some instructions as to how to do this computation using an embarrassingly parallel approach.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_get_the_code_and_data_basinwide_cosmogenic_analysis">8.1. Get the code and data basinwide cosmogenic analysis</h3>
@@ -6411,13 +6550,13 @@ shielding rasters so that the updated parameter files can be fed directly into t
 <div class="sect2">
 <h3 id="_snow_shielding_calculations">8.3. Snow shielding calculations</h3>
 <div class="paragraph">
-<p>Snow blocks cosmic rays and so CRN concentrations in sediments can be affected
+<p>Snow absorbs cosmic rays and so CRN concentrations in sediments can be affected
 by snow that has been present in the basin during the period that eroded materials were exposed to cosmic rays.</p>
 </div>
 <div class="paragraph">
-<p>Snow shielding is notoriously difficult
+<p>Estimating snow shielding is notoriously difficult
 (how is one to rigorously determine the thickness of snow averaged over the last few thousand years?),
-and our software does not proscribe a method for calculating snow shielding.</p>
+and our software does not prescribe a method for calculating snow shielding.</p>
 </div>
 <div class="paragraph">
 <p>Rather, our tools allow the user to set snow shielding in 3 ways:</p>
@@ -6450,13 +6589,14 @@ because this average snow thickness will only apply to the raster containing an 
 <div class="paragraph">
 <p>The effective snow thickness is calculated by:</p>
 </div>
-<div class="paragraph">
-<p>+
-\(d_{eff} = -/Gamma_0*ln(S_s)\)</p>
+<div class="stemblock">
+<div class="title">Converting snow shielding to an effective depth</div>
+<div class="content">
+\[d_{eff} = -\Gamma_0*\ln(S_s)\]
+</div>
 </div>
 <div class="paragraph">
-<p>+
-where \(d_{eff}\) is the effective depth (g cm<sup>-2</sup>), \(/Gamma_0\) is the attenuation mass (g cm<sup>-2</sup>) for spallation (we do not consider the blocking of muons by snow), and, \(S_s\) is the reproted snow shielding.</p>
+<p>where \(d_{eff}\) is the effective depth (g cm<sup>-2</sup>), \(\Gamma_0\) is the attenuation mass (= 160 g cm<sup>-2</sup>) for spallation (we do not consider the blocking of muons by snow), and, \(S_s\) is the reproted snow shielding.</p>
 </div>
 <div class="paragraph">
 <p>The reported snow sheilding values should be inserted as the 8th column in the <code>CRNData.csv</code> file.</p>
@@ -7954,10 +8094,455 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_analysis_driver_options">Appendix E: Analysis Driver Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LSDTopoTools is composed of a number of objects (e.g., LSDRaster, LSDChannel, LSDFlowInfo, etc.) which are then called from programs we call driver functions.
+For more information, see the appendix <a href="#_code_structure">Code Structure</a>.</p>
+</div>
+<div class="paragraph">
+<p>Most of these functions drive specific kinds of analysis,
+but we do have a general program capable of a number of different analyses.
+This program is called the <strong>AnalysisDriver</strong> and is available here: <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver" class="bare">https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver</a>.</p>
+</div>
+<div class="paragraph">
+<p>The analysis driver runs from parameter files.
+In this appendix we document the options for running the AnalysisDriver from a parameter file.</p>
+</div>
+<div class="paragraph">
+<p>The format of <strong>AnalysisDriver</strong> parameter files is a keyword followed by a value.
+The value can be a string, an integer, a boolean or a floating point number depending on the keyword.
+The order of the keywords does not matter.
+Comments can be inserted into the parameter file using the hash symbol (<code>#</code>).</p>
+</div>
+<div class="sect2">
+<h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 13. File input and output options</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dem read extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dem write extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to which data is written.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path from which data is read.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of rasters to be written <strong>without extension</strong>.
+For example if this is <code>Test</code> and you have selected <code>bil</code> format then a fill operation will result in a file called <code>Test_Fill.bil</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of the raster to be read without extension. For example if the raster is <code>MyRaster.bil</code>, read fname will be <code>MyRaster</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+These require booleans,
+but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <strong>true</strong>--anything else is considered false.
+<code>true</code> is case sensitive, so <strong>DO NOT</strong> write <code>True</code>: it will be interpreted as false!!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 14. Options of files to write or analyses to perform</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write fill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a filled raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write write trimmed and nodata filled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is for data with nodata around the edges and holes of nodata in the middle.
+The holes are filled and the nodata around the edges is trimmed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write hillshade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a hillshade raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write slope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a slope raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write curvature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a curvature raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write planform curvature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a planform curvature raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write tangential curvature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a tangential curvature raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write profile curvature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a profile curvature raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write aspect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write an aspect raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write topographic classification</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a raster where convex, concave and planar regions are classified by an integer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write drainage area</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a drainage area raster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write channel net</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a channel network. This will print a raster of stream orders and a raster of junctions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write nodeindex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Writes a nodeindex raster. Used by developers for debugging.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write write single thread channel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This extracts a single tread channel from a starting and ending node, and prints to csv.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write chi map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This calculates the chi coordinate (a coordinate that integrates drainage area along channel length) from all base level nodes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write factor of safety at saturation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculates the factor of safety using an infinite slope analysis (similar to <a href="http://hydrology.usu.edu/sinmap2/">Sinmap</a>
+or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab</a>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</h3>
+<div class="sect3">
+<h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 15. Parameters for the fill function</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min_slope_for_fill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum slope between nodes in a DEM: this is for filling flats</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fill_method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new_fill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The method to be used for the fill function. Options are <code>new_fill</code>, <code>old_fill</code>, and <code>remove_seas</code>.
+The <code>old_fill</code> method is legacy code and is only used by developers in recreating pre-2012 analyses.
+It is <strong>MUCH</strong> slower than <code>new_fill</code>.
+<code>remove_seas</code> uses <code>new_fill</code> but it additionally sets any data point where the elevation is 0 to <code>nodata</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 16. Parameters for hillshading</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hs_altitude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The altitude of the sun in degrees</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hs_azimuth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">315</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The azimuth of the "sun" in degrees</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hs_z_factor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The vertical exaggeration factor as a ratio</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 17. Parameters for flow info calculations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boundary conditions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A four element list of strings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n n n n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This gives the boundary conditions at the north, east, south and west boundaries, respectively.
+The options are <code>n</code> for no flux, <code>p</code> for periodic and <code>b</code> for base level.
+These are NOT case sensitive.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 18. Parameters for chi calculations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A_0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A normalizing area for chi calculations in m<sup>2</sup>.
+This will affect absolute values of chi but not relative values of chi.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m_over_n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The m/n ratio.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_area_for_chi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold area for chi calculations in m<sup>2</sup>.
+Pixels with area lower than this threshold will be assigned nodata.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 19. Parameters for chi calculations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">polyfit_window_radius</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2*sqrt(2)*data_resolution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The radius of nodes over which to fit the polynomial window in m.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slope_method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">d8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating slope. Options are <code>d8</code> (steepest descent) and <code>polyfit</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 20. Parameters for chi calculations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">drainage_area_method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dinf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating drainage area. The options are: <code>d8</code>, <code>dinf</code>, <code>QuinnMD</code>, <code>FreemanMD</code>, and <code>M2D</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 21. Parameters for chi calculations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">single_thread_channel_method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">start_and_end_node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating drainage area. So far there is only one option: <code>start_and_end_node</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">starting_channel_node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if none give you will get a user prompt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The nodeindex of the starting node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ending_channel_node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if none give you will get a user prompt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The nodeindex of the ending node.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-10-26 15:14:41 GMT Standard Time
+Last updated 2015-10-29 16:01:05 GMT Standard Time
 </div>
 </div>
 </body>
