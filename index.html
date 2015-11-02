@@ -803,21 +803,20 @@ MathJax.Hub.Config({
 <li><a href="#_the_typical_directory_layout">4.1.3. The typical directory layout</a></li>
 </ul>
 </li>
-<li><a href="#_summary_3">4.2. Summary</a></li>
-<li><a href="#_getting_the_code_using_git">4.3. Getting the code using Git</a>
+<li><a href="#_getting_the_code_using_git">4.2. Getting the code using Git</a>
 <ul class="sectlevel3">
-<li><a href="#_getting_started_with_git">4.3.1. Getting started with Git</a></li>
-<li><a href="#_pulling_a_repository_from_github">4.3.2. Pulling a repository from Github</a></li>
-<li><a href="#_making_your_own_repository">4.3.3. Making your own repository</a></li>
+<li><a href="#_getting_started_with_git">4.2.1. Getting started with Git</a></li>
+<li><a href="#_pulling_a_repository_from_github">4.2.2. Pulling a repository from Github</a></li>
+<li><a href="#_making_your_own_repository">4.2.3. Making your own repository</a></li>
 </ul>
 </li>
-<li><a href="#_where_to_get_the_code">4.4. Where to get the code</a>
+<li><a href="#_where_to_get_the_code">4.3. Where to get the code</a>
 <ul class="sectlevel3">
-<li><a href="#_latest_release_versions_on_github">4.4.1. Latest release versions on GitHub</a></li>
-<li><a href="#_csdms">4.4.2. CSDMS</a></li>
+<li><a href="#_latest_release_versions_on_github">4.3.1. Latest release versions on GitHub</a></li>
+<li><a href="#_csdms">4.3.2. CSDMS</a></li>
 </ul>
 </li>
-<li><a href="#_summary_4">4.5. Summary</a></li>
+<li><a href="#_summary_3">4.4. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_first_analysis">5. First Analysis</a>
@@ -839,14 +838,14 @@ MathJax.Hub.Config({
 <li><a href="#_look_at_the_output">5.3.5. Look at the output</a></li>
 </ul>
 </li>
-<li><a href="#_summary_5">5.4. Summary</a></li>
+<li><a href="#_summary_4">5.4. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_simple_surface_metrics_slope_curvature_aspect_etc">6. Simple surface metrics (slope, curvature, aspect, etc)</a>
 <ul class="sectlevel2">
 <li><a href="#_modifying_the_parameter_file_2">6.1. Modifying the parameter file</a></li>
 <li><a href="#_running_the_analyses_in_this_case_writing_fill_and_hillshade_rasters_2">6.2. Running the analyses (in this case, writing fill and hillshade rasters)</a></li>
-<li><a href="#_summary_6">6.3. Summary</a></li>
+<li><a href="#_summary_5">6.3. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_chi_analysis">7. Chi analysis</a>
@@ -878,7 +877,7 @@ MathJax.Hub.Config({
 <li><a href="#_a_sample_chi_analysis_workflow">7.4.5. A Sample Chi Analysis Workflow</a></li>
 </ul>
 </li>
-<li><a href="#_summary_7">7.5. Summary</a></li>
+<li><a href="#_summary_6">7.5. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_basinwide_cosmogenic_analysis">8. Basinwide cosmogenic analysis</a>
@@ -912,7 +911,7 @@ MathJax.Hub.Config({
 <li><a href="#_the_output_files">8.4.3. The output files</a></li>
 </ul>
 </li>
-<li><a href="#_summary_8">8.5. Summary</a></li>
+<li><a href="#_summary_7">8.5. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_software">Appendix A: Software</a>
@@ -966,7 +965,7 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_windows_installation_summary">B.7. Windows installation summary</a></li>
 <li><a href="#_turning_your_windows_machine_into_a_linux_machine">B.8. Turning your windows machine into a Linux machine</a></li>
-<li><a href="#_summary_9">B.9. Summary</a></li>
+<li><a href="#_summary_8">B.9. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_setting_up_on_linux">Appendix C: Setting up on Linux</a>
@@ -989,7 +988,7 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#_cloning_or_forking_the_documentation">C.5. Cloning or forking the documentation</a></li>
-<li><a href="#_summary_10">C.6. Summary</a></li>
+<li><a href="#_summary_9">C.6. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_code_structure">Appendix D: Code Structure</a>
@@ -2047,26 +2046,43 @@ you should use the <code>+south</code> flag:</p>
 <p>There are several other flags that could be quite handy (for a complete
 list see <a href="http://www.gdal.org/gdalwarp.html">the GDAL website</a>).</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p><code>-of</code> <code>format</code>: This sets the format to the selected format. This
 means you can skip the step of changing formats with <code>gdal_translate</code>.
-We will repeat this later but the formats for <code>LSDTopoTools</code> are</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AAIGrid</code> for ASCII files. These files are huge so try not to use
-them.</p>
-</li>
-<li>
-<p><code>EHdr</code> for ESRI float files. This used to be the only binary option
-but GDAL seems to struggle with it and it doesn&#8217;t retain georeferencing.</p>
-</li>
-<li>
-<p><code>ENVI</code> for ENVI rasters. <strong>This is the preferred format</strong>. GDAL deals
+We will repeat this later but the formats for <code>LSDTopoTools</code> are:</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Format of outputs for GDAL</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ASCGrid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ASCII files. These files are huge so try not to use
+them.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EHdr</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESRI float files. This used to be the only binary option
+but GDAL seems to struggle with it and it doesn&#8217;t retain georeferencing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ENVI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENVI rasters. <strong>This is the preferred format</strong>. GDAL deals
 with these files well and they retain georeferencing. We use the
-extension <code>bil</code> with these files.</p>
+extension <code>bil</code> with these files.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>So, for example, you could output the file as:</p>
 </div>
@@ -2082,9 +2098,6 @@ extension <code>bil</code> with these files.</p>
 <div class="content">
 <pre class="highlight"><code class="language-consol" data-lang="consol">  $ gdalwarp -t_srs '+proj=utm +zone=19 +south +datum=WGS84' -of ENVI 20131228_tsx_20131228_tdx.height.gc.tif Chile_small.bil</code></pre>
 </div>
-</div>
-</li>
-</ul>
 </div>
 </li>
 <li>
@@ -2112,31 +2125,52 @@ distances to be the same
 <li>
 <p><code>-r</code> <code>resampling_method</code>: This allows you to select the resampling
 method. The options are:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>near</code>: nearest neighbour resampling (default, fastest algorithm,
-worst interpolation quality).</p>
-</li>
-<li>
-<p><code>bilinear</code>: bilinear resampling.</p>
-</li>
-<li>
-<p><code>cubic</code>: cubic resampling.</p>
-</li>
-<li>
-<p><code>cubicspline</code>: cubic spline resampling.</p>
-</li>
-<li>
-<p><code>lanczos</code>: Lanczos windowed sinc resampling.</p>
-</li>
-<li>
-<p><code>average</code>: average resampling, computes the average of all non-NODATA
-contributing pixels. (GDAL &gt;= 1.10.0)</p>
-</li>
-<li>
-<p><code>mode</code>: mode resampling, selects the value which appears most often
-of all the sampled points. (GDAL &gt;= 1.10.0)</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Resampling methods for GDAL</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>near</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nearest neighbour resampling (default, fastest algorithm,
+worst interpolation quality).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bilinear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bilinear resampling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cubic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cubic resampling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cubicspline</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cubic spline resampling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lanczos</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lanczos windowed sinc resampling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>average</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Average resampling, computes the average of all non-NODATA
+contributing pixels. (GDAL versions &gt;= 1.10.0).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode resampling, selects the value which appears most often
+of all the sampled points. (GDAL versions &gt;= 1.10.0).</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>So for example you could do a cubic resampling with:</p>
 </div>
@@ -2147,13 +2181,11 @@ diff0715_0612_clip.tif diff0715_0612_clip_UTM44_rs4.tif</code></pre>
 </div>
 </div>
 </li>
-</ul>
-</div>
-</li>
 <li>
 <p><code>-te</code> <code>&lt;x_min&gt; &lt;y_min&gt; &lt;x_max&gt; &lt;y_max&gt;</code>: this clips the raster. You
-can see more about this below in :ref:`Clip-using-gdal`.</p>
-</li>
+can see more about this below in under the header <a href="#clipping-rasters-with-gdal">Clipping rasters with gdal</a>.</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>UTM South</strong>: If you are looking at maps in the southern hemisphere,
 you need to use the <code>+south</code> flag:</p>
@@ -2165,6 +2197,9 @@ diff0715_0612_clip.tif diff0715_0612_clip_UTM44.bil</code></pre>
 </div>
 </li>
 </ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -2332,7 +2367,9 @@ but if you just want to get started you can always skip to the <a href="#_where_
 <h3 id="_how_the_code_is_structured">4.1. How the code is structured</h3>
 <div class="paragraph">
 <p>Okay, if you are getting the LSDTopoTools for the first time, it will be useful to understand how the code is structured.
-Knowing the structure of the code will help you compile it (that is, turn the source code into a program).</p>
+Knowing the structure of the code will help you compile it (that is, turn the source code into a program).
+If you just want to grab the code, skip ahead to the section <a href="#_getting_the_code_using_git">Getting the code using Git</a>.
+If, on the other hand, you want to know the intimate details of the code structured, see the appendix: <a href="#_code_structure">Code Structure</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_compiling_the_code">4.1.1. Compiling the code</h4>
@@ -2448,15 +2485,7 @@ but we will explain those in later chapters when we cover the tools that use the
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_3">4.2. Summary</h3>
-<div class="paragraph">
-<p>You should now have some idea as to where to retrieve the code,
-and what you will find in your directories once it is downloaded.
-We are now ready to actually move on to using the code!</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getting_the_code_using_git">4.3. Getting the code using Git</h3>
+<h3 id="_getting_the_code_using_git">4.2. Getting the code using Git</h3>
 <div class="paragraph">
 <p>The development versions of LSDTopoTools live at the University of Edinburgh&#8217;s code development pages, <a href="https://sourced.ecdf.ed.ac.uk/projects/geos/LSD_devel/">sourceEd</a>,
 and if you want to be voyeuristic you can always go to the <a href="https://sourced.ecdf.ed.ac.uk/projects/geos/LSD_devel/timeline">timeline</a> there and see exactly what we are up to.</p>
@@ -2471,7 +2500,7 @@ If you want to know more about it, there are thousands of pages of documentation
 Here we only supply the basics.</p>
 </div>
 <div class="sect3">
-<h4 id="_getting_started_with_git">4.3.1. Getting started with Git</h4>
+<h4 id="_getting_started_with_git">4.2.1. Getting started with Git</h4>
 <div class="paragraph">
 <p>We start with the assumption that you have installed <code>git</code> on your computer.
 If it isn&#8217;t installed, you should consult the appendices for instructions on how to install it.</p>
@@ -2534,7 +2563,7 @@ $ git config --global core.editor emacs</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_pulling_a_repository_from_github">4.3.2. Pulling a repository from Github</h4>
+<h4 id="_pulling_a_repository_from_github">4.2.2. Pulling a repository from Github</h4>
 <div class="paragraph">
 <p>Okay, once you have set up git, you are ready to get some code!
 To get the code, you will need to <code>clone</code> it from a repository.
@@ -2609,7 +2638,7 @@ $ git commit -m "This is a message that should state what you've just done." mor
 </div>
 </div>
 <div class="sect3">
-<h4 id="_making_your_own_repository">4.3.3. Making your own repository</h4>
+<h4 id="_making_your_own_repository">4.2.3. Making your own repository</h4>
 <div class="paragraph">
 <p>If you start to modify our code, or want to start keeping track of your own scripts,
 you might create your own repositories using git and host them on
@@ -2734,7 +2763,7 @@ but there are many resources on the web for using git so help is only a few elec
 </div>
 </div>
 <div class="sect2">
-<h3 id="_where_to_get_the_code">4.4. Where to get the code</h3>
+<h3 id="_where_to_get_the_code">4.3. Where to get the code</h3>
 <div class="paragraph">
 <p>Okay, now to actually get the code! There are several versions floating around.
 <strong>They are not all the same!</strong>. The best two ways to get the code both involve downloading the code from <a href="https://github.com">github</a>.</p>
@@ -2746,7 +2775,7 @@ but there are many resources on the web for using git so help is only a few elec
 <p>If, however, you are planning on keeping up with updates, it is probably better to use the software <code>git</code> to get the code.</p>
 </div>
 <div class="sect3">
-<h4 id="_latest_release_versions_on_github">4.4.1. Latest release versions on GitHub</h4>
+<h4 id="_latest_release_versions_on_github">4.3.1. Latest release versions on GitHub</h4>
 <div class="paragraph">
 <p>We post the latest release versions of the software on <a href="https://github.com">GitHub</a>.</p>
 </div>
@@ -2758,7 +2787,7 @@ but we hope to change this in the near future.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_csdms">4.4.2. CSDMS</h4>
+<h4 id="_csdms">4.3.2. CSDMS</h4>
 <div class="paragraph">
 <p>When we publish papers that use new algorithms, we tend to post the code on the
 Community Surface Dynamics Modeling System website, found here: <a href="http://csdms.colorado.edu/wiki/Main_Page" class="bare">http://csdms.colorado.edu/wiki/Main_Page</a>.</p>
@@ -2786,7 +2815,7 @@ Currently our <a href="http://csdms.colorado.edu/wiki/Main_Page">CSDMS</a> offer
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_4">4.5. Summary</h3>
+<h3 id="_summary_3">4.4. Summary</h3>
 <div class="paragraph">
 <p>You should now have some idea as to where to retrieve the code,
 and what you will find in your directories once it is downloaded.
@@ -3444,7 +3473,7 @@ If you don&#8217;t know how to do that, you should have a look at our appendix: 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_5">5.4. Summary</h3>
+<h3 id="_summary_4">5.4. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to clone one of our programs from Github, compile it, and run it on your computer.
 Now we can move on to more complex topographic analyses.</p>
@@ -3504,7 +3533,7 @@ It is the <em>format</em> of this file that is important, not the filename.
 </div>
 </li>
 <li>
-<p>Open two terminal windows (Instructions here: :ref:`getting-onto-servers`).</p>
+<p>Open two terminal windows (Instructions here: <a href="#_the_terminal_and_powershells">The terminal and powershells</a>).</p>
 </li>
 </ol>
 </div>
@@ -3754,7 +3783,7 @@ and valleys have positive curvature. This is reversed in <code>ArcMap</code>. Ou
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_6">6.3. Summary</h3>
+<h3 id="_summary_5">6.3. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to extract some simple topographic metrics from a DEM using our Driver_analysis program.</p>
 </div>
@@ -4041,7 +4070,7 @@ Here are the first 3 lines of the file:</p>
 <li>
 <p>Okay, if you have been following along, you should have two terminal windows open. One should be open in the folder containing your data, and the other should be open in the folder with the source code driver functions.</p>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. The two terminal windows</caption>
+<caption class="title">Table 6. The two terminal windows</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4157,7 +4186,7 @@ that has the details of the parameter values.</p>
 If you have used incorrect filenames the code should tell you.
 The end result will be a large number of new files: The code prints</p>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. Files generated by chi1_write_junctions.exe.</caption>
+<caption class="title">Table 7. Files generated by chi1_write_junctions.exe.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -4413,7 +4442,7 @@ f the channel is not generated from a DEM these six rows can contain placeholder
 The six rows are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. First six rows of the .chan file.</caption>
+<caption class="title">Table 8. First six rows of the .chan file.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -4460,7 +4489,7 @@ scripts can be written to merge data from the channel files with DEM data.</p>
 <p>The rest of the channel file consists of rows with 9 columns.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. Chan file contents, the first 6 rows are listed in the table above.</caption>
+<caption class="title">Table 9. Chan file contents, the first 6 rows are listed in the table above.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -4684,7 +4713,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 (e.g., a string describing them). The parameters are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. Cheat sheet for driver file</caption>
+<caption class="title">Table 10. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -4813,7 +4842,7 @@ If the DEM is 90m resolution, for example, the resolution the algorithm will wor
 <p>And here is the cheat sheet (also included in <code>driver_cheat_sheet.txt</code>):</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. Cheat sheet for driver file</caption>
+<caption class="title">Table 11. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -4972,7 +5001,7 @@ For example, the filename:</p>
 <p>The format of the file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 10. The format of the .movern file</caption>
+<caption class="title">Table 12. The format of the .movern file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -5528,7 +5557,7 @@ where \(M_\chi\) is plotted on the channel profile. Here is an example:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_7">7.5. Summary</h3>
+<h3 id="_summary_6">7.5. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to extract some simple topographic metrics from a DEM using our Driver_analysis program.</p>
 </div>
@@ -5944,7 +5973,7 @@ The parameter names are not case sensitive. The parameter values are case sensit
 These parameters are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 11. File input and output options</caption>
+<caption class="title">Table 13. File input and output options</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -6161,7 +6190,7 @@ LC07_11,-31.122417,-71.576194,Be10,120502,2500,07KNSTD,0.987</code></pre>
 then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.csv</code> in your data folder.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 12. CRNData.csv format (the first row contains a header)</caption>
+<caption class="title">Table 14. CRNData.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -6229,7 +6258,7 @@ then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.c
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 13. Nuclide standardisation options</caption>
+<caption class="title">Table 15. Nuclide standardisation options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -6317,7 +6346,7 @@ shielding for you. Note: topographic shielding is the most computationally deman
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 14. CRNRasters.csv format (the first row contains a header)</caption>
+<caption class="title">Table 16. CRNRasters.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 37%;">
@@ -6977,7 +7006,7 @@ In the example this prefix is <code>SanBern</code> (or <code>SanBern_Spawned</co
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 15. Method flag options</caption>
+<caption class="title">Table 17. Method flag options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -7068,7 +7097,7 @@ A new version of the CRONUS caluclator should be available late 2015 but should 
 It contains the following data in comma separated columns:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 16. Columns in the <code>_CRNResults.csv</code> file</caption>
+<caption class="title">Table 18. Columns in the <code>_CRNResults.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -7254,9 +7283,9 @@ cosmocalc. Assumes 2650 kg m<sup>-2</sup>.</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_8">8.5. Summary</h3>
+<h3 id="_summary_7">8.5. Summary</h3>
 <div class="paragraph">
-<p>You should now be able take date from basinwide cosmogenics and convert these into erosion rates.</p>
+<p>You should now be able to take dates from basinwide cosmogenics and convert these into erosion rates.</p>
 </div>
 </div>
 </div>
@@ -8054,7 +8083,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_9">B.9. Summary</h3>
+<h3 id="_summary_8">B.9. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to pull up a powershell and call the essential programs we will be working with in this course.</p>
 </div>
@@ -8340,7 +8369,7 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_10">C.6. Summary</h3>
+<h3 id="_summary_9">C.6. Summary</h3>
 <div class="paragraph">
 <p>Well, you have probably spent some time installing all of these software packages so relax for a bit and enjoy the beverage of your choice!</p>
 </div>
@@ -8481,7 +8510,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 17. File input and output options</caption>
+<caption class="title">Table 19. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -8546,7 +8575,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 18. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 20. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -8650,7 +8679,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 19. Parameters for the fill function</caption>
+<caption class="title">Table 21. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8687,7 +8716,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 20. Parameters for hillshading</caption>
+<caption class="title">Table 22. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8727,7 +8756,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 21. Parameters for flow info calculations</caption>
+<caption class="title">Table 23. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8757,7 +8786,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 22. Parameters for chi calculations</caption>
+<caption class="title">Table 24. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8799,7 +8828,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 23. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 25. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8833,7 +8862,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 24. Parameters for drainage area extraction</caption>
+<caption class="title">Table 26. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8861,7 +8890,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 25. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 27. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8901,7 +8930,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 26. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 28. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8929,7 +8958,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. Parameters for chi calculations</caption>
+<caption class="title">Table 29. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
