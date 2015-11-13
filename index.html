@@ -3166,11 +3166,14 @@ LSDTopoTools doesn&#8217;t read <code>tif</code> files (that is a job for the fu
 We will convert the data using GDAL: see the section <a href="#translating-your-raster-into-something-that-can-be-used-by-lsdtopotoolbox">Translating your raster into something that can be used by LSDTopoToolbox</a>.</p>
 </div>
 <div class="paragraph">
-<p>To convert the data to ENVI <code>bil</code> format (which is our preferred format) type:</p>
+<p>Our preference is for the data to be in UTM WGS1984 coordinates.
+You can look up the UTM zones on <a href="http://www.dmap.co.uk/utmworld.htm">this map compiled by Alan Morton</a>.
+The Whiteadder catchement is close to Edinburgh Scotland in zone UTM zone 30N
+To convert the data to ENVI <code>bil</code> format (which is our preferred format) type:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ gdal_translate -of ENVI WhiteadderDEM.tif WhiteadderDEM.bil</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ gdalwarp -t_srs '+proj=utm +zone=30 +datum=WGS84' -of ENVI WhiteadderDEM.tif WhiteadderDEM.bil</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -5460,7 +5463,7 @@ location = 'Gabilan Mesa'
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
 /home/LSDTT_repositories/
-$ git clone https://github.com/LSDtopotools/LSDTopoTools_ER_STAR.git</code></pre>
+$ git clone https://github.com/LSDtopotools/LSDTT_Hillslope_Analysis.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5468,7 +5471,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ER_STAR.git</code></pre
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ cd LSDTopoTools_ER_STAR/</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd LSDTT_Hillslope_Analysis/</code></pre>
 </div>
 </div>
 </div>
@@ -5481,7 +5484,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ER_STAR.git</code></pre
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
 /home/LSDTT_repositories/
-$ wget https://github.com/LSDtopotools/LSDTopoTools_ER_STAR/archive/master.zip
+$ wget https://github.com/LSDtopotools/LSDTT_Hillslope_Analysis/archive/master.zip
 $ gunzip master.zip</code></pre>
 </div>
 </div>
@@ -5896,6 +5899,11 @@ bin_data.py  Plot_ER_Data.py  Settings.py</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of bins to be generated. Must be an integer. eg 5,11,20. Will be ignored if <code>BinFlag</code> is left blank.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MinBinSize</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum number of data points required for a bin to be valid. eg 5,20,100. Will be ignored if <code>BinFlag</code> is left blank.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PatchFlag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0 or 1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use 1 to plot the patch data and 0 to not plot it.</p></td>
@@ -6007,6 +6015,7 @@ RawFlag = 0
 DensityFlag = 1
 BinFlag = ''
 NumBins = 20
+MinBinSize = 100
 PatchFlag = 0
 BasinFlag = 0
 LandscapeFlag = 0
@@ -6062,6 +6071,7 @@ RawFlag = 0
 DensityFlag = 0
 BinFlag = ''
 NumBins = 20
+MinBinSize = 100
 PatchFlag = 1
 BasinFlag = 0
 LandscapeFlag = 0
@@ -6109,6 +6119,7 @@ RawFlag = 0
 DensityFlag = 0
 BinFlag = 'raw'
 NumBins = 20
+MinBinSize = 100
 PatchFlag = 0
 BasinFlag = 0
 LandscapeFlag = 0
@@ -6153,6 +6164,7 @@ RawFlag = 0
 DensityFlag = 0
 BinFlag = ''
 NumBins = 20
+MinBinSize = 100
 PatchFlag = 1
 BasinFlag = 0
 LandscapeFlag = 0
