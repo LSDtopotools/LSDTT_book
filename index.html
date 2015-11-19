@@ -855,6 +855,7 @@ MathJax.Hub.Config({
 <li><a href="#_clone_the_github_repository">7.1.1. Clone the GitHub repository</a></li>
 <li><a href="#_alternatively_get_the_zipped_code">7.1.2. Alternatively, get the zipped code</a></li>
 <li><a href="#_get_the_example_datasets">7.1.3. Get the example datasets</a></li>
+<li><a href="#_get_the_example_parameter_files">7.1.4. Get the example parameter files</a></li>
 </ul>
 </li>
 <li><a href="#_basic_channel_extraction_using_thresholds">7.2. Basic channel extraction using thresholds</a>
@@ -867,14 +868,14 @@ MathJax.Hub.Config({
 <ul class="sectlevel3">
 <li><a href="#_geonet_external_software">7.3.1. Geonet (external software)</a></li>
 <li><a href="#_pelletier">7.3.2. Pelletier</a></li>
-<li><a href="#_the_lsdtopotools_geonet_clone">7.3.3. The LSDTopoTools geonet clone</a></li>
+<li><a href="#_the_lsdtopotools_geometric_method">7.3.3. The LSDTopoTools geometric method</a></li>
 </ul>
 </li>
 <li><a href="#_channel_extraction_using_the_dreich_method">7.4. Channel extraction using the Dreich method</a>
 <ul class="sectlevel3">
 <li><a href="#_run_the_chi_analysis">7.4.1. Run the chi analysis</a></li>
-<li><a href="#_compile_the_code_4">7.4.2. Compile the code</a></li>
-<li><a href="#_run_the_analysis_3">7.4.3. Run the analysis</a></li>
+<li><a href="#_compile_the_code_5">7.4.2. Compile the code</a></li>
+<li><a href="#_run_the_analysis_4">7.4.3. Run the analysis</a></li>
 </ul>
 </li>
 <li><a href="#_summary_6">7.5. Summary</a></li>
@@ -950,7 +951,7 @@ MathJax.Hub.Config({
 <li><a href="#_get_the_chi_analysis_tools">11.2. Get the chi analysis tools</a>
 <ul class="sectlevel3">
 <li><a href="#_clone_the_code_from_git_2">11.2.1. Clone the code from Git</a></li>
-<li><a href="#_compile_the_code_5">11.2.2. Compile the code</a></li>
+<li><a href="#_compile_the_code_6">11.2.2. Compile the code</a></li>
 <li><a href="#_get_some_example_data">11.2.3. Get some example data</a></li>
 </ul>
 </li>
@@ -2329,6 +2330,24 @@ ENVI files are preferred since they work better with GDAL and retain georeferenc
 <div class="paragraph">
 <p>Where the first <code>filename.ext</code> is the source file and the second is the
 output file.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nodata_doesn_t_register">Nodata doesn&#8217;t register</h5>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In older versions of GDAL, the NoDATA value doesn&#8217;t translate when you use <strong>gdalwarp</strong> and <strong>gdal_traslate</strong>.
+If this happens to you, the simple solution is to go into the 'hdr' file and add the no data vale.
+You will need to use <strong>gdalinfo</strong> to get the nodata value from the source raster, and then in the header of the destination raster,
+add the line: <code>data ignore value = -9999</code> (or whatever the nodata value in the source code is).
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -4007,6 +4026,28 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/indian_cre
 <div class="title">Figure 3. Shaded relief image of Indian Creek catchment, Ohio USA, UTM Zone 17N</div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_get_the_example_parameter_files">7.1.4. Get the example parameter files</h4>
+<div class="paragraph">
+<p>We have also provided some examples parameter files that are used to run each method of channel extraction.  You can check out the entire folder of example parameter files using subversion by typing the following in the command line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ svn checkout https://github.com/LSDtopotools/ExampleTopoDatasets/trunk/example_parameter_files/ExampleFiles_ChannelExtraction</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have subversion you can use wget to get the individual files (this must be done separately for each file) e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/tree/master/example_parameter_files/ExampleFiles_ChannelExtraction/indian_creek_dreich.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have downloaded the example files then put them in the repository folder <code>LSDTopoTools_ChannelExtraction</code>.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_basic_channel_extraction_using_thresholds">7.2. Basic channel extraction using thresholds</h3>
@@ -4031,7 +4072,15 @@ The area threshold chosen will affect the density of the channel network.  This 
 <div class="sect3">
 <h4 id="_compile_the_code_2">7.2.1. Compile the code</h4>
 <div class="paragraph">
-<p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_area_threshold.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.  When in this folder type the following to compile the driver:</p>
+<p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_area_threshold.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd driver_functions_ChannelExtraction/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When in this folder type the following to compile the driver:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4055,7 +4104,7 @@ Threshold area for channel extraction</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The threshold area must be given in m<sup>2</sup>.  You need to save this parameter file in the folder <code>LSDTopoTools_ChannelExtraction</code> (one folder above the driver functions folder).  For the Indian Creek site we can create a parameter file called <code>indian_creek.driver</code> with the following lines:</p>
+<p>The threshold area must be given in m<sup>2</sup>.  You need to save this parameter file in the folder <code>LSDTopoTools_ChannelExtraction</code> (one folder above the driver functions folder).  For the Indian Creek site we can create a parameter file called <code>indian_creek_threshold.driver</code> with the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4077,7 +4126,7 @@ Threshold area for channel extraction</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./channel_extraction_area_threshold.out /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/ indian_creek.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./channel_extraction_area_threshold.out /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/ indian_creek_threshold.driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4110,7 +4159,7 @@ Threshold area for channel extraction</code></pre>
 <div class="sect2">
 <h3 id="_geometric_channel_extraction_methods">7.3. Geometric channel extraction methods</h3>
 <div class="paragraph">
-<p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detech channel heads, we will focus on two methods which are available within LSDTopoTools: the Geonet method (developed by Passalacqua et al. 2010a, b, 2012) and a method developed by Pelletier (2013).</p>
+<p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detech channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in LSDTopoTools, and a similar geometric method available within LSDTopoTools.</p>
 </div>
 <div class="sect3">
 <h4 id="_geonet_external_software">7.3.1. Geonet (external software)</h4>
@@ -4235,8 +4284,106 @@ Minimum catchment area (suggested to be 400)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_lsdtopotools_geonet_clone">7.3.3. The LSDTopoTools geonet clone</h4>
-
+<h4 id="_the_lsdtopotools_geometric_method">7.3.3. The LSDTopoTools geometric method</h4>
+<div class="paragraph">
+<p>Within LSDTopoTools we have also developed a method for extracting channel heads via planform curvature.  We first of all filter the DEM using an Optimal Wiener filter, then use a quantile-quantile threshold to statistically determine the planform curvature threshold from the landscape. It then uses a <a href="http://www.ncbi.nlm.nih.gov/pubmed/18390379">connected components threshold</a> to extract the channel network.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To run the LSDTopoTools algorithm you need to have the Fast Fourier Transform Library downloaded into your folder <code>LSDTopoTools_ChannelExtraction</code>. You can download it at <a href="http://www.fftw.org/download.html" class="bare">http://www.fftw.org/download.html</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_compile_the_code_4">Compile the code</h5>
+<div class="paragraph">
+<p>To compile the code navigate to the folder driver_functions_ChannelExtraction.  In a terminal window type the following to compile the driver:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f channel_extraction_wiener.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a program called <code>channel_extraction_wiener.out</code> which you can use to run the code.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_run_the_analysis_3">Run the analysis</h5>
+<div class="paragraph">
+<p>We first need to create a parameter file similar to that for the <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">Path and file name of the DEM without extension
+Path and output name prefix for your files
+Path and output name prefix for the quantile-quantile information
+Window radius for filtering the DEM
+Threshold area for thinning the channel skeleton
+Connected components threshold (should be 100)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The threshold area is given in m<sup>2</sup>. You need to save this parameter file in the folder <code>LSDTopoTools_ChannelExtraction</code> (one folder above the driver functions folder).  For the Indian Creek site we can create a parameter file called <code>indian_creek_wiener.driver</code> with the following lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">RasterFile /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/indian_creek
+OutputRasterFile /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/indian_creek
+QQFile /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/indian_creek_qq
+window_radius_for_surface_fitting 6
+threshold_drainage_area 1000
+connected_components_threshold 100</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After creating the parameter file we can then run the code using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./channel_extraction_wiener.out /path_to_repository_folder/ param_file_name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For our Indian Creek example our command would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./channel_extraction_wiener.out /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/ indian_creek_wiener.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once this program has run, it will create several files with the extracted channel network.  These include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A CSV file with the channel heads e.g. <code>indian_creek_CH_wiener_nodeindices_for_arc.csv</code></p>
+</li>
+<li>
+<p>A <code>bil</code> file with the channel heads e.g. <code>indian_creek_CH_wiener.bil</code></p>
+</li>
+<li>
+<p>A <code>bil</code> file with the stream network with Strahler stream ordering e.g. <code>indian_creek_SO_wiener.bil</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The figure below shows the extracted channel network using the LSDTopoTools geometric algorithm with an Optimal Wiener filter for the Indian Creek field site.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ind_so_wiener.png" alt="Map of Indian Creek with channel network extracted from LSDTopoTools geometric algorithm with an Optimal Wiener filter">
+</div>
+<div class="title">Figure 6. Map of Indian Creek with channel network extracted from LSDTopoTools geometric algorithm with an Optimal Wiener filter</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -4268,7 +4415,7 @@ To run the Dreich algorithm you need to have the Fast Fourier Transform Library 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_compile_the_code_4">7.4.2. Compile the code</h4>
+<h4 id="_compile_the_code_5">7.4.2. Compile the code</h4>
 <div class="paragraph">
 <p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_dreich.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.  When in this folder type the following to compile the driver:</p>
 </div>
@@ -4282,7 +4429,7 @@ To run the Dreich algorithm you need to have the Fast Fourier Transform Library 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_run_the_analysis_3">7.4.3. Run the analysis</h4>
+<h4 id="_run_the_analysis_4">7.4.3. Run the analysis</h4>
 <div class="paragraph">
 <p>We first need to create a parameter file similar to that for the <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
@@ -4309,7 +4456,7 @@ window_radius_for_surface_fitting 6
 threshold_drainage_area 1000
 connected_components_threshold 100
 A_0 1000
-m_over_n 0.565
+m_over_n 0.437
 number_of_junctions_dreich 1</code></pre>
 </div>
 </div>
@@ -4335,15 +4482,6 @@ number_of_junctions_dreich 1</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>A <code>bil</code> file with the initial valley network mask e.g. <code>indian_creek_cc.bil</code></p>
-</li>
-<li>
-<p>A <code>bil</code> file with the thinned valley skeleton e.g. <code>indian_creek_skeleton.bil</code></p>
-</li>
-<li>
-<p>A <code>bil</code> file with the valley heads e.g. <code>indian_creek_end_points.bil</code></p>
-</li>
-<li>
 <p>A <code>bil</code> file with the valley network with Strahler stream ordering e.g. <code>indian_Creek_SO_valley.bil</code></p>
 </li>
 <li>
@@ -4364,7 +4502,7 @@ number_of_junctions_dreich 1</code></pre>
 <div class="content">
 <img src="images/ind_so_dreich.png" alt="Map of Indian Creek with channel network extracted from DrEICH algorithm">
 </div>
-<div class="title">Figure 6. Map of Indian Creek with channel network extracted from DrEICH algorithm</div>
+<div class="title">Figure 7. Map of Indian Creek with channel network extracted from DrEICH algorithm</div>
 </div>
 </div>
 </div>
@@ -6319,7 +6457,7 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_compile_the_code_5">11.2.2. Compile the code</h4>
+<h4 id="_compile_the_code_6">11.2.2. Compile the code</h4>
 <div class="paragraph">
 <p>Okay, now you should have the code. You will still be sitting in the directory
 <code>/home/LSDTT_repositories/</code>, so navigate up to the directory <code>LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>.</p>
@@ -6701,7 +6839,7 @@ Each junction has a unique integer value, called the junction index.</p>
 <div class="content">
 <img src="images/Mandakini_stream_network.jpg" alt="Stream network">
 </div>
-<div class="title">Figure 7. Stream network, with junctions in red and orange pixels</div>
+<div class="title">Figure 8. Stream network, with junctions in red and orange pixels</div>
 </div>
 </li>
 </ul>
@@ -6717,7 +6855,7 @@ In the below image the arrow points to junction number 51.</p>
 <div class="content">
 <img src="images/Mandakini_select_junction.jpg" alt="Finding a junction">
 </div>
-<div class="title">Figure 8. Finding the junction number</div>
+<div class="title">Figure 9. Finding the junction number</div>
 </div>
 </li>
 <li>
@@ -7823,7 +7961,7 @@ Here is an example:</p>
 <div class="content">
 <img src="images/AICc_plotting.jpg" alt="AICc plot">
 </div>
-<div class="title">Figure 9. The AICc as a function of m/n. The m/n with the minimum AICc is the most likely m/n</div>
+<div class="title">Figure 10. The AICc as a function of m/n. The m/n with the minimum AICc is the most likely m/n</div>
 </div>
 <div class="paragraph">
 <p>To run the <code>AICc_plotting.py</code> script you must modify the path name and filename after line 35 of the script.
@@ -7854,7 +7992,7 @@ Each tributary is plotted with a different colour.  Here is an example:</p>
 <div class="content">
 <img src="images/chi_profile.jpg" alt="Chi profiles">
 </div>
-<div class="title">Figure 10. Profiles of elevation as a function of \(\chi\).</div>
+<div class="title">Figure 11. Profiles of elevation as a function of \(\chi\).</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7878,7 +8016,7 @@ The colour scheme from the first figure is carried forward, so that it is easy t
 <div class="content">
 <img src="images/M_chi.jpg" alt="M_chi">
 </div>
-<div class="title">Figure 11. A plot of \(M_{\chi}\) as a function of \(\chi\).</div>
+<div class="title">Figure 12. A plot of \(M_{\chi}\) as a function of \(\chi\).</div>
 </div>
 <div class="paragraph">
 <p>The third figure displays the longitudinal channel profiles (elevation as a function of flow distance),
@@ -7888,7 +8026,7 @@ but these channel profiles are coloured by the gradient in \(\chi\)-elevation sp
 <div class="content">
 <img src="images/profile_Mchi_colour.jpg" alt="M_chi distributed">
 </div>
-<div class="title">Figure 12. A plot of \(M_{\chi}\) in profiles.</div>
+<div class="title">Figure 13. A plot of \(M_{\chi}\) in profiles.</div>
 </div>
 </div>
 <div class="sect4">
@@ -7906,7 +8044,7 @@ Here is an example plot:</p>
 <div class="content">
 <img src="images/mn_sensitivity.jpg" alt="sensitivity of m/n ratio">
 </div>
-<div class="title">Figure 13. Box and whisker plots of m/n ratios: this shows how m/n varies as a function of segment fitting parameters.</div>
+<div class="title">Figure 14. Box and whisker plots of m/n ratios: this shows how m/n varies as a function of segment fitting parameters.</div>
 </div>
 </div>
 <div class="sect4">
@@ -7942,7 +8080,7 @@ Here is an example:</p>
 <div class="content">
 <img src="images/raster_chan.jpg" alt="Map of channels">
 </div>
-<div class="title">Figure 14. A map showing the channels (colored by their number) within a basin</div>
+<div class="title">Figure 15. A map showing the channels (colored by their number) within a basin</div>
 </div>
 </li>
 <li>
@@ -7956,7 +8094,7 @@ where \(M_\chi\) is plotted on the channel profile. Here is an example:</p>
 <div class="content">
 <img src="images/raster_Mchi.jpg" alt="M_chi in a basin">
 </div>
-<div class="title">Figure 15. The \(M_{\chi}\) of channels within a basin</div>
+<div class="title">Figure 16. The \(M_{\chi}\) of channels within a basin</div>
 </div>
 </li>
 </ol>
@@ -7975,7 +8113,7 @@ where \(M_\chi\) is plotted on the channel profile. Here is an example:</p>
 <div class="content">
 <img src="images/workflow.png" alt="m over n workflow">
 </div>
-<div class="title">Figure 16. The workflow for finding the m over n ratio</div>
+<div class="title">Figure 17. The workflow for finding the m over n ratio</div>
 </div>
 </div>
 </div>
@@ -8204,7 +8342,7 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_compile_the_code_6">Compile the code</h5>
+<h5 id="_compile_the_code_7">Compile the code</h5>
 <div class="paragraph">
 <p>Okay, now you should have the code. You will still be sitting in the directory
 <code>/home/LSDTT_repositories/</code>, so navigate up to the directory <code>LSDTopoTools_BasinwideCRN/driver_functions_BasinwideCRN/</code>.</p>
@@ -9094,7 +9232,7 @@ SpawnedBasin_12.hdr  SpawnedBasin_19.hdr  SpawnedBasin_9.hdr       SpawnedBasin_
 <div class="content">
 <img src="images/Shielding.jpg" alt="Shielding raster">
 </div>
-<div class="title">Figure 17. One of the shielding rasters (for sample name <code>18</code>) from the San Bernardino dataset (viewed in QGIS2.2)</div>
+<div class="title">Figure 18. One of the shielding rasters (for sample name <code>18</code>) from the San Bernardino dataset (viewed in QGIS2.2)</div>
 </div>
 </div>
 <div class="sect3">
@@ -10121,7 +10259,7 @@ You can install the 2013 version using chocolatey:</p>
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 18. Cygwin setup.</div>
+<div class="title">Figure 19. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
