@@ -673,13 +673,14 @@ MathJax.Hub.Config({
 <li><a href="#_summary_9">11.5. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_basinwide_cosmogenic_analysis">12. Basinwide cosmogenic analysis</a>
+<li><a href="#_basin_averaged_cosmogenic_analysis">12. Basin averaged cosmogenic analysis</a>
 <ul class="sectlevel2">
-<li><a href="#_get_the_code_and_data_basinwide_cosmogenic_analysis">12.1. Get the code and data basinwide cosmogenic analysis</a>
+<li><a href="#_get_the_code_and_data_basin_averaged_cosmogenic_analysis">12.1. Get the code and data basin-averaged cosmogenic analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_get_the_source_code_for_basinwide_cosmogenics">12.1.1. Get the source code for basinwide cosmogenics</a></li>
+<li><a href="#_get_the_source_code_for_basin_averaged_cosmogenics">12.1.1. Get the source code for basin-averaged cosmogenics</a></li>
 <li><a href="#_getting_example_data_the_san_bernardino_mountains">12.1.2. Getting example data: The San Bernardino Mountains</a></li>
 <li><a href="#_setting_up_your_data_directories_and_parameter_files">12.1.3. Setting up your data directories and parameter files</a></li>
+<li><a href="#_modifying_your_crnrasters_file_the_python_way">12.1.4. Modifying your CRNRasters file the python way</a></li>
 </ul>
 </li>
 <li><a href="#_calculating_topographic_shielding">12.2. Calculating Topographic Shielding</a>
@@ -697,10 +698,10 @@ MathJax.Hub.Config({
 <li><a href="#_pass_a_raster_of_effective_average_depth_of_snow_over_a_catchment">12.3.3. Pass a raster of effective average depth of snow over a catchment</a></li>
 </ul>
 </li>
-<li><a href="#_calculating_erosion_rates">12.4. Calculating erosion rates</a>
+<li><a href="#_calculating_denudation_rates">12.4. Calculating denudation rates</a>
 <ul class="sectlevel3">
 <li><a href="#_compiling_the_code_3">12.4.1. Compiling the code</a></li>
-<li><a href="#_running_the_basinwide_erosion_rate_calculator">12.4.2. Running the basinwide erosion rate calculator</a></li>
+<li><a href="#_running_the_basin_averaged_denudation_rate_calculator">12.4.2. Running the basin averaged denudation rate calculator</a></li>
 <li><a href="#_the_output_files">12.4.3. The output files</a></li>
 </ul>
 </li>
@@ -7844,10 +7845,10 @@ where \(M_\chi\) is plotted on the channel profile. Here is an example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_basinwide_cosmogenic_analysis">12. Basinwide cosmogenic analysis</h2>
+<h2 id="_basin_averaged_cosmogenic_analysis">12. Basin averaged cosmogenic analysis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The LSDCosmoBasin toolkit is designed to automate calculation of basinwide erosion rates determined estimated from the concentration of in situ cosmogenic nuclides.
+<p>The LSDCosmoBasin toolkit is designed to automate calculation of basin averaged denudation rates determined estimated from the concentration of in situ cosmogenic nuclides.
 Currently <sup>10</sup>Be and <sup>26</sup>Al are supported.</p>
 </div>
 <div class="paragraph">
@@ -7936,9 +7937,13 @@ and a <code></strong>.CRNParams</code> file. If you don&#8217;t know what these 
 <pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/JoinSnowShielding.py
 $ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/LSDOSystemTools.py
 $ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/EliminateUnderscoreFromCRNDataSampleNames.py
-$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareDirectoriesForBasinSpawn.py</code></pre>
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareDirectoriesForBasinSpawn.py
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareCRNRastersFileFromDirectory.py</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>If you have some rasters (elevation, shielding, etc.) and you don&#8217;t have a <code>_CRNRasters.csv</code> file, update the path name in <code>PrepareCRNRastersFileFromDirectory.py</code> and run that script.</p>
 </li>
 <li>
 <p>In your data folder, run <code>PrepareDirectoriesForBasinSpawn.py</code>.
@@ -7998,13 +8003,13 @@ This will result in data files with the text <code>*_SS</code> in it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_the_code_and_data_basinwide_cosmogenic_analysis">12.1. Get the code and data basinwide cosmogenic analysis</h3>
+<h3 id="_get_the_code_and_data_basin_averaged_cosmogenic_analysis">12.1. Get the code and data basin-averaged cosmogenic analysis</h3>
 <div class="paragraph">
 <p>This section goes walks you through getting the code and example data,
 and also describes the different files you will need for the analysis.</p>
 </div>
 <div class="sect3">
-<h4 id="_get_the_source_code_for_basinwide_cosmogenics">12.1.1. Get the source code for basinwide cosmogenics</h4>
+<h4 id="_get_the_source_code_for_basin_averaged_cosmogenics">12.1.1. Get the source code for basin-averaged cosmogenics</h4>
 <div class="paragraph">
 <p>First navigate to the folder where you will keep your repositories.
 In this example, that folder is called <code>/home/LSDTT_repositories</code>.
@@ -8129,7 +8134,7 @@ SanBern.hdr    SanBern_CRNRasters.csv</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The file <code>SanBern_CRNRasters.csv</code> will need to be modified with the appropriate paths to your files!
+The file <code>SanBern_CRNRasters.csv</code> will need to be modified with the appropriate paths to your files! We will describe how to do that below.
 </td>
 </tr>
 </table>
@@ -8671,6 +8676,37 @@ If empty topographic shielding is assumed to be 1 (i.e., no shielding).</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_modifying_your_crnrasters_file_the_python_way">12.1.4. Modifying your CRNRasters file the python way</h4>
+<div class="paragraph">
+<p>The <code>_CRNRasters.csv</code> file contains the path names and the file prefixes of the rasters to be used in the analysis.
+The paths will vary depending on your own file structures.
+Updating these paths by hand can be quite tedious, so we have prepared a python script to automate this process.
+You can get this script here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/LSDOSystemTools.py
+$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareCRNRastersFileFromDirectory.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script <code>LSDOSystemTools.py</code> contians some tools for managing paths and files, the actual work is done by the script <code>PrepareCRNRastersFileFromDirectory.py</code>.</p>
+</div>
+<div class="paragraph">
+<p>In an editor, go into <code>PrepareCRNRastersFileFromDirectory.py</code> and navigate to the bottom of the file.
+Change the <code>path</code> to point to the directory with your DEMs. The <code>prefix</code> is the prefix of your files, so in this example change <code>prefix</code> to <code>SanBern</code>.
+You can then run the script with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python PrepareCRNRastersFileFromDirectory.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script will then update the <code>_CRNRasters.csv</code> file to reflect your directory structure. The script also detects any associated shielding rasters.</p>
 </div>
 </div>
 </div>
@@ -9228,9 +9264,9 @@ These rasters need to be assigned <strong>BEFORE</strong> spawning since the spa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_calculating_erosion_rates">12.4. Calculating erosion rates</h3>
+<h3 id="_calculating_denudation_rates">12.4. Calculating denudation rates</h3>
 <div class="paragraph">
-<p>Okay, now you are ready to get the erosion rates.
+<p>Okay, now you are ready to get the denudation rates.
 You&#8217;ll need to run the function from the directory where the compiled code is located
 (in our example, <code>/home/LSDTT_repositories/LSDTopoTools_CRNBasinwide/</code>), but it can work on data in some arbitrary location.</p>
 </div>
@@ -9251,7 +9287,7 @@ and type:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_running_the_basinwide_erosion_rate_calculator">12.4.2. Running the basinwide erosion rate calculator</h4>
+<h4 id="_running_the_basin_averaged_denudation_rate_calculator">12.4.2. Running the basin averaged denudation rate calculator</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ./Basinwide_CRN.exe pathname_of_data file_prefix method_flag</code></pre>
@@ -9365,7 +9401,7 @@ The file has some notes (which are pasted into the top of the file):</p>
 <td class="content">
 You should only paste the contents of the file below the header into the CRONUS calculator, which can be found here:
 <a href="http://hess.ess.washington.edu/math/al_be_v22/al_be_erosion_multiple_v22.php" class="bare">http://hess.ess.washington.edu/math/al_be_v22/al_be_erosion_multiple_v22.php</a>
-A new version of the CRONUS caluclator should be available late 2015 but should be backward compatible with the prior version. See here:
+A new version of the CRONUS caluclator should be available late 2016 but should be backward compatible with the prior version. See here:
 <a href="http://hess.ess.washington.edu/math/index_dev.html" class="bare">http://hess.ess.washington.edu/math/index_dev.html</a>
 </td>
 </tr>
@@ -9609,7 +9645,7 @@ so prior reported results that used either no topographic shielding or low resol
 <div class="sect2">
 <h3 id="_summary_10">12.5. Summary</h3>
 <div class="paragraph">
-<p>You should now be able to take dates from basinwide cosmogenics and convert these into erosion rates.</p>
+<p>You should now be able to take concentrations from detrital cosmogenics and convert these into basin averaged denudation rates.</p>
 </div>
 </div>
 </div>
