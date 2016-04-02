@@ -715,6 +715,37 @@ MathJax.Hub.Config({
 <li><a href="#_summary_10">12.5. Summary</a></li>
 </ul>
 </li>
+<li><a href="#_hydrological_and_erosion_modelling">13. Hydrological and Erosion Modelling</a>
+<ul class="sectlevel2">
+<li><a href="#_origins_relation_to_caesar_lisflood">13.1. Origins: relation to CAESAR-Lisflood</a></li>
+<li><a href="#_compilation">13.2. Compilation</a>
+<ul class="sectlevel3">
+<li><a href="#_dependencies">13.2.1. Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_model">13.3. Running the Model</a>
+<ul class="sectlevel3">
+<li><a href="#_dem_preparation">13.3.1. DEM preparation</a></li>
+<li><a href="#_set_up_and_parameter_file_overview">13.3.2. Set up and Parameter File overview</a></li>
+<li><a href="#_input_files">13.3.3. Input files</a></li>
+</ul>
+</li>
+<li><a href="#_parameter_guide">13.4. Parameter Guide</a>
+<ul class="sectlevel3">
+<li><a href="#_file_information">13.4.1. File Information</a></li>
+<li><a href="#_supplementary_files">13.4.2. Supplementary Files</a></li>
+<li><a href="#_numerical">13.4.3. Numerical</a></li>
+<li><a href="#_sediment">13.4.4. Sediment</a></li>
+<li><a href="#_hydrology">13.4.5. Hydrology</a></li>
+<li><a href="#_vegetation">13.4.6. Vegetation</a></li>
+<li><a href="#_hillslope">13.4.7. Hillslope</a></li>
+<li><a href="#_write_output_rasters">13.4.8. Write Output Rasters</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_code_in_parallel">13.5. Running the code in Parallel</a></li>
+<li><a href="#_notes_for_hpc_use">13.6. Notes for HPC use</a></li>
+</ul>
+</li>
 <li><a href="#_software">Appendix A: Software</a>
 <ul class="sectlevel2">
 <li><a href="#_essentials">A.1. Essentials</a>
@@ -807,25 +838,6 @@ MathJax.Hub.Config({
 <li><a href="#_lsdchinetwork">D.2.8. LSDChiNetwork</a></li>
 <li><a href="#_lsdmostlikelypartitionsfinder">D.2.9. LSDMostLikelyPartitionsFinder</a></li>
 <li><a href="#_lsdstatstools">D.2.10. LSDStatsTools</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_analysis_driver_options">Appendix E: Analysis Driver Options</a>
-<ul class="sectlevel2">
-<li><a href="#_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</a></li>
-<li><a href="#_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</a></li>
-<li><a href="#_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</a>
-<ul class="sectlevel3">
-<li><a href="#_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</a></li>
-<li><a href="#_parameters_for_hillshading">E.3.2. Parameters for hillshading</a></li>
-<li><a href="#_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</a></li>
-<li><a href="#_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</a></li>
-<li><a href="#_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</a></li>
-<li><a href="#_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</a></li>
-<li><a href="#_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</a></li>
-<li><a href="#_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</a></li>
-<li><a href="#_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</a></li>
 </ul>
 </li>
 </ul>
@@ -9869,6 +9881,489 @@ so prior reported results that used either no topographic shielding or low resol
 </div>
 </div>
 <div class="sect1">
+<h2 id="_hydrological_and_erosion_modelling">13. Hydrological and Erosion Modelling</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+Prediction is difficult, especially about the future.
+</blockquote>
+<div class="attribution">
+&#8212; Niels Bohr<br>
+<cite>Danish Physicist 1885-1962</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>Numerical models are useful tools for testing hypotheses of geomorphic processes and landscape evolution. Long term landscape evolution takes place over extensive geological time periods, but is controlled by the dynamics of water flow, and sediment transport within river catchments on much shorter, day-to-day time scales. The LSDTopoTools package provides a model for simulating catchment processes at short-term scales, with the <strong>LSDCatchmentModel</strong> package.</p>
+</div>
+<div class="paragraph">
+<p>This chapter documents how to use the LSDCatchmentModel to set up and run simulations of hydrology and catchment-scale erosion and evolution. LSDCatchmentModel is a 2.5D numerical model of landscape evolution based on the CAESAR-Lisflood model <a href="http://onlinelibrary.wiley.com/doi/10.1002/esp.3478/abstract">(Coulthard et al., 2013)</a>. The model is a <a href="http://natureofcode.com/book/chapter-7-cellular-automata/">Cellular Automaton</a> model, whereby the grid cells in the model domain each have their own parameters associated with them (such as elevation, water depth, water velocity, sediment load, etc.) and the change in these parameters is determined by the state of the neighbouring grid cells.</p>
+</div>
+<div class="paragraph">
+<p>Unlike many models of landscape evolution, this model features an explicit calculation of water flow through the landscape based on a highly simplified form of the shallow water equations <a href="http://www.sciencedirect.com/science/article/pii/S0022169410001538">(Bates et al., 2010)</a>. Most other models, in order to simulate long term evolution, rely on approximations for water discharge based on drainage area, and assume instantaneous run-off of water under hydrological steady-state conditions. The LSDCatchmentModel is therefore suited to modelling both flooding and erosional processes. It can be run as a standalone hydrological model (no erosion) if so desired.</p>
+</div>
+<div class="paragraph">
+<p>The model is also developed to run on parallel computing architectures (Multi-core/cluster computers).</p>
+</div>
+<div class="sect2">
+<h3 id="_origins_relation_to_caesar_lisflood">13.1. Origins: relation to CAESAR-Lisflood</h3>
+<div class="paragraph">
+<p>The model is essentially a stripped down translation of the CAESAR-Lisflood model, but without the GUI, and it runs on Linux unlike CAESAR-Lisflood, which is Windows only. If you are happy to run on Windows, and would prefer to use a model in GUI-mode then CAESAR-Lisflood is a good choice for this. This branch of the model is designed to be faster and cross platform, scales up to running on a supercomputer if the resources are available to you. One of the drawbacks to the original model is that you need a dedicated Windows box to do your simulations, you can&#8217;t send them off to a cluster computer-type facility, which typically run unix. (Unless you have a bunch of spare Windows PCs&#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>With this version you can also perform topographic analysis within the same LSDTopoTools environment, switching easily between modelling and topographic analysis.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compilation">13.2. Compilation</h3>
+<div class="paragraph">
+<p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>CatchmentModel.make</p>
+</li>
+<li>
+<p>CatchmentModel_Optimised.make</p>
+</li>
+<li>
+<p>CatchmentModel_OpenMP_Optimised.make</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The plain makefile contains all the flags for debugging and profiling. (The program will run slower if you use this version). The optimised version runs with the -O2 flags and no profiler or debugger information. The OpenMP version is for running the code in parallel on multiple cores.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">make -f CatchmentModel.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to start again and remove the object and executable files, there is also a clean command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">make -f CatchmentModel.make clean</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dependencies">13.2.1. Dependencies</h4>
+<div class="paragraph">
+<p>Your compiler must support C11. Almost all do as of 2016, as long as you are running a fairly recent version. The C11 flag is included in the makefile. The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.</p>
+</div>
+<div class="paragraph">
+<p>The parallel version of the code uses the OpenMP libraries, which are powerful (and somewhat magical&#8230;&#8203;) libraries for compiling the code to run in parallel. You may need to install the <code>gcc-devel</code> package on linux, if using gcc. Again, the compiler flag is taken care of in the makefile. The code has been tested on the gcc and intel compilers.</p>
+</div>
+<div class="paragraph">
+<p>All other libraries are supplied with the source code (The TNT and FFT libraries, which provide various mathematical functions). You do not need to install them separately.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_model">13.3. Running the Model</h3>
+<div class="paragraph">
+<p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
+</div>
+<div class="sect3">
+<h4 id="_dem_preparation">13.3.1. DEM preparation</h4>
+<div class="paragraph">
+<p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment. <strong>In other words: There should be no 'NODATA' values between the outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The model will actually route water flow off <strong>all</strong> edges of the catchment. This might be fine for what you need, but discharge timeseries file
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Technically, the DEM doesn&#8217;t need to be pit-filled, but it may be worthwhile to do so as parts of the model can be sped up when the catchment is in a low-flow or steady-flow state. Again, it depends on your intended usage of the model.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_up_and_parameter_file_overview">13.3.2. Set up and Parameter File overview</h4>
+<div class="paragraph">
+<p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km. It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.)</p>
+</div>
+<div class="paragraph">
+<p>In the Parameter file, you&#8217;ll notice that you can use comments by starting the line with a hash (\#) sign. Parameters themselves take the form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">paramter_name:     VALUE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way&#8230;&#8203;)</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input_files">13.3.3. Input files</h4>
+<div class="paragraph">
+<p>As a minimum, you need a <strong>DEM input</strong> file, <strong>paramter file</strong>, and <strong>rainfall data</strong> input file.</p>
+</div>
+<div class="paragraph">
+<p>Once you are happy with the paramter file, you must run the model with two command line arguments:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">./CatchmentModel.out [PATH TO INPUT FILES] [PARAMETER FILE NAME]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameter_guide">13.4. Parameter Guide</h3>
+<div class="sect3">
+<h4 id="_file_information">13.4.1. File Information</h4>
+<div class="sect4">
+<h5 id="_dem_name">dem_name</h5>
+<div class="paragraph">
+<p>The base name of your dem input file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM is specificed under the <code>bedrock_data_file</code> parameter.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dem_read_extension">dem_read_extension</h5>
+<div class="paragraph">
+<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, sorry)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_timeseries_save_interval">timeseries_save_interval</h5>
+<div class="paragraph">
+<p>The model generates a timeseries file that contains data on the total basinwide water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_supplementary_files">13.4.2. Supplementary Files</h4>
+<div class="paragraph">
+<p>Supplementary files for other features of the model.</p>
+</div>
+<div class="sect4">
+<h5 id="_hydroindex_file">hydroindex_file</h5>
+<div class="paragraph">
+<p>This file determines the different areas of rainfall input when using spatially variable rainfall input options.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_rainfall_data_file">rainfall_data_file</h5>
+<div class="paragraph">
+<p>This should be a text file with some rainfall values (for input into the catchment). For uniform rainfall, the file would contain a value for rainfall in mm/time step on each line. Typically mm/hr is used, but any time step can be set. Make sure to set the <code>rain_data_time_step</code> paramter below as well!</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_grain_data_file">grain_data_file</h5>
+<div class="paragraph">
+<p>(not yet implemented - it would be used to set the starting distribution of grainsizes)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_bedrock_data_file">bedrock_data_file</h5>
+
+</div>
+</div>
+<div class="sect3">
+<h4 id="_numerical">13.4.3. Numerical</h4>
+<div class="paragraph">
+<p>Parameters that control the numerical model time-stepping etc, and the model run time.</p>
+</div>
+<div class="sect4">
+<h5 id="_min_time_step">min_time_step</h5>
+<div class="paragraph">
+<p>Leave at 0.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_max_time_step">max_time_step</h5>
+<div class="paragraph">
+<p>Probably leave at 3600 (seconds), i.e. one hour. You could potentially get model speed up if your increased it, and your rainfall data was at larger intervals than hourly.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_run_time_start">run_time_start</h5>
+<div class="paragraph">
+<p>Leave 0 for now, would be used for restarting runs.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_max_run_duration">max_run_duration</h5>
+<div class="paragraph">
+<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47..<strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_memory_limit">memory_limit</h5>
+<div class="paragraph">
+<p>(ignore this)</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sediment">13.4.4. Sediment</h4>
+<div class="sect4">
+<h5 id="_transport_law">transport_law</h5>
+<div class="paragraph">
+<p>Type either <strong>einstein</strong> or <strong>wilcock</strong> to select your favourite sediment transport law.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_max_tau_velocity">max_tau_velocity</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_active_layer_thickness">active_layer_thickness</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_recirculate_proportion">recirculate_proportion</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_lateral_erosion_on">lateral_erosion_on</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_lateral_ero_rate">lateral_ero_rate</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_edge_filter_passes">edge_filter_passes</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_cells_shift_lat">cells_shift_lat</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_max_diff_cross_chan">max_diff_cross_chan</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_erode_limit">erode_limit</h5>
+
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hydrology">13.4.5. Hydrology</h4>
+<div class="paragraph">
+<p>Parameters for the hydrological part of the model.</p>
+</div>
+<div class="sect4">
+<h5 id="_topmodel_m_value">TOPMODEL_m_value</h5>
+<div class="paragraph">
+<p>As well as the water routing sub-model, LSDCatchmentModel also calculates the discharge based on Beven&#8217;s TOPMODEL (i.e. discharge approximation based on drainage area and topography. The model contains the infamous <strong>m</strong> parameter, which varies depending on environment. You should consult the literature for appropriate values. Unless you aren&#8217;t bothered about the TOPMODEL output, in which case leave it at 0.01.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For catchment mode this is an important variable as it controls the peak and duration of the hydrograph generated by a rain event. It is the same as the 'm' value in TOPMODEL, that CAESAR-lisfloods hydrological model is based on. Typical values for m are from 0.02 (low - meaning low flood peaks and long duration hydrographs) to 0.005 (higher, flashier peaks) and examples of values used can be found in the CAESAR and TOPMODEL literature.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_rainfall_data_on">rainfall_data_on</h5>
+<div class="paragraph">
+<p>Leave set to 'yes' for now.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_rain_data_time_step">rain_data_time_step</h5>
+<div class="paragraph">
+<p>The time step in minutes. This must match the rainfall input data file timestep!</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_spatial_var_rain">spatial_var_rain</h5>
+<div class="paragraph">
+<p>No for uniform rainfall input, yes to use the spatially variable option.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_in_out_difference">in_out_difference</h5>
+<div class="paragraph">
+<p>Speeds up the model running, during periods of approximate steady state (in terms of water in vs water out of the outlet point). Set to zero to disallow this feature. Otherwise, give the maximum allowed difference in cumecs.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_min_q_for_depth_calc">min_Q_for_depth_calc</h5>
+<div class="paragraph">
+<p>This is a threshold above which the model will calculate a flow depth. If this is not set, then it wastes time calculating flow depths of fractions of a mm which will not cause any erosion or deposition. This variable dependent upon grid cell size, and as a guide set this parameter to 0.1 per meter cell size For example a DEM with 10m cell size will have a Min Q of 0.1, and a DTM with 50m cell size will have a Min Q of 0.5.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_max_q_for_depth_calc">max_Q_for_depth_calc</h5>
+<div class="paragraph">
+<p>This can be important for the hydrological model - which will add water for every cell greater than Min Q - but less than the limit set here. In other words, reducing this value will force water to be added more in the headwaters rather than progressively down through the catchment.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_water_depth_erosion_threshold">water_depth_erosion_threshold</h5>
+<div class="paragraph">
+<p>The model will only calculate erosion above water depths of this value in <strong>metres</strong>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_slope_on_edge_cell">slope_on_edge_cell</h5>
+<div class="paragraph">
+<p>The slope for the exit cells on the edges of the model domain. Lisflood-FP requires a slope for these cells in order to calculate a water depth and thus flow out from the model. This is actually quite important in controlling the erosion and deposition that occurs along the far right hand side of the DEM. Set too low and you will get deposition, too high and scour heading back upstream. To set this value, calculate the mean valley floor (near channel) slope for the channel near where it exits.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_evaporation_rate">evaporation_rate</h5>
+<div class="paragraph">
+<p>(ignore for now)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_courant_number">courant_number</h5>
+<div class="paragraph">
+<p>Courant number' is a value that controls the numerical stability and speed of operation of the flow model. More details can be found in Bates et al (2009). It should only range between 0.2 and 0.7. Higher values increase the model time step but are more unstable. Stability and thus values also depends upon the grid cell size. Larger cells (e.g. 20m, 50m+) can take values of 0.7, smaller cells (e.g. 2m) may need the smallest value (0.2). Stability is also linked to the erodelimit value (sediment tab) which controls the amount of sediment that can be eroded or deposited from a cell. Reccomended values are 0.5 for 50m dem, 0.2 for 10m or less.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_froude_num_limit">froude_num_limit</h5>
+<div class="paragraph">
+<p>If too much flow is allowed between cells per time step, then this can lead to checkerboarding effects - which can also be controlled by lowering the Courant number above. In addition the model can be set to prevent flows exceeding a froude number (specified in this box) passing between cells. The default value is 0.8 resulting in sub-critical flow - it can be set higher if you like and in many circumstances works fine at 1. You may want to use lower values (e.g the default or possibly even lower) if working with deep flows (including lakes) at fine grid cell resolutions.</p>
+</div>
+<div class="paragraph">
+<p>Of course restricting the flow according to froude number has the knock on effect of reducing the speed of a flood wave moving through a reach - can also cause raised water depths and can reduce erosion rates.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mannings_n">mannings_n</h5>
+<div class="paragraph">
+<p>The Roughness co-efficient used by the water flow model. Look up suitable values here: <a href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm" class="bare">http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hflow_threshold">hflow_threshold</h5>
+<div class="paragraph">
+<p>This is a parameter in the Lisflood FP flow model. It relates directly to the hflow parameter in papers describing the Lisflood FP model. hflow is the water surface elevation between two cells. A threshold (this value) is usually used to prevent the flow model from trying to move water when there are very small gradients between cells. A good default value is 0.00001 (the units are in m).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_num_unique_rain_cells">num_unique_rain_cells</h5>
+<div class="paragraph">
+<p>For spatially variable rainfall mode. The number of different areas of rainfall you are using.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vegetation">13.4.6. Vegetation</h4>
+<div class="paragraph">
+<p>(Not yet tested!)</p>
+</div>
+<div class="sect4">
+<h5 id="_vegetation_on">vegetation_on</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_grass_grow_rate">grass_grow_rate</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_vegetation_crit_shear">vegetation_crit_shear</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_veg_erosion_prop">veg_erosion_prop</h5>
+
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hillslope">13.4.7. Hillslope</h4>
+<div class="paragraph">
+<p>The hillslope model in LSDCatchment model is very rudimentary at present. Stay tuned for more updates.</p>
+</div>
+<div class="sect4">
+<h5 id="_creep_rate">creep_rate</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_slope_failure_thresh">slope_failure_thresh</h5>
+<div class="paragraph">
+<p>Landsliding is also very rudimentary. Slopes at this given angle in degrees will fail.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_soil_erosion_rate">soil_erosion_rate</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_soil_j_mean_depends">soil_j_mean_depends</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_call_muddpile_model">call_muddpile_model</h5>
+
+</div>
+</div>
+<div class="sect3">
+<h4 id="_write_output_rasters">13.4.8. Write Output Rasters</h4>
+<div class="sect4">
+<h5 id="_raster_output_interval">raster_output_interval</h5>
+<div class="paragraph">
+<p>In minutes of simulated time</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_write_waterdepth_file">write_waterdepth_file</h5>
+<div class="paragraph">
+<p>Writes the current water depths (in metres). NoData is written where the water depth is zero, allowing you to overlay this raster onto a hillshade or similar.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_waterdepth_outfile_name">waterdepth_outfile_name</h5>
+
+</div>
+<div class="sect4">
+<h5 id="_write_elev_file">write_elev_file</h5>
+<div class="paragraph">
+<p>Writes the current elevation of the terrain</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_code_in_parallel">13.5. Running the code in Parallel</h3>
+<div class="paragraph">
+<p>Some notes on how the code runs in parallel.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_notes_for_hpc_use">13.6. Notes for HPC use</h3>
+<div class="paragraph">
+<p>Notes on using the code on HPC clusters.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_software">Appendix A: Software</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -10063,6 +10558,18 @@ so if you fancy contributing to the documentation of getting the latest version,
 <div class="sect1">
 <h2 id="_setting_up_on_windows">Appendix B: Setting up on Windows</h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You should only do this if you are some kind of Windows purist (does such a thing exist?). LSDTopoTools works best in Linux and at the moment the best way to get a linux server working within your Windows machine is to use Vagrant. Instructions can be found here: <a href="#Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant">[Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant]</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>For the kind of scientific tools we will be using, Windows can sometimes be a bit difficult,
 since many scientific developers work in Linux and so installation for their software is easiest in a Linux environment.
@@ -10671,6 +11178,18 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 <div class="sect1">
 <h2 id="_setting_up_on_linux">Appendix C: Setting up on Linux</h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+These instructions involve building your own operating system with a virtual machine. You can do this if you want more control, but most users should follow the simpler process of creating an lSDTopoTools server using Vagrant. Instructions can be found here: <a href="#Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant">[Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant]</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Setting up your system on Linux is considerably easier than setting up on Windows.
 Before doing anything, open a terminal window. The <code>$</code> symbol below indicates commands typed into the terminal window.</p>
@@ -11069,531 +11588,9 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 <div class="paragraph">
 <p>The StatsTools files contain a number of classes and standalone functions that perform statistical analyses. A number of other utility functions are implemented here, such as file name parsing and formatting.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_analysis_driver_options">Appendix E: Analysis Driver Options</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>LSDTopoTools is composed of a number of objects (e.g., LSDRaster, LSDChannel, LSDFlowInfo, etc.) which are then called from programs we call driver functions.
-For more information, see the appendix <a href="#_code_structure">Code Structure</a>.</p>
+<p>Unresolved directive in LSDTT_docs.asc - include::book/E-Analysis-Driver-Options/E-Analysis-Driver-Options.asc[]</p>
 </div>
-<div class="paragraph">
-<p>Most of these functions drive specific kinds of analysis,
-but we do have a general program capable of a number of different analyses.
-This program is called the <strong>AnalysisDriver</strong> and is available here: <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver" class="bare">https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver</a>.</p>
-</div>
-<div class="paragraph">
-<p>The analysis driver runs from parameter files.
-In this appendix we document the options for running the AnalysisDriver from a parameter file.</p>
-</div>
-<div class="paragraph">
-<p>The format of <strong>AnalysisDriver</strong> parameter files is a keyword followed by a value.
-The value can be a string, an integer, a boolean or a floating point number depending on the keyword.
-The order of the keywords does not matter.
-Comments can be inserted into the parameter file using the hash symbol (<code>#</code>).</p>
-</div>
-<div class="sect2">
-<h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. File input and output options</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dem read extension</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dem write extension</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write path</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The path to which data is written.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">read path</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The path from which data is read.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write fname</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of rasters to be written <strong>without extension</strong>.
-For example if this is <code>Test</code> and you have selected <code>bil</code> format then a fill operation will result in a file called <code>Test_Fill.bil</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">read fname</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of the raster to be read without extension. For example if the raster is <code>MyRaster.bil</code>, read fname will be <code>MyRaster</code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-These require booleans,
-but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <strong>true</strong>--anything else is considered false.
-<code>true</code> is case sensitive, so <strong>DO NOT</strong> write <code>True</code>: it will be interpreted as false!!
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 28. Options of files to write or analyses to perform</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write fill</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a filled raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write write trimmed and nodata filled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is for data with nodata around the edges and holes of nodata in the middle.
-The holes are filled and the nodata around the edges is trimmed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write hillshade</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a hillshade raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write slope</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a slope raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write curvature</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a curvature raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write planform curvature</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a planform curvature raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write tangential curvature</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a tangential curvature raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write profile curvature</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a profile curvature raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write aspect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write an aspect raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write topographic classification</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a raster where convex, concave and planar regions are classified by an integer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write drainage area</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a drainage area raster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write channel net</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Write a channel network. This will print a raster of stream orders and a raster of junctions.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write nodeindex</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Writes a nodeindex raster. Used by developers for debugging.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write write single thread channel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This extracts a single tread channel from a starting and ending node, and prints to csv.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write chi map</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This calculates the chi coordinate (a coordinate that integrates drainage area along channel length) from all base level nodes.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">write factor of safety at saturation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Calculates the factor of safety using an infinite slope analysis (similar to <a href="http://hydrology.usu.edu/sinmap2/">Sinmap</a>
-or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab</a>).</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</h3>
-<div class="sect3">
-<h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 29. Parameters for the fill function</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">min_slope_for_fill</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.0001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum slope between nodes in a DEM: this is for filling flats</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">fill_method</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">new_fill</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The method to be used for the fill function. Options are <code>new_fill</code>, <code>old_fill</code>, and <code>remove_seas</code>.
-The <code>old_fill</code> method is legacy code and is only used by developers in recreating pre-2012 analyses.
-It is <strong>MUCH</strong> slower than <code>new_fill</code>.
-<code>remove_seas</code> uses <code>new_fill</code> but it additionally sets any data point where the elevation is 0 to <code>nodata</code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 30. Parameters for hillshading</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hs_altitude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">45</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The altitude of the sun in degrees</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hs_azimuth</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">315</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The azimuth of the "sun" in degrees</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hs_z_factor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The vertical exaggeration factor as a ratio</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 31. Parameters for flow info calculations</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boundary conditions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A four element list of strings</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n n n n</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This gives the boundary conditions at the north, east, south and west boundaries, respectively.
-The options are <code>n</code> for no flux, <code>p</code> for periodic and <code>b</code> for base level.
-These are NOT case sensitive.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. Parameters for chi calculations</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A_0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A normalizing area for chi calculations in m<sup>2</sup>.
-This will affect absolute values of chi but not relative values of chi.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">m_over_n</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The m/n ratio.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_area_for_chi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold area for chi calculations in m<sup>2</sup>.
-Pixels with area lower than this threshold will be assigned nodata.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Parameters for polyfit and slope calculations</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">polyfit_window_radius</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2*sqrt(2)*data_resolution</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The radius of nodes over which to fit the polynomial window in m.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">slope_method</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">d8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating slope. Options are <code>d8</code> (steepest descent) and <code>polyfit</code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Parameters for drainage area extraction</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">drainage_area_method</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dinf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating drainage area. The options are: <code>d8</code>, <code>dinf</code>, <code>QuinnMD</code>, <code>FreemanMD</code>, and <code>M2D</code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Parameters for extra cting single thread channels</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">single_thread_channel_method</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">start_and_end_node</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The method for calculating drainage area. So far there is only one option: <code>start_and_end_node</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">starting_channel_node</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if none give you will get a user prompt</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The nodeindex of the starting node.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ending_channel_node</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if none give you will get a user prompt</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The nodeindex of the ending node.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for area threshold channel extraction</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pixel_threshold_for_channel_net</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int (but in program seems to be float&#8230;&#8203;need to check)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of pixels that are needed to initiate a channel.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for chi calculations</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Keyword</th>
-<th class="tableblock halign-left valign-top">Input type</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">root_cohesion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The root cohesion in N m<sup>-2</sup>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">soil_density</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The soil density in kg m<sup>-3</sup></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hydraulic_conductivity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The hydraulic conductivity in m day<sup>-1</sup>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">soil_thickness</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Soil thickness m (assumed to be the same everywhere).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tan_phi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The friction angle (dimensionless).</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -11601,7 +11598,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-11-05 17:11:33 GMT Standard Time
+Last updated 2016-04-02 01:09:46 BST
 </div>
 </div>
 </body>
