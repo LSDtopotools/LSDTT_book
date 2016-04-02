@@ -840,19 +840,25 @@ MathJax.Hub.Config({
 <li><a href="#_c_libraries_2">C.2.1. C++ libraries</a></li>
 </ul>
 </li>
-<li><a href="#_python_4">C.3. Python</a>
+<li><a href="#_the_swath_and_point_cloud_tools">C.3. The Swath and Point Cloud tools</a>
 <ul class="sectlevel3">
-<li><a href="#_installing_python">C.3.1. Installing python</a></li>
-<li><a href="#_installing_python_packages">C.3.2. Installing python packages</a></li>
+<li><a href="#_pcl">C.3.1. PCL</a></li>
+<li><a href="#_liblas">C.3.2. libLAS</a></li>
 </ul>
 </li>
-<li><a href="#_ruby_3">C.4. Ruby</a>
+<li><a href="#_python_4">C.4. Python</a>
 <ul class="sectlevel3">
-<li><a href="#_installing_the_asciidoctor_documentation_software">C.4.1. Installing the asciidoctor documentation software</a></li>
+<li><a href="#_installing_python">C.4.1. Installing python</a></li>
+<li><a href="#_installing_python_packages">C.4.2. Installing python packages</a></li>
 </ul>
 </li>
-<li><a href="#_cloning_or_forking_the_documentation">C.5. Cloning or forking the documentation</a></li>
-<li><a href="#_summary_12">C.6. Summary</a></li>
+<li><a href="#_ruby_3">C.5. Ruby</a>
+<ul class="sectlevel3">
+<li><a href="#_installing_the_asciidoctor_documentation_software">C.5.1. Installing the asciidoctor documentation software</a></li>
+</ul>
+</li>
+<li><a href="#_cloning_or_forking_the_documentation">C.6. Cloning or forking the documentation</a></li>
+<li><a href="#_summary_12">C.7. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_code_structure">Appendix D: Code Structure</a>
@@ -893,29 +899,29 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_tools_for_viewing_data">16. Tools for viewing data</a>
+<li><a href="#_appendix_f_tools_for_viewing_data">Appendix F: Appendix F: Tools for viewing data</a>
 <ul class="sectlevel2">
-<li><a href="#_arcmap">16.1. ArcMap</a></li>
-<li><a href="#_qgis">16.2. QGIS</a></li>
-<li><a href="#_lsdtopotools_python_mapping_functions">16.3. LSDTopoTools python mapping functions</a></li>
-<li><a href="#_summary_13">16.4. Summary</a></li>
+<li><a href="#_arcmap">F.1. ArcMap</a></li>
+<li><a href="#_qgis">F.2. QGIS</a></li>
+<li><a href="#_lsdtopotools_python_mapping_functions">F.3. LSDTopoTools python mapping functions</a></li>
+<li><a href="#_summary_13">F.4. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix F: Appendix G: Automation and Supercomputing for LSDTopoTools</a>
+<li><a href="#_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix G: Appendix G: Automation and Supercomputing for LSDTopoTools</a>
 <ul class="sectlevel2">
-<li><a href="#_embarassingly_parallel_topographic_analysis">F.1. Embarassingly Parallel Topographic Analysis</a>
+<li><a href="#_embarassingly_parallel_topographic_analysis">G.1. Embarassingly Parallel Topographic Analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">F.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">G.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
 </ul>
 </li>
-<li><a href="#_topographic_analysis_on_a_supercomputer">F.2. Topographic Analysis on a Supercomputer</a>
+<li><a href="#_topographic_analysis_on_a_supercomputer">G.2. Topographic Analysis on a Supercomputer</a>
 <ul class="sectlevel3">
-<li><a href="#_launching_jobs_with_the_batch_system">F.2.1. Launching jobs with the batch system</a></li>
-<li><a href="#_checking_your_jobs">F.2.2. Checking your jobs</a></li>
+<li><a href="#_launching_jobs_with_the_batch_system">G.2.1. Launching jobs with the batch system</a></li>
+<li><a href="#_checking_your_jobs">G.2.2. Checking your jobs</a></li>
 </ul>
 </li>
-<li><a href="#_module_issues">F.3. Module issues</a></li>
-<li><a href="#_compilation_and_library_issues">F.4. Compilation and library issues</a></li>
+<li><a href="#_module_issues">G.3. Module issues</a></li>
+<li><a href="#_compilation_and_library_issues">G.4. Compilation and library issues</a></li>
 </ul>
 </li>
 </ul>
@@ -1365,7 +1371,7 @@ since it is required by something called the <a href="http://pointclouds.org/">p
 </div>
 <div class="paragraph">
 <p>Unfortunately these are a bit time consuming to install, because they depend on all sorts of other bits of software that must be installed first.
-You should see the <a href="#_setting_up_on_linux">appendeces</a> for details on how to install this software.</p>
+You should see the <a href="#_the_swath_and_point_cloud_tools">appendeces</a> for details on how to install this software.</p>
 </div>
 </div>
 </div>
@@ -9962,6 +9968,18 @@ so prior reported results that used either no topographic shielding or low resol
 <div class="sect1">
 <h2 id="_swath_profiling_tools">13. Swath Profiling Tools</h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+These tools have extra dependencies in addition to a standard installation of LSDTopoTools. Make sure you have read the <a href="#_requirements_for_swaths_and_point_clouds">requirements overview</a> section and installed the libraries needed to run these tools. Detailed installation information is also found in the <a href="#_the_swath_and_point_cloud_tools">appendix</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_generalised_swath_profile">13.1. Generalised Swath Profile</h3>
 <div class="paragraph">
@@ -11931,7 +11949,157 @@ this does some heavy duty computation on sparse matrices that is required for th
 </div>
 </div>
 <div class="sect2">
-<h3 id="_python_4">C.3. Python</h3>
+<h3 id="_the_swath_and_point_cloud_tools">C.3. The Swath and Point Cloud tools</h3>
+<div class="paragraph">
+<p>As mentioned in previous sections, these tools require the use of the following libraries and tools, which themselves come with further dependencies.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>cmake</code> utility. This is like <code>make</code> but is required for our tools that examine point clouds,
+since it is required by something called the <a href="http://pointclouds.org/">point cloud library</a>.</p>
+</li>
+<li>
+<p><a href="http://pointclouds.org/">pcl</a>: The Point Cloud Library.</p>
+</li>
+<li>
+<p><a href="http://www.liblas.org/">libLAS</a>: a library for working with LAS format data.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_pcl">C.3.1. PCL</h4>
+<div class="paragraph">
+<p>Before you can install PCL however, it itself is dependent on some other things&#8230;&#8203;</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>blas (blas-devel)</p>
+</li>
+<li>
+<p>eigen3 (eigen-devel)</p>
+</li>
+<li>
+<p>flann</p>
+</li>
+<li>
+<p>libLAS</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>PCL, blas-devel, flann, eigen3 etc. can be installed in linux using the yum or apt-get commands in many distributions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">yum install blas-devel flann-devel eigen3-devel pcl-devel</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will need to check the exact names of these packages in your package repository manager first.</p>
+</div>
+<div class="paragraph">
+<p>If you can&#8217;t install using the above method, you will have to do a manual install following the instruction on the relevant websites. The PCL website is a good place to start for guidance.</p>
+</div>
+<div class="paragraph">
+<p>After installing these, you may run into the further problem that the location of the libraries on your system are not where the compiler thinks they are, because the installation folders are named by the version number, e.g. <code>/pcl-1.7.2</code> rather than just <code>/pcl</code>. You can get around this by creating symbolic links to these folders. From the include directory on your system, (mine was /usr/include/), type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">ln -s /usr/include/pcl-x.x.x /usr/include/pcl</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">and the same goes for the <code>eigen</code> library</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">ln -s /usr/include/eigen3 /usr/include/Eigen</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Right, we are nearly ready to go!</p>
+</div>
+<div class="paragraph">
+<p>Except for the last library dependency&#8230;&#8203;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_liblas">C.3.2. libLAS</h4>
+<div class="paragraph">
+<p><a href="http://www.liblas.org/" class="bare">http://www.liblas.org/</a></p>
+</div>
+<div class="paragraph">
+<p>If you thought installing <strong>pcl</strong> was a faff, <strong>libLAS</strong> takes things to a new level. It isn&#8217;t included in most linux distribution package repositories, so you have to install it manually. Do not confuse it with the similarly named <code>Blas</code> or <code>libblas</code>, which ARE in the linux pacakge repositories but have nothing to do with the libLAS that we want (BLAS is a basic linear algebra library).</p>
+</div>
+<div class="paragraph">
+<p>First of all, it is dependent on the <code>libgeotiff-devel</code> library, so go ahead and install that using yum or apt-get:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">yum install libgeotiff-devel</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It can be a good idea to update the library paths in linux at this point:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">sudo ldconfig</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Great. Now libLAS is also dependent on another package called <strong>laszip</strong>. The developers thought it would be too easy to simply include this as one package/download, so you first have to install this as well before we can even get started on the actual libLAS package.</p>
+</div>
+<div class="paragraph">
+<p>Get it here:  <a href="http://www.laszip.org/">laszip download</a></p>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve unzipped it, in the top level directory run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">./configure
+make
+sudo make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>They should be installed in the <code>/usr/local/include/</code> directory. Which is bad, because they need to be in their own directory. So you have to root into the <code>/usr/local/include/</code>, create a <code>laszip</code> directory, and copy the laszip header files into this directory.</p>
+</div>
+<div class="paragraph">
+<p>Magic. Now, we can install libLAS. It uses cmake to install itself. So in the libLAS directory, <code>mkdir</code> a <code>build</code> folder, <code>cd</code> into that, and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">ccmake -G "Unix Makefiles" ../</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A terminal dialogue opens. Make sure it has found the GEOTIFF directory. If not, you will need to find where the geotiff (see above) stuff was installed to, and enter the full path in the GEOTIFF box.</p>
+</div>
+<div class="paragraph">
+<p>Now look at the options below (we are still running ccmake here). Turn all the optional settings to <code>OFF</code>, it just makes things easier and less likely to go wrong during compilation. Hit configure. Save and exit.</p>
+</div>
+<div class="paragraph">
+<p>Now run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">make
+sudo make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hopefully, cmake should do its thing and install libLAS for you. If not, open a large bottle of whisky and repeat the above steps to check you haven&#8217;t missed anything. I find a peaty single malt works best here.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_python_4">C.4. Python</h3>
 <div class="paragraph">
 <p>To check if it is working, just type</p>
 </div>
@@ -11952,7 +12120,7 @@ this does some heavy duty computation on sparse matrices that is required for th
 <p>You should have version 2.7 or above.</p>
 </div>
 <div class="sect3">
-<h4 id="_installing_python">C.3.1. Installing python</h4>
+<h4 id="_installing_python">C.4.1. Installing python</h4>
 <div class="paragraph">
 <p>If you don&#8217;t have python, you should install both <strong>python</strong> and <strong>pip</strong>, which manages python packages.
 To do that type:</p>
@@ -11965,7 +12133,7 @@ $ sudo apt-get install python-pip</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_installing_python_packages">C.3.2. Installing python packages</h4>
+<h4 id="_installing_python_packages">C.4.2. Installing python packages</h4>
 <div class="paragraph">
 <p>To check if python packages are there, just try to import them. First start a python session:</p>
 </div>
@@ -12011,7 +12179,7 @@ ImportError: No module named matplotlib</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ruby_3">C.4. Ruby</h3>
+<h3 id="_ruby_3">C.5. Ruby</h3>
 <div class="paragraph">
 <p>As mentioned in the main section of the book, the ruby programming language is used to build the documentation of our software. You can skip this part if you are viewing the documentation from the pdf or webpages and aren&#8217;t planning on contributing to the documentation. (Though you if you are contributing new features to the software you are encouraged to!)</p>
 </div>
@@ -12044,7 +12212,7 @@ $ sudo apt-get install rubygems</code></pre>
 <p>Note that in newer versions of Ruby, rubygems seems to install with ruby-full.</p>
 </div>
 <div class="sect3">
-<h4 id="_installing_the_asciidoctor_documentation_software">C.4.1. Installing the asciidoctor documentation software</h4>
+<h4 id="_installing_the_asciidoctor_documentation_software">C.5.1. Installing the asciidoctor documentation software</h4>
 <div class="paragraph">
 <p>After you have installed ruby, ruby-devel, and rubygems you can now proceed to getting the actual ruby packages that make the documentation:</p>
 </div>
@@ -12068,7 +12236,7 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cloning_or_forking_the_documentation">C.5. Cloning or forking the documentation</h3>
+<h3 id="_cloning_or_forking_the_documentation">C.6. Cloning or forking the documentation</h3>
 <div class="paragraph">
 <p>The documentation is under version control on github, just like the actual software source code. If you&#8217;re a developer, you can clone it direct from the original repository, otherwise you will need to fork it first into your own repo, and then clone from there to your local machine. You do this by visiting <a href="http://github.com/LSDtopotools/LSDTT_book" class="bare">http://github.com/LSDtopotools/LSDTT_book</a> and clicking 'fork' (assuming you have a github account of course). Then, on your local machine, you can do:</p>
 </div>
@@ -12109,7 +12277,7 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_12">C.6. Summary</h3>
+<h3 id="_summary_12">C.7. Summary</h3>
 <div class="paragraph">
 <p>Well, you have probably spent some time installing all of these software packages so relax for a bit and enjoy the beverage of your choice!</p>
 </div>
@@ -12751,7 +12919,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tools_for_viewing_data">16. Tools for viewing data</h2>
+<h2 id="_appendix_f_tools_for_viewing_data">Appendix F: Appendix F: Tools for viewing data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The many analyses provided by LSDTopoTools produce geographic data
@@ -12761,20 +12929,20 @@ data, using either Geographic Information Sysems (GISs) or
 using our own visualisation scripts, which are written in python.</p>
 </div>
 <div class="sect2">
-<h3 id="_arcmap">16.1. ArcMap</h3>
+<h3 id="_arcmap">F.1. ArcMap</h3>
 <div class="paragraph">
 <p>ArcMap is commercial software written by ESRI.
 Many companies, goverment agencies and universities have liscences to this sofotware.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis">16.2. QGIS</h3>
+<h3 id="_qgis">F.2. QGIS</h3>
 <div class="paragraph">
 <p>QGIS is an open source GIS that has functionality similar to ArcMap.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lsdtopotools_python_mapping_functions">16.3. LSDTopoTools python mapping functions</h3>
+<h3 id="_lsdtopotools_python_mapping_functions">F.3. LSDTopoTools python mapping functions</h3>
 <div class="paragraph">
 <p>We have written a series of lightweight mapping tools in python for
 visualising data.
@@ -12787,7 +12955,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_13">16.4. Summary</h3>
+<h3 id="_summary_13">F.4. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to perform basic operations such as loading and exploring data in QGIS, ArcMap or our own python tools.</p>
 </div>
@@ -12795,13 +12963,13 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix F: Appendix G: Automation and Supercomputing for LSDTopoTools</h2>
+<h2 id="_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix G: Appendix G: Automation and Supercomputing for LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Perhaps you have a lot of basins that you want to perform some analysis on, or you want to re-run a previous analysis with slightly different paramters, different m/n values, and so on. This section will explain some of the scripting tools, supercomputer applications, and other utilities to help speed up this process.</p>
 </div>
 <div class="sect2">
-<h3 id="_embarassingly_parallel_topographic_analysis">F.1. Embarassingly Parallel Topographic Analysis</h3>
+<h3 id="_embarassingly_parallel_topographic_analysis">G.1. Embarassingly Parallel Topographic Analysis</h3>
 <div class="paragraph">
 <p>The LSD software is written to run completely in serial. (i.e. there is no built in parallelisation). However, if you are running the same analyses on a large number of basins, the problem becomes easy to set up in a parallel-like fashion, if you have access to some form of multiple cpu computing facility. (This is termed <strong>embarassingly/trivially parallel</strong>, since it isn&#8217;t really written in parallel code).</p>
 </div>
@@ -12809,7 +12977,7 @@ installed on your system.</p>
 <p>This doesn&#8217;t necessarily require a supercomputing cluster; most laptops are at least dual core (as of 2014), and some will have as many as 8 seperate cpu threads to run tasks on. That means you could be running analysis on 8 basins at a time, rather than waiting for each one to finish separately, in serial.</p>
 </div>
 <div class="sect3">
-<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">F.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
+<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">G.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">You can find out how many cpus/cores/threads you have to play with by typing</dt>
@@ -12848,7 +13016,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_topographic_analysis_on_a_supercomputer">F.2. Topographic Analysis on a Supercomputer</h3>
+<h3 id="_topographic_analysis_on_a_supercomputer">G.2. Topographic Analysis on a Supercomputer</h3>
 <div class="paragraph">
 <p>If you have access to a suitable cluster computer or other supercomputer (HPC - high performance computing) service (ARCHER, HECToR, Eddie, or your local department&#8217;s cluster) it will probably have some type of job submission service. SGE and PBS are two of the most commonly used ones. You use the job scheduler to submit your by providing a simple script that requests cpu and memory resources from the supercomputer. By running the script, the job(s) are then placed in a queue to be distributed across the nodes and cpus.</p>
 </div>
@@ -12914,7 +13082,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_launching_jobs_with_the_batch_system">F.2.1. Launching jobs with the batch system</h4>
+<h4 id="_launching_jobs_with_the_batch_system">G.2.1. Launching jobs with the batch system</h4>
 <div class="sect4">
 <h5 id="_pbs_example">PBS Example</h5>
 <div class="paragraph">
@@ -13010,7 +13178,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect3">
-<h4 id="_checking_your_jobs">F.2.2. Checking your jobs</h4>
+<h4 id="_checking_your_jobs">G.2.2. Checking your jobs</h4>
 <div class="paragraph">
 <p><code>qstat</code> on its own should display a list of all your running jobs by default. To delete a job, use:</p>
 </div>
@@ -13046,7 +13214,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module_issues">F.3. Module issues</h3>
+<h3 id="_module_issues">G.3. Module issues</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">On certain HPC services, different modules or libraries need to be loaded or switched to create the right environment to run your software. Normally this is not an issue and nothing needs to be changed. By convention, the LSD Topo Tools software is compiled using the gcc compilers. (A set of free compilers released under the GNU licence). Some supercomputer clusters will come with a range of compilers such as Intel, Cray, etc&#8230;&#8203; One of them will be loaded by default. If gcc is not the default, you may wish to swap it before compiling.</dt>
@@ -13111,7 +13279,7 @@ The compiler suite you use has nothing to do with the type of CPU or supercomput
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation_and_library_issues">F.4. Compilation and library issues</h3>
+<h3 id="_compilation_and_library_issues">G.4. Compilation and library issues</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
