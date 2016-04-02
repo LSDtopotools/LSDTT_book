@@ -869,6 +869,23 @@ MathJax.Hub.Config({
 <li><a href="#_summary_13">14.4. Summary</a></li>
 </ul>
 </li>
+<li><a href="#_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix F: Appendix G: Automation and Supercomputing for LSDTopoTools</a>
+<ul class="sectlevel2">
+<li><a href="#_embarassingly_parallel_topographic_analysis">F.1. Embarassingly Parallel Topographic Analysis</a>
+<ul class="sectlevel3">
+<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">F.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+</ul>
+</li>
+<li><a href="#_topographic_analysis_on_a_supercomputer">F.2. Topographic Analysis on a Supercomputer</a>
+<ul class="sectlevel3">
+<li><a href="#_launching_jobs_with_the_batch_system">F.2.1. Launching jobs with the batch system</a></li>
+<li><a href="#_checking_your_jobs">F.2.2. Checking your jobs</a></li>
+</ul>
+</li>
+<li><a href="#_module_issues">F.3. Module issues</a></li>
+<li><a href="#_compilation_and_library_issues">F.4. Compilation and library issues</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -12188,10 +12205,387 @@ installed on your system.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix F: Appendix G: Automation and Supercomputing for LSDTopoTools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Perhaps you have a lot of basins that you want to perform some analysis on, or you want to re-run a previous analysis with slightly different paramters, different m/n values, and so on. This section will explain some of the scripting tools, supercomputer applications, and other utilities to help speed up this process.</p>
+</div>
+<div class="sect2">
+<h3 id="_embarassingly_parallel_topographic_analysis">F.1. Embarassingly Parallel Topographic Analysis</h3>
+<div class="paragraph">
+<p>The LSD software is written to run completely in serial. (i.e. there is no built in parallelisation). However, if you are running the same analyses on a large number of basins, the problem becomes easy to set up in a parallel-like fashion, if you have access to some form of multiple cpu computing facility. (This is termed <strong>embarassingly/trivially parallel</strong>, since it isn&#8217;t really written in parallel code).</p>
+</div>
+<div class="paragraph">
+<p>This doesn&#8217;t necessarily require a supercomputing cluster; most laptops are at least dual core (as of 2014), and some will have as many as 8 seperate cpu threads to run tasks on. That means you could be running analysis on 8 basins at a time, rather than waiting for each one to finish separately, in serial.</p>
+</div>
+<div class="sect3">
+<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">F.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">You can find out how many cpus/cores/threads you have to play with by typing</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">nproc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>at the terminal in linux/cygwin. On a Intel i5 laptop, for example, it would probably return <code>2</code> or <code>4</code> 'cpus' as the result. Without going into the details, a 'cpu' in this case is the smallest processing 'unit' (or a 'thread'). Also, by means of some clever electronics, some Intel cpus have twice as many threads as they do physical cores. Hooray!</p>
+</div>
+<div class="paragraph">
+<p>Now suppose you have 16 basins that you want to do the chi analysis on. Should you run them all one-by-one on a single thread/cpu and let the other 3 threads sit there idle-ing? No! Use a utility such as <code>xjobs</code> or <code>GNU Parallel</code>. This example uses GNU parallel:</p>
+</div>
+<div class="paragraph">
+<p>Prepare your numbered driver files as required. This example uses 50 driver files named: <code>test1.driver</code>, <code>test2.driver</code>, etc. (See below for how to do this with a Python Script). The job-queuer used is GNU parallel, which is installed by default on many linux distributions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">seq 50 | parallel --gnu -j 4 ../driver_functions ./ 'test{}.driver' &amp;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">parallel --gnu -j 4 ../driver_functions/chi_get_profiles.exe ./ test{}.driver {1..50} &amp;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will queue up you 50 separate jobs to run on 4 threads at a time (the <code>-j 4</code> argument)</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_topographic_analysis_on_a_supercomputer">F.2. Topographic Analysis on a Supercomputer</h3>
+<div class="paragraph">
+<p>If you have access to a suitable cluster computer or other supercomputer (HPC - high performance computing) service (ARCHER, HECToR, Eddie, or your local department&#8217;s cluster) it will probably have some type of job submission service. SGE and PBS are two of the most commonly used ones. You use the job scheduler to submit your by providing a simple script that requests cpu and memory resources from the supercomputer. By running the script, the job(s) are then placed in a queue to be distributed across the nodes and cpus.</p>
+</div>
+<div class="paragraph">
+<p>It is also possible to run jobs in 'interactive' mode, which skips the script writing part and just starts the jobs from the commmand line once you are logged in. This is ok for testing, but not advised when running large, numerous, or memory-intensive jobs as it tends to hog the resources. Consult your HPC service&#8217;s documentation for best practice.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Creating multiple driver files for a list of basins</div>
+<div class="paragraph">
+<p>Scripts (located in the LSD_Visualisation folder):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">channel_extraction_driver_gen.py
+forced_mn_driver_gen.py
+chi_multidriver_gen_qsub_ver.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 38. Example basin list for scripting purposes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Basin Name</th>
+<th class="tableblock halign-left valign-top">Starting JI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">turnpike</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1468</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reginald</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5167</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tubadore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6422</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">marmaduke</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13994</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Make sure you do not include a blank line at the end of the file, otherwise the script will return an error about the list index being out of range.</p>
+</div>
+<div class="paragraph">
+<p>The standard version of this script spawns driver files that include the junction index to hel identfy which driver runs with which input data file/dem.</p>
+</div>
+<div class="paragraph">
+<p>The qsub_ver version of the script spawns files that have driver names increasing linearly from 1 upwards to the maximum number of basins in your basin list. This is useful if you want to run the analysis on a system that has a job queuing utility such as PBS, SGE, xjobs, GNU Parallel, etc.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_launching_jobs_with_the_batch_system">F.2.1. Launching jobs with the batch system</h4>
+<div class="sect4">
+<h5 id="_pbs_example">PBS Example</h5>
+<div class="paragraph">
+<p>PBS (Portable batch system) is the name of the job submission scheduler used on the UK&#8217;s ARCHER supercomuting service, housed in Edinburgh.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of a batch of channel file extractions. 50 channel files were extracted in a few minutes, compared to several hours on a desktop/laptop computer.</p>
+</div>
+<div class="paragraph">
+<p>#. First, set up your driver files using the python script described above. Upload them to the filesystem on the HPC service.</p>
+</div>
+<div class="paragraph">
+<p>#. Upload (using <code>scp</code>) and compile the LSD Topo Tools software directly on the HPC system. I.e. do not upload it ready-compiled from your own computer, it will probably not work - unless you have compiled it with static libraries. (This is not the default option)</p>
+</div>
+<div class="paragraph">
+<p>#. Upload any raster files required for whichever part of the LSD ToolBox you are using. You would normally do this using the linux <code>scp</code> command. Type <code>man scp</code> at the terminal for help on using this.</p>
+</div>
+<div class="paragraph">
+<p>#. Now write the job submission script. The example below is for the <strong>PBS job submisison utility</strong>, but SGE has a very similar layout. See specific documentation for the one you are using.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">#!/bin/bash --login
+#
+#PBS -N chan_extrac
+#PBS -A n02-ncas
+#PBS -l walltime=2:0:0
+#PBS -l select=serial=true:ncpus=1
+#PBS -J 1-50
+#PBS -r y
+
+# Switch to current working directory
+cd $HOME/wasatch_chi/channel_extraction_legacy/new_dense_chans/
+
+# Run the serial program
+../driver_functions/chi2_write_channel_file.exe ./ wasatch_$PBS_ARRAY_INDEX.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is an array job: the array switch is specified by <code>#PBS -J {RANGE OF VALUES}</code>. The range will increment the variable <code>$PBS_ARRAY_INDEX</code> by 1 each time. In this example, the driver files used will be wasatch_1.driver, wasatch_2.driver, &#8230;&#8203;, and so on.</p>
+</div>
+<div class="paragraph">
+<p>Since the job (jobs) are all written in serial code, there is no need to run this on parallel nodes, should they be available to you. This is specified here with <code>#PBS -l select=serial=true:ncpus=1</code>, since we only need one cpu for each individual job in the array. (Altough they will all run concurrently on multiple cpus).</p>
+</div>
+<div class="paragraph">
+<p>There is no need to specifiy an output pipe. Screen output and any errors/aborts will be written to log files automatically.</p>
+</div>
+<div class="paragraph">
+<p>Submit the array job using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">qsub my_array_script.pbs</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The status of the jobs can be checked using qstat. (See the separate documentation for this, or just type 'man qstat')</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sge_script_example">SGE Script Example</h5>
+<div class="paragraph">
+<p>SGE (Sun grid engine) is used on the Eddie cluster (Edinburgh) and Redqueen (Manchester). It works much the same way as PBS does. Here is an example script used to perform the chi analysis on the 50 channels we extracted in the previous example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">#!/bin/bash
+#$ -S /bin/bash   # Inform SGE we are using the bash shell
+#$ -cwd           # Job will run in the current directory (where you ran qsub)
+#$ -V             # Inherit current environment (e.g., any loaded modulefiles)
+#$ -q atmos-b.q   # tell qsub to use the atmosci-b queue
+#$ -t 1-50        # TASK GRID ARRAY with 50 jobs
+../bin/chi_analysis.exe ../data_dir/ inputfile.${SGE_TASK_ID}.parameters</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>${SGE_TASK_ARRAY}</code> part will increment by 1 across the sequence specified, so make sure your inputfiles conform to this format. e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">inputfile.1.parameters
+inputfile.2.parameters
+inputfile.3.parameters
+{etc...}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The job is submitted using <code>qsub my_batch_job.sh</code>. In similar fashion to the previous example, we are submitting a task grid array job, which is useful for carrying out sensitivity analysis (such as with the chi-analysis tools). The chi software is not written with any parallelisation, but we can simulate the effect here using multiple cpu threads on the cluster computer with the task-grid-array job.</p>
+</div>
+<div class="paragraph">
+<p>In this example, we specified a particular queue to use: <code>-q atmos-b.q</code>. This is not necessary on some systems, so check the documentation first.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_checking_your_jobs">F.2.2. Checking your jobs</h4>
+<div class="paragraph">
+<p><code>qstat</code> on its own should display a list of all your running jobs by default. To delete a job, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">qdel -j {JOB_ID_NUMBER}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The job ID number is found from qstat. To delete all your jobs, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">qdel -u {USERNAME}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To delete specific tasks from an array of jobs (like in the above examples, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">qdel -j {JOB_ID_NUMBER} -t {TASK_NUMBER(S)}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So if you want to delete the tasks 23 through 64 from job ID 1300. Use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">qdel -j 1300 -t 23-64</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_module_issues">F.3. Module issues</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">On certain HPC services, different modules or libraries need to be loaded or switched to create the right environment to run your software. Normally this is not an issue and nothing needs to be changed. By convention, the LSD Topo Tools software is compiled using the gcc compilers. (A set of free compilers released under the GNU licence). Some supercomputer clusters will come with a range of compilers such as Intel, Cray, etc&#8230;&#8203; One of them will be loaded by default. If gcc is not the default, you may wish to swap it before compiling.</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">module list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will list all the currently loaded modules:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">module avail</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will list the available modules. You can narrow down your search by doing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">module avail gcc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>for example, to find the gcc-releated modules. To load, type <code>module load gcc</code>. If you are swapping modules, for example the Intel compiler for the gcc one, then do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">module swap intel gcc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sometimes, you may find that there is a ready-to-use compiler suite/environment set up on your HPC. Such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PrgEnv-intel
+PrgEnv-gnu
+PrgEnv-cray</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Loading or swapping one of these is the equivalent of the above, but loads a whole suite of other modules and libraries that match the compiler suite. <strong>It is probably best to use these if they are available.</strong></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The compiler suite you use has nothing to do with the type of CPU or supercomputer manufacturer. So you don&#8217;t have to use the Cray compilers with a Cray supercomputer, for example. You may also find that the LSD Topo Tools compile perfectly fine using the Intel/Cray/whatever compilers, though we have only tested the code using the GNU/gcc ones.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Other modules that may of interest to LSDers include python (though not all HPCs will have an implementation installed.) netCDF (a data format for large data arrays).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compilation_and_library_issues">F.4. Compilation and library issues</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This may not be an issue on certain cluster systems. I include it here in case anyone is having similar issues.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Users of certain libraries (some of the fast fourier libraries, very new compiler features, etc.) may find that the libraries they have on their personal systems are not availble on the cluster computer. This can lead to errors when trying to recompile on the cluster service. As you won&#8217;t have any admin rights when using the HPC service, you can&#8217;t simply install the libraries yourself. (Though you could try asking the admin).</p>
+</div>
+<div class="paragraph">
+<p>As an example, the <code>gcc</code> version on a the Redqueen (Manchester) cluster computing service is only maintained up to ver. 4.4. (The latest version as of 2014 is 4.8.x!). This rather antiquated version of <code>gcc</code> lacks a lot of the library features of the newer <code>gcc</code> compilers. For example, I had issues with out of date <code>libstdc++</code> and <code>libc</code> shared libraries. Trying to boilerplate newer versions of the libraries into my home directory and link them to the existing binaries didn&#8217;t seem to work (the system would always seem to default to the older libraries).</p>
+</div>
+<div class="paragraph">
+<p>A workaround for this, if your code is only dependent on a few (but recent versions) of certain libraries, is to compile your program on your desktop workstation with <strong>static-linked</strong> libraries, using the <code>-static</code> complier tag (for gcc/g++). By default, compilation is done with <strong>dynamically-linked</strong> libraries, which are stored somewhere on the local machine at compilation time, and so they don&#8217;t get transferred with the <code>.exe</code> file if you upload the program to a different machine.</p>
+</div>
+<div class="paragraph">
+<p>Using static-linked libraries effectively combines any library functions into your <code>.exe</code> binary file, so there is no need to worry about library dependencies in an environment that you don&#8217;t have the admin rights to modify. (Such as on the supercomputer) The size of the executable file will be larger, but this should only be an issue if your program is dependent on (numerous) very large library files. Experiment with caution.</p>
+</div>
+<div class="paragraph">
+<p>In the Makefile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">CC= g++ -static
+...rest of makefile</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you are compiling this for the first time, you may get errors about certain libraries not being found. (In my case it was <code>-lstdc++</code>, <code>-lm</code>, and <code>-lc</code>. These libraries will probably be present on your computer, but only the dynamic versions. You will need to download and install the static counterparts of such libraries. In my case this was done on linux with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">yum install lstdc++-static
+yum install glib-static</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, this will vary depending on what flavour of linux you are using (or Cygwin).</p>
+</div>
+<div class="paragraph">
+<p>Once you have compiled your static library binary, you can check if there are any linked dependencies by doing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">ldd ./&lt;NAME_OF_EXECUTABLE&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It should say something along the lines of <code>"This is not a dynamic executable"</code> or suchlike. Provided the file was compiled in a similar linux distribution and bit-version (32/64-bit), the static executable should run without issues by uploading it to your supercomputer of choice.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-02 11:14:36 BST
+Last updated 2016-04-02 11:51:21 BST
 </div>
 </div>
 </body>
