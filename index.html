@@ -715,48 +715,67 @@ MathJax.Hub.Config({
 <li><a href="#_summary_10">12.5. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_hydrological_and_erosion_modelling">13. Hydrological and Erosion Modelling</a>
+<li><a href="#_swath_profiling_tools">13. Swath Profiling Tools</a>
 <ul class="sectlevel2">
-<li><a href="#_origins_relation_to_caesar_lisflood">13.1. Origins: relation to CAESAR-Lisflood</a></li>
-<li><a href="#_compilation">13.2. Compilation</a>
+<li><a href="#_generalised_swath_profile">13.1. Generalised Swath Profile</a>
 <ul class="sectlevel3">
-<li><a href="#_dependencies">13.2.1. Dependencies</a></li>
+<li><a href="#_preprocessing_step_1_getting_your_raster_into_the_correct_format">13.1.1. Preprocessing step 1: Getting your raster into the correct format</a></li>
+<li><a href="#_preprocessing_step_2_creating_the_baseline">13.1.2. Preprocessing step 2: Creating the baseline</a></li>
+<li><a href="#_compiling_the_driver_function">13.1.3. Compiling the driver function</a></li>
+<li><a href="#_running_the_driver_function">13.1.4. Running the driver function</a></li>
+<li><a href="#_program_outputs">13.1.5. Program outputs</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model">13.3. Running the Model</a>
+<li><a href="#_channel_long_profile_swaths">13.2. Channel Long Profile Swaths</a>
 <ul class="sectlevel3">
-<li><a href="#_dem_preparation">13.3.1. DEM preparation</a></li>
-<li><a href="#_set_up_and_parameter_file_overview">13.3.2. Set up and Parameter File overview</a></li>
-<li><a href="#_input_files">13.3.3. Input files</a></li>
+<li><a href="#_example_applications">13.2.1. Example Applications</a></li>
+<li><a href="#_example_usage">13.2.2. Example Usage</a></li>
 </ul>
 </li>
-<li><a href="#_parameter_guide">13.4. Parameter Guide</a>
-<ul class="sectlevel3">
-<li><a href="#_file_information">13.4.1. File Information</a></li>
-<li><a href="#_supplementary_files">13.4.2. Supplementary Files</a></li>
-<li><a href="#_numerical">13.4.3. Numerical</a></li>
-<li><a href="#_sediment">13.4.4. Sediment</a></li>
-<li><a href="#_hydrology">13.4.5. Hydrology</a></li>
-<li><a href="#_vegetation">13.4.6. Vegetation</a></li>
-<li><a href="#_hillslope">13.4.7. Hillslope</a></li>
-<li><a href="#_write_output_rasters">13.4.8. Write Output Rasters</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_code_in_parallel">13.5. Running the code in Parallel</a></li>
-<li><a href="#_notes_for_hpc_use">13.6. Notes for HPC use</a></li>
-</ul>
-</li>
-<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">14. Landscape Evolution Modelling with LSDTopoTools</a>
+<li><a href="#_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</a>
 <ul class="sectlevel2">
-<li><a href="#_model_parameters_and_components">14.1. Model Parameters and Components</a>
+<li><a href="#_origins_relation_to_caesar_lisflood">14.1. Origins: relation to CAESAR-Lisflood</a></li>
+<li><a href="#_compilation">14.2. Compilation</a>
 <ul class="sectlevel3">
-<li><a href="#_model_domain">14.1.1. Model Domain</a></li>
-<li><a href="#_fluvial_component">14.1.2. Fluvial Component</a></li>
-<li><a href="#_hillslope_component">14.1.3. Hillslope Component</a></li>
+<li><a href="#_dependencies">14.2.1. Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model_2">14.2. Running the Model</a></li>
-<li><a href="#_model_output">14.3. Model Output</a></li>
+<li><a href="#_running_the_model">14.3. Running the Model</a>
+<ul class="sectlevel3">
+<li><a href="#_dem_preparation">14.3.1. DEM preparation</a></li>
+<li><a href="#_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</a></li>
+<li><a href="#_input_files">14.3.3. Input files</a></li>
+</ul>
+</li>
+<li><a href="#_parameter_guide">14.4. Parameter Guide</a>
+<ul class="sectlevel3">
+<li><a href="#_file_information">14.4.1. File Information</a></li>
+<li><a href="#_supplementary_files">14.4.2. Supplementary Files</a></li>
+<li><a href="#_numerical">14.4.3. Numerical</a></li>
+<li><a href="#_sediment">14.4.4. Sediment</a></li>
+<li><a href="#_hydrology">14.4.5. Hydrology</a></li>
+<li><a href="#_vegetation">14.4.6. Vegetation</a></li>
+<li><a href="#_hillslope">14.4.7. Hillslope</a></li>
+<li><a href="#_write_output_rasters">14.4.8. Write Output Rasters</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_code_in_parallel">14.5. Running the code in Parallel</a></li>
+<li><a href="#_notes_for_hpc_use">14.6. Notes for HPC use</a></li>
+</ul>
+</li>
+<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">15. Landscape Evolution Modelling with LSDTopoTools</a>
+<ul class="sectlevel2">
+<li><a href="#_model_parameters_and_components">15.1. Model Parameters and Components</a>
+<ul class="sectlevel3">
+<li><a href="#_model_domain">15.1.1. Model Domain</a></li>
+<li><a href="#_fluvial_component">15.1.2. Fluvial Component</a></li>
+<li><a href="#_hillslope_component">15.1.3. Hillslope Component</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_model_2">15.2. Running the Model</a></li>
+<li><a href="#_model_output">15.3. Model Output</a></li>
 </ul>
 </li>
 <li><a href="#_software">Appendix A: Software</a>
@@ -874,12 +893,12 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_tools_for_viewing_data">15. Tools for viewing data</a>
+<li><a href="#_tools_for_viewing_data">16. Tools for viewing data</a>
 <ul class="sectlevel2">
-<li><a href="#_arcmap">15.1. ArcMap</a></li>
-<li><a href="#_qgis">15.2. QGIS</a></li>
-<li><a href="#_lsdtopotools_python_mapping_functions">15.3. LSDTopoTools python mapping functions</a></li>
-<li><a href="#_summary_13">15.4. Summary</a></li>
+<li><a href="#_arcmap">16.1. ArcMap</a></li>
+<li><a href="#_qgis">16.2. QGIS</a></li>
+<li><a href="#_lsdtopotools_python_mapping_functions">16.3. LSDTopoTools python mapping functions</a></li>
+<li><a href="#_summary_13">16.4. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_appendix_g_automation_and_supercomputing_for_lsdtopotools">Appendix F: Appendix G: Automation and Supercomputing for LSDTopoTools</a>
@@ -9934,11 +9953,388 @@ so prior reported results that used either no topographic shielding or low resol
 <div class="paragraph">
 <p>You should now be able to take concentrations from detrital cosmogenics and convert these into basin averaged denudation rates.</p>
 </div>
+<div class="paragraph">
+<p>: numbered :</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hydrological_and_erosion_modelling">13. Hydrological and Erosion Modelling</h2>
+<h2 id="_swath_profiling_tools">13. Swath Profiling Tools</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_generalised_swath_profile">13.1. Generalised Swath Profile</h3>
+<div class="paragraph">
+<p>Here we expain how to generate a generalised swath profile following the same algorithm described by <a href="http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html">Hergarten et al. (2014)</a>.</p>
+</div>
+<div class="paragraph">
+<p>The outputs from the function are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A raster showing the extent of the swath profile, indicating the perpendicular distance of each point from the baseline (i.e. a transverse swath)</p>
+</li>
+<li>
+<p>A raster showing the extent of the swath profile, indicating the projected distance along the baseline (i.e. a longitudinal swath)</p>
+</li>
+<li>
+<p>A <code>.txt</code> file containing the results of the transverse swath profile.  The table includes the distance of the centre of each bin across the profile, the mean and standard deviation of each bin, and the 0, 25, 50, 75 and 100 percentiles.</p>
+</li>
+<li>
+<p>A <code>.txt</code> file containing the results of the longitudinal swath profile.  The table includes the distance of the centre of each bin along the profile, projected onto the baseline, the mean and standard deviation of each bin, and the 0, 25, 50, 75 and 100 percentiles.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In order to do so, there are a few preprocessing steps that need to be done to generate the profile baseline.  These can easily be done in ArcMap, but the experienced LSDTopotools user can also write a more complex driver function to do more specialised tasks.</p>
+</div>
+<div class="sect3">
+<h4 id="_preprocessing_step_1_getting_your_raster_into_the_correct_format">13.1.1. Preprocessing step 1: Getting your raster into the correct format</h4>
+<div class="paragraph">
+<p>You will need to get data that you have downloaded into a format LSDTopoToolbox can understand, namely the <code>.flt</code> format.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_preprocessing_step_2_creating_the_baseline">13.1.2. Preprocessing step 2: Creating the baseline</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This step can be done automatically by tweaking the driver file to extract the baseline using the LSDTopoTools package. See <a href="#_channel_long_profile_swaths">Channel Long Profile Swaths</a> a few sections below for an example of this, which avoids using the pesky ArcMap software.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The baseline is the centre line of the swath profile.  At present the SwathProfile tool uses a shapefile <code>*.shp</code> consisting of a series of points that define the profile.  A suitable baseline can be produced in two easy steps.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First, create a new shapefile, setting the feature class to <code>polyline</code>, and create a single line feature, which will form the baseline.  This can be linear, or curved, depending on what your requirements are.  Next create another shapefile, this time make the feature class <code>point</code>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwathTools1.png" alt="SwathTools1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start editing in ArcMap.  Make the target class the new, empty <code>point</code> shapefile.  Using the edit tool on the Editor Toolbar, select the polyline that you drew in the previous step; it should be highlighted in a light blue colour.  Go to the drop-down menu on the Editor toolbar, and select "Construct Points&#8230;&#8203;".  Set the template as the empty <code>point</code> shapefile.  Set the construction option to Distance, and make the point spacing equal to the resolution of your DEM.  Make sure "Create additional points at start and end" <strong>is</strong> checked.  Click ok, then <strong>save your edits</strong>&#8230;&#8203; you have now created the baseline file.  Give yourself a pat on the back, take a deep breath and move onto the next stage&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwathTools2.png" alt="SwathTools2">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_compiling_the_driver_function">13.1.3. Compiling the driver function</h4>
+<div class="paragraph">
+<p>You will need to download all of the code. This will have a directory with the objects (their names start with LSD). Note that this tool utilises the PCL library: www.pointclouds.org[PCL homepage].  Hopefully this is already installed on your University server (it is on the University of Edinburgh server).  It probably won&#8217;t be installed on your laptop, unless you have installed it yourself at some point.  This tool <strong>will not work</strong> if the PCL library is not installed!</p>
+</div>
+<div class="paragraph">
+<p>Within the directory with the objects, there will be two additional directories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>driver_functions</p>
+</li>
+<li>
+<p>TNT</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>TNT</code> folder contains routines for linear algebra, and it is made by NIST, you can happily do everything in
+LSDTopoToolbox without ever knowing anything about it, but if you want you can read what it is here: <a href="http://math.nist.gov/tnt/">TNT homepage</a>.</p>
+</div>
+<div class="paragraph">
+<p>In order to compile this function, it is necessary to use cmake (version 2.8 or later).  The compilation procedure is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First, go into the driver function folder</p>
+</li>
+<li>
+<p>Make a new directory in this folder named <code>build</code>; in your terminal type:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">mkdir build</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Move the <code>CMakeLists_SwathProfile.txt</code> file into the <code>build</code> directory.  At the same time, rename this file <code>CMakeLists.txt</code>, so the compiler will find it.  Type::</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">mv CMakeLists_SwathProfile.txt build/CMakeLists.txt</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go into the <code>build</code> directory. Type:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">cmake28 .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in the terminal.  Note that the name of this directory isn&#8217;t important.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Next type:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in the terminal.  This compiles the code.  You will get a bunch of messages but at the end your code will have compiled.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All that is left to do is to move the compiled function back up into the driver_functions directory.  Type:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">mv swath_profile_driver.out ..</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_driver_function">13.1.4. Running the driver function</h4>
+<div class="paragraph">
+<p>Okay, now you are ready to run the driver function. You&#8217;ll need to run the function from the directory where the compiled code is located (i.e. the <code>driver_functions</code> folder), but it can work on data that is located in any location.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You run the code with the command <code>./swath_profile_driver.out name_of_basline_file name_of_raster half_width_of_profile bin_width_of_profile</code></p>
+</li>
+<li>
+<p>The <code>name_of_baseline_file</code> is just the name of the shapefile created in the preprocessing step that contains the points defining the baseline.</p>
+</li>
+<li>
+<p>The <code>name_of_raster</code> is the <strong>PREFIX</strong> of the raster, so if your raster is called <code>lat_26p5_flt.flt</code> then the <code>name_of_raster</code> is <code>lat_26p5_flt</code> (that is, without the <code>.flt</code> at the end).</p>
+</li>
+<li>
+<p>Note that if your data is stored in a <code>different</code> directory, then you will need to inlude the full path name in <code>name_of_raster</code> and <code>name_of_baseline_file</code>.  The output files will be saved in the same directory as the DEM.</p>
+</li>
+<li>
+<p>The <code>half_width_of_profile</code> is the half width of the swath (i.e. the distance from the baseline to the swath edge).</p>
+</li>
+<li>
+<p>The <code>bin_width_of_profile</code> is the resolution at which the profile data is condensed into a single profile.  This is not the same as the raster resolution!</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_program_outputs">13.1.5. Program outputs</h4>
+<div class="paragraph">
+<p>The <code>swath_profile_driver</code> tool creates two raster datasets, so you can check the swath templates yourself to better understand how the profiles are constructed</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>*_swath_long.flt</code> is the longitudinal swath profile template</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwathTools3.png" alt="SwathTools3">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>*_swath_trans.flt</code> is the transverse swath profile template</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwathTools4.png" alt="SwathTools4">
+</div>
+</div>
+<div class="paragraph">
+<p>There are also two <code>.txt</code> files, which contain the profile data &#8594; these include the mean, standard deviation, and percentiles for each.  These can be plotted using the python script <code>plot_swath_profile.py</code>, located in the <code>LSDVisualisation/trunk/</code> directory.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_channel_long_profile_swaths">13.2. Channel Long Profile Swaths</h3>
+<div class="paragraph">
+<p>Here another use of the swath tools feature is exploited. You can use it to automatically create long profiles along a channel using a value other than elevation, for example. (This usage is hinted at in the <a href="http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html" class="bare">http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html</a> [Hergarten et al. (2014) paper]. This application is mainly suited to where there is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Expected to be some variation along channel of a certain value or other metric</p>
+</li>
+<li>
+<p>The DEM resolution is high enough to capture lateral variations across the channel, but you are interested in the average of these metrics along the long profile.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_example_applications">13.2.1. Example Applications</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Channel width variation using high resolution lidar DEMs</p>
+</li>
+<li>
+<p>Sediment size distribution along channel from model output</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LongSwath2.png" alt="LongSwath2">
+</div>
+<div class="title">Figure 19. Distribution of median grain size along channel long profile. Upper(Q75) and Lower(Q25) quartiles shown in dashed line.</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Erosion/deposition distribution along channel from model output</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LongSwath1.png" alt="LongSwath1">
+</div>
+<div class="title">Figure 20. Average channel elevation change for two different model simulations using LSDCatchmentModel</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Basin hydrology applications (water depth, velocity etc.)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will need the driver file: <code>longitudinal_channel_erosion_swath_profiler.cpp</code> along with the corresponding CMake file.</p>
+</div>
+<div class="paragraph">
+<p>There are effectively 3 supplementary files you need to perform this analysis.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Parameter file. This takes the form of a simple text file with a column of values:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Terrain DEM Name (The base topography)</p>
+</li>
+<li>
+<p>Secondary Raster/DEM file name. (This is the raster file that contains the property that varies along channel.)</p>
+</li>
+<li>
+<p>Raster extension for the above two files (currently, both must be the same format)</p>
+</li>
+<li>
+<p>Minslope (use 0.00001 for starters)</p>
+</li>
+<li>
+<p>Contributing pixel threshold (for calculating the drainage network</p>
+</li>
+<li>
+<p>Swath Half Width (see above)</p>
+</li>
+<li>
+<p>Swath Bin Width (see above)</p>
+</li>
+<li>
+<p>Starting Junction Number</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Terrain Raster</p>
+</li>
+<li>
+<p>Secondary Raster</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These two rasters should be in the same spatial extent.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_usage">13.2.2. Example Usage</h4>
+<div class="paragraph">
+<p>Compile the driver file using CMake. To do this, create a <code>build</code> folder in the driver_functions folder. Copy the file <code>CMakeLists_Swath_long_profile_erosion.txt</code> file into the new folder, and rename it <code>CMakeLists.txt</code>, as described above. Then:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">cmake .
+make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You now have the executable <code>long_swath_profile_erosion.exe</code>. It is run by giving it two arguments: the path to the parameter file and raster file (in the same directory as each other, but can be separate from the executable) and the name of the parameter file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">./long_swath_profile_erosion.exe ./ swath_profiler_long.param</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The driver file is designed to perform the whole operation in one go: <code>Fill DEM &gt; Extract Channel Network &gt; Produce Channel File &gt; Convert Channel file to X,Y Points for Swath &gt; Create Swath Template &gt; Perform Swath Analysis</code>, but you may want to split it up into stages if you do not know the starting junction number where you want the profile to begin.</p>
+</div>
+<div class="paragraph">
+<p>The driver file currently uses the longest channel in the basin (the mainstem) so check that this is what you expected. An option may become available to look at tributaries later on.</p>
+</div>
+<div class="paragraph">
+<p>The output files are the Profile (txt) and the Swath template that was used to profile the channel. (Check that it was the spatial extent that you expected).</p>
+</div>
+<div class="paragraph">
+<p>You can use the same visualisation script as above: <code>plot_swath_profile.py</code>, located in the <code>LSDVisualisation/trunk/</code> directory.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -9962,7 +10358,7 @@ Prediction is difficult, especially about the future.
 <p>The model is also developed to run on parallel computing architectures (Multi-core/cluster computers).</p>
 </div>
 <div class="sect2">
-<h3 id="_origins_relation_to_caesar_lisflood">13.1. Origins: relation to CAESAR-Lisflood</h3>
+<h3 id="_origins_relation_to_caesar_lisflood">14.1. Origins: relation to CAESAR-Lisflood</h3>
 <div class="paragraph">
 <p>The model is essentially a stripped down translation of the CAESAR-Lisflood model, but without the GUI, and it runs on Linux unlike CAESAR-Lisflood, which is Windows only. If you are happy to run on Windows, and would prefer to use a model in GUI-mode then CAESAR-Lisflood is a good choice for this. This branch of the model is designed to be faster and cross platform, scales up to running on a supercomputer if the resources are available to you. One of the drawbacks to the original model is that you need a dedicated Windows box to do your simulations, you can&#8217;t send them off to a cluster computer-type facility, which typically run unix. (Unless you have a bunch of spare Windows PCs&#8230;&#8203;)</p>
 </div>
@@ -9971,7 +10367,7 @@ Prediction is difficult, especially about the future.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation">13.2. Compilation</h3>
+<h3 id="_compilation">14.2. Compilation</h3>
 <div class="paragraph">
 <p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present.</p>
 </div>
@@ -10005,7 +10401,7 @@ Prediction is difficult, especially about the future.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dependencies">13.2.1. Dependencies</h4>
+<h4 id="_dependencies">14.2.1. Dependencies</h4>
 <div class="paragraph">
 <p>Your compiler must support C11. Almost all do as of 2016, as long as you are running a fairly recent version. The C11 flag is included in the makefile. The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.</p>
 </div>
@@ -10018,12 +10414,12 @@ Prediction is difficult, especially about the future.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model">13.3. Running the Model</h3>
+<h3 id="_running_the_model">14.3. Running the Model</h3>
 <div class="paragraph">
 <p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
 </div>
 <div class="sect3">
-<h4 id="_dem_preparation">13.3.1. DEM preparation</h4>
+<h4 id="_dem_preparation">14.3.1. DEM preparation</h4>
 <div class="paragraph">
 <p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment. <strong>In other words: There should be no 'NODATA' values between the outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
 </div>
@@ -10044,7 +10440,7 @@ The model will actually route water flow off <strong>all</strong> edges of the c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_set_up_and_parameter_file_overview">13.3.2. Set up and Parameter File overview</h4>
+<h4 id="_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</h4>
 <div class="paragraph">
 <p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km. It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.)</p>
 </div>
@@ -10061,7 +10457,7 @@ The model will actually route water flow off <strong>all</strong> edges of the c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_input_files">13.3.3. Input files</h4>
+<h4 id="_input_files">14.3.3. Input files</h4>
 <div class="paragraph">
 <p>As a minimum, you need a <strong>DEM input</strong> file, <strong>paramter file</strong>, and <strong>rainfall data</strong> input file.</p>
 </div>
@@ -10076,9 +10472,9 @@ The model will actually route water flow off <strong>all</strong> edges of the c
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameter_guide">13.4. Parameter Guide</h3>
+<h3 id="_parameter_guide">14.4. Parameter Guide</h3>
 <div class="sect3">
-<h4 id="_file_information">13.4.1. File Information</h4>
+<h4 id="_file_information">14.4.1. File Information</h4>
 <div class="sect4">
 <h5 id="_dem_name">dem_name</h5>
 <div class="paragraph">
@@ -10111,7 +10507,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_supplementary_files">13.4.2. Supplementary Files</h4>
+<h4 id="_supplementary_files">14.4.2. Supplementary Files</h4>
 <div class="paragraph">
 <p>Supplementary files for other features of the model.</p>
 </div>
@@ -10139,7 +10535,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_numerical">13.4.3. Numerical</h4>
+<h4 id="_numerical">14.4.3. Numerical</h4>
 <div class="paragraph">
 <p>Parameters that control the numerical model time-stepping etc, and the model run time.</p>
 </div>
@@ -10175,7 +10571,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sediment">13.4.4. Sediment</h4>
+<h4 id="_sediment">14.4.4. Sediment</h4>
 <div class="sect4">
 <h5 id="_transport_law">transport_law</h5>
 <div class="paragraph">
@@ -10220,7 +10616,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hydrology">13.4.5. Hydrology</h4>
+<h4 id="_hydrology">14.4.5. Hydrology</h4>
 <div class="paragraph">
 <p>Parameters for the hydrological part of the model.</p>
 </div>
@@ -10331,7 +10727,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_vegetation">13.4.6. Vegetation</h4>
+<h4 id="_vegetation">14.4.6. Vegetation</h4>
 <div class="paragraph">
 <p>(Not yet tested!)</p>
 </div>
@@ -10353,7 +10749,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hillslope">13.4.7. Hillslope</h4>
+<h4 id="_hillslope">14.4.7. Hillslope</h4>
 <div class="paragraph">
 <p>The hillslope model in LSDCatchment model is very rudimentary at present. Stay tuned for more updates.</p>
 </div>
@@ -10381,7 +10777,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_write_output_rasters">13.4.8. Write Output Rasters</h4>
+<h4 id="_write_output_rasters">14.4.8. Write Output Rasters</h4>
 <div class="sect4">
 <h5 id="_raster_output_interval">raster_output_interval</h5>
 <div class="paragraph">
@@ -10407,13 +10803,13 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_code_in_parallel">13.5. Running the code in Parallel</h3>
+<h3 id="_running_the_code_in_parallel">14.5. Running the code in Parallel</h3>
 <div class="paragraph">
 <p>Some notes on how the code runs in parallel.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_notes_for_hpc_use">13.6. Notes for HPC use</h3>
+<h3 id="_notes_for_hpc_use">14.6. Notes for HPC use</h3>
 <div class="paragraph">
 <p>Notes on using the code on HPC clusters.</p>
 </div>
@@ -10421,7 +10817,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect1">
-<h2 id="_landscape_evolution_modelling_with_lsdtopotools">14. Landscape Evolution Modelling with LSDTopoTools</h2>
+<h2 id="_landscape_evolution_modelling_with_lsdtopotools">15. Landscape Evolution Modelling with LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The LSD Topo Toolbox contains a landscape evolution model. The model implementation is contained in the LSDRasterModel files. The driver file is <code>model_driver.cpp</code>. The landscape model is partly based on the FastScape algorithm <a href="http://www.sciencedirect.com/science/article/pii/S0169555X12004618">(Braun 2013)</a>, an efficient method for solving the stream power law for fluvial incision, as well as the MUDDPile algorithms for hillslope evolution. It contains both hillslope and fluvial components, which can be run individually, simulating a single hillside for example, or together, to simulate whole landscape evolution. The model will run from default parameters if none are supplied, but the user can also specify their own choice of parameters for the model run, which are detailed below.</p>
@@ -10476,9 +10872,9 @@ Rigidity:		1000000</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_parameters_and_components">14.1. Model Parameters and Components</h3>
+<h3 id="_model_parameters_and_components">15.1. Model Parameters and Components</h3>
 <div class="sect3">
-<h4 id="_model_domain">14.1.1. Model Domain</h4>
+<h4 id="_model_domain">15.1.1. Model Domain</h4>
 <div class="paragraph">
 <div class="title">Run Name</div>
 <p>This is the name that will be appened to all output files generated during the model run. The model will check to see if this name has already been used before overwriting existing output files.</p>
@@ -10529,7 +10925,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fluvial_component">14.1.2. Fluvial Component</h4>
+<h4 id="_fluvial_component">15.1.2. Fluvial Component</h4>
 <div class="paragraph">
 <div class="title">Fluvial</div>
 <p>Turns the fluvial component <strong>on</strong> or <strong>off</strong>, with these respective keywords.</p>
@@ -10558,7 +10954,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hillslope_component">14.1.3. Hillslope Component</h4>
+<h4 id="_hillslope_component">15.1.3. Hillslope Component</h4>
 <div class="paragraph">
 <p>The hillslope component comes in two flavours, a linear model and a non-linear one.</p>
 </div>
@@ -10581,7 +10977,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model_2">14.2. Running the Model</h3>
+<h3 id="_running_the_model_2">15.2. Running the Model</h3>
 <div class="paragraph">
 <p>Once compiled, the model is run using:</p>
 </div>
@@ -10595,7 +10991,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_output">14.3. Model Output</h3>
+<h3 id="_model_output">15.3. Model Output</h3>
 
 </div>
 </div>
@@ -10975,7 +11371,7 @@ You can install the 2013 version using chocolatey:</p>
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 19. Cygwin setup.</div>
+<div class="title">Figure 21. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
@@ -12355,7 +12751,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tools_for_viewing_data">15. Tools for viewing data</h2>
+<h2 id="_tools_for_viewing_data">16. Tools for viewing data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The many analyses provided by LSDTopoTools produce geographic data
@@ -12365,20 +12761,20 @@ data, using either Geographic Information Sysems (GISs) or
 using our own visualisation scripts, which are written in python.</p>
 </div>
 <div class="sect2">
-<h3 id="_arcmap">15.1. ArcMap</h3>
+<h3 id="_arcmap">16.1. ArcMap</h3>
 <div class="paragraph">
 <p>ArcMap is commercial software written by ESRI.
 Many companies, goverment agencies and universities have liscences to this sofotware.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis">15.2. QGIS</h3>
+<h3 id="_qgis">16.2. QGIS</h3>
 <div class="paragraph">
 <p>QGIS is an open source GIS that has functionality similar to ArcMap.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lsdtopotools_python_mapping_functions">15.3. LSDTopoTools python mapping functions</h3>
+<h3 id="_lsdtopotools_python_mapping_functions">16.3. LSDTopoTools python mapping functions</h3>
 <div class="paragraph">
 <p>We have written a series of lightweight mapping tools in python for
 visualising data.
@@ -12391,7 +12787,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_13">15.4. Summary</h3>
+<h3 id="_summary_13">16.4. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to perform basic operations such as loading and exploring data in QGIS, ArcMap or our own python tools.</p>
 </div>
@@ -12778,7 +13174,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-02 12:19:57 BST
+Last updated 2016-04-02 17:12:56 BST
 </div>
 </div>
 </body>
