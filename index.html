@@ -465,7 +465,16 @@ MathJax.Hub.Config({
 <li><a href="#_documentation_using_asciidoctor">2.2.2. Documentation using asciidoctor</a></li>
 </ul>
 </li>
-<li><a href="#_summary">2.3. Summary</a></li>
+<li><a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>
+<ul class="sectlevel3">
+<li><a href="#_first_steps_starting_a_vagrant_box">2.3.1. First steps: Starting a Vagrant box</a></li>
+<li><a href="#_logging_on_to_your_vagrant_box">2.3.2. Logging on to your Vagrant box</a></li>
+<li><a href="#_your_vagrant_box_and_file_synching">2.3.3. Your Vagrant box and file synching</a></li>
+<li><a href="#_shutting_things_down">2.3.4. Shutting things down</a></li>
+<li><a href="#_brief_notes_for_setting_up_your_own_vagrant_server">2.3.5. Brief notes for setting up your own Vagrant server</a></li>
+</ul>
+</li>
+<li><a href="#_summary">2.4. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_preliminary_steps">3. Preliminary steps</a>
@@ -1144,12 +1153,75 @@ coded by us soon after publication that are not available in ArcMap.</p>
 <div class="sect2">
 <h3 id="_quickstart_for_those_who_don_t_want_to_read_the_first_4_chapters">1.3. Quickstart for those who don&#8217;t want to read the first 4 chapters</h3>
 <div class="paragraph">
-<p>Some readers will already be familiar with the steps required to get LSDTopoTools working.
-Here is succinct overview of what you need to do to prepare for your first analysis:</p>
+<p>We have prepared LSDTopoTools to be used in a <a href="https://en.wikipedia.org/wiki/Virtual_machine">Virtual Machine</a> so that you should just have to install two bits of software,
+<a href="https://www.virtualbox.org/">VirtualBox</a> and <a href="https://www.vagrantup.com/">Vagrant</a>.
+After that, you get a small file from one of our repositories that manages all the installation for you. More details are available in the section
+<a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Quick Instructions for preliminary data processing</div>
+<div class="title">The most painless way to get LSDTopoTools working (this works on any operating system!!)</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you can open a <strong>terminal or powershell window</strong>.</p>
+</li>
+<li>
+<p>You should have around 10-20Gb of storage on your computer available.</p>
+</li>
+<li>
+<p>Install <a href="https://www.virtualbox.org/">VirtualBox</a>.</p>
+</li>
+<li>
+<p>Install <a href="https://www.vagrantup.com/">Vagrant</a>.</p>
+</li>
+<li>
+<p>Make a directory to hold your vagrant boxes. I call this directory <code>VagrantBoxes</code></p>
+</li>
+<li>
+<p>In this directory, make a directory called <code>LSDTopoTools</code>.</p>
+</li>
+<li>
+<p>Make another directory where you will put some information about your vagrant machine.
+We have used an <a href="http://www.ubuntu.com/">Ubuntu</a> operating system. Call this something sensible, like <code>Ubuntu32</code> or <code>MyLinuxBox</code> or <code>UbuntuBox</code> or something.
+I will assume you have called it <code>UbuntuBox</code> for now.</p>
+</li>
+<li>
+<p>Go into the folder <code>UbuntuBox</code>. Download one of the files from <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a>. The files with <strong>32</strong> are 32-bit systems,
+whereas the ones with <strong>64</strong> are 64-bit operating systems. If your computer is Linux or OSX, choose a 64 bit system.
+If you are in Windows choose a 32-bit system unless you <a href="http://superuser.com/questions/866962/why-does-virtualbox-only-have-32-bit-option-no-64-bit-option-on-windows-7">know how to enable 64 bit guest operating systems</a>.
+If that last sentence was confusing and you use Windows, choose 32-bit.</p>
+</li>
+<li>
+<p>The files with <strong>FFTW</strong> in the filename allow you to do spectral analysis. They take longer to install (installation is all automated but it takes longer).</p>
+</li>
+<li>
+<p>When you have downloaded the file, rename it <code>vagrantfile</code>.</p>
+</li>
+<li>
+<p>In a terminal window or powershell, go to the folder with the <code>vagrantfile</code> (here in the folder <code>UbuntuBox</code>) and type <code>vagrant up</code>.</p>
+</li>
+<li>
+<p>Go and read <a href="https://en.wikipedia.org/wiki/The_Bridge_(novel)">a book</a> or www.bbc.co.uk/sport/football/teams/hibernian[browse the internet] because this will take some time.
+The first time you do this <a href="https://www.vagrantup.com/">Vagrant</a> will need to download ~0.5Gb of stuff. Hopefully you have a fast internet connection!!</p>
+</li>
+<li>
+<p>When it finishes, you can log on to your server, which is a fully function Linux operating system, with all the necessary software installed, sitting in your host computer. Yay!</p>
+</li>
+<li>
+<p>You need to log on to the server so you can do some LSDTopoTools analysis. If your host machine is Linux or OSX, just type <code>vagrant ssh</code>.
+If your host machine is Windows, you need to download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> and log in with a host name of <strong>127.0.0.1</strong> and a port of <strong>2222</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have your own Linux server and you like doing things by hand, here is succinct overview of what you need to do to prepare for your first analysis:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick Instructions for if you don&#8217;t want to use Vagrant</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1485,7 +1557,476 @@ The instructions can be found in the appendices.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary">2.3. Summary</h3>
+<h3 id="_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick Instructions for using Vagrant for LSDTopoTools</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install <a href="https://www.virtualbox.org/">virtualbox</a>.</p>
+</li>
+<li>
+<p>Download and install <a href="https://www.virtualbox.org/">vagrant</a>. You might have to restart your computer after this.</p>
+</li>
+<li>
+<p>If you are on Windows, download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a>.</p>
+</li>
+<li>
+<p>Make a folder for your vagrant box and download one of our vagrantfiles: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a></p>
+</li>
+<li>
+<p>One directory level down from the directory for your vagrantfile, make a directory <code>LSDTopoTools</code>.</p>
+</li>
+<li>
+<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit</code> or <code>Vagrantfile_64bit</code>) simply <code>vagrantfile</code>.</p>
+</li>
+<li>
+<p>Open a terminal or powershell window and navigate to the directory with the vagrantfile.</p>
+</li>
+<li>
+<p>Run <code>vagrant up</code> from the command line.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you are running <code>vagrant up</code> for the first time it can take some time to download the <a href="https://www.vagrantup.com/docs/getting-started/boxes.html">base box</a>. They are several hundred Mb each!
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Run <code>vagrant provision</code> after the box has started.</p>
+</li>
+<li>
+<p>You should now be able to use <code>putty.exe</code> to ssh into your LSDTopoTools server. The host name is almost always <code>127.0.0.1</code> and the port is almost always <code>2222</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>There are a number of ways to get LSDTopoTools working on your computer, of varying difficulty.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get LSDTopoTools working natively in Windows. This is possible, but very painful.</p>
+</li>
+<li>
+<p>Get it working in a full Linux operating system via virtual machine software, such as <a href="https://www.virtualbox.org/">virtualbox</a>. Note that you can do this in Windows, Linux or Apple operating systems.</p>
+</li>
+<li>
+<p>Get it working on a locally hosted Linux server using <a href="https://www.virtualbox.org/">virtualbox</a> and <a href="https://www.vagrantup.com/">vagrant</a>. Again, you can do this on any common operating system.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Be afraid of option #1. Be very afraid. Option #2 is reliable (you can see how to do it in the appendix) but it means you will need to install all the necessary software yourself, which can take several hours.
+Option #3, involving Vagrant, is a bit more automated. It will still take some time the first time you boot your vagrant virtual machine, since a bunch of software will be installed, but we do automate this process for you.</p>
+</div>
+<div class="sect3">
+<h4 id="_first_steps_starting_a_vagrant_box">2.3.1. First steps: Starting a Vagrant box</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need sufficient space on your hard disk to host a guest operating system. You also need room for the LSDTopoTools dependencies. You will struggle if you have less than <strong>10Gb</strong> free.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="https://www.vagrantup.com/">Vagrant</a> is software that automates the creation and provisioning of virtual machines. What does that mean? It means that you will create a Linux server that runs inside of your day-to-day computer. This server will run even if you are using a different operating system (e.g., Windows). Vagrant machines can be configured using a vagrantfile, so you download our vagrantfile and you simply point vagrant to it and should get a working server that can run LSDTopoTools.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You need software for running virtual machines. We recommend <a href="https://www.virtualbox.org/">virtualbox</a> since it is both well supported and free. Download and install. Our instructions assume you are using virtual box.</p>
+</li>
+<li>
+<p>Download and install <a href="https://www.vagrantup.com/">Vagrant</a>.</p>
+</li>
+<li>
+<p>Vagrant works via command line, so you will need to know how to open a terminal on <a href="http://www.macworld.co.uk/feature/mac-software/get-more-out-of-os-x-terminal-3608274/">OS X</a>, Linux (usually you can open one using <code>ctrl-alt-T</code>, but if you use Linux that means you were born knowing how to open a terminal), or a <a href="http://www.tenforums.com/tutorials/25581-windows-powershell-open-windows-10-a.html">Windows powershell</a>.</p>
+</li>
+<li>
+<p>If you are working on Windows, you will probably have to restart after installing Vagrant so that Windows can register the path to Vagrant.</p>
+</li>
+<li>
+<p>Okay, we now assume you have installed everything and are in a terminal or powershell. You need to make a directory where you keep information about your vagrant boxes. I made a folder names <code>vagrantboxes</code> and then subfolders for different boxes.</p>
+</li>
+<li>
+<p>If you are in Windows, you will need an <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> utility to communicate with your vagrant box. You should download <code>putty.exe</code> from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty website</a>. In  Linux and OSX ssh utilities are already installed.</p>
+</li>
+<li>
+<p>Now you should fetch one of our vagrantfiles from our git repo: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a></p>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Get the Vagrant Files</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The 32 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit</a></p>
+</li>
+<li>
+<p>The 64 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit</a></p>
+</li>
+<li>
+<p>Save one of these files into the directory for your vagrant files. See below for the appropriate directory structure.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit</code> or <code>Vagrantfile_64bit</code>) simply <code>vagrantfile</code></p>
+</li>
+<li>
+<p>If you use our vagrant files, you will need to make a directory <code>LSDTopoTools</code> in the same directory as your folders for different vagrant boxes.
+For example, you might make a directory <code>C:\vagrantboxes\</code>, and in that directory you can put both <code>LSDTopoTools</code> and <code>Ubuntu32</code> (or some such name) directories. You will put the vagrant file in the <code>Ubuntu32</code> directory.
+Your tree might look a bit like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-directory_struct" data-lang="directory_struct">C:\vagrantboxes\
+|--Ubuntu32
+   |-- vagrantfile
+|--Ubuntu64
+   |-- vagrantfile
+|--LSDTopoTools</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is <strong>ESSENTIAL</strong> that the LSDTopoTools folder is present and is one directory level lower than the vagrant file. If this is not true, the vagrant machine will <strong>NOT WORK</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the above file structures the vagrantfiles have been renamed from the vagrant files in our repository.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Go into the folder with the operating system you want (e.g. <code>Ubuntu32</code>):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; cd C:\vagrantboxes
+PS: &gt; cd C:\Ubuntu32</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now start your vagrant box (this might take some time since it has to fetch stuff from the internet):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; vagrant up</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You do not need to download a "base box" (that is a Linux operating system, in this case 32 bit Ubuntu) before you run <code>vagrant up</code>: Vagrant does this for you.
+However if you are running <code>vagrant up</code> for the first time Vagrant will download the box for you which will take some time (it is ~400Mb).
+You will only need to download the base box once.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Congratulations! You now have a functioning Vagrant box!! Now you need to log on to the box.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to update the base box you can use <code>vagrant box update</code> command from the powershell or terminal windows.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logging_on_to_your_vagrant_box">2.3.2. Logging on to your Vagrant box</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All right! Your Vagrant box is running. Other than a sense of vague accomplishment, this doesn&#8217;t really help you run LSDTopoTools. You need to log on to the box.
+You will operate your vagrant box as a server: you log into the machine and run code on it, but you won&#8217;t have pretty windows to look at.
+You will run everything through an ssh terminal, using a command line interface.</p>
+</li>
+<li>
+<p>We do this using <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a>.</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A note on your vagrant ssh server</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> allows you to communicate securely with a server on an unsecured connection (it encrypts communication between you and the server).</p>
+</li>
+<li>
+<p>You will use ssh to communicate with your Vagrant server. This server is <strong>not on the internet</strong> but rather is living <strong>on your computer</strong>.</p>
+</li>
+<li>
+<p>Vagrant is clever in that it sets up an <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> for your vagrant server (in other words your Linux machine living on your host computer, which could be Windows, Liunux or OSX), and as such ssh can establish a connection to this machine via ssh.</p>
+</li>
+<li>
+<p>Vagrant&#8217;s default settings are to set your server up to sit on host <strong>127.0.0.1</strong> and port <strong>2222</strong>. You will need to use these settings in putty.exe</p>
+</li>
+<li>
+<p>When you first log in, putty or other ssh clients will ask you to cache a new host key.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>If you are starting from a Linux or OSX machine, an ssh client is built into your command prompt and you can just type <code>vagrant ssh</code> into the command prompt.</p>
+</li>
+<li>
+<p>If you are on Windows, you need to download [<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" class="bare">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>]putty.exe and run it.</p>
+</li>
+<li>
+<p>In putty, set the host to <strong>127.0.0.1</strong> and the port to <strong>2222</strong>. These are vagrant&#8217;s default settings.</p>
+</li>
+<li>
+<p>You will need to add the RSA key to your cache (just say yes: remember you are not connecting to the internet where baddies can spy on you but rather a server running on your own computer).</p>
+</li>
+<li>
+<p>Now you need to <strong>log in</strong>. Your vagrant box has a <strong>username</strong> of <strong>vagrant</strong> and a password of <strong>vagrant</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_your_vagrant_box_and_file_synching">2.3.3. Your Vagrant box and file synching</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>So you are logged in. Now what? It turns out Vagrant has done some clever things with your files.</p>
+</li>
+<li>
+<p>Vagrant can <a href="https://www.vagrantup.com/docs/getting-started/synced_folders.html">synch folders</a> across your Vagrant box and your host computer (that is, the computer you started vagrant from).</p>
+</li>
+<li>
+<p>When you log in to your vagrant box, you will not be in the same folder where I have built the <strong>LSDTopoTools</strong> file structures. You need to navigate down to this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/STUFF
+$ cd ..
+$ cd ..
+$ pwd
+/STUFF
+$ cd LSDTopoTools
+$ ls
+STUFF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As you can see above, the LSDTopoTools folder contains folders for different LSDTopoTools packages, for topographic datasets, and for something called FFTW,
+which is a package used by LSDTopoTools for spectral analysis.</p>
+</li>
+<li>
+<p>Here is the amazing thing: the files that are in LSDTopoTools folder in your vagrant box <strong>ARE ALSO</strong> visible, and synched, in your howst computer.
+So if you use LSDTopoTools to do some analysis within your vagrant box, you will be able to see the files within your host computer as well.
+This means that you can, for example, do a Linux based LSDTopoTools analysis and than plot that analysis in a GIS on your host windows box without having to transfer files.
+Not only that, but you can modify the code, update python scripts, change parameter files, etc., with your favourite text editor in Windows (or OSX, or whatever) and those files will be visible to your Vagrant box. Fantastic!</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shutting_things_down">2.3.4. Shutting things down</h4>
+<div class="paragraph">
+<p>When you are finished with your session, you just need to go into the powershell or a terminal and type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; vagrant halt</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_brief_notes_for_setting_up_your_own_vagrant_server">2.3.5. Brief notes for setting up your own Vagrant server</h4>
+<div class="paragraph">
+<p>We have written Vagrant files for you so you don&#8217;t have to do any of this, but if you want to set up your own Vagrant boxes with your own software here are some notes.</p>
+</div>
+<div class="sect4">
+<h5 id="_initiating_a_vagrant_box">Initiating a Vagrant box</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go into an empty folder to start a new Vagrant box.</p>
+</li>
+<li>
+<p>Initiate Vagrant with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; C:\&gt; vagrant init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can initiate with a <code>base box</code>. In this example we use the Ubuntu precise 32 base box:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; C:\vagrant init ubuntu/precise32</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This command (<code>init</code>) will simply make a vagrant file. To get the server up and running you need to <code>up</code> it. Before you do that you probably want to modify the vagrant file.</p>
+</li>
+<li>
+<p>One of the things you probably need to modify is the memory assigned to your guest vagrant box. In the vagrant file you should have:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-vagrantfile" data-lang="vagrantfile">  config.vm.provider "virtualbox" do |vb|
+    # Customize the amount of memory on the VM:
+    vb.memory = "3000"
+  end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default memory is something small, and the problem with it is that it will take the guest operating system too long to boot, and vagrant will time out. I would give the vagrant box 3-4 Gb of memory.</p>
+</div>
+</li>
+<li>
+<p>Now you can <code>up</code> your vagrant box. In the folder with the vagrant file, type:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; vagrant up</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If this is the first time booting the linux machine, this will take a while.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_notes_on_the_base_box">Notes on the base box</h5>
+<div class="paragraph">
+<p>Vagrant sets up a linux server Living in your computer (it is called the <strong>Host</strong> computer). The server will run a linux operating system, and you need to choose a functioning base system
+<a href="https://atlas.hashicorp.com/boxes/search">vagrant base boxes</a>. Here we have started with <code>ubuntu/precise32</code>. You might want to try other base boxes, they can be found at the <a href="https://atlas.hashicorp.com/boxes/search">atlas website</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you choose a base box that you do not already have (and you start with none), vagrant will download it. They are big!! Usually over 500Mb (each is a fully operational linux operating system). You will either need a fast internet connection or a lot of time. Make sure you also have enough room on your hard disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>You do need to be careful with base boxes!</strong></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Not all base boxes work! On many windows machines, you can only run a 32 bit version of linux, even though you are almost certainly running 64 bit windows. You can change this by going into your BIOS and changing the settings, but that is dangerous and if you do not know what your BIOS is do not even think about attempting to change these settings.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In testing, I found many bases boxes did not work at all. The one that worked well for me was the <code>ubuntu/precise32</code> box. You can get this started with:</p>
+</div>
+<div class="paragraph">
+<p>Alternatively you can just <code>vagrant init</code> and empty vagrant instance and change the box in the vagrantfile with <code>config.vm.box = "ubuntu/precise32"</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can update your base box with the command <code>vagrant box update</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_details_of_provisioning">Details of provisioning</h5>
+<div class="paragraph">
+<p>If you change your vagrantfile with the box still running, you can run the new provisioning with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; vagrant provision</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have downloaded our vagrant files, the provisioning of your virtual server should be automatic. However, you may wish to know what is happening during the provisioning, so here are some notes.</p>
+</div>
+<div class="paragraph">
+<p>To install software, we use the shell provisioning system of vagrant. This should go into the vagrantfile and will look a bit like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-vagrantfile" data-lang="vagrantfile">  config.vm.provision "shell", inline: &lt;&lt;-SHELL
+    sudo apt-get update
+    sudo apt-get install -y git
+  SHELL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above shell command, we are installing git. The <code>-y</code> flag is important since apt-get will ask if you actually want to download the software and if you do not tell it <code>-y</code> from the shell script it will just abort the installation.</p>
+</div>
+<div class="paragraph">
+<p>You sync folders like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-vagrantfile" data-lang="vagrantfile">  config.vm.synced_folder "../LSDTopoTools", "/LSDTopoTools"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Were the first folder is the folder on the host machine and the second is the folder on the Vagrant box.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary">2.4. Summary</h3>
 <div class="paragraph">
 <p>This chapter has given an overview of what software is necessary to use LSDTopoTools.
 The appendices contain information about installing this software on both
@@ -8008,7 +8549,9 @@ number_of_mc_iterations 500
 TargetNodes 80
 MinSegLength 10
 Sigma 10.0
-Skip 0</code></pre>
+Skip 0
+threshold_pixels_for_chi 250
+test_drainage_boundaries false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8095,9 +8638,14 @@ Skip 0</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This could be the DEM uncertainty, but also contains the topographic roughness elements (e.g., boulders in the channel). In mountain channels 5-10m is a good choice.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Skip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The skip the the number of nodes, on average, skipped in the Monte Carlo routine between adjacent nodes.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This should be between 0-3.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_pixels_for_chi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the number of pixels of flow accumulation required for calculation of chi for the chi coordinate raster. In addition, this sets the threshold drainage area if you choose NULL for the CHEADSFILE.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on raster resolution, but you might start with 50 if you have a 90 metre DEM.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_drainage_boundaries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a boolean that is true if you want to remove any basins draining to the edge of your DEM.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either true (if you want to remove basins draining to the edge) or false (if you don&#8217;t).</p></td>
 </tr>
 </tbody>
 </table>
@@ -11222,7 +11770,7 @@ so if you fancy contributing to the documentation of getting the latest version,
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You should only do this if you are some kind of Windows purist (does such a thing exist?). LSDTopoTools works best in Linux and at the moment the best way to get a linux server working within your Windows machine is to use Vagrant. Instructions can be found here: <a href="#Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant">[Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant]</a>.
+You should only do this if you are some kind of Windows purist (does such a thing exist?). LSDTopoTools works best in Linux and at the moment the best way to get a linux server working within your Windows machine is to use Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -11842,7 +12390,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-These instructions involve building your own operating system with a virtual machine. You can do this if you want more control, but most users should follow the simpler process of creating an lSDTopoTools server using Vagrant. Instructions can be found here: <a href="#Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant">[Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant]</a>.
+These instructions involve building your own operating system with a virtual machine. You can do this if you want more control, but most users should follow the simpler process of creating an lSDTopoTools server using Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -13348,7 +13896,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-02 17:12:56 BST
+Last updated 2016-04-26 12:10:43 GMT Daylight Time
 </div>
 </div>
 </body>
