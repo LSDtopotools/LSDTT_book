@@ -474,7 +474,14 @@ MathJax.Hub.Config({
 <li><a href="#_brief_notes_for_setting_up_your_own_vagrant_server">2.3.5. Brief notes for setting up your own Vagrant server</a></li>
 </ul>
 </li>
-<li><a href="#_summary">2.4. Summary</a></li>
+<li><a href="#_getting_python_running">2.4. Getting python running</a>
+<ul class="sectlevel3">
+<li><a href="#_getting_python_running_on_linux_and_this_should_also_work_for_osx">2.4.1. Getting python running on Linux (and this should also work for OSX)</a></li>
+<li><a href="#_installing_python_on_windows">2.4.2. Installing python on Windows</a></li>
+<li><a href="#_using_miniconda_to_install_the_relevant_python_packages_in_windows">2.4.3. Using Miniconda to install the relevant python packages in Windows</a></li>
+</ul>
+</li>
+<li><a href="#_summary">2.5. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_preliminary_steps">3. Preliminary steps</a>
@@ -2026,11 +2033,155 @@ Not all base boxes work! On many windows machines, you can only run a 32 bit ver
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary">2.4. Summary</h3>
+<h3 id="_getting_python_running">2.4. Getting python running</h3>
+<div class="paragraph">
+<p>A number of our extensions and visualisation scripts are written in <a href="https://www.python.org/">Python</a>.
+To get these working you need to install various packages in <a href="https://www.python.org/">Python</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you are using <a href="https://www.vagrantup.com/">Vagrant</a> to set up LSDTopoTools in a Virtual Machine within Windows, we recommend installing Python using <a href="http://conda.pydata.org/miniconda.html">Miniconda</a> in your Windows machine, rather than installing within your Virtual Linux box.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_getting_python_running_on_linux_and_this_should_also_work_for_osx">2.4.1. Getting python running on Linux (and this should also work for OSX)</h4>
+<div class="paragraph">
+<p>It is quite straightforward to install these on a Linux or OSX system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo apt-get install python2.7
+$ sudo apt-get install python-pip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ yum install python2.7
+$ yum install python-pip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In OSX, you need a package manager such as <a href="http://brew.sh/">Homebrew</a>, and you can follow similar steps.</p>
+</div>
+<div class="paragraph">
+<p>After that, you need:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.scipy.org/">Scipy</a> for numerics.</p>
+</li>
+<li>
+<p><a href="http://www.numpy.org/">Numpy</a> for numerics.</p>
+</li>
+<li>
+<p><a href="http://matplotlib.org/">Matplotlib</a> for visualisation.</p>
+</li>
+<li>
+<p><a href="http://pandas.pydata.org/">Pandas</a> for working with data.</p>
+</li>
+<li>
+<p><a href="https://pypi.python.org/pypi/GDAL/">GDAL python tools</a> for working with geographic data.</p>
+</li>
+<li>
+<p><a href="https://pythonhosted.org/spyder/">Spyder</a> for having a working environment. This last one is not required but useful if you are used to Matlab.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can get all this with a combination of <code>pip</code> and <code>sudo</code>, <code>yum</code> or <code>homebrew</code>, depending on your operating system.</p>
+</div>
+<div class="paragraph">
+<p>For example, with and [Ubuntu] system, you can use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo apt-get install python-numpy python-scipy python-matplotlib python-pandas
+$ sudo apt-get install spyder</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="http://www.gdal.org/index.html">GDAL</a> python tools are a bit harder to install; see here: <a href="https://pypi.python.org/pypi/GDAL/" class="bare">https://pypi.python.org/pypi/GDAL/</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installing_python_on_windows">2.4.2. Installing python on Windows</h4>
+<div class="paragraph">
+<p>In Windows, there are more options. One way to get <a href="https://www.python.org/">Python</a> set up is to use <a href="http://python-xy.github.io/">Python(x,y)</a>.
+The problem with <a href="http://python-xy.github.io/">Python(x,y)</a> is it installs everything that a scientists could ever conceivably use
+(so this includes a vast amount of stuff you will never use) and in addition it is not so easy to update. It does offer update packages but these have dependencies that often lead to a dead-end, so that you have to uninstall and reinstall everything to get back on the update track.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://conda.pydata.org/docs/index.html">Conda</a> is a simple installation environment that can work on your Windows machine and we find them easier to update than <a href="http://python-xy.github.io/">Python(x,y)</a>. If you want to install everything all at once (much like in Pythn(x,y), you should go for <a href="https://www.continuum.io/downloads">Anaconda</a>.</p>
+</div>
+<div class="paragraph">
+<p>However, we have used <a href="http://conda.pydata.org/miniconda.html">Miniconda</a> since we don&#8217;t need every scientific extension to python.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_using_miniconda_to_install_the_relevant_python_packages_in_windows">2.4.3. Using Miniconda to install the relevant python packages in Windows</h4>
+<div class="paragraph">
+<p>If you have a Windows machine, the recommended setup is first follow the instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> and then set up python using <a href="http://conda.pydata.org/miniconda.html">Miniconda</a>. Miniconda is a package</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install <a href="http://conda.pydata.org/miniconda.html">Miniconda</a>.</p>
+</li>
+<li>
+<p>Open a <a href="https://en.wikipedia.org/wiki/Windows_PowerShell">powershell window</a>.</p>
+</li>
+<li>
+<p>Install scipy, pandas, matplotlib and :</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS C:\ conda install scipy
+PS C:\ conda install matplotlib
+PS C:\ conda install pandas
+PS C:\ conda install gdal
+PS C:\ conda install spyder</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After ech of these you will need to say "yes" to the packages, and then wait a while as things download and install.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Installing the above packages will install a bunch of dependent packages that you can use as well, such as Sphinx and iPython.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Congratulations! You should now have everything you need for LSDTopoTools visualisation and automation on you Windows computer!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary">2.5. Summary</h3>
 <div class="paragraph">
 <p>This chapter has given an overview of what software is necessary to use LSDTopoTools.
 The appendices contain information about installing this software on both
-<a href="#_setting_up_on_windows">Windows</a> and <a href="#_setting_up_on_linux">Linux</a> operating systems.</p>
+<a href="#_setting_up_on_windows">Windows</a> and <a href="#_setting_up_on_linux">Linux</a> operating systems, but these are only for stubborn people who like to do everything by hand.
+If you want to just get things working, use our <a href="https://www.vagrantup.com/">Vagrant</a> files.</p>
 </div>
 </div>
 </div>
@@ -11579,6 +11730,14 @@ or <a href="#_setting_up_on_linux">Linux</a> are included. Since the author of t
 I&#8217;m afraid instructions for getting the software working on such systems will require a bit of homework,
 but in theory installation on such systems should be similar to installation on Linux systems.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">BEFORE YOU READ ANY OF THIS</div>
+<div class="paragraph">
+<p>These sections are for information only: if you just want to get LSDTopoTools working all you need to read is the section on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.</p>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_essentials">A.1. Essentials</h3>
 <div class="paragraph">
@@ -11672,19 +11831,11 @@ The source code for LSDTopoTools is on <a href="https://github.com/">github</a> 
 <div class="sect3">
 <h4 id="_a_virtual_machine">A.2.1. A virtual machine</h4>
 <div class="paragraph">
-<p>This isn&#8217;t exactly optional software, but rather what you might use if it becomes too much trouble to install things on either a <strong>Windows</strong> or an <strong>OS X</strong> operating system.
-A <a href="https://en.wikipedia.org/wiki/Virtual_machine">virtual machine</a> is software that allows you to emulate an operating system within another operating systems
-(for example, you can create a Linux operating system within a Windows computer).</p>
+<p>This is essential if you are going to follow our instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>,
+which is propbably what you will want to do if you do not have a Linux machine.</p>
 </div>
 <div class="paragraph">
-<p>The software tools described in this book are all rather easy to install on a Linux system,
-and for other systems some components are rather tricky to get working.
-It therefore can be advantageous to run the tools described in this book within a virtual machine.</p>
-</div>
-<div class="paragraph">
-<p><a href="http://www.howtogeek.com/196060/beginner-geek-how-to-create-and-use-virtual-machines/">Several options exist</a>.
-My Windows computer has a virtual Linux system installed with the <a href="https://www.vmware.com/products/player/">VMware player</a> but you do have to find the section on <code>personal use</code> to get the free version.
-Another option is the <a href="https://www.virtualbox.org/">VirtualBox</a> system.</p>
+<p>To do this you will need to intall <a href="https://www.vagrantup.com/">Vagrant</a> and <a href="https://www.virtualbox.org/">VirtualBox</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -11842,7 +11993,7 @@ or you can ask them to install a linux virtual machine, which is described in th
 <div class="paragraph">
 <p>Take a deep breath. I am afraid this is going to take a while.
 It can be done, but you may need psychological treatment before the end.
-You might consider just installing a <a href="#_turning_your_windows_machine_into_a_linux_machine">Linux Virtual machine</a> instead of trying to get the software installed within a Windows environment.</p>
+You might consider following our instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> instead of trying to get the software installed within a Windows environment.</p>
 </div>
 <div class="sect3">
 <h4 id="_package_management">B.2.1. Package management</h4>
@@ -12207,6 +12358,18 @@ However, if you are just skipping ahead, why don&#8217;t you make your life easi
 <div class="paragraph">
 <p>The header of this section is a bit misleading,
 what you are really going to do is use software to create a <a href="https://en.wikipedia.org/wiki/Virtual_machine">virtual</a> version of Linux within your Windows computer.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Only do this if you want total control of your Linux enviroment. If you want us to do everything for you, read the instructions on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>There are a number of options, popular ones include:</p>
