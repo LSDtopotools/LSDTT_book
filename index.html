@@ -761,8 +761,9 @@ MathJax.Hub.Config({
 <li><a href="#_running_the_model">14.3. Running the Model</a>
 <ul class="sectlevel3">
 <li><a href="#_dem_preparation">14.3.1. DEM preparation</a></li>
-<li><a href="#_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</a></li>
-<li><a href="#_input_files">14.3.3. Input files</a></li>
+<li><a href="#_model_run_time_controls">14.3.2. Model run time controls</a></li>
+<li><a href="#_parameter_file_overview">14.3.3. Parameter File Overview</a></li>
+<li><a href="#_input_files">14.3.4. Input files</a></li>
 </ul>
 </li>
 <li><a href="#_parameter_guide">14.4. Parameter Guide</a>
@@ -836,11 +837,12 @@ MathJax.Hub.Config({
 <li><a href="#_gdal_windows_installation">B.5. GDAL windows installation</a></li>
 <li><a href="#_ruby_2">B.6. Ruby</a>
 <ul class="sectlevel3">
-<li><a href="#_install_ruby_using_choco">B.6.1. Install Ruby using choco</a></li>
-<li><a href="#_fix_rubygems_on_windows">B.6.2. Fix rubygems on Windows</a></li>
-<li><a href="#_fix_rubydevkit_on_windows">B.6.3. Fix RubyDevKit on Windows</a></li>
-<li><a href="#_install_some_gems">B.6.4. Install some gems</a></li>
-<li><a href="#_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.5. If you use Ruby with Java (you will probably not need this)</a></li>
+<li><a href="#_install_ruby_version_1">B.6.1. Install Ruby (version 1)</a></li>
+<li><a href="#_install_ruby_using_choco">B.6.2. Install Ruby using choco</a></li>
+<li><a href="#_fix_rubygems_on_windows">B.6.3. Fix rubygems on Windows</a></li>
+<li><a href="#_fix_rubydevkit_on_windows">B.6.4. Fix RubyDevKit on Windows</a></li>
+<li><a href="#_install_some_gems">B.6.5. Install some gems</a></li>
+<li><a href="#_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.6. If you use Ruby with Java (you will probably not need this)</a></li>
 </ul>
 </li>
 <li><a href="#_windows_installation_summary">B.7. Windows installation summary</a></li>
@@ -11059,13 +11061,21 @@ make</code></pre>
 <div class="sect1">
 <h2 id="_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
-Prediction is difficult, especially about the future.
-</blockquote>
-<div class="attribution">
-&#8212; Niels Bohr<br>
-<cite>Danish Physicist 1885-1962</cite>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<strong>LSDCatchmentModel</strong> is a 2.5D 'hydrodynamic' landscape evolution model that simulates flooding and erosional processes at the catchment scale, on the order of hours to 100s of years.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/flood_depth_fig_crop.png" alt="flood depth fig crop">
 </div>
 </div>
 <div class="paragraph">
@@ -11092,7 +11102,7 @@ Prediction is difficult, especially about the future.
 <div class="sect2">
 <h3 id="_compilation">14.2. Compilation</h3>
 <div class="paragraph">
-<p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present.</p>
+<p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present. For now, you will have to select from one of the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -11108,7 +11118,10 @@ Prediction is difficult, especially about the future.
 </ol>
 </div>
 <div class="paragraph">
-<p>The plain makefile contains all the flags for debugging and profiling. (The program will run slower if you use this version). The optimised version runs with the -O2 flags and no profiler or debugger information. The OpenMP version is for running the code in parallel on multiple cores.</p>
+<p>The plain makefile (Option 1) contains all the compiler flags for debugging and profiling. (The program will run slower if you use this version - only use it for development or if trying to trace a bug). The optimised version (Option 2) runs with the -O2 flags and no profiler or debugger information. The OpenMP version (Option 3) is for running the code in parallel on multiple cores. This applies to desktop PCs with multiple cores as well as compiling for single compute nodes on supercomputers (cluster computers).</p>
+</div>
+<div class="paragraph">
+<p>To compile, run make as follows with the makefile of your choice:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11123,13 +11136,25 @@ Prediction is difficult, especially about the future.
 <pre class="highlight"><code class="language-console" data-lang="console">make -f CatchmentModel.make clean</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>You will get an executable called <code>CatchmentModel.out</code> or similar, depending on which makefile you used.</p>
+</div>
 <div class="sect3">
 <h4 id="_dependencies">14.2.1. Dependencies</h4>
-<div class="paragraph">
-<p>Your compiler must support C11. Almost all do as of 2016, as long as you are running a fairly recent version. The C11 flag is included in the makefile. The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+*Your compiler must support C\\+11.* Almost all compilers do as of 2016, as long as you are running a fairly recent version. Currently, support is not usually enabled by default, buy the C\\11 flag to turn it on is included in the makefile. (The code uses some features of the C\\+11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The parallel version of the code uses the OpenMP libraries, which are powerful (and somewhat magical&#8230;&#8203;) libraries for compiling the code to run in parallel. You may need to install the <code>gcc-devel</code> package on linux, if using gcc. Again, the compiler flag is taken care of in the makefile. The code has been tested on the gcc and intel compilers.</p>
+<p>The parallel version of the code uses the OpenMP libraries, which are powerful (and somewhat magical&#8230;&#8203;) libraries for compiling the code to run in parallel. These are widely supported libraries and many systems will come with them pre-installed. <strong>But you may need to install the <code>gcc-devel</code> package on linux, if using gcc</strong>. Again, the compiler flag is taken care of in the makefile. The code has been tested on the <code>gcc</code> (versions 4.8 and above) and <code>icc</code> (intel) compilers.</p>
 </div>
 <div class="paragraph">
 <p>All other libraries are supplied with the source code (The TNT and FFT libraries, which provide various mathematical functions). You do not need to install them separately.</p>
@@ -11141,10 +11166,50 @@ Prediction is difficult, especially about the future.
 <div class="paragraph">
 <p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
 </div>
+<div class="paragraph">
+<p>You need a minimum of three input files:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Parameter file</p>
+</li>
+<li>
+<p>DEM file of your catchment (currently only ASCII format is supported, sorry <code>.bil</code> fans!)</p>
+</li>
+<li>
+<p>Rainfall time series text file</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The model is run like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">/CatchmentModel.out [PATH-TO-FOLDER-WITH-INPUT-FILES] ParameterFile.txt</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">Note that the names of the input DEM and rainfall file are specified in the parameter file.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the model runs, it will print to screen the parameters that have been read from the parameter file, for a sanity check. It will update you at certain stages of the data ingestion point. (This usually only takes a few seconds). When the model runs, a counter displays the number of elapsed minutes in model-time.</p>
+</div>
 <div class="sect3">
 <h4 id="_dem_preparation">14.3.1. DEM preparation</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need to check your DEM is correctly formatted before use. LSDCatchmentModel has specific requirements about DEM layout.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment. <strong>In other words: There should be no 'NODATA' values between the outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
+<p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment, as water will not be able to leave the model domain. <strong>In other words: There should be no 'NODATA' values between the intended outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -11153,7 +11218,7 @@ Prediction is difficult, especially about the future.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The model will actually route water flow off <strong>all</strong> edges of the catchment. This might be fine for what you need, but discharge timeseries file
+The model will actually route water off <strong>all</strong> edges of the catchment, if the geometry of your catchment allows it. This might be fine for your intended use, but note that the discharge timeseries file will report total water discharge and sediment output as a total from ALL edge cells, not just the ones you think are the main catchment outlet point. As a side effect, you can use the model to simulate range scale runoff and multiple catchments, just be aware that you will get one value for total discharge.
 </td>
 </tr>
 </table>
@@ -11163,24 +11228,39 @@ The model will actually route water flow off <strong>all</strong> edges of the c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</h4>
+<h4 id="_model_run_time_controls">14.3.2. Model run time controls</h4>
 <div class="paragraph">
-<p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km. It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.)</p>
+<p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km (about 700000 grid cells). It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.) Number of domain grid cells is the main control on compute time.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If using the OpenMP makefile, you can get this down to around 11 minutes using a 48-core machine. Use it if you have the hardware!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_file_overview">14.3.3. Parameter File Overview</h4>
 <div class="paragraph">
 <p>In the Parameter file, you&#8217;ll notice that you can use comments by starting the line with a hash (\#) sign. Parameters themselves take the form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">paramter_name:     VALUE</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">parameter_name:     VALUE</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way&#8230;&#8203;)</strong></p>
+<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way soon&#8230;&#8203;)</strong></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_input_files">14.3.3. Input files</h4>
+<h4 id="_input_files">14.3.4. Input files</h4>
 <div class="paragraph">
 <p>As a minimum, you need a <strong>DEM input</strong> file, <strong>paramter file</strong>, and <strong>rainfall data</strong> input file.</p>
 </div>
@@ -11219,13 +11299,13 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <div class="sect4">
 <h5 id="_dem_read_extension">dem_read_extension</h5>
 <div class="paragraph">
-<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, sorry)</p>
+<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, and only supports <code>.asc</code> format for now, sorry!)</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_timeseries_save_interval">timeseries_save_interval</h5>
 <div class="paragraph">
-<p>The model generates a timeseries file that contains data on the total basinwide water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
+<p>The model generates a timeseries file that contains data on the total catchment water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
 </div>
 </div>
 </div>
@@ -11283,7 +11363,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <div class="sect4">
 <h5 id="_max_run_duration">max_run_duration</h5>
 <div class="paragraph">
-<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47..<strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
+<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47&#8230;&#8203;This is because C-programmers start counting at zero. <strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
 </div>
 </div>
 <div class="sect4">
@@ -11299,6 +11379,12 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <h5 id="_transport_law">transport_law</h5>
 <div class="paragraph">
 <p>Type either <strong>einstein</strong> or <strong>wilcock</strong> to select your favourite sediment transport law.</p>
+</div>
+<div class="paragraph">
+<p><strong>Einstein, H. A. (1950). The bed-load function for sediment transportation in open channel flows (No. 1026). US Department of Agriculture.</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Wilcock, P. R., &amp; Crowe, J. C. (2003). Surface-based transport model for mixed-size sediment. Journal of Hydraulic Engineering, 129(2), 120-128.</strong></p>
 </div>
 </div>
 <div class="sect4">
@@ -12190,7 +12276,37 @@ Or, you can skip all of this and build a virtual linux machine on your windows c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_ruby_using_choco">B.6.1. Install Ruby using choco</h4>
+<h4 id="_install_ruby_version_1">B.6.1. Install Ruby (version 1)</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install Ruby: <a href="https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller" class="bare">https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller</a>. We have used version 2.2.</p>
+</li>
+<li>
+<p>Download and install Ruby Gems: <a href="https://rubygems.org/pages/download" class="bare">https://rubygems.org/pages/download</a>. To install this, you need to download it and then open a powershell window, navigate to the folder with gems in it, and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; \folder\with\rubygems\&gt; ruby setup.rb</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the Ruby devtools: <a href="http://rubyinstaller.org/downloads/" class="bare">http://rubyinstaller.org/downloads/</a>. You need to unzip this and run two things:</p>
+<div class="listingblock">
+<div class="content">
+<pre>PS&gt; \folder\with\DevKit\&gt; ruby dk.rb init
+PS&gt; \folder\with\DevKit\&gt; ruby dk.rb install</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now install bundler. In a powershell, you can, from anywhere, type <code>gem install bundler</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_install_ruby_using_choco">B.6.2. Install Ruby using choco</h4>
 <div class="paragraph">
 <p>If these are not installed, install them using <a href="#_chocolatey_package_manager">chocolatey</a>
 (in an <a href="#_starting_a_powershell_session">administrator powershell</a>).
@@ -12206,7 +12322,7 @@ PS&gt; choco install node.js</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubygems_on_windows">B.6.2. Fix rubygems on Windows</h4>
+<h4 id="_fix_rubygems_on_windows">B.6.3. Fix rubygems on Windows</h4>
 <div class="paragraph">
 <p>At the time of this writing, rubygems is "broken" on Windows:
 if you try to install a gem file you will get an error that says you cannot make an SSL connection.
@@ -12256,7 +12372,7 @@ Copy the <code>.pem</code> file into this folder. Rubygems should now work.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubydevkit_on_windows">B.6.3. Fix RubyDevKit on Windows</h4>
+<h4 id="_fix_rubydevkit_on_windows">B.6.4. Fix RubyDevKit on Windows</h4>
 <div class="paragraph">
 <p>The devkit sometimes does not work the first time around.
 If you get error messages about the devkit, you should go to the devkit folder (you need to find it on your system)
@@ -12293,7 +12409,7 @@ For example, if your Ruby instalation is sitting in C:/Ruby21/, then you should 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_some_gems">B.6.4. Install some gems</h4>
+<h4 id="_install_some_gems">B.6.5. Install some gems</h4>
 <div class="paragraph">
 <p>From here we can install some useful ruby gems.
 <a href="http://asciidoctor.org/">Asciidoctor</a> is really great for writing documentation.
@@ -12307,7 +12423,7 @@ PS&gt; gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.5. If you use Ruby with Java (you will probably not need this)</h4>
+<h4 id="_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.6. If you use Ruby with Java (you will probably not need this)</h4>
 <div class="paragraph">
 <p>This is for users who are trying to get a Ruby extension that uses Java installed.
 If you use an extension that need a java link, you will need the gem</p>
@@ -14059,7 +14175,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-26 12:10:43 GMT Daylight Time
+Last updated 2016-05-05 15:50:17 BST
 </div>
 </div>
 </body>
