@@ -11073,10 +11073,8 @@ make</code></pre>
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/flood_depth_fig_crop.png" alt="flood depth fig crop">
-</div>
+<div class="paragraph">
+<p>image::images/flood_depth_fig_crop.png</p>
 </div>
 <div class="paragraph">
 <p>Numerical models are useful tools for testing hypotheses of geomorphic processes and landscape evolution. Long term landscape evolution takes place over extensive geological time periods, but is controlled by the dynamics of water flow, and sediment transport within river catchments on much shorter, day-to-day time scales. The LSDTopoTools package provides a model for simulating catchment processes at short-term scales, with the <strong>LSDCatchmentModel</strong> package.</p>
@@ -11148,7 +11146,7 @@ make</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-*Your compiler must support C\\+11.* Almost all compilers do as of 2016, as long as you are running a fairly recent version. Currently, support is not usually enabled by default, buy the C\\11 flag to turn it on is included in the makefile. (The code uses some features of the C\\+11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.)
+<strong>Your compiler must support C++11.</strong> Almost all compilers do as of 2016, as long as you are running a fairly recent version. Currently, support is not usually enabled by default, buy the C++11 flag to turn it on is included in the makefile. (The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.)
 </td>
 </tr>
 </table>
@@ -11186,10 +11184,12 @@ make</code></pre>
 <p>The model is run like so:</p>
 </div>
 <div class="listingblock">
-<div class="title">/CatchmentModel.out [PATH-TO-FOLDER-WITH-INPUT-FILES] ParameterFile.txt</div>
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">Note that the names of the input DEM and rainfall file are specified in the parameter file.</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">./CatchmentModel.out [PATH-TO-FOLDER-WITH-INPUT-FILES] ParameterFile.txt</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Note that the names of the input DEM and rainfall file are specified in the parameter file.</p>
 </div>
 <div class="paragraph">
 <p>When the model runs, it will print to screen the parameters that have been read from the parameter file, for a sanity check. It will update you at certain stages of the data ingestion point. (This usually only takes a few seconds). When the model runs, a counter displays the number of elapsed minutes in model-time.</p>
@@ -11381,10 +11381,10 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <p>Type either <strong>einstein</strong> or <strong>wilcock</strong> to select your favourite sediment transport law.</p>
 </div>
 <div class="paragraph">
-<p><strong>Einstein, H. A. (1950). The bed-load function for sediment transportation in open channel flows (No. 1026). US Department of Agriculture.</strong></p>
+<p><em>Einstein, H. A. (1950). The bed-load function for sediment transportation in open channel flows (No. 1026). US Department of Agriculture.</em></p>
 </div>
 <div class="paragraph">
-<p><strong>Wilcock, P. R., &amp; Crowe, J. C. (2003). Surface-based transport model for mixed-size sediment. Journal of Hydraulic Engineering, 129(2), 120-128.</strong></p>
+<p><em>Wilcock, P. R., &amp; Crowe, J. C. (2003). Surface-based transport model for mixed-size sediment. Journal of Hydraulic Engineering, 129(2), 120-128.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -14175,7 +14175,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-05-05 15:50:17 BST
+Last updated 2016-05-05 21:00:44 BST
 </div>
 </div>
 </body>
