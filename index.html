@@ -719,6 +719,7 @@ MathJax.Hub.Config({
 <li><a href="#_using_previously_reported_snow_shielding">12.3.1. Using previously reported snow shielding</a></li>
 <li><a href="#_assign_a_single_effective_average_depth">12.3.2. Assign a single effective average depth</a></li>
 <li><a href="#_pass_a_raster_of_effective_average_depth_of_snow_over_a_catchment">12.3.3. Pass a raster of effective average depth of snow over a catchment</a></li>
+<li><a href="#_compute_snow_shielding_from_snow_water_equivalent_data">12.3.4. Compute snow shielding from snow water equivalent data</a></li>
 </ul>
 </li>
 <li><a href="#_calculating_denudation_rates">12.4. Calculating denudation rates</a>
@@ -726,6 +727,8 @@ MathJax.Hub.Config({
 <li><a href="#_compiling_the_code_3">12.4.1. Compiling the code</a></li>
 <li><a href="#_running_the_basin_averaged_denudation_rate_calculator">12.4.2. Running the basin averaged denudation rate calculator</a></li>
 <li><a href="#_the_output_files">12.4.3. The output files</a></li>
+<li><a href="#_nested_basins">12.4.4. Nested basins</a></li>
+<li><a href="#_soil_or_point_data">12.4.5. Soil or point data</a></li>
 </ul>
 </li>
 <li><a href="#_summary_10">12.5. Summary</a></li>
@@ -761,8 +764,9 @@ MathJax.Hub.Config({
 <li><a href="#_running_the_model">14.3. Running the Model</a>
 <ul class="sectlevel3">
 <li><a href="#_dem_preparation">14.3.1. DEM preparation</a></li>
-<li><a href="#_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</a></li>
-<li><a href="#_input_files">14.3.3. Input files</a></li>
+<li><a href="#_model_run_time_controls">14.3.2. Model run time controls</a></li>
+<li><a href="#_parameter_file_overview">14.3.3. Parameter File Overview</a></li>
+<li><a href="#_input_files">14.3.4. Input files</a></li>
 </ul>
 </li>
 <li><a href="#_parameter_guide">14.4. Parameter Guide</a>
@@ -836,11 +840,12 @@ MathJax.Hub.Config({
 <li><a href="#_gdal_windows_installation">B.5. GDAL windows installation</a></li>
 <li><a href="#_ruby_2">B.6. Ruby</a>
 <ul class="sectlevel3">
-<li><a href="#_install_ruby_using_choco">B.6.1. Install Ruby using choco</a></li>
-<li><a href="#_fix_rubygems_on_windows">B.6.2. Fix rubygems on Windows</a></li>
-<li><a href="#_fix_rubydevkit_on_windows">B.6.3. Fix RubyDevKit on Windows</a></li>
-<li><a href="#_install_some_gems">B.6.4. Install some gems</a></li>
-<li><a href="#_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.5. If you use Ruby with Java (you will probably not need this)</a></li>
+<li><a href="#_install_ruby_version_1">B.6.1. Install Ruby (version 1)</a></li>
+<li><a href="#_install_ruby_using_choco">B.6.2. Install Ruby using choco</a></li>
+<li><a href="#_fix_rubygems_on_windows">B.6.3. Fix rubygems on Windows</a></li>
+<li><a href="#_fix_rubydevkit_on_windows">B.6.4. Fix RubyDevKit on Windows</a></li>
+<li><a href="#_install_some_gems">B.6.5. Install some gems</a></li>
+<li><a href="#_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.6. If you use Ruby with Java (you will probably not need this)</a></li>
 </ul>
 </li>
 <li><a href="#_windows_installation_summary">B.7. Windows installation summary</a></li>
@@ -10279,6 +10284,130 @@ These rasters need to be assigned <strong>BEFORE</strong> spawning since the spa
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_compute_snow_shielding_from_snow_water_equivalent_data">12.3.4. Compute snow shielding from snow water equivalent data</h4>
+<div class="paragraph">
+<p>In some cases you might have to generate the snow shielding raster yourself. We have prepared some python scripts and some C++ programs that allow you to do this.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>First, you need to gather some data. You can get the data from <a href="http://www.wcc.nrcs.usda.gov/snow/snotel-wedata.html">snow observations</a>, or from <a href="https://nsidc.org/data/nsidc-0271">reconstructions</a>. The simple functions we have prepared simply approximate snow water equivalent (SWE) as a function of elevation.</p>
+</li>
+<li>
+<p>You need to take your study area, and prepare a file that has two columns, seperated by a space.
+The first column is the elevation in metres, and the second column is the average annual snow water equivalent in mm.
+Here is an example from Idaho:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">968.96	70.58333333
+1211.2	16
+1480.692	51.25
+1683.568	165.8333333
+1695.68	115.4166667
+1710.82	154.1666667
+1877.36	139.75
+1925.808	195.1666667
+1974.256	277.75
+2240.72	253.0833333
+2404.232	241.5833333
+2395.148	163.0833333</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you have this file, download the following python script from our repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide/raw/master/SnowShieldFit.py</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open the python file and change the filenames to reflect the name of your data file withing the python script, here (scroll to the bottom):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">if __name__ == "__main__":
+
+    # Change these names to create the parameter file.  The first line is the name
+    # of the data file and the second is the name of the parameter file
+    filename = 'T:\\analysis_for_papers\\Manny_idaho\\SWE_idaho.txt'
+    sparamname = 'T:\\analysis_for_papers\\Manny_idaho\\HarringCreek.sparam'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script will fit the data to a bilinear function, shown to approximate the SWE distribution with elevation in a number of sites. You can read about the bilinear fit in a paper by <a href="http://www.hydrol-earth-syst-sci.net/18/4261/2014/hess-18-4261-2014.html">Kirchner et al., HESS, 2014</a> and by
+<a href="http://www.the-cryosphere.net/8/2381/2014/">Grünewald et al., Cryosphere, 2014</a>.</p>
+</div>
+<div class="paragraph">
+<p>For reasons we will see below the prefix (that is the pit before the <code>.sparam</code>) should be the same as the name of the elevation DEM upon which the SWE data will be based.</p>
+</div>
+</li>
+<li>
+<p>Run the script with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python SnowShieldFit.py</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This will produce a file with the extension sparam. The .sparam file contains the slope and intercept for the annual average SWE for the two linear segments, but in units of g cm<sup>-2</sup>.
+These units are to ensure the snow water equivalent raster is in units compatible with effective depths for cosmogenic shielding.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The data file you feed in to <code>SnowShieldFit.py</code> should have SWE in mm, whereas the snow shielding raster will have SWE in effective depths with units g cm<sup>-2</sup>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Okay, we can now use some C++ code to generate the snow shielding raster. If you cloned the repository (using <code>git clone <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver.git" class="bare">https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver.git</a></code>), you will have a function for creating a snow shielding raster. Navigate to the <code>driver_functions</code> folder and make the program using:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f SimpleSnowShield.make</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You run this program with two arguments. The first argument is the path to the <code>.sparam</code> file that was generated by the script <code>SnowShieldFit.py</code>. The path <strong>MUST</strong> include a final slash (i.e. <code>/home/a/directory/</code> will work but <code>/home/a/directory</code> will fail.)
+The second argument is the prefix of the elevation DEM <strong>AND</strong> the <code>.sparam</code> file (i.e. if the file is <code>HarringCreek.sparam</code> then the prefix is <code>HarringCreek</code>). The code will then print out an <code>bil</code> format raster with the prefix plus <code>_SnowBL</code> so for example if the prefix is <code>HarringCreek</code> then the output raster is <code>HarringCreek_SnowBL.bil</code>. The command line would look something like:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The prefix of the <code>.sparam</code> file <strong>MUST</strong> be the same as the DEM prefix.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Congratulations! You should now have a snow shielding raster that you can use in your CRN-based denudation rate calculations.
+NOTE: The program <code>SimpleSnowShield.exe</code> can also produce SWE rasters using a modified Richard&#8217;s equation, which has been proposed by
+<a href="http://onlinelibrary.wiley.com/doi/10.1002/2015GL063413/epdf">Tennent et al., GRL</a>, but at the moment we do not have functions that fit
+SWE data to a Richard&#8217;s equation so this is only recommended for users with pre-calculated parameters for such equations.</p>
+</li>
+<li>
+<p>If you have performed this step after spawning the DEMs (see the section <a href="#_spawning_the_basins">Spawning the basins</a>), you can update the <code>_CRNRasters.csv</code> by running the python script <code>PrepareCRNRastersFileFromDirectory.py</code>, which you can read about in the section: <a href="#_modifying_your_crnrasters_file_the_python_way">Modifying your CRNRasters file the python way</a>.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_calculating_denudation_rates">12.4. Calculating denudation rates</h3>
@@ -10655,6 +10784,203 @@ so prior reported results that used either no topographic shielding or low resol
 <h5 id="_reducing_the_output_data">Reducing the output data</h5>
 <div class="paragraph">
 <p>Users may wish to reduce the data contained within <code>_CRNResults.csv</code> file, so we provide python scripts for doing so.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nested_basins">12.4.4. Nested basins</h4>
+<div class="paragraph">
+<p>Frequently field workers sample drainage basins that are nested within other basins.
+We can use denudation rate data from nested basins to calculate the denudation rate required from the remainder of the basin to arrive at the measured CRN concentrations.</p>
+</div>
+<div class="paragraph">
+<p>Our repository contains a function that allows calculation of CRN-derived denudation rates given a mask of known denudation rates. We refer to it as a nesting calculator because we expect this to be its primary use, but because the program takes a known erosion rate raster the known denudation rate data can take any geometry and one can have spatially heterogeneous known denudation rates.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have checked out the <a href="https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide">repository</a>, you can make the nesting driver with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f Nested_CRN.make</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To run the code, you need a path and a file prefix, just as in with the <code>Basinwide_CRN.exe</code>. The path <strong>MUST</strong> include a trailing slash (e.g., <code>/home/a/directory/</code> and <strong>NOT</strong> <code>/home/a/directory</code>), and the prefix should point to the <code>_CRNRasters.csv</code>, <code>_CRNData.csv</code>, and <code>.CRNparam</code> files. If any of these files are missing from the directory that is indicated in the path argument the code will not work.</p>
+<div class="paragraph">
+<p>An example call to the program might look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./Nested_CRN.exe /path/to/data/ My_prefix</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For each raster listed in the directory indicated by the path, the <code>Nested_CRN</code> program will look for a raster with the same prefix but with the added string <code>_ERKnown</code>. You <strong>MUST</strong> have this exact string in the filename, and it is case sensitive. So for example if your raster name is <code>HarringCreek.bil</code> the know denudation rate raster must be names <code>HarringCreek_ERKnown.bil</code>.</p>
+</li>
+<li>
+<p>The denudation rate raster <strong>MUST</strong> be in units of g cm<sup>-2</sup> yr<sup>-1</sup>. This raster <strong>MUST</strong> be the same size as the elevation raster.</p>
+</li>
+<li>
+<p>The data outputs will be the same as in the case of the <code>Basinwide_CRN.exe</code> program.</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_how_do_i_make_an_erknown_raster">How do I make an _ERKnown raster?</h5>
+<div class="paragraph">
+<p>We leave it up to the user to produce an <code>_ERKnown</code> raster, but we do have some scripts that can make this a bit easier.</p>
+</div>
+<div class="paragraph">
+<p>We have made a small python package for manipulating raster data called <code>LSDPlottingTools</code>. You can get it in its very own github repository: <a href="https://github.com/LSDtopotools/LSDMappingTools" class="bare">https://github.com/LSDtopotools/LSDMappingTools</a>, which you can clone (into a seperate folder if I were you) with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDMappingTools.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have cloned that folder, you should also get the <code>LSDOSystemTools.py</code> scripts using</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/LSDOSystemTools.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have these python scripts, you can take a basin mask (these are generated by <code>Basinwide_CRN.exe</code>) if the option <code>write_basin_index_raster:</code>
+is set to <code>True</code> in the <code>.CRNParam</code> file and call the module from the LSDPlottingTools package <code>SetToConstantValue</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, you should have a directory that contains the subdirectory <code>LSDPlottingTools</code> and the script <code>LSDOSystemTools.py</code>. Within the directory you could write a small python script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">import LSDPlottingTools as LSDP
+
+def ResetErosionRaster():
+    DataDirectory = "T://basin_data//nested//"
+    ConstFname = "ConstEros.bil"
+    NewErateName = "HarringCreek_ERKnown.bil"
+    ThisFile = DataDirectory+ConstFname
+    NewFilename = DataDirectory+NewErateName
+
+    LSDP.CheckNoData(ThisFile)
+
+    # now print the constant value file
+    constant_value = 0.0084
+    LSDP.SetToConstantValue(ThisFile,NewFilename,constant_value)
+
+    LSDP.CheckNoData(NewFilename)
+
+if __name__ == "__main__":
+    #fit_weibull_from_file(sys.argv[1])
+    #TestNewMappingTools2()
+    #ResetErosionRaster()
+    #FloodThenHillshade()
+    FixStupidNoData()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script resets any raster data that is not <code>NoData</code> to the value denoted by <code>constant_value</code> so cannot produce spatially heterogeneous denudation rates: for that you will need to write your own scripts.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_soil_or_point_data">12.4.5. Soil or point data</h4>
+<div class="paragraph">
+<p>CAIRN is also capable of calculating the denudation rates from soil or point samples. Online calculators such as the <a href="http://hess.ess.washington.edu/">CRONUS calculator</a> can calculate denudation rates at a single site but some users who have both basinwide and soil sample may wish to calculate both denudation rates with CAIRN for consistency.</p>
+</div>
+<div class="paragraph">
+<p>The user inputs and outputs for the soil samples are similar to thos of the basin average scripts.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>_CRNRasters.csv</code> file should have the same format as for basinwide samples.</p>
+</li>
+<li>
+<p>The <code>_CRNData.csv</code> file should have the same format as for basinwide samples.</p>
+</li>
+<li>
+<p>The <code>.CRNParam</code> file should have the same format as for basinwide samples</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, and additional file is needed with the extention <code>_CRNSoilInfo.csv</code>. This file needs to have the same prefix as the other parameter files.
+The format of this file is:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 27. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
+<colgroup>
+<col style="width: 9%;">
+<col style="width: 9%;">
+<col style="width: 9%;">
+<col style="width: 72%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Units</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sample_top_depth_cm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The sample names need to be the same as in the <code>_CRNData.csv</code> file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sample_top_depth_cm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The depth of the top of the sample in cm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sample_bottom_depth_cm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The depth of the bottom of the sample in cm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">density_kg_m3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kg m<sup>-3</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The density of the sample. Note that this assumes that everything above the sample is the same density. These are converted into effective depths so if denisty is varying users should use some default denisty (e.g., 2000 kg m<sup>-2</sup>) and then enter depths in cm the, when multiplied by the density, will result in the correct effective depth.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example file looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">sample_name,sample_top_depth_cm,sample_bottom_depth_cm,density_kg_m3
+S1W-Idaho,0,2,1400
+S2W-Idaho,0,2,1400
+S3W-Idaho,0,2,1400</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the soil calculator, you need to compile the soil calculator that is include in the repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f Soil_CRN.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then run the code including the path name and the prefix of the data files, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./Soil_CRN.exe /home/smudd/SMMDataStore/analysis_for_papers/Manny_idaho/Revised/Soil_Snow/ HarringCreek_Soil_SnowShield</code></pre>
 </div>
 </div>
 </div>
@@ -11059,13 +11385,21 @@ make</code></pre>
 <div class="sect1">
 <h2 id="_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
-Prediction is difficult, especially about the future.
-</blockquote>
-<div class="attribution">
-&#8212; Niels Bohr<br>
-<cite>Danish Physicist 1885-1962</cite>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<strong>LSDCatchmentModel</strong> is a 2.5D 'hydrodynamic' landscape evolution model that simulates flooding and erosional processes at the catchment scale, on the order of hours to 100s of years.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/flood_depth_fig_crop.png" alt="flood depth fig crop">
 </div>
 </div>
 <div class="paragraph">
@@ -11092,7 +11426,7 @@ Prediction is difficult, especially about the future.
 <div class="sect2">
 <h3 id="_compilation">14.2. Compilation</h3>
 <div class="paragraph">
-<p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present.</p>
+<p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present. For now, you will have to select from one of the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -11108,7 +11442,10 @@ Prediction is difficult, especially about the future.
 </ol>
 </div>
 <div class="paragraph">
-<p>The plain makefile contains all the flags for debugging and profiling. (The program will run slower if you use this version). The optimised version runs with the -O2 flags and no profiler or debugger information. The OpenMP version is for running the code in parallel on multiple cores.</p>
+<p>The plain makefile (Option 1) contains all the compiler flags for debugging and profiling. (The program will run slower if you use this version - only use it for development or if trying to trace a bug). The optimised version (Option 2) runs with the -O2 flags and no profiler or debugger information. The OpenMP version (Option 3) is for running the code in parallel on multiple cores. This applies to desktop PCs with multiple cores as well as compiling for single compute nodes on supercomputers (cluster computers).</p>
+</div>
+<div class="paragraph">
+<p>To compile, run make as follows with the makefile of your choice:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11123,13 +11460,25 @@ Prediction is difficult, especially about the future.
 <pre class="highlight"><code class="language-console" data-lang="console">make -f CatchmentModel.make clean</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>You will get an executable called <code>CatchmentModel.out</code> or similar, depending on which makefile you used.</p>
+</div>
 <div class="sect3">
 <h4 id="_dependencies">14.2.1. Dependencies</h4>
-<div class="paragraph">
-<p>Your compiler must support C11. Almost all do as of 2016, as long as you are running a fairly recent version. The C11 flag is included in the makefile. The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Your compiler must support C++11.</strong> Almost all compilers do as of 2016, as long as you are running a fairly recent version. Currently, support is not usually enabled by default, buy the C++11 flag to turn it on is included in the makefile. (The code uses some features of the C++11 language standard, but you don&#8217;t need to worry about them if you don&#8217;t want.)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The parallel version of the code uses the OpenMP libraries, which are powerful (and somewhat magical&#8230;&#8203;) libraries for compiling the code to run in parallel. You may need to install the <code>gcc-devel</code> package on linux, if using gcc. Again, the compiler flag is taken care of in the makefile. The code has been tested on the gcc and intel compilers.</p>
+<p>The parallel version of the code uses the OpenMP libraries, which are powerful (and somewhat magical&#8230;&#8203;) libraries for compiling the code to run in parallel. These are widely supported libraries and many systems will come with them pre-installed. <strong>But you may need to install the <code>gcc-devel</code> package on linux, if using gcc</strong>. Again, the compiler flag is taken care of in the makefile. The code has been tested on the <code>gcc</code> (versions 4.8 and above) and <code>icc</code> (intel) compilers.</p>
 </div>
 <div class="paragraph">
 <p>All other libraries are supplied with the source code (The TNT and FFT libraries, which provide various mathematical functions). You do not need to install them separately.</p>
@@ -11141,10 +11490,52 @@ Prediction is difficult, especially about the future.
 <div class="paragraph">
 <p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
 </div>
+<div class="paragraph">
+<p>You need a minimum of three input files:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Parameter file</p>
+</li>
+<li>
+<p>DEM file of your catchment (currently only ASCII format is supported, sorry <code>.bil</code> fans!)</p>
+</li>
+<li>
+<p>Rainfall time series text file</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The model is run like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">./CatchmentModel.out [PATH-TO-FOLDER-WITH-INPUT-FILES] ParameterFile.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the names of the input DEM and rainfall file are specified in the parameter file.</p>
+</div>
+<div class="paragraph">
+<p>When the model runs, it will print to screen the parameters that have been read from the parameter file, for a sanity check. It will update you at certain stages of the data ingestion point. (This usually only takes a few seconds). When the model runs, a counter displays the number of elapsed minutes in model-time.</p>
+</div>
 <div class="sect3">
 <h4 id="_dem_preparation">14.3.1. DEM preparation</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need to check your DEM is correctly formatted before use. LSDCatchmentModel has specific requirements about DEM layout.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment. <strong>In other words: There should be no 'NODATA' values between the outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
+<p>Currently, you will have to prepare your own DEM as a separate stage in the workflow. (Using whichever GIS tool you like, or preferably our own software!). The DEM should be set up so that one side of the catchment will act as the flow exit point. If you do not have the intended catchment outlet point touching one of the DEM edges, you will get unrealistic pooling of water and flood the entire catchment, as water will not be able to leave the model domain. <strong>In other words: There should be no 'NODATA' values between the intended outlet cell(s) and the edge the DEM file.</strong> This is very important for the model to work correctly.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -11153,7 +11544,7 @@ Prediction is difficult, especially about the future.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The model will actually route water flow off <strong>all</strong> edges of the catchment. This might be fine for what you need, but discharge timeseries file
+The model will actually route water off <strong>all</strong> edges of the catchment, if the geometry of your catchment allows it. This might be fine for your intended use, but note that the discharge timeseries file will report total water discharge and sediment output as a total from ALL edge cells, not just the ones you think are the main catchment outlet point. As a side effect, you can use the model to simulate range scale runoff and multiple catchments, just be aware that you will get one value for total discharge.
 </td>
 </tr>
 </table>
@@ -11163,24 +11554,39 @@ The model will actually route water flow off <strong>all</strong> edges of the c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_set_up_and_parameter_file_overview">14.3.2. Set up and Parameter File overview</h4>
+<h4 id="_model_run_time_controls">14.3.2. Model run time controls</h4>
 <div class="paragraph">
-<p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km. It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.)</p>
+<p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km (about 700000 grid cells). It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.) Number of domain grid cells is the main control on compute time.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If using the OpenMP makefile, you can get this down to around 11 minutes using a 48-core machine. Use it if you have the hardware!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_file_overview">14.3.3. Parameter File Overview</h4>
 <div class="paragraph">
 <p>In the Parameter file, you&#8217;ll notice that you can use comments by starting the line with a hash (\#) sign. Parameters themselves take the form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">paramter_name:     VALUE</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">parameter_name:     VALUE</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way&#8230;&#8203;)</strong></p>
+<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way soon&#8230;&#8203;)</strong></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_input_files">14.3.3. Input files</h4>
+<h4 id="_input_files">14.3.4. Input files</h4>
 <div class="paragraph">
 <p>As a minimum, you need a <strong>DEM input</strong> file, <strong>paramter file</strong>, and <strong>rainfall data</strong> input file.</p>
 </div>
@@ -11219,13 +11625,13 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <div class="sect4">
 <h5 id="_dem_read_extension">dem_read_extension</h5>
 <div class="paragraph">
-<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, sorry)</p>
+<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, and only supports <code>.asc</code> format for now, sorry!)</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_timeseries_save_interval">timeseries_save_interval</h5>
 <div class="paragraph">
-<p>The model generates a timeseries file that contains data on the total basinwide water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
+<p>The model generates a timeseries file that contains data on the total catchment water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
 </div>
 </div>
 </div>
@@ -11283,7 +11689,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <div class="sect4">
 <h5 id="_max_run_duration">max_run_duration</h5>
 <div class="paragraph">
-<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47..<strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
+<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47&#8230;&#8203;This is because C-programmers start counting at zero. <strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
 </div>
 </div>
 <div class="sect4">
@@ -11299,6 +11705,12 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <h5 id="_transport_law">transport_law</h5>
 <div class="paragraph">
 <p>Type either <strong>einstein</strong> or <strong>wilcock</strong> to select your favourite sediment transport law.</p>
+</div>
+<div class="paragraph">
+<p><em>Einstein, H. A. (1950). The bed-load function for sediment transportation in open channel flows (No. 1026). US Department of Agriculture.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Wilcock, P. R., &amp; Crowe, J. C. (2003). Surface-based transport model for mixed-size sediment. Journal of Hydraulic Engineering, 129(2), 120-128.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -12190,7 +12602,37 @@ Or, you can skip all of this and build a virtual linux machine on your windows c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_ruby_using_choco">B.6.1. Install Ruby using choco</h4>
+<h4 id="_install_ruby_version_1">B.6.1. Install Ruby (version 1)</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install Ruby: <a href="https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller" class="bare">https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller</a>. We have used version 2.2.</p>
+</li>
+<li>
+<p>Download and install Ruby Gems: <a href="https://rubygems.org/pages/download" class="bare">https://rubygems.org/pages/download</a>. To install this, you need to download it and then open a powershell window, navigate to the folder with gems in it, and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS&gt; \folder\with\rubygems\&gt; ruby setup.rb</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the Ruby devtools: <a href="http://rubyinstaller.org/downloads/" class="bare">http://rubyinstaller.org/downloads/</a>. You need to unzip this and run two things:</p>
+<div class="listingblock">
+<div class="content">
+<pre>PS&gt; \folder\with\DevKit\&gt; ruby dk.rb init
+PS&gt; \folder\with\DevKit\&gt; ruby dk.rb install</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now install bundler. In a powershell, you can, from anywhere, type <code>gem install bundler</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_install_ruby_using_choco">B.6.2. Install Ruby using choco</h4>
 <div class="paragraph">
 <p>If these are not installed, install them using <a href="#_chocolatey_package_manager">chocolatey</a>
 (in an <a href="#_starting_a_powershell_session">administrator powershell</a>).
@@ -12206,7 +12648,7 @@ PS&gt; choco install node.js</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubygems_on_windows">B.6.2. Fix rubygems on Windows</h4>
+<h4 id="_fix_rubygems_on_windows">B.6.3. Fix rubygems on Windows</h4>
 <div class="paragraph">
 <p>At the time of this writing, rubygems is "broken" on Windows:
 if you try to install a gem file you will get an error that says you cannot make an SSL connection.
@@ -12256,7 +12698,7 @@ Copy the <code>.pem</code> file into this folder. Rubygems should now work.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubydevkit_on_windows">B.6.3. Fix RubyDevKit on Windows</h4>
+<h4 id="_fix_rubydevkit_on_windows">B.6.4. Fix RubyDevKit on Windows</h4>
 <div class="paragraph">
 <p>The devkit sometimes does not work the first time around.
 If you get error messages about the devkit, you should go to the devkit folder (you need to find it on your system)
@@ -12293,7 +12735,7 @@ For example, if your Ruby instalation is sitting in C:/Ruby21/, then you should 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_some_gems">B.6.4. Install some gems</h4>
+<h4 id="_install_some_gems">B.6.5. Install some gems</h4>
 <div class="paragraph">
 <p>From here we can install some useful ruby gems.
 <a href="http://asciidoctor.org/">Asciidoctor</a> is really great for writing documentation.
@@ -12307,7 +12749,7 @@ PS&gt; gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.5. If you use Ruby with Java (you will probably not need this)</h4>
+<h4 id="_if_you_use_ruby_with_java_you_will_probably_not_need_this">B.6.6. If you use Ruby with Java (you will probably not need this)</h4>
 <div class="paragraph">
 <p>This is for users who are trying to get a Ruby extension that uses Java installed.
 If you use an extension that need a java link, you will need the gem</p>
@@ -13135,7 +13577,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. File input and output options</caption>
+<caption class="title">Table 28. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13200,7 +13642,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 28. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 29. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13304,7 +13746,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 29. Parameters for the fill function</caption>
+<caption class="title">Table 30. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13341,7 +13783,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 30. Parameters for hillshading</caption>
+<caption class="title">Table 31. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13381,7 +13823,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 31. Parameters for flow info calculations</caption>
+<caption class="title">Table 32. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13411,7 +13853,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. Parameters for chi calculations</caption>
+<caption class="title">Table 33. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13453,7 +13895,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 34. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13487,7 +13929,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Parameters for drainage area extraction</caption>
+<caption class="title">Table 35. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13515,7 +13957,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 36. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13555,7 +13997,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 37. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13583,7 +14025,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for chi calculations</caption>
+<caption class="title">Table 38. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13757,7 +14199,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Example basin list for scripting purposes</caption>
+<caption class="title">Table 39. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
