@@ -9,6 +9,7 @@ gem 'awesome_print'
 gem 'asciidoctor-epub3', '1.0.0.alpha.2'
 gem 'asciidoctor-pdf', '1.5.0.alpha.5'
 
+gem 'posix-spawn', '0.3.11'
 gem 'coderay'
 gem 'pygments.rb'
 gem 'thread_safe'
