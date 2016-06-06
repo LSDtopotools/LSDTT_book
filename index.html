@@ -690,6 +690,10 @@ MathJax.Hub.Config({
 <ul class="sectlevel3">
 <li><a href="#_compile_the_code_7">11.5.1. Compile the code</a></li>
 <li><a href="#_run_the_map_chi_gradient_tool">11.5.2. Run the map chi gradient tool</a></li>
+<li><a href="#_the_parameter_file">11.5.3. The parameter file</a></li>
+<li><a href="#_parameter_file_options">11.5.4. Parameter file options</a></li>
+<li><a href="#_example_parameter_file">11.5.5. Example parameter file</a></li>
+<li><a href="#_output_data_formats">11.5.6. Output data formats</a></li>
 </ul>
 </li>
 <li><a href="#_summary_9">11.6. Summary</a></li>
@@ -8657,7 +8661,7 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ make -f map_chi_gradient.make</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f chi_mapping_tool.make</code></pre>
 </div>
 </div>
 </div>
@@ -8669,7 +8673,7 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The path to the parameter file.</p>
+<p>The path to the parameter file. This <strong>MUST</strong> inclde the trailing slash (i.e., <code>/home/test_data/some_data</code> is incorrect whereas <code>/home/test_data/some_data/</code> is correct).</p>
 </li>
 <li>
 <p>The name of the parameter file.</p>
@@ -8677,134 +8681,408 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 </ol>
 </div>
 <div class="paragraph">
-<p>So if the parameter file is located at <code>/home/test_data/some_data/</code> and it is called 'test_chi_map.param', you run the program with:</p>
+<p>So if the parameter file is located at <code>/home/test_data/some_data/</code> and it is called <code>test_chi_map.param</code>, you run the program with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./map_chi_gradient.exe /home/test_data/some_data/ test_chi_map.param</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /home/test_data/some_data/ test_chi_map.param</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_the_parameter_file">The parameter file</h5>
 <div class="paragraph">
-<p>The parameter file has keywords followed by a value. The keywords need to be in the correct order. An example file is:</p>
+<p>As we will see momentarily, the data an the parameter file can be in different locations, although in general it maght be sensible to place the parameter file in the sample directory as the data.</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>The code is run using a parameter file, within which users can set the data they want to print to file. Regardless of which data they choose to print to file, a file will be printed with the extension <code>_Input.param</code> which prints out all the parameters used in the analysis (including the default parameters). This file can be used to verify if the correct parameters have been used in the analysis.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_parameter_file">11.5.3. The parameter file</h4>
+<div class="paragraph">
+<p>The parameter file has keywords followed by a value. The format of this file is similar to the files used in the <code>LSDTT_analysis_from_paramfile</code> program, which you can read about in the section <a href="#_running_your_first_analysis">Running your first analysis</a>.</p>
+</div>
+<div class="paragraph">
+<p>The parameter file has keywords followed by the <code>:</code> character. After that there is a space and the value.</p>
+</div>
+<div class="sidebarblock">
 <div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">DATADIR /home/data/FR/fr_data/
-OUTPUTDIR /home/data/FR/ChiGradientMap_with_1_basins/
-
-DEMFILE fr_5m
-CHEADSFILE fr_CH_dreich_nodeindices_for_Arc
-DEM_ext flt
-BasinOrder 2
-MinSlope 0.0001
-A_0 1000
-m_ov_n 0.30
-number_of_mc_iterations 500
-TargetNodes 80
-MinSegLength 10
-Sigma 10.0
-Skip 0
-threshold_pixels_for_chi 250
-test_drainage_boundaries false</code></pre>
+<div class="title">Chi mapping parameter file format</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Lines beginning with <code>#</code> are comments.</p>
+</li>
+<li>
+<p>Keywords or phrases are followed by a colon (<code>:</code>).</p>
+</li>
+<li>
+<p>The order of the keywords do not matter.</p>
+</li>
+<li>
+<p>Keywords are not sensitive, but must match expected keywords.</p>
+</li>
+<li>
+<p>If a keyword is not found, a default value is assigned.</p>
+</li>
+</ol>
 </div>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_file_options">11.5.4. Parameter file options</h4>
 <div class="paragraph">
-<p>Below is a table with the values for this parameter file:</p>
+<p>Below are options for the parameter files. Note that all DEMs must be in ENVI <code>bil</code> format (<strong>DO NOT</strong> use ArcMap&#8217;s bil format: these are two different things. See the section <a href="#_what_data_does_lsdtopotoolbox_take">What data does LSDTopoToolbox take?</a> if you want more details).
+The reason we use <code>bil</code> format is because it retains georeferencing which is essential to our file output since many of the files output to <code>csv</code> format with latitude and longitude as coordinates.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 20. Cheat sheet for map chi gradient parameter file</caption>
+<caption class="title">Table 20. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 37%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 <col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
 <th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DATADIR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The directory where the data is stored.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure there as a <code>/</code> character at the end.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to which data is written. <strong>The code will NOT create a path: you need to make the write path before you start running the program.</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OUTPUTDIR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Where the output is written.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure there as a <code>/</code> character at the end. IMPORTANT: the code does not check if this directory exists so you need to make sure it does exist before you run the program or it will crash.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path from which data is read.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DEMFILE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of the DEM (without the file extension)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For example, if your DEM is called my_topography.bil then the prefix is my_topography.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of rasters to be written <strong>without extension</strong>.
+For example if this is <code>Test</code> and you have selected <code>bil</code> format then a fill operation will result in a file called <code>Test_Fill.bil</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CHEADSFILE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A channel heads file that has been generated by a channel head algorithm (e.g., <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/full">Clubb et al., 2014</a>); this file will be in csv form from the channel heads program.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>NULL</code> is selected, then the channel network will be built based on a flow accumulation threshold of 50 pixels.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of the raster to be read without extension. For example if the raster is <code>MyRaster.bil</code>, read fname will be <code>MyRaster</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DEM_ext</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The DEM extension</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should be either <code>bil</code>, <code>flt</code> or <code>asc</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BasinOrder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The lowest order basin to select channels. 2 is recommended.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For example, if this is 2 then all 2nd order channels will be mapped. If it is 3 all 3rd order channels will be mapped.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MinSlope</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum slope for the fill algorithm.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.0001 is the standard value.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A_0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference drainage area for chi analysis.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1000 \(m^2\) is recommended.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">m_ov_n</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>m/n</code> ratio.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If this not has been calculated, users should use 0.5.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">number_of_mc_iterations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of Monte Carlo iterations for the statistical selection of channel segments.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">500 is the typical value but this number could be lower on slower systems.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TargetNodes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of nodes to be analyzed for any sequence of segments.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users should choose a value between 80-120. Lower numbers are more computationally efficient.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MinSegLength</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum length of a distinct segment.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users should select values between 8-15 (10 is probably best).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sigma</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The uncertainty in elevation data in metres.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This could be the DEM uncertainty, but also contains the topographic roughness elements (e.g., boulders in the channel). In mountain channels 5-10m is a good choice.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_pixels_for_chi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the number of pixels of flow accumulation required for calculation of chi for the chi coordinate raster. In addition, this sets the threshold drainage area if you choose NULL for the CHEADSFILE.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on raster resolution, but you might start with 50 if you have a 90 metre DEM.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">test_drainage_boundaries</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is a boolean that is true if you want to remove any basins draining to the edge of your DEM.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Either true (if you want to remove basins draining to the edge) or false (if you don&#8217;t).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">channel heads fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of a channel heads file. You can import channel heads. If this is set to <code>NULL</code> then the channels will be calculated using a pixel threshold.</p></td>
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 21. Options for determining which channels and basins to analyse, including settings for the fill function.</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min_slope_for_fill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum slope between pixels for use in the fill function.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_contributing_pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of pixes required to generate a channel (i.e., the source threshold).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimum_basin_size_pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum number of pixels in a basin for it to be retained. This operation works on the baselevel basins: subbasins within a large basin are retained.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_drainage_boundaries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool (true or 1 will work)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A boolean that, if set to true, will eliminate basins with pixels drainage from the edge. This is to get rid of basins that may be truncated in a DEM (and thus will have incorrect chi values).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">only_take_largest_basin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool (true or 1 will work)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is true, a chi map is created based only upon the largest basin in the raster.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 22. Parameters for calculating the chi coordinate.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A_0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>A<sub>0</sub></strong> parameter (which nondimensionalises area) for chi analysis. This is in m<sup>2</sup>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m_over_n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>m/n</strong> paramater (sometimes known as the concavity index) for calculating chi.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_pixels_for_chi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of contributing pixels above which chi will be calculated. The reason for the threshold is to produce chi plots that do not extend onto hillslopes; this helps visualisation of chi differences between nearby headwater channels.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 23. Parameters for calculating the segments of similar chi slope (\(M_{\chi}\)). More details on the use fo these parameters can be found in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES 2014</a>.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n_iterations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of iterterations of random sampling of the data to construct segments. The sampling probability of individual nodes is determined by the skip parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">target_nodes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of nodes in a segment finding routine. Channels are broken into subdomains of aroung this length and then segmenting occurs on these subdomains.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimum_segment_length</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum length of a segment in sampled data nodes. The actual length is approxamately this parameter times (1+skip).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">skip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During Monte Carlo sampling of the channel network, nodes are sampled by skipping nodes after a sampled node. The skip value is the mean number of skipped nodes after each sampled node. For example, if skip = 1, on average every other node will be sampled. Skip of 0 means every node is sampled (in which case the n_iterations should be set to 1, because there will be no variation in the fit between iterations).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sigma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This represents the variability in elevation data (if the DEM has elevation in metres, then this parameter will be in metres). It should include both uncertainty in the elevation data as well as the geomorphic variability: the size of roughness elements, steps, boulders etc in the channel that may lead to a channel profile diverging from a smooth long profile.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">basic_Mchi_regression_nodes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This works with the basic chi map: segments are not calculated. Instead, a moving window, with a length set by this parameter, is moved over the channel nodes to calculate the chi slope. This method is very similar to methods used to calculate normalised channel steepness (<strong>k<sub>sn</sub></strong>).</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 24. Keywords for setting which analyses to be preformed and which files to print. <strong>These are all booleans!</strong> **Defaults are all false so these parameters must be set to true to perform analyses and print to file.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">only_check_parameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is true, the program simply prints all the parameters to a file and does not perform any analyses. This is used for checking if the parameters are set correctly and that the keywords are correct.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_stream_order_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a raster of the stream orders.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_junction_index_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a raster with the junction indices.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_fill_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a filled raster</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print DrainageArea_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a raster of the draiange area in m<sup>2</sup>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_chi_coordinate_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a raster with the chi coordinate (in m). Note that if you want to control the size of the data symbols in a visualisation, you should select the <code>print_simple_chi_map_to_csv</code> option.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_simple_chi_map_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a csv file with latitude, longitude and the chi coordinate. Can be converted to a shapefile or GeoJSON with our python mapping scripts. This options gives more flexibility in visualisation than the raster, since in the raster data points will only render as one pixel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_simple_chi_map_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a csv file with latitude, longitude and the chi coordinate. Can be converted to a shapefile or GeoJSON with our python mapping scripts. This options gives more flexibility in visualisation than the raster, since in the raster data points will only render as one pixel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_segmented_M_chi_map_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a csv file with latitude, longitude and a host of chi information including the chi slope, chi intercept, drainage area, chi coordinate and other features of the drainage network. The \(M_{\chi}\) values are calculated with the segmentation algorithm of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al. 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_basic_M_chi_map_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, prints a csv file with latitude, longitude and a host of chi information including the chi slope, chi intercept, drainage area, chi coordinate and other features of the drainage network. The \(M_{\chi}\) values are calculated with a rudimentary smoothing window that has a size determined by the parameter <code>basic_Mchi_regression_nodes</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_example_parameter_file">11.5.5. Example parameter file</h4>
+<div class="paragraph">
+<p>Below is an exaple parameter file. This file is included in the repository along with the driver functions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for performing chi analysis
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+# http://lsdtopotools.github.io/LSDTT_book/#_chi_analysis_part_3_getting_chi_gradients_for_the_entire_landscape
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /home/smudd/SMMDataStore/analysis_for_papers/Indus/
+write path: /home/smudd/SMMDataStore/analysis_for_papers/Indus/NewChi/
+read fname: Indus_Coarse
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+
+threshold_contributing_pixels: 200000
+minimum_basin_size_pixels: 50000
+test_drainage_boundaries: false
+
+# Parameters for chi analysis
+A_0: 1000
+m_over_n: 0.45
+threshold_pixels_for_chi: 20000
+
+n_iterations: 20
+target_nodes: 80
+minimum_segment_length: 10
+sigma: 10.0
+skip: 2
+
+# The data that you want printed to file
+only_check_parameters: true
+print_stream_order_raster: false
+print_DrainageArea_raster: false
+print_segmented_M_chi_map_to_csv: true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_output_data_formats">11.5.6. Output data formats</h4>
+<div class="paragraph">
+<p>Data is written to either rasters or csv files. The rasters are all in <code>bil</code> format, which you can read about in the section: <a href="#_what_data_does_lsdtopotoolbox_take">What data does LSDTopoToolbox take?</a></p>
+</div>
+<div class="paragraph">
+<p>The <strong>csv</strong> files are comma seperated value files which can be read by spreadsheets and GIS software.
+These files all have labeled columns so their contents can be easily views.
+All of the files contain <strong>latitude</strong> and <strong>longitude</strong> columns. These columns are projected into the <strong>WGS84</strong> coordinate system for ease of plotting in GIS software.</p>
+</div>
+<div class="sect4">
+<h5 id="_viewing_data_and_converting_to_gis_ready_formats">Viewing data and converting to GIS ready formats</h5>
+<div class="paragraph">
+<p>If the user has opted to print data in <code>csv</code> format, they can use our visualisation tools to convert the data into GIS-ready formats.</p>
+</div>
+<div class="paragraph">
+<p>Users should first clone the <a href="https://github.com/LSDtopotools/LSDMappingTools">mapping tools respoitory</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDMappingTools.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this repository the user needs to get a helping script called <code>LSDOSystemTools.py</code>. You can fetch this script using the <code>wget</code> tool:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/LSDOSystemTools.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can then run the script <code>TestMappingToolsPoint.py</code>, activating the <code>TestMappingToolsLassoCSV</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">if __name__ == "__main__":
+    TestMappingToolsLassoCSV()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and changing the target directory to the directory storing the csv files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def TestMappingToolsLassoCSV():
+    DataDirectory = "T://analysis_for_papers//Indus//IndusChi//"
+    LSDP.ConvertAllCSVToGeoJSON(DataDirectory)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can convert all <code>csv</code> files into either shapefiles or GeoJSON files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">    LSDP.ConvertAllCSVToGeoJSON(DataDirectory)
+    LSDP.ConvertAllCSVToShapefile(DataDirectory)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These files can then be read by your favourite GIS.</p>
+</div>
 </div>
 </div>
 </div>
@@ -9229,7 +9507,7 @@ The parameter names are not case sensitive. The parameter values are case sensit
 These parameters are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 21. File input and output options</caption>
+<caption class="title">Table 25. File input and output options</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -9446,7 +9724,7 @@ LC07_11,-31.122417,-71.576194,Be10,120502,2500,07KNSTD,0.987</code></pre>
 then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.csv</code> in your data folder.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 22. CRNData.csv format (the first row contains a header)</caption>
+<caption class="title">Table 26. CRNData.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -9514,7 +9792,7 @@ then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.c
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 23. Nuclide standardisation options</caption>
+<caption class="title">Table 27. Nuclide standardisation options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -9602,7 +9880,7 @@ shielding for you. Note: topographic shielding is the most computationally deman
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 24. CRNRasters.csv format (the first row contains a header)</caption>
+<caption class="title">Table 28. CRNRasters.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 37%;">
@@ -10467,7 +10745,7 @@ In the example this prefix is <code>SanBern</code> (or <code>SanBern_Spawned</co
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 25. Method flag options</caption>
+<caption class="title">Table 29. Method flag options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -10558,7 +10836,7 @@ A new version of the CRONUS caluclator should be available late 2016 but should 
 It contains the following data in comma separated columns:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 26. Columns in the <code>_CRNResults.csv</code> file</caption>
+<caption class="title">Table 30. Columns in the <code>_CRNResults.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -10914,7 +11192,7 @@ if __name__ == "__main__":
 The format of this file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
+<caption class="title">Table 31. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -13577,7 +13855,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 28. File input and output options</caption>
+<caption class="title">Table 32. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13642,7 +13920,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 29. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 33. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13746,7 +14024,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 30. Parameters for the fill function</caption>
+<caption class="title">Table 34. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13783,7 +14061,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 31. Parameters for hillshading</caption>
+<caption class="title">Table 35. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13823,7 +14101,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. Parameters for flow info calculations</caption>
+<caption class="title">Table 36. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13853,7 +14131,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Parameters for chi calculations</caption>
+<caption class="title">Table 37. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13895,7 +14173,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 38. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13929,7 +14207,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Parameters for drainage area extraction</caption>
+<caption class="title">Table 39. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13957,7 +14235,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 40. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -13997,7 +14275,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 41. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14025,7 +14303,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for chi calculations</caption>
+<caption class="title">Table 42. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14199,7 +14477,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Example basin list for scripting purposes</caption>
+<caption class="title">Table 43. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
