@@ -757,49 +757,73 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</a>
+<li><a href="#_floodplain_delineation_using_channel_relief_and_slope_thresholds">14. Floodplain delineation using channel relief and slope thresholds</a>
 <ul class="sectlevel2">
-<li><a href="#_origins_relation_to_caesar_lisflood">14.1. Origins: relation to CAESAR-Lisflood</a></li>
-<li><a href="#_compilation">14.2. Compilation</a>
+<li><a href="#_get_the_code_for_floodplain_extraction">14.1. Get the code for floodplain extraction</a>
 <ul class="sectlevel3">
-<li><a href="#_dependencies">14.2.1. Dependencies</a></li>
+<li><a href="#_clone_the_github_repository_3">14.1.1. Clone the GitHub repository</a></li>
+<li><a href="#_alternatively_get_the_zipped_code_5">14.1.2. Alternatively, get the zipped code</a></li>
+<li><a href="#_get_the_example_datasets_3">14.1.3. Get the example datasets</a></li>
+<li><a href="#_get_the_example_parameter_files_2">14.1.4. Get the example parameter files</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model">14.3. Running the Model</a>
+<li><a href="#_preliminary_steps_2">14.2. Preliminary steps</a>
 <ul class="sectlevel3">
-<li><a href="#_dem_preparation">14.3.1. DEM preparation</a></li>
-<li><a href="#_model_run_time_controls">14.3.2. Model run time controls</a></li>
-<li><a href="#_parameter_file_overview">14.3.3. Parameter File Overview</a></li>
-<li><a href="#_input_files">14.3.4. Input files</a></li>
+<li><a href="#_getting_the_channel_head_file">14.2.1. Getting the channel head file</a></li>
+<li><a href="#_finding_the_correct_window_size">14.2.2. Finding the correct window size</a></li>
+<li><a href="#_creating_the_paramter_file">14.2.3. Creating the paramter file</a></li>
 </ul>
 </li>
-<li><a href="#_parameter_guide">14.4. Parameter Guide</a>
+<li><a href="#_running_the_code_3">14.3. Running the code</a>
 <ul class="sectlevel3">
-<li><a href="#_file_information">14.4.1. File Information</a></li>
-<li><a href="#_supplementary_files">14.4.2. Supplementary Files</a></li>
-<li><a href="#_numerical">14.4.3. Numerical</a></li>
-<li><a href="#_sediment">14.4.4. Sediment</a></li>
-<li><a href="#_hydrology">14.4.5. Hydrology</a></li>
-<li><a href="#_vegetation">14.4.6. Vegetation</a></li>
-<li><a href="#_hillslope">14.4.7. Hillslope</a></li>
-<li><a href="#_write_output_rasters">14.4.8. Write Output Rasters</a></li>
+<li><a href="#_compiling">14.3.1. Compiling</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_code_in_parallel">14.5. Running the code in Parallel</a></li>
-<li><a href="#_notes_for_hpc_use">14.6. Notes for HPC use</a></li>
 </ul>
 </li>
-<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">15. Landscape Evolution Modelling with LSDTopoTools</a>
+<li><a href="#_hydrological_and_erosion_modelling">15. Hydrological and Erosion Modelling</a>
 <ul class="sectlevel2">
-<li><a href="#_model_parameters_and_components">15.1. Model Parameters and Components</a>
+<li><a href="#_origins_relation_to_caesar_lisflood">15.1. Origins: relation to CAESAR-Lisflood</a></li>
+<li><a href="#_compilation">15.2. Compilation</a>
 <ul class="sectlevel3">
-<li><a href="#_model_domain">15.1.1. Model Domain</a></li>
-<li><a href="#_fluvial_component">15.1.2. Fluvial Component</a></li>
-<li><a href="#_hillslope_component">15.1.3. Hillslope Component</a></li>
+<li><a href="#_dependencies">15.2.1. Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model_2">15.2. Running the Model</a></li>
-<li><a href="#_model_output">15.3. Model Output</a></li>
+<li><a href="#_running_the_model">15.3. Running the Model</a>
+<ul class="sectlevel3">
+<li><a href="#_dem_preparation">15.3.1. DEM preparation</a></li>
+<li><a href="#_model_run_time_controls">15.3.2. Model run time controls</a></li>
+<li><a href="#_parameter_file_overview">15.3.3. Parameter File Overview</a></li>
+<li><a href="#_input_files">15.3.4. Input files</a></li>
+</ul>
+</li>
+<li><a href="#_parameter_guide">15.4. Parameter Guide</a>
+<ul class="sectlevel3">
+<li><a href="#_file_information">15.4.1. File Information</a></li>
+<li><a href="#_supplementary_files">15.4.2. Supplementary Files</a></li>
+<li><a href="#_numerical">15.4.3. Numerical</a></li>
+<li><a href="#_sediment">15.4.4. Sediment</a></li>
+<li><a href="#_hydrology">15.4.5. Hydrology</a></li>
+<li><a href="#_vegetation">15.4.6. Vegetation</a></li>
+<li><a href="#_hillslope">15.4.7. Hillslope</a></li>
+<li><a href="#_write_output_rasters">15.4.8. Write Output Rasters</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_code_in_parallel">15.5. Running the code in Parallel</a></li>
+<li><a href="#_notes_for_hpc_use">15.6. Notes for HPC use</a></li>
+</ul>
+</li>
+<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">16. Landscape Evolution Modelling with LSDTopoTools</a>
+<ul class="sectlevel2">
+<li><a href="#_model_parameters_and_components">16.1. Model Parameters and Components</a>
+<ul class="sectlevel3">
+<li><a href="#_model_domain">16.1.1. Model Domain</a></li>
+<li><a href="#_fluvial_component">16.1.2. Fluvial Component</a></li>
+<li><a href="#_hillslope_component">16.1.3. Hillslope Component</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_model_2">16.2. Running the Model</a></li>
+<li><a href="#_model_output">16.3. Model Output</a></li>
 </ul>
 </li>
 <li><a href="#_software">Appendix A: Software</a>
@@ -11661,7 +11685,394 @@ make</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hydrological_and_erosion_modelling">14. Hydrological and Erosion Modelling</h2>
+<h2 id="_floodplain_delineation_using_channel_relief_and_slope_thresholds">14. Floodplain delineation using channel relief and slope thresholds</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Identifying areas prone to flooding is essential for a number of disciplines, including geomorphology, hydrology, and ecology.  In LSDTopoTools we have a geomorphic method of identifying flood-prone areas.  Unlike common hydrological modelling methods, our geomorphic method is fast to run on large DEMs and does not require validation with independent datasets.  It identifies flood-prone areas based on two thresholds: relief relative to the nearest channel, and local slope.  These thresholds are determined statistically from the DEM using quantile-quantile plots, and do not have to be set by the user.</p>
+</div>
+<div class="paragraph">
+<p>The method has several steps, which are outlined below:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The DEM is filtered using a Perona-Malik filter, a non-linear filter. For more details please refer to <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=56205">Perona and Malik (1990)</a>. This filter was chosen as it reduces micro-topographic noise while preserving sharp boundaries, such as between hillslopes and floodplains.</p>
+</li>
+<li>
+<p>After filtering, the local slope and relief relative to the nearest channel are calculated for each pixel.  To calculate the relief relative to the channel, a threshold stream order must be set to ensure that small first order tributaries are not selected.</p>
+</li>
+<li>
+<p>Thresholds for slope and channel relief are calculated statistically from the DEM using quantile-quantile plots.  This involves plotting the probability density function of each metric and calculating the deviation away from a reference normal distribution.</p>
+</li>
+<li>
+<p>Any pixel with a value lower than both the channel relief and slope threshold is then classified as floodplain, giving a binary mask of 1 (floodplain) and 0 (not floodplain).</p>
+</li>
+<li>
+<p>A connected components algorithm (<a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4472694">He et al. (2008)</a>) is then run to identify all patches of floodplain that are connected to a channel. Any pixels not connected to a channel are removed from the mask</p>
+</li>
+<li>
+<p>Finally, any holes in the floodplain mask are filled.  A filling radius must be specified by the user.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This method is in development, and the code will be released on our GitHub when the method has been published.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick guide if you already know what you are doing</div>
+<div class="paragraph">
+<p>Here is a quick overview of how to set up and run the code, if you have done it before:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the channel extraction method that you would like to use.</p>
+</li>
+<li>
+<p>Make sure your DEM is in <code>bil</code> format and is in the repository folder</p>
+</li>
+<li>
+<p>Create a parameter file for your DEM</p>
+</li>
+<li>
+<p>Make sure you have created a channel network for your DEM, and have the <code>_CH</code> file in your repository.</p>
+</li>
+<li>
+<p>Compile the code using <code>make -f floodplain_delineation.make</code></p>
+</li>
+<li>
+<p>Run the program with <code>./floodplain_delineation.out /path_to_data_folder/ parameter_file.driver</code></p>
+</li>
+<li>
+<p>Open the resulting <code>bil</code> files in the GIS of your choice.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_the_code_for_floodplain_extraction">14.1. Get the code for floodplain extraction</h3>
+<div class="paragraph">
+<p>The code for floodplain delineation can be found in our GitHub repository.  This repository contains code for identifying flood-prone areas using channel relief and slope thresholds.</p>
+</div>
+<div class="sect3">
+<h4 id="_clone_the_github_repository_3">14.1.1. Clone the GitHub repository</h4>
+<div class="paragraph">
+<p>First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/home/LSDTT_repositories</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /home/LSDTT_repositories/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use the command <code>pwd</code> to check you are in the right folder.  Once you are in this folder, you can clone the repository from the <a href="https://github.com">GitHub website</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/home/LSDTT_repositories/
+$ git clone https://github.com/LSDtopotools/LSDTopoTools_FloodplainDelineation.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Navigate to this folder again using the <code>cd</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd LSDTopoTools_ChannelExtraction/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatively_get_the_zipped_code_5">14.1.2. Alternatively, get the zipped code</h4>
+<div class="paragraph">
+<p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/home/LSDTT_repositories/
+$ wget https://github.com/LSDtopotools/LSDTopoTools_FloodplainDelineation/archive/master.zip
+$ gunzip master.zip</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="https://github.com">GitHub</a> zips all repositories into a file called <code>master.zip</code>,
+so if you previously downloaded a zipper repository this will overwrite it.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_the_example_datasets_3">14.1.3. Get the example datasets</h4>
+<div class="paragraph">
+<p>We have provided some example datasets which you can use in order to test the floodplain delineation algorithm. In this tutorial we will work using a LiDAR dataset from Mid Bailey Run, Ohio. You can get it from our ExampleTopoDatasets repository using <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM.bil
+$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM.hdr</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This dataset is already in the preferred format for use with LSDTopoTools (the ENVI <code>bil</code> format). The figure below shows a shaded relief map of part of the Mid Bailey Run DEM which will be used in these examples.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bailey_map.png" alt="Shaded relief map of Mid Bailey Run">
+</div>
+<div class="title">Figure 21. Shaded relief image of Mid Bailey Run catchment, Ohio USA, UTM Zone 17N</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_the_example_parameter_files_2">14.1.4. Get the example parameter files</h4>
+<div class="paragraph">
+<p>We have also provided some examples parameter files that are used to run the floodplain delineation. You can get the example floodplain driver using <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/tree/master/example_parameter_files/floodplain_bailey.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have downloaded the example files you can put them in their own separate folder. We recommend creating a subfolder in the repository folder <code>LSDTopoTools_ChannelExtraction</code>, for example <code>LSDTopoTools_ChannelExtraction/Bailey_data</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preliminary_steps_2">14.2. Preliminary steps</h3>
+<div class="sect3">
+<h4 id="_getting_the_channel_head_file">14.2.1. Getting the channel head file</h4>
+<div class="paragraph">
+<p>Before the floodplain extraction algorithm can be run, you must create a channel network for your DEM.  This can be done using the <a href="#_channel_extraction">Channel extraction</a> algorithms within LSDTopoTools.  There are several channel extraction algorithms which you can choose from: for more details please refer to the <a href="#_channel_extraction">Channel extraction</a> section.  Once you have run the channel extraction algorithm, you must make sure that the <code>csv</code> file with the channel head locations is placed in the same folder as the DEM you intend to use for floodplain identification.  You can move files to the folder using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ mv /path/to/channel/heads/file/channel_heads.csv /path/to/new/location/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, we can move the file <code>Bailey_CH.csv</code> from <code>/home/LSDTT_repositories/LSDTopoTools_ChannelExtraction</code> to our new folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ mv /home/LSDTT_repositories/LSDTopoTools_ChannelExtraction/Bailey_CH.csv /home/LSDTT_repositories/LSDTopoTools_FloodplainDelineation/Bailey_data/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_finding_the_correct_window_size">14.2.2. Finding the correct window size</h4>
+<div class="paragraph">
+<p>Before we can run the floodplain extraction algorithm, we need to calculate the correct window size for calculating slope across the DEM.  This is used to calculate the thresholds for floodplain identification.  Please refer to the <a href="#_selecting_a_window_size">Selecting A Window Size</a> section for information on how to calculate a window size for your DEM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_the_paramter_file">14.2.3. Creating the paramter file</h4>
+<div class="paragraph">
+<p>In order to run the floodplain extraction code you must first create a parameter file for your DEM.  This should be placed in the same folder as your DEM and the channel heads <code>csv</code> file.  The file should have an identifying string, followed by a space, then the information for your DEM. The paramter file should be a named with the extension <code>.driver</code> with the following structure:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 32. Structure of the parameter file. The rows <strong>MUST</strong> be in this order.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Row number</th>
+<th class="tableblock halign-left valign-top">First Column (value goes in second column)</th>
+<th class="tableblock halign-left valign-top">Data type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEM_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of your DEM</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CN_name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the channel heads file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input_path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to where your DEM is stored</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum_Slope Minimum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum slope for filling the DEM, suggested to be 0.0001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold_SO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold stream order for identifying floodplains, suggested to be 3.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FilterTopo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Binary switch for whether to carry out filtering of the DEM.  This should be set to 1 unless you are repeating the analysis, in which case you can set it to 0 to speed up the process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radius_Surface_Fitting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Window size for calculating the slope in metres.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radius_Floodplain_Filling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Window radius for filling holes in the floodplain mask (post-processing step). Suggested to be 50 pixels for 1m data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ThresholdCondition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Percentage at which to select threshold from quantile-quantile plots. Should be set to 0.005.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LowerPercentile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower percentile for fitting normal distribution to quantile-quantile plot. Should be set to 25.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UpperPercentile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper percentile for fitting normal distribution to quantile-quantile plot. Should be set to 75.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example parameter file for the Mid Bailey Run catchment is set out below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">DEM_ID Bailey_DEM
+CN_name Bailey_DEM_CH_wiener
+input_path /home/LSDTT_repositories/LSDTopoTools_FloodplainDelineation/Bailey_data
+Minimum_Slope 0.0001
+Threshold_SO 3
+FilterTopo 1
+Radius_Surface_Fitting 6
+Radius_Floodplain_Filling 50
+ThresholdCondition 0.005
+LowerPercentile 25
+UpperPercentile 75</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_code_3">14.3. Running the code</h3>
+<div class="sect3">
+<h4 id="_compiling">14.3.1. Compiling</h4>
+<div class="paragraph">
+<p>Before the code can be run, you must compile it using the makefile in the folder <code>LSDTopoTools_FloodplainDelineation/driver_functions</code>.  Navigate to the folder using the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd driver_functions/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and compile the code with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f floodplain_delineation.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may come up with some warnings, but should create the file <code>floodplain_delineation.out</code>. You can then run the program with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./floodplain_delineation.out /path/to/DEM/location/ name_of_parameter_file.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For our example, the command would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./floodplain_delineation.out /home/LSDTT_repositories/LSDTopoTools_FloodplainDelineation/Bailey_data/ floodplain_bailey.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The program should take between 10 - 40 minutes to run, depending on the size of your DEM and your processing power.  Once it is completed, you will have a number of <code>bil</code> files which you can open in a GIS of your choice.  These files will include:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>DEM_name_filtered.bil and .hdr</strong>: The original DEM after Perona-Malik filtering</p>
+</li>
+<li>
+<p><strong>DEM_name_channel_relief.bil and .hdr</strong>: A raster showing the relief of each pixel relative to the nearest channel</p>
+</li>
+<li>
+<p><strong>DEM_name_slope.bil and .hdr</strong>: local slope for each pixel</p>
+</li>
+<li>
+<p><strong>DEM_name_qq_relief.txt</strong>: A text file with data for creating quantile-quantile plots for channel relief</p>
+</li>
+<li>
+<p><strong>DEM_name_qq_slope.txt</strong>: A text file with data for creating quantile-quantile plots for slope</p>
+</li>
+<li>
+<p><strong>DEM_name_CC_filt.bil and .hdr</strong>: A raster file with the floodplain patches before additional processing</p>
+</li>
+<li>
+<p><strong>DEM_name_FP.bil and .hdr</strong>: A raster file with the floodplain after processing (removal of patches not connected to the channel, and with holes in the mask filled in)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example of the floodplain extracted from the Mid Bailey Run catchment is shown below. You should be able to get a raster similar to this by opening the file <code>DEM_name_FP.bil</code> in a GIS of your choice.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Bailey_FP.png" alt="Mid Bailey Run floodplain">
+</div>
+<div class="title">Figure 22. Floodplain extracted for Mid Bailey Run, Ohio. The coordinate system is UTM Zone 17N.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hydrological_and_erosion_modelling">15. Hydrological and Erosion Modelling</h2>
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -11693,7 +12104,7 @@ make</code></pre>
 <p>The model is also developed to run on parallel computing architectures (Multi-core/cluster computers).</p>
 </div>
 <div class="sect2">
-<h3 id="_origins_relation_to_caesar_lisflood">14.1. Origins: relation to CAESAR-Lisflood</h3>
+<h3 id="_origins_relation_to_caesar_lisflood">15.1. Origins: relation to CAESAR-Lisflood</h3>
 <div class="paragraph">
 <p>The model is essentially a stripped down translation of the CAESAR-Lisflood model, but without the GUI, and it runs on Linux unlike CAESAR-Lisflood, which is Windows only. If you are happy to run on Windows, and would prefer to use a model in GUI-mode then CAESAR-Lisflood is a good choice for this. This branch of the model is designed to be faster and cross platform, scales up to running on a supercomputer if the resources are available to you. One of the drawbacks to the original model is that you need a dedicated Windows box to do your simulations, you can&#8217;t send them off to a cluster computer-type facility, which typically run unix. (Unless you have a bunch of spare Windows PCs&#8230;&#8203;)</p>
 </div>
@@ -11702,7 +12113,7 @@ make</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation">14.2. Compilation</h3>
+<h3 id="_compilation">15.2. Compilation</h3>
 <div class="paragraph">
 <p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present. For now, you will have to select from one of the following:</p>
 </div>
@@ -11742,7 +12153,7 @@ make</code></pre>
 <p>You will get an executable called <code>CatchmentModel.out</code> or similar, depending on which makefile you used.</p>
 </div>
 <div class="sect3">
-<h4 id="_dependencies">14.2.1. Dependencies</h4>
+<h4 id="_dependencies">15.2.1. Dependencies</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -11764,7 +12175,7 @@ make</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model">14.3. Running the Model</h3>
+<h3 id="_running_the_model">15.3. Running the Model</h3>
 <div class="paragraph">
 <p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
 </div>
@@ -11799,7 +12210,7 @@ make</code></pre>
 <p>When the model runs, it will print to screen the parameters that have been read from the parameter file, for a sanity check. It will update you at certain stages of the data ingestion point. (This usually only takes a few seconds). When the model runs, a counter displays the number of elapsed minutes in model-time.</p>
 </div>
 <div class="sect3">
-<h4 id="_dem_preparation">14.3.1. DEM preparation</h4>
+<h4 id="_dem_preparation">15.3.1. DEM preparation</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -11832,7 +12243,7 @@ The model will actually route water off <strong>all</strong> edges of the catchm
 </div>
 </div>
 <div class="sect3">
-<h4 id="_model_run_time_controls">14.3.2. Model run time controls</h4>
+<h4 id="_model_run_time_controls">15.3.2. Model run time controls</h4>
 <div class="paragraph">
 <p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km (about 700000 grid cells). It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.) Number of domain grid cells is the main control on compute time.</p>
 </div>
@@ -11850,7 +12261,7 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameter_file_overview">14.3.3. Parameter File Overview</h4>
+<h4 id="_parameter_file_overview">15.3.3. Parameter File Overview</h4>
 <div class="paragraph">
 <p>In the Parameter file, you&#8217;ll notice that you can use comments by starting the line with a hash (\#) sign. Parameters themselves take the form:</p>
 </div>
@@ -11864,7 +12275,7 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 </div>
 </div>
 <div class="sect3">
-<h4 id="_input_files">14.3.4. Input files</h4>
+<h4 id="_input_files">15.3.4. Input files</h4>
 <div class="paragraph">
 <p>As a minimum, you need a <strong>DEM input</strong> file, <strong>paramter file</strong>, and <strong>rainfall data</strong> input file.</p>
 </div>
@@ -11879,9 +12290,9 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameter_guide">14.4. Parameter Guide</h3>
+<h3 id="_parameter_guide">15.4. Parameter Guide</h3>
 <div class="sect3">
-<h4 id="_file_information">14.4.1. File Information</h4>
+<h4 id="_file_information">15.4.1. File Information</h4>
 <div class="sect4">
 <h5 id="_dem_name">dem_name</h5>
 <div class="paragraph">
@@ -11914,7 +12325,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_supplementary_files">14.4.2. Supplementary Files</h4>
+<h4 id="_supplementary_files">15.4.2. Supplementary Files</h4>
 <div class="paragraph">
 <p>Supplementary files for other features of the model.</p>
 </div>
@@ -11942,7 +12353,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_numerical">14.4.3. Numerical</h4>
+<h4 id="_numerical">15.4.3. Numerical</h4>
 <div class="paragraph">
 <p>Parameters that control the numerical model time-stepping etc, and the model run time.</p>
 </div>
@@ -11978,7 +12389,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sediment">14.4.4. Sediment</h4>
+<h4 id="_sediment">15.4.4. Sediment</h4>
 <div class="sect4">
 <h5 id="_transport_law">transport_law</h5>
 <div class="paragraph">
@@ -12029,7 +12440,7 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hydrology">14.4.5. Hydrology</h4>
+<h4 id="_hydrology">15.4.5. Hydrology</h4>
 <div class="paragraph">
 <p>Parameters for the hydrological part of the model.</p>
 </div>
@@ -12140,7 +12551,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_vegetation">14.4.6. Vegetation</h4>
+<h4 id="_vegetation">15.4.6. Vegetation</h4>
 <div class="paragraph">
 <p>(Not yet tested!)</p>
 </div>
@@ -12162,7 +12573,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hillslope">14.4.7. Hillslope</h4>
+<h4 id="_hillslope">15.4.7. Hillslope</h4>
 <div class="paragraph">
 <p>The hillslope model in LSDCatchment model is very rudimentary at present. Stay tuned for more updates.</p>
 </div>
@@ -12190,7 +12601,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect3">
-<h4 id="_write_output_rasters">14.4.8. Write Output Rasters</h4>
+<h4 id="_write_output_rasters">15.4.8. Write Output Rasters</h4>
 <div class="sect4">
 <h5 id="_raster_output_interval">raster_output_interval</h5>
 <div class="paragraph">
@@ -12216,13 +12627,13 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_code_in_parallel">14.5. Running the code in Parallel</h3>
+<h3 id="_running_the_code_in_parallel">15.5. Running the code in Parallel</h3>
 <div class="paragraph">
 <p>Some notes on how the code runs in parallel.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_notes_for_hpc_use">14.6. Notes for HPC use</h3>
+<h3 id="_notes_for_hpc_use">15.6. Notes for HPC use</h3>
 <div class="paragraph">
 <p>Notes on using the code on HPC clusters.</p>
 </div>
@@ -12230,7 +12641,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect1">
-<h2 id="_landscape_evolution_modelling_with_lsdtopotools">15. Landscape Evolution Modelling with LSDTopoTools</h2>
+<h2 id="_landscape_evolution_modelling_with_lsdtopotools">16. Landscape Evolution Modelling with LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The LSD Topo Toolbox contains a landscape evolution model. The model implementation is contained in the LSDRasterModel files. The driver file is <code>model_driver.cpp</code>. The landscape model is partly based on the FastScape algorithm <a href="http://www.sciencedirect.com/science/article/pii/S0169555X12004618">(Braun 2013)</a>, an efficient method for solving the stream power law for fluvial incision, as well as the MUDDPile algorithms for hillslope evolution. It contains both hillslope and fluvial components, which can be run individually, simulating a single hillside for example, or together, to simulate whole landscape evolution. The model will run from default parameters if none are supplied, but the user can also specify their own choice of parameters for the model run, which are detailed below.</p>
@@ -12285,9 +12696,9 @@ Rigidity:		1000000</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_parameters_and_components">15.1. Model Parameters and Components</h3>
+<h3 id="_model_parameters_and_components">16.1. Model Parameters and Components</h3>
 <div class="sect3">
-<h4 id="_model_domain">15.1.1. Model Domain</h4>
+<h4 id="_model_domain">16.1.1. Model Domain</h4>
 <div class="paragraph">
 <div class="title">Run Name</div>
 <p>This is the name that will be appened to all output files generated during the model run. The model will check to see if this name has already been used before overwriting existing output files.</p>
@@ -12338,7 +12749,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fluvial_component">15.1.2. Fluvial Component</h4>
+<h4 id="_fluvial_component">16.1.2. Fluvial Component</h4>
 <div class="paragraph">
 <div class="title">Fluvial</div>
 <p>Turns the fluvial component <strong>on</strong> or <strong>off</strong>, with these respective keywords.</p>
@@ -12367,7 +12778,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hillslope_component">15.1.3. Hillslope Component</h4>
+<h4 id="_hillslope_component">16.1.3. Hillslope Component</h4>
 <div class="paragraph">
 <p>The hillslope component comes in two flavours, a linear model and a non-linear one.</p>
 </div>
@@ -12390,7 +12801,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model_2">15.2. Running the Model</h3>
+<h3 id="_running_the_model_2">16.2. Running the Model</h3>
 <div class="paragraph">
 <p>Once compiled, the model is run using:</p>
 </div>
@@ -12404,7 +12815,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_output">15.3. Model Output</h3>
+<h3 id="_model_output">16.3. Model Output</h3>
 
 </div>
 </div>
@@ -12784,7 +13195,7 @@ You can install the 2013 version using chocolatey:</p>
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 21. Cygwin setup.</div>
+<div class="title">Figure 23. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
@@ -13855,7 +14266,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. File input and output options</caption>
+<caption class="title">Table 33. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13920,7 +14331,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 34. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14024,7 +14435,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Parameters for the fill function</caption>
+<caption class="title">Table 35. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14061,7 +14472,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Parameters for hillshading</caption>
+<caption class="title">Table 36. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14101,7 +14512,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for flow info calculations</caption>
+<caption class="title">Table 37. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14131,7 +14542,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for chi calculations</caption>
+<caption class="title">Table 38. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14173,7 +14584,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 39. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14207,7 +14618,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Parameters for drainage area extraction</caption>
+<caption class="title">Table 40. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14235,7 +14646,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 41. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14275,7 +14686,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 42. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14303,7 +14714,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for chi calculations</caption>
+<caption class="title">Table 43. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14477,7 +14888,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Example basin list for scripting purposes</caption>
+<caption class="title">Table 44. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -14779,7 +15190,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-26 12:10:43 GMT Daylight Time
+Last updated 2016-08-15 15:51:11 GMT Daylight Time
 </div>
 </div>
 </body>
