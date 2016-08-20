@@ -794,21 +794,9 @@ MathJax.Hub.Config({
 <li><a href="#_outputs">15.3.1. Outputs</a></li>
 <li><a href="#_dem_preparation">15.3.2. DEM preparation</a></li>
 <li><a href="#_model_run_time_controls">15.3.3. Model run time controls</a></li>
-<li><a href="#_parameter_file_overview">15.3.4. Parameter File Overview</a></li>
 </ul>
 </li>
-<li><a href="#_parameter_guide">15.4. Parameter Guide</a>
-<ul class="sectlevel3">
-<li><a href="#_file_information">15.4.1. File Information</a></li>
-<li><a href="#_supplementary_files">15.4.2. Supplementary Files</a></li>
-<li><a href="#_numerical">15.4.3. Numerical</a></li>
-<li><a href="#_sediment">15.4.4. Sediment</a></li>
-<li><a href="#_hydrology">15.4.5. Hydrology</a></li>
-<li><a href="#_vegetation">15.4.6. Vegetation</a></li>
-<li><a href="#_hillslope">15.4.7. Hillslope</a></li>
-<li><a href="#_write_output_rasters">15.4.8. Write Output Rasters</a></li>
-</ul>
-</li>
+<li><a href="#_parameter_file">15.4. Parameter File</a></li>
 <li><a href="#_running_the_code_in_parallel">15.5. Running the code in Parallel</a></li>
 <li><a href="#_notes_for_hpc_use">15.6. Notes for HPC use</a></li>
 </ul>
@@ -12115,6 +12103,42 @@ UpperPercentile 75</code></pre>
 <div class="paragraph">
 <p>The model is also developed to run on parallel computing architectures (Multi-core/cluster computers).</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick guide if you know roughly what you are doing</div>
+<div class="paragraph">
+<p>Overview of running CatchmentModel if you have used it before:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prepare your DEM so it has an outlet point touching the side of the DEM bounds. (You may need to rotate it or draw on a channel outlet)</p>
+</li>
+<li>
+<p>Make sure the DEM is in ascii (.asc) format.</p>
+</li>
+<li>
+<p>Prepare a rainfall input file (A list of rain rates per time step, e.g. hourly rainfall). Just a plain text file will do.</p>
+</li>
+<li>
+<p>Put all your input files and the paramter file in the same folder. Make sure you specify this path in the parameter file as well.</p>
+</li>
+<li>
+<p>If not already done so, compile the code with the makefile: <code>make -f CatchmentModel_GCC_Optimised.make</code></p>
+</li>
+<li>
+<p>Double check that all your parameters are set correctly in the parameter file.</p>
+</li>
+<li>
+<p>Run the program with <code>./CatchmentModel_GCC_Optimised.out /path_to_data/ parameter_file.params</code></p>
+</li>
+<li>
+<p>View the timeseries data and output rasters with a scripting language or GIS of your choice.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_origins_relation_to_caesar_lisflood">15.1. Origins: relation to CAESAR-Lisflood</h3>
 <div class="paragraph">
@@ -12283,181 +12307,205 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameter_file_overview">15.3.4. Parameter File Overview</h4>
 <div class="paragraph">
-<p>In the Parameter file, you&#8217;ll notice that you can use comments by starting the line with a hash (\#) sign. Parameters themselves take the form:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">parameter_name:     VALUE</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Make sure not to change the parameter_name, otherwise the parser will not recognise the name and not load the value. Instead you will get the default value in the header file. <strong>(Yes, I know this is not the best way of ingesting a parameter file, and leaves a lot of chance to human error - I will come up with a better way soon&#8230;&#8203;)</strong></p>
+<p>Note that some of the parameters in the paramter file will have an effect on model run time. For example: <strong>in_out_difference</strong>, <strong>courant_number</strong>, and many of the minimum threshold values for flow and erosion can all be tweaked to get model speed up in some way. See the parameter file guide for advice.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameter_guide">15.4. Parameter Guide</h3>
-<div class="sect3">
-<h4 id="_file_information">15.4.1. File Information</h4>
-<div class="sect4">
-<h5 id="_dem_name">dem_name</h5>
+<h3 id="_parameter_file">15.4. Parameter File</h3>
 <div class="paragraph">
-<p>The base name of your dem input file.</p>
+<p>The parameter file is read by the CatchmentModel program when it starts, setting the variables for various components of the model, as well as the names of the DEM files and supplementary input files needed for the model simulation. It is a plain text file and can be called anything you like. By convention, the example parameter file supplied with the code has the suffix <code>.params</code>, but you may use whatever you like.</p>
 </div>
-<div class="admonitionblock note">
-<table>
+<div class="paragraph">
+<p>Anything in the parameter file preceded by a <code>#</code> will be treated as a comment. You are free to comment away in the parameter file to your heart&#8217;s content.</p>
+</div>
+<div class="paragraph">
+<p>The order of the parameters in the parameter file is not strict, but we stick to the convention used in the sample file for reference here. The parameter names must not be changed, and must be lowercase.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 33. Guide to the parameter file. Row/parameters can be in any order.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM is specificed under the <code>bedrock_data_file</code> parameter.
-</td>
+<th class="tableblock halign-left valign-top">Parameter Name</th>
+<th class="tableblock halign-left valign-top">Units/Data Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_dem_read_extension">dem_read_extension</h5>
-<div class="paragraph">
-<p>The file extension of your DEMs (currently has to be same for all DEM supplementary files, and only supports <code>.asc</code> format for now, sorry!)</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_timeseries_save_interval">timeseries_save_interval</h5>
-<div class="paragraph">
-<p>The model generates a timeseries file that contains data on the total catchment water and sediment discharges. This timestep (in <strong>minutes</strong> of simulated time) determines how often the timeseries data is generated. More on this file later.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_supplementary_files">15.4.2. Supplementary Files</h4>
-<div class="paragraph">
-<p>Supplementary files for other features of the model.</p>
-</div>
-<div class="sect4">
-<h5 id="_hydroindex_file">hydroindex_file</h5>
-<div class="paragraph">
-<p>This file determines the different areas of rainfall input when using spatially variable rainfall input options.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_rainfall_data_file">rainfall_data_file</h5>
-<div class="paragraph">
-<p>This should be a text file with some rainfall values (for input into the catchment). For uniform rainfall, the file would contain a value for rainfall in mm/time step on each line. Typically mm/hr is used, but any time step can be set. Make sure to set the <code>rain_data_time_step</code> paramter below as well!</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_grain_data_file">grain_data_file</h5>
-<div class="paragraph">
-<p>(not yet implemented - it would be used to set the starting distribution of grainsizes)</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_bedrock_data_file">bedrock_data_file</h5>
-
-</div>
-</div>
-<div class="sect3">
-<h4 id="_numerical">15.4.3. Numerical</h4>
-<div class="paragraph">
-<p>Parameters that control the numerical model time-stepping etc, and the model run time.</p>
-</div>
-<div class="sect4">
-<h5 id="_min_time_step">min_time_step</h5>
-<div class="paragraph">
-<p>Leave at 0.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_max_time_step">max_time_step</h5>
-<div class="paragraph">
-<p>Probably leave at 3600 (seconds), i.e. one hour. You could potentially get model speed up if your increased it, and your rainfall data was at larger intervals than hourly.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_run_time_start">run_time_start</h5>
-<div class="paragraph">
-<p>Leave 0 for now, would be used for restarting runs.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_max_run_duration">max_run_duration</h5>
-<div class="paragraph">
-<p>This is the length of the simulation in hours, MINUS 1. I.e. If you are doing a 48hour simulation, this number should be 47&#8230;&#8203;This is because C-programmers start counting at zero. <strong>(Yes, I know this is daft, and I will get round to fixing it at some point)</strong></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_memory_limit">memory_limit</h5>
-<div class="paragraph">
-<p>(ignore this)</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_sediment">15.4.4. Sediment</h4>
-<div class="sect4">
-<h5 id="_transport_law">transport_law</h5>
-<div class="paragraph">
-<p>Type either <strong>einstein</strong> or <strong>wilcock</strong> to select your favourite sediment transport law.</p>
-</div>
-<div class="paragraph">
-<p><em>Einstein, H. A. (1950). The bed-load function for sediment transportation in open channel flows (No. 1026). US Department of Agriculture.</em></p>
-</div>
-<div class="paragraph">
-<p><em>Wilcock, P. R., &amp; Crowe, J. C. (2003). Surface-based transport model for mixed-size sediment. Journal of Hydraulic Engineering, 129(2), 120-128.</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_max_tau_velocity">max_tau_velocity</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_active_layer_thickness">active_layer_thickness</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_recirculate_proportion">recirculate_proportion</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_lateral_erosion_on">lateral_erosion_on</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_lateral_ero_rate">lateral_ero_rate</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_edge_filter_passes">edge_filter_passes</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_cells_shift_lat">cells_shift_lat</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_max_diff_cross_chan">max_diff_cross_chan</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_erode_limit">erode_limit</h5>
-
-</div>
-</div>
-<div class="sect3">
-<h4 id="_hydrology">15.4.5. Hydrology</h4>
-<div class="paragraph">
-<p>Parameters for the hydrological part of the model.</p>
-</div>
-<div class="sect4">
-<h5 id="_topmodel_m_value">TOPMODEL_m_value</h5>
-<div class="paragraph">
-<p>As well as the water routing sub-model, LSDCatchmentModel also calculates the discharge based on Beven&#8217;s TOPMODEL (i.e. discharge approximation based on drainage area and topography. The model contains the infamous <strong>m</strong> parameter, which varies depending on environment. You should consult the literature for appropriate values. Unless you aren&#8217;t bothered about the TOPMODEL output, in which case leave it at 0.01.</p>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>read_fname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of your DEM that will act as the terrain surface in the model. Do not give the extension here.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dem_read_extension</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The extension of the input DEM. Only ASCII (asc) is currently supported, we are working on supporting other input formats soon.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dem_write_extension</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The format to save output rasters in. Supported choices are: 'asc' or 'flt' (binary). 'bil' also works but no georeferencing is supported yet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>read_path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path where your input files can be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>write_path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path where your output files will be written</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>write_fname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A name for the output timeseries file. You can supply your own extension, but it will always be a plain text file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeseries_save_interval</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">model minutes/integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Will record a timeseries record (new row) every X minutes in model time. The timeseries output contains the discharge of water and sediment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><code>SUPPLEMENTARY INPUT</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hydroindex_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hydroindex file name (with extension). Only ascii (asc) currently supported.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rainfall_data_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The rainfall data file name (with extension). Must be a plain text file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grain_data_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of your grain data input file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bedrock_data_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the bedrock DEM. If specified, this DEM (ascii only) will be loaded as a solid bedrock layer beneath your top-layer terrain DEM. It&#8217;s up to the use to make sure the elevations are lower than the top layer!</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><code>NUMERICAL</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>min_time_step</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">model seconds, integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum timestep used in the model</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_time_step</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">model seconds, integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum timestep used by model. Should not really be higher than your rainfall data interval, otherwise you will skip input data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_run_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">model hours, integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Length of your simulation, minus 1. (So for a 72 hour simulation, enter '71' here.) This is a weird quirk that will be fixed in a later release.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory_limit</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore, leave at 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><code>SEDIMENT</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transport_law</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Can either be <strong>wilcock</strong> or <strong>einstein</strong>. Determines which sediment transport law is used by the model.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_tau_velocity</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">meters/second</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limits the maximum velocity used to calculate sediment transport. The default is 5. It is rarely invoked except in very steep slopes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>active_layer_thickness</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metres</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This controls the thickness of layer representing the surface, bedload or subsurface. It should be around 0.1 to 0.2. It must be at least 4 times the <strong>erode_limit</strong> parameter. (See below)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chann_lateral_erosion</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>In channel lateral erosion rate. Prevents overdeepening feedback. <a href="http://www.showme.com/sh/?i=24567">See explanation here</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>erode_limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metres</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum erosion limit per cell (or deposition). Prevents numerical instabilities by transferring too much between cell to cell. Should be around 0.01 for 10m or less DEMs, slightly higher for coarse DEMs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>suspended_sediment_on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean (yes/no)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Turns on suspended sediment for the first fraction only at present.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>read_in_graindata_from_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean (yes/no)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reads in the initial grain size data from a file. Normally the initial distribution of grainsizes is uniform across the landscape if this is not specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><code>LATERAL EROSION OPTIONS</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lateral_erosion_on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean (yes/no)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Turns on lateral erosion in channels (UNTESTED)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lateral_erosion_const</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See Coulthard and Van de Wiel (2007) for details. This parameter sets the lateral erosion rates, and ought to be calibrated to a field site. Values can ramge from 0.01-0.001 for braided rivers; 0.0001 for meandering channels. This value is grid cell size independent.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edge_smoothing_passes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how well smoothed the curvature of the channels will be. Should be set as the frequency of meanders/distance between two meanders in grid cell size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>downstream_cell_shift</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The gradient used to determine lateral erosion rates can be shifted downstream, allowing meander bars and bends to migrate down channel. Suggested values are around 10% of the <strong>edge_smoothing_passes</strong> parameter. So around 1-5.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lateral_cross_chan_smoothing</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum difference allowed in the the cross channel smoothing of edge values. After calculating the radius of curvature for the outside of a meander bend, the model must interpolate this value to determine how much sediment can be moved laterally. Smaller values result in better cross channel gradients, but take up more CPU time. Typical default value is 0.0001. If your channels are well resolved by DEM resolution, you may need to reduce by an order of magnitude.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><code>HYDROLOGY</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hydro_model_only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean (yes/no)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runs the model as a hydrological/flood inundation model only if set to yes. Will turn off all the erosion routines and terrain will be fixed. Speeds up run times considerably.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>topmodel_m_value</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>As well as the water routing sub-model, LSDCatchmentModel also calculates the discharge based on Beven&#8217;s TOPMODEL (i.e. discharge approximation based on drainage area and topography. The model contains the infamous <strong>m</strong> parameter, which varies depending on environment. You should consult the literature for appropriate values.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -12466,175 +12514,64 @@ This is the topmost 'surface' in the model, i.e. the sediment layer. Bedrock DEM
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For catchment mode this is an important variable as it controls the peak and duration of the hydrograph generated by a rain event. It is the same as the 'm' value in TOPMODEL, that CAESAR-lisfloods hydrological model is based on. Typical values for m are from 0.02 (low - meaning low flood peaks and long duration hydrographs) to 0.005 (higher, flashier peaks) and examples of values used can be found in the CAESAR and TOPMODEL literature.
+For catchment mode this is an important variable as it controls the peak and duration of the hydrograph generated by a rain event. It is the  same as the 'm' value in TOPMODEL, that CAESAR-lisflood&#8217;s hydrological model is based on. Typical values for m are from 0.02 (low - meaning low flood peaks and long duration hydrographs) to 0.005 (higher, flashier peaks) and examples of values used can be found in the CAESAR and TOPMODEL literature.
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_rainfall_data_on">rainfall_data_on</h5>
-<div class="paragraph">
-<p>Leave set to 'yes' for now.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_rain_data_time_step">rain_data_time_step</h5>
-<div class="paragraph">
-<p>The time step in minutes. This must match the rainfall input data file timestep!</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_spatial_var_rain">spatial_var_rain</h5>
-<div class="paragraph">
-<p>No for uniform rainfall input, yes to use the spatially variable option.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_in_out_difference">in_out_difference</h5>
-<div class="paragraph">
-<p>Speeds up the model running, during periods of approximate steady state (in terms of water in vs water out of the outlet point). Set to zero to disallow this feature. Otherwise, give the maximum allowed difference in cumecs.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_min_q_for_depth_calc">min_Q_for_depth_calc</h5>
-<div class="paragraph">
-<p>This is a threshold above which the model will calculate a flow depth. If this is not set, then it wastes time calculating flow depths of fractions of a mm which will not cause any erosion or deposition. This variable dependent upon grid cell size, and as a guide set this parameter to 0.1 per meter cell size For example a DEM with 10m cell size will have a Min Q of 0.1, and a DTM with 50m cell size will have a Min Q of 0.5.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_max_q_for_depth_calc">max_Q_for_depth_calc</h5>
-<div class="paragraph">
-<p>This can be important for the hydrological model - which will add water for every cell greater than Min Q - but less than the limit set here. In other words, reducing this value will force water to be added more in the headwaters rather than progressively down through the catchment.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_water_depth_erosion_threshold">water_depth_erosion_threshold</h5>
-<div class="paragraph">
-<p>The model will only calculate erosion above water depths of this value in <strong>metres</strong>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_slope_on_edge_cell">slope_on_edge_cell</h5>
-<div class="paragraph">
-<p>The slope for the exit cells on the edges of the model domain. Lisflood-FP requires a slope for these cells in order to calculate a water depth and thus flow out from the model. This is actually quite important in controlling the erosion and deposition that occurs along the far right hand side of the DEM. Set too low and you will get deposition, too high and scour heading back upstream. To set this value, calculate the mean valley floor (near channel) slope for the channel near where it exits.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_evaporation_rate">evaporation_rate</h5>
-<div class="paragraph">
-<p>(ignore for now)</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_courant_number">courant_number</h5>
-<div class="paragraph">
-<p>Courant number' is a value that controls the numerical stability and speed of operation of the flow model. More details can be found in Bates et al (2009). It should only range between 0.2 and 0.7. Higher values increase the model time step but are more unstable. Stability and thus values also depends upon the grid cell size. Larger cells (e.g. 20m, 50m+) can take values of 0.7, smaller cells (e.g. 2m) may need the smallest value (0.2). Stability is also linked to the erodelimit value (sediment tab) which controls the amount of sediment that can be eroded or deposited from a cell. Reccomended values are 0.5 for 50m dem, 0.2 for 10m or less.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_froude_num_limit">froude_num_limit</h5>
-<div class="paragraph">
-<p>If too much flow is allowed between cells per time step, then this can lead to checkerboarding effects - which can also be controlled by lowering the Courant number above. In addition the model can be set to prevent flows exceeding a froude number (specified in this box) passing between cells. The default value is 0.8 resulting in sub-critical flow - it can be set higher if you like and in many circumstances works fine at 1. You may want to use lower values (e.g the default or possibly even lower) if working with deep flows (including lakes) at fine grid cell resolutions.</p>
-</div>
-<div class="paragraph">
-<p>Of course restricting the flow according to froude number has the knock on effect of reducing the speed of a flood wave moving through a reach - can also cause raised water depths and can reduce erosion rates.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_mannings_n">mannings_n</h5>
-<div class="paragraph">
-<p>The Roughness co-efficient used by the water flow model. Look up suitable values here: <a href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm" class="bare">http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm</a></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_hflow_threshold">hflow_threshold</h5>
-<div class="paragraph">
-<p>This is a parameter in the Lisflood FP flow model. It relates directly to the hflow parameter in papers describing the Lisflood FP model. hflow is the water surface elevation between two cells. A threshold (this value) is usually used to prevent the flow model from trying to move water when there are very small gradients between cells. A good default value is 0.00001 (the units are in m).</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_num_unique_rain_cells">num_unique_rain_cells</h5>
-<div class="paragraph">
-<p>For spatially variable rainfall mode. The number of different areas of rainfall you are using.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_vegetation">15.4.6. Vegetation</h4>
-<div class="paragraph">
-<p>(Not yet tested!)</p>
-</div>
-<div class="sect4">
-<h5 id="_vegetation_on">vegetation_on</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_grass_grow_rate">grass_grow_rate</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_vegetation_crit_shear">vegetation_crit_shear</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_veg_erosion_prop">veg_erosion_prop</h5>
-
-</div>
-</div>
-<div class="sect3">
-<h4 id="_hillslope">15.4.7. Hillslope</h4>
-<div class="paragraph">
-<p>The hillslope model in LSDCatchment model is very rudimentary at present. Stay tuned for more updates.</p>
-</div>
-<div class="sect4">
-<h5 id="_creep_rate">creep_rate</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_slope_failure_thresh">slope_failure_thresh</h5>
-<div class="paragraph">
-<p>Landsliding is also very rudimentary. Slopes at this given angle in degrees will fail.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_soil_erosion_rate">soil_erosion_rate</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_soil_j_mean_depends">soil_j_mean_depends</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_call_muddpile_model">call_muddpile_model</h5>
-
-</div>
-</div>
-<div class="sect3">
-<h4 id="_write_output_rasters">15.4.8. Write Output Rasters</h4>
-<div class="sect4">
-<h5 id="_raster_output_interval">raster_output_interval</h5>
-<div class="paragraph">
-<p>In minutes of simulated time</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_write_waterdepth_file">write_waterdepth_file</h5>
-<div class="paragraph">
-<p>Writes the current water depths (in metres). NoData is written where the water depth is zero, allowing you to overlay this raster onto a hillshade or similar.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_waterdepth_outfile_name">waterdepth_outfile_name</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_write_elev_file">write_elev_file</h5>
-<div class="paragraph">
-<p>Writes the current elevation of the terrain</p>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in_out_difference</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cumecs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If greater than 0, allows the model to run faster in periods of hydrological steady state. If the difference between water entering the catchment and water leaving the catchment is equal to or less than this value, the model will increase the time step. The time step will then be determined by erosional and depositional processes, which are typically much slower acting. Can be set to a low mean annual flow value for the river.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>min_q_for_depth_calc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cumecs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold for calculating flow depths. The model will not calculate flow depths when the discharge at a cell is below this value, avoiding CPU time spent calculating incredibly small flow amounts. Should be set to approximately 10% of grid cell size. e.g 0.5 for a 50m DEM.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_q_for_depth_calc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cumecs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An upper discharge threshold that will prevent water being added above the given discharge threshold. Typically 1000.0, but lowering the value will shift the balance of water being added to the headwaters, rather than lower down through the catchment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>water_depth_erosion_threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metres</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If water depths are below this threshold, the model will not calculate erosion for that cell in that timestep. Used to prevent CPU time being spent on incredibly small amounts of erosion calculations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slope_on_edge_cell</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The slope used to calculate water flow on the edge of the DEM (since there is no neighbouring cell to calculate the downstream gradient. You should set this to approximately the same as the average channel gradient near the outlet of your river.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>evaporation_rate</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Untested/unimplemented yet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>courant_number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controls the numerical stability and execution speed of the flow model. See Bates et al (2009). Typical values should be between 0.3 and 0.7. Higher values will speed up the model, but are more unstable. Parameter is dependent on grid cell size. DEMs of 20-50m resolution can use values of 0.7, finer DEMs (e.g. &lt;2m) will need the lowest value of 0.3, but do not set it lower than 0.3.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>froude_num_limit</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restricts flow between cells per time step, as too much can lead to checkerboarding effects. If this happens the froude number can be lowered. The default value of 0.8 results in subcritical flow - flow dominated by gravitational forces and behving in a slow or stable way. A value of 1 results in critical flow, which may be ok for shallow flows at coarse grid cell resolutions. Note that reducing flow with the Froude number will reduce the speed of a flood wave moving downstream.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mannings_n</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A roughness coefficient used by the flow model. <a href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm">Values can be looked-up here.</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hflow_threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metres</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This threshold prevents water being routed between adjacent cells when the gradient is incredibly small. A good default value is 0.00001.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_running_the_code_in_parallel">15.5. Running the code in Parallel</h3>
@@ -14285,7 +14222,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. File input and output options</caption>
+<caption class="title">Table 34. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14350,7 +14287,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 35. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14454,7 +14391,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Parameters for the fill function</caption>
+<caption class="title">Table 36. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14491,7 +14428,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for hillshading</caption>
+<caption class="title">Table 37. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14531,7 +14468,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for flow info calculations</caption>
+<caption class="title">Table 38. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14561,7 +14498,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for chi calculations</caption>
+<caption class="title">Table 39. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14603,7 +14540,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 40. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14637,7 +14574,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for drainage area extraction</caption>
+<caption class="title">Table 41. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14665,7 +14602,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 42. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14705,7 +14642,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 43. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14733,7 +14670,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Parameters for chi calculations</caption>
+<caption class="title">Table 44. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14907,7 +14844,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 44. Example basin list for scripting purposes</caption>
+<caption class="title">Table 45. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
