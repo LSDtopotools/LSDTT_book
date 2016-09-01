@@ -3559,7 +3559,7 @@ We are now ready to actually move on to using the code!</p>
 This is fine as long as you know what you are doing!</p>
 </div>
 <div class="paragraph">
-<p>If you followed the instrcutions here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>,
+<p>If you followed the instructions here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>,
 then you will have all of the necessary software installed apart from python.</p>
 </div>
 <div class="paragraph">
@@ -3849,7 +3849,7 @@ However, after all of those warnings you should be able to type <code>ls</code> 
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Congratualtions!</strong> You have compiled your first LSDTopoTools program. You are now ready to do some analysis.</p>
+<p><strong>Congratulations!</strong> You have compiled your first LSDTopoTools program. You are now ready to do some analysis.</p>
 </div>
 </div>
 </div>
@@ -4049,7 +4049,7 @@ This feature is what makes <a href="https://www.vagrantup.com/">Vagrant</a> so a
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Okay, lets get started modifying this file. Open it in your text editor. It will look a little bit like this::</p>
+<p>Okay, let&#8217;s get started modifying this file. Open it in your text editor. It will look a little bit like this::</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
@@ -4355,10 +4355,10 @@ If you don&#8217;t know what these are go to the previous chapters.</p>
 <p>You need to get and compile the source code; see here: <a href="#get-and-compile-source">[get-and-compile-source]</a>.</p>
 </li>
 <li>
-<p>You should make a folder for your data; see here: <a href="#make-folder">[make-folder]</a>.</p>
+<p>If you have not used our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, you should make a folder for your data; see here: <a href="#make-folder">[make-folder]</a>.</p>
 </li>
 <li>
-<p>If you don&#8217;t have data, get the example data; see here: <a href="#get-example-data">[get-example-data]</a>.</p>
+<p>If you don&#8217;t have data, get the example data; see here: <a href="#get-example-data">[get-example-data]</a>. These data are downlaoded automatically by our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.</p>
 </li>
 <li>
 <p>Move the parameter file to the data folder; see here: <a href="#param-to-data-folder">[param-to-data-folder]</a>.</p>
@@ -4378,7 +4378,7 @@ using the <code>cp</code> command:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the extension to the parameter file (in this case <code>.LSDTT_driver</code>) doesn&#8217;t matter. You could
+the extension to the parameter file (in this case <code>.LSDTT_driver</code>) <strong>doesn&#8217;t matter</strong>. You could
 call the file <code>Wacky.Monkey_Gumballs</code> if you wanted.
 It is the <em>format</em> of this file that is important, not the filename.
 </td>
@@ -4387,7 +4387,9 @@ It is the <em>format</em> of this file that is important, not the filename.
 </div>
 </li>
 <li>
-<p>Open two terminal windows (Instructions here: <a href="#_the_terminal_and_powershells">The terminal and powershells</a>).</p>
+<p>Open two terminal windows (Instructions here: <a href="#_the_terminal_and_powershells">The terminal and powershells</a>).
+If you are using the Vagrant version of our software this means having two connections to the ubuntu server. For example, in windows you would run <code>vagrant up</code> once, and then connect to the client using <code>putty.exe</code> twice. In other operating sytems just use the local ssh utilities (<a href="https://mediatemple.net/community/products/dv/204405144/using-ssh-in-terminal.app-(mac-os-x)">OS X</a>, <a href="https://support.suso.com/supki/SSH_Tutorial_for_Linux">linux</a>) to connect to the vagrant box twice. The vagrant box, which runs Ubuntu, is almost always on <code>host 127.0.0.1</code> and <code>port 2222</code>.
+See the section on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> for details.</p>
 </li>
 </ol>
 </div>
@@ -4402,8 +4404,7 @@ It is the <em>format</em> of this file that is important, not the filename.
 somewhere else. You will now need to modify this file.</p>
 </li>
 <li>
-<p>Open the file in your favorite text editor. If this is from a previous analysis, you might see
-something a bit like this:</p>
+<p>Open the file in your favorite text editor. There are lots of good ones but <a href="http://brackets.io/">Brackets</a> gives a consistent environment acrtoss operating systems and is free. <a href="https://atom.io/">Atom</a> is also nice. The parameter file that gets downloaded with the <code>AnalysisDriver</code> package looks like this:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
@@ -4412,7 +4413,7 @@ something a bit like this:</p>
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: /home/smudd/topographic_tools/topographic_data/NextMap/Scotland
+read path: /home/smudd/SMMDataStore/Topographic_Data/NextMap_old/Scotland
 read fname: WhiteadderDEM
 
 # Parameters for various topographic analysis
@@ -4422,44 +4423,60 @@ min_slope_for_fill: 0.0001
 # The different analyses to be run
 write fill: true
 write hillshade: true
-# write channel_net: true</code></pre>
+write channel_net: true</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>If a line has a <code>#</code> symbol, that line is a comment and the program <code>LSDTT_analysis_from_paramfile.out</code>
-will ignore it.</p>
+<p>If a line has a <code><mark></code> symbol, that line is a comment and the program <code>LSDTT_analysis_from_paramfile.out</code>
+will ignore it. For example in the above file the if you changes the last line to: <code></mark> write channel_net: true</code>, then that line will be ignored and the <code>write channel_net</code> parameter will be set to the default, which happens to be <code>false</code>.</p>
 </li>
 <li>
-<p>First, we need to deal with the file format and location.
+<p>I tend to move the parameter files with the data. Because vagrant syncs your file systems between your client and host machines, you can move the file in your host operating system (that is, your normal computer) and your client computer (that is, the Linux virtual machine that is running inside your) host machine and the changes will take affect in both systems. In our vagrant setup, you can move the example file into the folder <code>LSDTopoTools/Topographic_projects/Test_data</code>, which is where our test datasets are located.</p>
+</li>
+<li>
+<p>We then need to deal with the file format and location.
 The file information in this case is:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># File information
 dem read extension: bil
 dem write extension: bil
-read path: /home/smudd/topographic_tools/topographic_data/NextMap/Scotland
+read path: /home/smudd/SMMDataStore/Topographic_Data/NextMap_old/Scotland
 read fname: WhiteadderDEM</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will work for me, but you will have to change this line:</p>
+<p>To change this so it works with the test data you need:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /home/smudd/topographic_tools/topographic_data/NextMap/Scotland</code></pre>
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: LSDTopoTools/Topographic_projects/Test_data
+read fname: WA</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>to your path:</p>
+<p>and you should change the write fname by adding the line:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /home/s01429521/my/sensible/path/Scotland/</code></pre>
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">write fname: WA</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you do not designate the <code>write fname</code> then the names of your output files will mirror the name of your parameter file.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>To figure out what the path is you can type <code>pwd</code> in the terminal window when you are in your data folder.</p>
+<p>If you are not using our vagrant system, you can figure out what the path is by typing <code>pwd</code> in the terminal window when you are in your data folder.</p>
 </div>
 <div class="paragraph">
 <p>If you are not using the example data, you will need to change the read fname to the name of your data.
@@ -4468,7 +4485,7 @@ the read fname will be <code>Sierra</code>.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Some notes abot parameter files</div>
+<div class="title">Some notes about parameter files</div>
 <div class="ulist">
 <ul>
 <li>
@@ -4494,13 +4511,13 @@ So be careful when editing these files!!</p>
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for various topographic analysis
 min_slope_for_fill: 0.0001
-# pixel_threshold_for_channel_net: 200</code></pre>
+pixel_threshold_for_channel_net: 200</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first and third lines above are comments, and are ignored by the program.
+<p>The first line above are comments, and are ignored by the program.
 We don&#8217;t actually need the <code>min_slope_for_fill</code> parameter for this run,
-but if you leave that it it won&#8217;t affect the program.</p>
+but if you leave that it it won&#8217;t affect the program. The <code>pixel_threshold_for_channel_net</code> is for channel extraction. It won&#8217;t do anything in this example, since we are not doing channel extraction.</p>
 </div>
 </li>
 <li>
@@ -4518,7 +4535,7 @@ For coarser data, you probably want to smooth over at least 1 pixel radius, so i
 The data resolution is 5 metres, but we are going to use a polyfit radius of 15.1 metres to make sure we get three pixels on each side of the centre pixel.</p>
 </div>
 <div class="paragraph">
-<p>The keyword is <code>polyfit_window_radius</code>, so in your parameter file you should have these lines:</p>
+<p>The keyword is <code>polyfit_window_radius</code>, so in your parameter file you should have these lines (I tured the <code>pixel_threshold_for_channel_net</code> into a comment since it doens&#8217;t do anything:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4568,8 +4585,9 @@ we will now move on to performing the analyses. It should look like this:</p>
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: /home/smudd/topographic_tools/topographic_data/NextMap/Scotland
-read fname: WhiteadderDEM
+read path: LSDTopoTools/Topographic_projects/Test_data
+read fname: WA
+write fname: Whiteadder
 
 # Parameters for various topographic analysis
 min_slope_for_fill: 0.0001
@@ -4599,7 +4617,7 @@ Some details about running this program are in the first tutorial (<a href="#Fir
 <p>I renamed my parameter file `Whiteadder_Surf.LSDTT_driver, so to run the code you need to type the following into the command line::</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /home/smudd/topographic_tools/topographic_data/NextMap/Scotland Whiteadder_Surf.LSDTT_driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out LSDTopoTools/Topographic_projects/Test_data Whiteadder_Surf.LSDTT_driver</code></pre>
 </div>
 </div>
 </li>
@@ -4611,26 +4629,19 @@ You should see something like:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ls
-Example.LSDTT_driver  Whiteadder_fill.bil  Whiteadder.LSDTT_driver        Whiteadder_Surf_curvature.hdr
-WhiteadderDEM.bil     Whiteadder_fill.hdr  Whiteadder_Surf_aspect.bil     Whiteadder_Surf.LSDTT_driver
-WhiteadderDEM.hdr     Whiteadder_hs.bil    Whiteadder_Surf_aspect.hdr     Whiteadder_Surf_slope.bil
-WhiteadderDEM.tif     Whiteadder_hs.hdr    Whiteadder_Surf_curvature.bil  Whiteadder_Surf_slope.hdr</code></pre>
+gabilan.bil          New_driver.LSDTT_driver  Whiteadder_aspect.bil
+gabilan.hdr          WA.bil                   Whiteadder_aspect.hdr
+Mandakini.bil        WA_fill.bil              Whiteadder_curvature.bil
+Mandakini.hdr        WA_fill.hdr              Whiteadder_curvature.hdr
+New_driver_fill.bil  WA.hdr                   Whiteadder.LSDTT_driver
+New_driver_fill.hdr  WA_hs.bil                Whiteadder_slope.bil
+New_driver_hs.bil    WA_hs.bil.aux.xml        Whiteadder_slope.hdr
+New_driver_hs.hdr    WA_hs.hdr</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Something is actually a little funny here. Why are the output files all named <code>Whiteadder_Surf&#8230;&#8203;</code>?
-The default output file names are the name of the parameter file with the extension removed.
-If you want to change the output names you can either change the name of the parameter file,
-or, alternatively, you can include the write file name in the parameter file:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">write fname: MyFileName</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Another thing to note: If you use <code>ArcMap</code> to calculate curvature, it will get the sign wrong! Ridgetops have negative curvature
+<p>One thing to note: If you use <code>ArcMap</code> to calculate curvature, it will get the sign wrong! Ridgetops have negative curvature
 and valleys have positive curvature. This is reversed in <code>ArcMap</code>. Our software gives the correct curvature.</p>
 </li>
 </ol>
@@ -7142,14 +7153,27 @@ This section covers the background to the method, and why it is useful.</p>
 </div>
 <div class="sect2">
 <h3 id="_get_the_chi_analysis_tools">11.2. Get the chi analysis tools</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you have used our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a> you already have this code in the directory
+<code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014</code> and the test data is in <code>/LSDTopoTools/Topographic_projects/Test_data</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>First navigate to the folder where you will keep your repositories.
-In this example, that folder is called <code>/home/LSDTT_repositories</code>.
+In this example, that folder is called <code>/LSDTopoTools/Git_projects</code>.
 In a terminal window, go there with the <code>cd</code> command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ cd /home/LSDTT_repositories/</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7164,8 +7188,19 @@ If you don&#8217;t have the directory, use <code>mkdir</code> to make it.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_repositories/
+/LSDTopoTools/Git_projects
 $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have used our [vagrantfiles] and vagrant, you can update the existing repository with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/LSDTopoTools/Git_projects
+$ cd LSDTopoTools_ChiMudd2014
+$ git pull origin master</code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -7176,7 +7211,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code><
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_repositories/
+/LSDTopoTools/Git_projects
 $ wget https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014/archive/master.zip
 $ gunzip master.zip</code></pre>
 </div>
@@ -7200,12 +7235,12 @@ so if you previously downloaded a zipper repository this will overwrite it.
 <h4 id="_compile_the_code_6">11.2.2. Compile the code</h4>
 <div class="paragraph">
 <p>Okay, now you should have the code. You will still be sitting in the directory
-<code>/home/LSDTT_repositories/</code>, so navigate up to the directory <code>LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>.</p>
+<code>/LSDTopoTools/Git_projects</code>, so navigate up to the directory <code>LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_repositories/
+/LSDTopoTools/Git_projects
 $ cd LSDTopoTools_ChiMudd2014
 $ cd driver_functions_MuddChi2014</code></pre>
 </div>
@@ -7218,6 +7253,18 @@ We will compile them as we go through the various different types of chi analysi
 </div>
 <div class="sect3">
 <h4 id="_get_some_example_data">11.2.3. Get some example data</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are using our <strong>vagrantfiles</strong> then the data is already in the <code>/LSDTopoTools/Topographic_projects/Test_data</code> directory, and you don&#8217;t need to download anything.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>We are going to use example data from the Mandakini River in Northern India.
 This river was the focus of a study by Rahul Devrani and others, you can find it here:
@@ -7235,11 +7282,12 @@ and navigate to the data folder:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ cd /home/LSDTT_Data/India/</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Topographic_projects/Test_data</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The SRTM data from the catchment is stored on the data repository at GitHub:
+<p>If you use vagrant, the data is already there. If you don&#8217;t, then you can grab the data from the web.
+The SRTM data from the catchment is stored on the data repository at GitHub:
 <a href="https://github.com/LSDtopotools/ExampleTopoDatasets" class="bare">https://github.com/LSDtopotools/ExampleTopoDatasets</a>.</p>
 </div>
 <div class="paragraph">
@@ -7253,15 +7301,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Mandakini.
 </div>
 </div>
 <div class="paragraph">
-<p>We are also going to use a parameter file, which can be grabbed from Github:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/example_parameter_files/Mandakini.driver</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Okay, you are now ready to move on to the examples.</p>
+<p>We are also going to use a parameter file, which comes with the cloned <code>LSDTopoTools_ChiMudd2014</code> repository. It is called <code>Example_Mudd2014.driver</code> and is loaced in the <code>driver_functions_MuddChi2014</code> directory.</p>
 </div>
 </div>
 </div>
@@ -7333,19 +7373,45 @@ The second step involves selecting a junction from which the chi analysis procee
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>This example will use the files that we downloaded in the previous section.
+<p>This example will use the files that we downloaded in the previous section (or our <strong>vagrantfile</strong> downloaded automatically).
 If you have your own files, you will need to substitites the correct file and directory names.</p>
 </li>
 <li>
-<p>Make sure the necessary files are in your directory:</p>
+<p>Make sure the necessary DEM is in your data directory:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_Data/India/
+/LSDTopoTools/Topographic_projects/Test_data
 
 $ ls
-Mandakini.driver  Mandakini.bil  Mandakini.hdr</code></pre>
+gabilan.bil          Mandakini.hdr  Mandakini.bil
+gabilan.hdr          WA.bil         WA.hdr</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>These files are downloaded automatically by our vagrantfile. If you did previous examples you will have some additional files there.</p>
+</div>
+</li>
+<li>
+<p>You should also copy over the example driver file into this directory. The example driver comes with the <code>LSDTopoTools_ChiMudd2014</code> repository: it is in the <code>driver_functions_MuddChi2014</code> directory. You can move it to your data directory in either windows or in Linux using the command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/LSDTopoTools/Topographic_projects/Test_data
+$ cp /LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014 Example_Mudd2014.driver</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The above command only works if you are in the Test_data folder. If not, you need to tell the <code>cp</code> command where to put the copied file.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -7389,13 +7455,13 @@ Here are the first 3 lines of the file:</p>
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">$ pwd
 /home/LSDTT_data/India/
 $ ls
-Mandakini.driver  Mandakini.bil  Mandakini.hdr</code></pre>
+Example_Mudd2014.driver  Mandakini.bil  Mandakini.hdr  &lt;other stuff as well&gt;</code></pre>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">$ pwd
-/home/LSDTT_repositories/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/
+/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/
 $ ls
 chi_get_profiles_driver.cpp
 chi_get_profiles.make
@@ -7406,7 +7472,8 @@ chi_step1_write_junctions.make
 chi_step2_write_channel_file_discharge.cpp
 chi_step2_write_channel_file_discharge.make
 chi_step2_write_channel_file_driver.cpp
-chi_step2_write_channel_file.make</code></pre>
+chi_step2_write_channel_file.make
+&lt;other stuff as well&gt;</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -7457,7 +7524,7 @@ Here is a typical example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi1_write_junctions.exe /home/LSDTT_data/India/ Mandakini.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi1_write_junctions.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.driver</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -7544,13 +7611,14 @@ Mandakini_CP.bil      Mandakini_HS.hdr
 Mandakini_CP.hdr      Mandakini_JI.bil
 Mandakini_JI.hdr
 Mandakini_fill.bil    Mandakini_SO.bil
-Mandakini_fill.hdr    Mandakini_SO.hdr</code></pre>
+Mandakini_fill.hdr    Mandakini_SO.hdr
+&lt;and some other stuff&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>You will then need to load these files into ArcMap and look at them.
-alternative to ArcMap is <a href="http://www.uoguelph.ca/~hydrogeo/Whitebox/">Whitebox</a> which has the advantage of being open source.
+<p>You can load these files into GIS software to look at them, such as <a href="http://desktop.arcgis.com/en/arcmap/">Arcmap</a>.
+Alternative to ArcMap is <a href="http://www.uoguelph.ca/~hydrogeo/Whitebox/">Whitebox</a> which has the advantage of being open source.
 <a href="http://www.qgis.org/en/site/">QGIS</a> is another good open source alternative to ArcMap.</p>
 </li>
 <li>
@@ -7632,7 +7700,7 @@ Here is an example file:</p>
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">Mandakini
 0.0001
 300
-51
+76
 0.01</code></pre>
 </div>
 </div>
@@ -7648,7 +7716,7 @@ You need to include the path name and the name of the chi parameter file.
 In Linux the program should be proceeded with <code>./</code>. Here is an example:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./chi2_write_channel_file.exe /home/smudd/topographic_tools/test_suites/Mandakini/ chi_parameters.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">./chi2_write_channel_file.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.driver</code></pre>
 </div>
 </div>
 </li>
@@ -7874,25 +7942,23 @@ Columns are separated by spaces so rows will have the format:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here are the first few lines of the example file (<code>Mandakini_ChanNet_51.chan</code>):</p>
+<p>Here are the first few lines of the example file (<code>Mandakini_ChanNet_76.chan</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">648
 587
 290249.625
-3352521.5
+3352521.75
 88.81413269
 -9999
-0 0 271 4864 70 322 71253.0625  4609.008789 3762552.25
-0 0 271 4999 71 322 71164.25  4609 3770440.25
-0 0 271 5140 72 322 71075.4375  4602 3778328.25
-0 0 271 5288 73 322 70986.625  4596 3786216
-0 0 271 5444 74 323 70861.02344  4591 3794104
-0 0 271 5615 75 323 70772.21094  4574 3928199.25
-0 0 271 5799 76 323 70683.39844  4571 3936087.25
-0 0 271 5992 77 324 70557.79688  4565 3975527
-0 0 271 6190 78 325 70432.19531  4564 3983414.75</code></pre>
+0 0 127 11457 100 223 73914.84375  4379 2382161
+0 0 127 11781 101 224 73789.24219  4370 2626687.5
+0 0 127 12107 102 225 73663.64062  4364.006348 2745006.75
+0 0 127 12434 103 226 73538.03906  4364 2760782.5
+0 0 127 12763 104 227 73412.4375  4334 2768670.5
+0 0 127 12764 104 228 73323.625  4302 2910653.5
+0 0 127 12765 104 229 73234.8125  4293 2989533</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7900,6 +7966,9 @@ Columns are separated by spaces so rows will have the format:</p>
 <a href="#Chi profile analysis">part 2: constraining m/n and transforming profiles</a>.
 This may have seen like quite a few steps, but once you get familiar with the workflow the
 entire process should take no more than a few minutes.</p>
+</div>
+<div class="paragraph">
+<p>The program also prints a file in csv format that can be imported into GIS software. You will need to set the coordinate system to match that of the DEM.</p>
 </div>
 </div>
 </div>
