@@ -453,10 +453,11 @@ MathJax.Hub.Config({
 <ul class="sectlevel2">
 <li><a href="#_essential_software">2.1. Essential software</a>
 <ul class="sectlevel3">
-<li><a href="#_git">2.1.1. Git</a></li>
-<li><a href="#_a_compiler_and_other_tools_associated_with_the_source_code">2.1.2. A compiler and other tools associated with the source code</a></li>
-<li><a href="#_gdal">2.1.3. GDAL</a></li>
-<li><a href="#_python">2.1.4. Python</a></li>
+<li><a href="#_a_decent_text_editor">2.1.1. A decent text editor</a></li>
+<li><a href="#_git">2.1.2. Git</a></li>
+<li><a href="#_a_compiler_and_other_tools_associated_with_the_source_code">2.1.3. A compiler and other tools associated with the source code</a></li>
+<li><a href="#_gdal">2.1.4. GDAL</a></li>
+<li><a href="#_python">2.1.5. Python</a></li>
 </ul>
 </li>
 <li><a href="#_nonessential_software">2.2. Nonessential software</a>
@@ -465,23 +466,32 @@ MathJax.Hub.Config({
 <li><a href="#_documentation_using_asciidoctor">2.2.2. Documentation using asciidoctor</a></li>
 </ul>
 </li>
-<li><a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>
+<li><a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools using VirtualBox and Vagrant</a>
 <ul class="sectlevel3">
 <li><a href="#_first_steps_starting_a_vagrant_box">2.3.1. First steps: Starting a Vagrant box</a></li>
 <li><a href="#_logging_on_to_your_vagrant_box">2.3.2. Logging on to your Vagrant box</a></li>
-<li><a href="#_your_vagrant_box_and_file_synching">2.3.3. Your Vagrant box and file synching</a></li>
-<li><a href="#_shutting_things_down">2.3.4. Shutting things down</a></li>
-<li><a href="#_brief_notes_for_setting_up_your_own_vagrant_server">2.3.5. Brief notes for setting up your own Vagrant server</a></li>
+<li><a href="#_your_vagrant_box_and_file_syncing">2.3.3. Your Vagrant box and file syncing</a></li>
+<li><a href="#_updating_to_the_latest_versions_of_the_software">2.3.4. Updating to the latest versions of the software</a></li>
+<li><a href="#_shutting_things_down">2.3.5. Shutting things down</a></li>
+<li><a href="#_if_you_want_to_start_from_scratch">2.3.6. If you want to start from scratch</a></li>
+<li><a href="#_brief_notes_for_setting_up_your_own_vagrant_server">2.3.7. Brief notes for setting up your own Vagrant server</a></li>
 </ul>
 </li>
 <li><a href="#_getting_python_running">2.4. Getting python running</a>
 <ul class="sectlevel3">
-<li><a href="#_getting_python_running_on_linux_and_this_should_also_work_for_osx">2.4.1. Getting python running on Linux (and this should also work for OSX)</a></li>
-<li><a href="#_installing_python_on_windows">2.4.2. Installing python on Windows</a></li>
-<li><a href="#_using_miniconda_to_install_the_relevant_python_packages_in_windows">2.4.3. Using Miniconda to install the relevant python packages in Windows</a></li>
+<li><a href="#_first_option_use_miniconda_works_on_all_operating_systems">2.4.1. First option: use Miniconda (works on all operating systems)</a></li>
+<li><a href="#_getting_python_running_on_linux_and_this_should_also_work_for_osx_not_using_miniconda">2.4.2. Getting python running on Linux (and this should also work for OSX) NOT using miniconda</a></li>
 </ul>
 </li>
-<li><a href="#_summary">2.5. Summary</a></li>
+<li><a href="#_setting_up_your_file_system_and_keeping_it_clean">2.5. Setting up your file system and keeping it clean</a>
+<ul class="sectlevel3">
+<li><a href="#_files_and_directories">2.5.1. Files and directories</a></li>
+<li><a href="#_directories_in_vagrant">2.5.2. Directories in Vagrant</a></li>
+<li><a href="#_difference_between_the_source_code_and_the_programs">2.5.3. Difference between the source code and the programs</a></li>
+<li><a href="#_know_where_your_data_is">2.5.4. Know where your data is</a></li>
+</ul>
+</li>
+<li><a href="#_summary">2.6. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_preparing_your_data">3. Preparing your data</a>
@@ -1035,7 +1045,7 @@ The latter stages of the book are dedicated to using our driver functions (these
 This latter part of the book focuses on research applications;
 we tend to write a series of driver functions for our publications which aim to each give some new
 geophysical, hydrological or ecological insight into the functioning of landscapes.
-Thus the latter half of the book is both long an not really structured like a textbook, and will expand as we conduct research.
+Thus the latter half of the book is both long and not really structured like a textbook, and will expand as we conduct research.
 However, for those simply interested in learning how to get the code working and to perform some "routine" analyses the initial chapters are structured more like a book.</p>
 </div>
 <div class="admonitionblock note">
@@ -1079,14 +1089,14 @@ and has some basic details about the structure of the software.</p>
 <p><strong>Appendix A</strong> gives more detail about required software to get our package running.</p>
 </div>
 <div class="paragraph">
-<p><strong>Appendix B</strong> explains how to get LSDTopoTools running on Windows.
+<p><strong>Appendix B</strong> explains how to get <strong>LSDTopoTools</strong> running on Windows.
 It contains a quite a bit of text about why you don&#8217;t really want to install our software on Windows,
 since installation is much more reliable, functional, and easy on Linux. Don&#8217;t worry if you don&#8217;t have a Linux computer!
 We will explain how to create a "virtual" Linux computer on your Windows computer.
 This description of creating a virtual Linux machine should also work for users of OS X.</p>
 </div>
 <div class="paragraph">
-<p><strong>Appendix C</strong> explains how to get LSDTopoTools running on Linux.</p>
+<p><strong>Appendix C</strong> explains how to get <strong>LSDTopoTools</strong> running on Linux.</p>
 </div>
 <div class="paragraph">
 <p><strong>Appendix D</strong> has some more details on how the code is structured. If you are obsessive you could go one step further and look at the
@@ -1096,7 +1106,7 @@ This description of creating a virtual Linux machine should also work for users 
 <p><strong>Appendix E</strong> explains the different options in the analysis driver functions, which allow simple analyses driven by a single program.</p>
 </div>
 <div class="paragraph">
-<p><strong>Appendix F</strong> gives an overview of some of the open source visualistion tools and scripts we have developed for viewing the output of the topographic analyses, as well as other commonly used software.</p>
+<p><strong>Appendix F</strong> gives an overview of some of the open source visualisation tools and scripts we have developed for viewing the output of the topographic analyses, as well as other commonly used software.</p>
 </div>
 <div class="paragraph">
 <p><strong>Appendix G</strong> explains how to get the software running in parallel computing environments, such as on your multicore laptop, a cluster computer, or supercomputing facility. It also has tips on how generate scripts to run multiple analyses.</p>
@@ -1166,20 +1176,20 @@ Our software was built to do the following:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>LSDTopoTools automates things that would be slow in ArcMap.</p>
+<p><strong>LSDTopoTools</strong> automates things that would be slow in ArcMap.</p>
 </li>
 <li>
-<p>LSDTopoTools is designed to be <strong>reproducible</strong>: it does not depend on one individuals mouse clicks.</p>
+<p><strong>LSDTopoTools</strong> is designed to be <strong>reproducible</strong>: it does not depend on one individuals mouse clicks.</p>
 </li>
 <li>
-<p>LSDTopoTools uses the latest fast algorithms so it is much faster than ArcMap.</p>
+<p><strong>LSDTopoTools</strong> uses the latest fast algorithms so it is much faster than ArcMap.</p>
 </li>
 <li>
-<p>LSDTopoTools has topographic analysis algorithms designed and coded by us or designed by someone else but
+<p><strong>LSDTopoTools</strong> has topographic analysis algorithms designed and coded by us or designed by someone else but
 coded by us soon after publication that are not available in ArcMap.</p>
 </li>
 <li>
-<p>LSDTopoTools contains some elements of landscape evolution models which cannot be done in ArcMap.</p>
+<p><strong>LSDTopoTools</strong> contains some elements of landscape evolution models which cannot be done in ArcMap.</p>
 </li>
 </ol>
 </div>
@@ -1187,10 +1197,10 @@ coded by us soon after publication that are not available in ArcMap.</p>
 <div class="sect2">
 <h3 id="_quickstart_for_those_who_don_t_want_to_read_the_first_4_chapters">1.3. Quickstart for those who don&#8217;t want to read the first 4 chapters</h3>
 <div class="paragraph">
-<p>We have prepared LSDTopoTools to be used in a <a href="https://en.wikipedia.org/wiki/Virtual_machine">Virtual Machine</a> so that you should just have to install two bits of software,
+<p>We have prepared <strong>LSDTopoTools</strong> to be used in a <a href="https://en.wikipedia.org/wiki/Virtual_machine">Virtual Machine</a> so that you should just have to install two bits of software,
 <a href="https://www.virtualbox.org/">VirtualBox</a> and <a href="https://www.vagrantup.com/">Vagrant</a>.
 After that, you get a small file from one of our repositories that manages all the installation for you. More details are available in the section
-<a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.</p>
+<a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1227,23 +1237,20 @@ If you are in Windows choose a 32-bit system unless you <a href="http://superuse
 If that last sentence was confusing and you use Windows, choose 32-bit.</p>
 </li>
 <li>
-<p>The files with <strong>FFTW</strong> in the filename allow you to do spectral analysis. They take longer to install (installation is all automated but it takes longer).</p>
-</li>
-<li>
 <p>When you have downloaded the file, rename it <code>vagrantfile</code>.</p>
 </li>
 <li>
-<p>In a terminal window or powershell, go to the folder with the <code>vagrantfile</code> (here in the folder <code>UbuntuBox</code>) and type <code>vagrant up</code>.</p>
+<p>In a terminal window or powershell, go to the folder with the <code>vagrantfile</code> (here in the folder <code>UbuntuBox</code>) and type  <code>vagrant up</code>.</p>
 </li>
 <li>
-<p>Go and read <a href="https://en.wikipedia.org/wiki/The_Bridge_(novel)">a book</a> or www.bbc.co.uk/sport/football/teams/hibernian[browse the internet] because this will take some time.
+<p>Go and read <a href="https://en.wikipedia.org/wiki/The_Bridge_(novel)">a book</a> or <a href="http://www.bbc.co.uk/sport/football/teams/hibernian">browse the internet</a> because this will take some time.
 The first time you do this <a href="https://www.vagrantup.com/">Vagrant</a> will need to download ~0.5Gb of stuff. Hopefully you have a fast internet connection!!</p>
 </li>
 <li>
 <p>When it finishes, you can log on to your server, which is a fully function Linux operating system, with all the necessary software installed, sitting in your host computer. Yay!</p>
 </li>
 <li>
-<p>You need to log on to the server so you can do some LSDTopoTools analysis. If your host machine is Linux or OSX, just type <code>vagrant ssh</code>.
+<p>You need to log on to the server so you can do some <strong>LSDTopoTools</strong> analyses. If your host machine is Linux or OSX, just type <code>vagrant ssh</code>.
 If your host machine is Windows, you need to download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> and log in with a host name of <strong>127.0.0.1</strong> and a port of <strong>2222</strong>.</p>
 </li>
 </ol>
@@ -1258,6 +1265,9 @@ If your host machine is Windows, you need to download <a href="http://www.chiark
 <div class="title">Quick Instructions for if you don&#8217;t want to use Vagrant</div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>Why don&#8217;t you want to use Vagrant?? You have your own Linux workstation? Okay, that is a good reason. What about you? You use Windows? MacOS? Don&#8217;t be silly. Use Vagrant.</p>
+</li>
 <li>
 <p>Make sure you can open a <strong>terminal or powershell window</strong>.</p>
 </li>
@@ -1281,7 +1291,7 @@ If your host machine is Windows, you need to download <a href="http://www.chiark
 </div>
 </div>
 <div class="paragraph">
-<p>If all of the above steps make sense, you can probably just implement them and move on to the <a href="#First analysis">[First analysis]</a> chapter.
+<p>If all of the above steps make sense, you can probably just implement them and move on to the <a href="#_running_your_first_analysis">First Analysis</a> chapter.
 Otherwise, you should continue reading from here.</p>
 </div>
 </div>
@@ -1290,6 +1300,16 @@ Otherwise, you should continue reading from here.</p>
 <div class="sect1">
 <h2 id="_required_and_useful_software">2. Required and useful software</h2>
 <div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="title">The recommended way to set up <strong>LSDTopoTools</strong></div>
+<div class="paragraph">
+<p>This should work on any operating system.
+. Follow our instructions on Vagrant setup: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Vagrant setup</a>. This gives you everything you need for computation.
+. Install the python tools you need in your computer with miniconda (not on your vagrant box) using these instructions: <a href="#_first_option_use_miniconda_works_on_all_operating_systems">First option: use Miniconda (works on all operating systems)</a></p>
+</div>
+</div>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1297,20 +1317,20 @@ Otherwise, you should continue reading from here.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This chapter describes the software you need for <strong>LSDTopoTools</strong>, but you do not have to install everything yourself. This process is automated by a program called Vagrant. If you just want to get started, you can skip to these instructions: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+This chapter describes the software you need for <strong>LSDTopoTools</strong>, but you do not have to install everything yourself. This process is automated by a program called Vagrant. If you just want to get started, you can skip to these instructions: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>. You can also set up <strong>LSDTopoTools</strong> on Linux and MacOS using the Vagrant approach, see the chapter on Vagrant for details.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>LSDTopoTools is a collection of programs written in C++ that analyze topographic data, and can perform some modelling tasks such as fluvial incision, hillslope evolution and flood innundation.
-To run LSDTopoTools all that is really required is a functioning C++ <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a>
+<p><strong>LSDTopoTools</strong> is a collection of programs written in C++ that analyze topographic data, and can perform some modelling tasks such as fluvial incision, hillslope evolution and flood inundation.
+To run <strong>LSDTopoTools</strong> all that is really required is a functioning C++ <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a>
 (which is a program that translates C++ code into 1s and 0s that your computer can understand),
 the <a href="https://www.gnu.org/software/make/">make utility</a>,
 and for specific components a few extra libraries. Most analyses will not need libraries.</p>
 </div>
 <div class="paragraph">
-<p>As a standalone bit of software, LSDTopoTools does not require vast effort in installing the required software.
+<p>As a standalone bit of software, <strong>LSDTopoTools</strong> does not require vast effort in installing the required software.
 However, if you want to look at the data produced by the software, or use some of our automation scripts,
 you will need to install additional packages on your system.</p>
 </div>
@@ -1323,7 +1343,7 @@ you will need to install additional packages on your system.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This isn&#8217;t our actual software! It is all the extra bits of software that you need to get working before you can use LSDTopoTools!
+This isn&#8217;t our actual software! It is all the extra bits of software that you need to get working before you can use <strong>LSDTopoTools</strong>!
 </td>
 </tr>
 </table>
@@ -1347,7 +1367,8 @@ and for <a href="#_setting_up_on_linux">installing the software on a Linux opera
 <div class="title">If you like to do things the easy way</div>
 <div class="paragraph">
 <p>You can install everything you need using <a href="https://www.vagrantup.com/">Vagrant</a> and our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.
-The instructions are here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.</p>
+The instructions are here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.
+The Vagrant implementation doesn&#8217;t include python tools, you should set up python following these instructions: <a href="#_getting_python_running">Getting python running</a>.</p>
 </div>
 </div>
 </div>
@@ -1364,6 +1385,10 @@ The instructions are here: <a href="#_installing_lsdtopotools_on_a_windows_machi
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A decent text editor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You will need a reasonable text editor. One that has a consitent environment across operating systems and is open-source is <a href="http://brackets.io/">Brackets</a>.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://git-scm.com/">Git</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Version control software that you can use to grab working versions of our code from <a href="https://github.com/">Github</a>.</p></td>
@@ -1394,7 +1419,13 @@ e.g. to transform them into appropriate coordinate systems and into the correct 
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_git">2.1.1. Git</h4>
+<h4 id="_a_decent_text_editor">2.1.1. A decent text editor</h4>
+<div class="paragraph">
+<p>You will be manipulating text files so you need a decent text editors. There are many options but we like <a href="http://brackets.io/">Brackets</a>. <a href="https://atom.io/">Atom</a> is also a nice alternative.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_git">2.1.2. Git</h4>
 <div class="paragraph">
 <p><a href="https://git-scm.com/">Git</a> is version control software. Version control software helps you keep track of changes to your scripts, notes, papers, etc.
 It also facilitates communication and collaboration through the online communities <a href="https://github.com/">github</a> and <a href="https://bitbucket.org/">bitbucket</a>.</p>
@@ -1409,7 +1440,7 @@ We also post version of the software used in publications on the CSDMS github si
 </div>
 </div>
 <div class="sect3">
-<h4 id="_a_compiler_and_other_tools_associated_with_the_source_code">2.1.2. A compiler and other tools associated with the source code</h4>
+<h4 id="_a_compiler_and_other_tools_associated_with_the_source_code">2.1.3. A compiler and other tools associated with the source code</h4>
 <div class="paragraph">
 <p>You will need a compiler to build the software, as it is written in <a href="https://en.wikipedia.org/wiki/C%2B%2B">c++</a>.
 In addition you will need a few tools to go along with the compiler. The things you <strong>really</strong> need are:</p>
@@ -1453,7 +1484,7 @@ but every now and then one sneaks through and the code won&#8217;t compile if yo
 <h5 id="_requirements_for_lsdrasterspectral">Requirements for LSDRasterSpectral</h5>
 <div class="paragraph">
 <p>Some of our tools include spectral analysis,
-and to do spectral analysis you need the <a href="http://www.fftw.org/">Fast Fourier Transform Library</a>.</p>
+and to do spectral analysis you need the <a href="http://www.fftw.org/">Fast Fourier Transform Library</a>. This is included in the vagrant distribution.</p>
 </div>
 <div class="paragraph">
 <p>In the source code, you will find <code>#include</code> statements for these libraries,
@@ -1477,7 +1508,7 @@ The model requires the <a href="http://www.fftw.org/">Fast Fourier Transform Lib
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="http://www.boost.org/">Boost</a>, a popular c++ library.</p>
+<p><a href="http://www.boost.org/">Boost</a>, a popular C++ library.</p>
 </li>
 <li>
 <p><a href="http://www.simunova.com/node/145">MTL</a> is a library for working with sparse matrices, which are required for solving some of the equations in the landscape evolution model.
@@ -1509,12 +1540,12 @@ since it is required by something called the <a href="http://pointclouds.org/">p
 </div>
 <div class="paragraph">
 <p>Unfortunately these are a bit time consuming to install, because they depend on all sorts of other bits of software that must be installed first.
-You should see the <a href="#_the_swath_and_point_cloud_tools">appendeces</a> for details on how to install this software.</p>
+You should see the <a href="#_the_swath_and_point_cloud_tools">appendices</a> for details on how to install this software.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gdal">2.1.3. GDAL</h4>
+<h4 id="_gdal">2.1.4. GDAL</h4>
 <div class="paragraph">
 <p>The <a href="http://www.gdal.org/">Geospatial Data Abstraction Library</a> has fantastic tools for preparing your data.
 It performs operations like clipping data, patching data together, resampling data, reprojecting data and doing coordinate transformations.
@@ -1523,12 +1554,18 @@ If you don&#8217;t know what those things are, don&#8217;t worry, we explain the
 <div class="paragraph">
 <p>You can install all of GDAL if you want, but really you will only need their <a href="http://www.gdal.org/gdal_utilities.html">utilities</a>.</p>
 </div>
+<div class="paragraph">
+<p>This is included in the vagrant distribution.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_python">2.1.4. Python</h4>
+<h4 id="_python">2.1.5. Python</h4>
 <div class="paragraph">
 <p>Python is a programming language used by many scientists to visualize data and crunch numbers.
 We use it for visualization, and also for automating a number of tasks associated with topographic analysis.</p>
+</div>
+<div class="paragraph">
+<p>Instructions on how to install python are in this section: <a href="#_getting_python_running">Getting python running</a>.</p>
 </div>
 <div class="paragraph">
 <p>You will need:</p>
@@ -1555,13 +1592,16 @@ We use it for visualization, and also for automating a number of tasks associate
 </ol>
 </div>
 </li>
-</ol>
-</div>
+<li>
+<p><a href="https://pypi.python.org/pypi/GDAL/">GDAL</a> For geospatial data processing.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>In addition, some of our python tools require GDAL, so you will have to install GDAL for these to work.</p>
+</li>
+<li>
+<p>If you want to run python with a nice looking environment, you should install <a href="https://pythonhosted.org/spyder/">syder</a>.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1617,7 +1657,7 @@ The instructions can be found in the appendices.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</h3>
+<h3 id="_installing_lsdtopotools_using_virtualbox_and_vagrant">2.3. Installing LSDTopoTools using VirtualBox and Vagrant</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1625,7 +1665,7 @@ The instructions can be found in the appendices.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-These instructions will be similar for OS X and Linux, the only real difference is that OS X and Linux will have native <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh utilities</a> and so you will not need <code>putty.exe</code>.
+These instructions will be similar for MacOS and Linux, the only real difference is that MacOS and Linux will have native <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh utilities</a> and so you will not need <code>putty.exe</code>.
 </td>
 </tr>
 </table>
@@ -1642,16 +1682,19 @@ These instructions will be similar for OS X and Linux, the only real difference 
 <p>Download and install <a href="https://www.virtualbox.org/">vagrant</a>. You might have to restart your computer after this.</p>
 </li>
 <li>
-<p>If you are on Windows, download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a>.</p>
+<p>If you are on Windows, download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a>. If you are on Linux or MacOS you can skip this (they have built-in equivalents).</p>
 </li>
 <li>
-<p>Make a folder for your vagrant box and download one of our vagrantfiles: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a></p>
+<p>Make a folder for your vagrant box. We tend to put ours in a directory called <code>VagrantBoxes</code>.</p>
 </li>
 <li>
-<p>One directory level down from the directory for your vagrantfile, make a directory <code>LSDTopoTools</code>.</p>
+<p>Inside that directory make two new directories: <code>LSDTopoTools</code> and <code>Ubuntu_vagrant</code>. The second directory&#8217;s name doens&#8217;t matter, it is just for holding a vagrant file (see below). However ytou <strong>MUST</strong> have the <code>LSDTopoTools</code> directory. The directory name is <strong>case sensitive</strong>!</p>
 </li>
 <li>
-<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit</code> or <code>Vagrantfile_64bit</code>) simply <code>vagrantfile</code>.</p>
+<p>Download one of our vagrantfiles: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a> into the <code>Ubuntu_vagrant</code> directory (again, the name of the directory doesn&#8217;t matter).</p>
+</li>
+<li>
+<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit_FFTW</code> or <code>Vagrantfile_64bit_FFTW</code>) simply <code>vagrantfile</code>. Your operating system is almost certainly 64 bit, but on most computers you need to select 32 bit because the default setting is to disable 64 bit guest operating systems. This can be changed but only by expert users.</p>
 </li>
 <li>
 <p>Open a terminal or powershell window and navigate to the directory with the vagrantfile.</p>
@@ -1675,7 +1718,7 @@ If you are running <code>vagrant up</code> for the first time it can take some t
 <p>Run <code>vagrant provision</code> after the box has started.</p>
 </li>
 <li>
-<p>You should now be able to use <code>putty.exe</code> to ssh into your LSDTopoTools server. The host name is almost always <code>127.0.0.1</code> and the port is almost always <code>2222</code>.</p>
+<p>If on Windows, you should now be able to use <code>putty.exe</code> to ssh into your LSDTopoTools server. The host name is almost always <code>127.0.0.1</code> and the port is almost always <code>2222</code>.</p>
 </li>
 <li>
 <p>If you are on OS X or Linux you do not need <code>putty.exe</code>; all you need to do is type <code>vagrant ssh</code> into the command line. See the <a href="https://www.vagrantup.com/docs/getting-started/up.html">vagrant instructions</a>.</p>
@@ -1685,15 +1728,15 @@ If you are running <code>vagrant up</code> for the first time it can take some t
 </div>
 </div>
 <div class="paragraph">
-<p>There are a number of ways to get LSDTopoTools working on your computer, of varying difficulty.</p>
+<p>There are a number of ways to get <strong>LSDTopoTools</strong> working on your computer, of varying difficulty.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Get LSDTopoTools working natively in Windows. This is possible, but very painful.</p>
+<p>Get <strong>LSDTopoTools</strong> working natively in Windows or MacOS. This is possible, but very painful.</p>
 </li>
 <li>
-<p>Get it working in a full Linux operating system via virtual machine software, such as <a href="https://www.virtualbox.org/">virtualbox</a>. Note that you can do this in Windows, Linux or Apple operating systems.</p>
+<p>Get it working in a full Linux operating system via virtual machine software, such as <a href="https://www.virtualbox.org/">virtualbox</a>. Note that you can do this in Windows, Linux or MacOS operating systems. This is less painful and more reliable than option #1, but still painful.</p>
 </li>
 <li>
 <p>Get it working on a locally hosted Linux server using <a href="https://www.virtualbox.org/">virtualbox</a> and <a href="https://www.vagrantup.com/">vagrant</a>. Again, you can do this on any common operating system.</p>
@@ -1702,7 +1745,7 @@ If you are running <code>vagrant up</code> for the first time it can take some t
 </div>
 <div class="paragraph">
 <p>Be afraid of option #1. Be very afraid. Option #2 is reliable (you can see how to do it in the appendix) but it means you will need to install all the necessary software yourself, which can take several hours.
-Option #3, involving Vagrant, is a bit more automated. It will still take some time the first time you boot your vagrant virtual machine, since a bunch of software will be installed, but we do automate this process for you.</p>
+Option #3, involving Vagrant, is largely automated. It will still take some time the first time you boot your vagrant virtual machine, since a bunch of software will be installed, but we do automate this process for you.</p>
 </div>
 <div class="sect3">
 <h4 id="_first_steps_starting_a_vagrant_box">2.3.1. First steps: Starting a Vagrant box</h4>
@@ -1713,7 +1756,7 @@ Option #3, involving Vagrant, is a bit more automated. It will still take some t
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You will need sufficient space on your hard disk to host a guest operating system. You also need room for the LSDTopoTools dependencies. You will struggle if you have less than <strong>10Gb</strong> free.
+You will need sufficient space on your hard disk to host a guest operating system. You also need room for the <strong>LSDTopoTools</strong> dependencies. You will struggle if you have less than <strong>5Gb</strong> free.
 </td>
 </tr>
 </table>
@@ -1739,7 +1782,7 @@ You will need sufficient space on your hard disk to host a guest operating syste
 <p>Okay, we now assume you have installed everything and are in a terminal or powershell. You need to make a directory where you keep information about your vagrant boxes. I made a folder names <code>vagrantboxes</code> and then subfolders for different boxes.</p>
 </li>
 <li>
-<p>If you are in Windows, you will need an <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> utility to communicate with your vagrant box. You should download <code>putty.exe</code> from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty website</a>. In  Linux and OSX ssh utilities are already installed.</p>
+<p>If you are in Windows, you will need an <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> utility to communicate with your vagrant box. You should download <code>putty.exe</code> from the <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty website</a>. In  Linux and MacOS <strong>ssh</strong> utilities are already installed.</p>
 </li>
 <li>
 <p>Now you should fetch one of our vagrantfiles from our git repo: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a></p>
@@ -1749,10 +1792,13 @@ You will need sufficient space on your hard disk to host a guest operating syste
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The 32 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit</a></p>
+<p>The 32 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit_FFTW" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit_FFTW</a></p>
 </li>
 <li>
-<p>The 64 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit</a></p>
+<p>The 64 bit file is here: <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit_FFTW" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_64bit_FFTW</a></p>
+</li>
+<li>
+<p>Although most computers today are 64 bit, most of them, as default, disable guest 64 bit operating sytstems. Unless you know how to turn this on <a href="http://stackoverflow.com/questions/27884846/virtualization-not-enabled-in-bios">for example see this link</a>, you should choose the 32 bit vagrantfile.</p>
 </li>
 <li>
 <p>Save one of these files into the directory for your vagrant files. See below for the appropriate directory structure.</p>
@@ -1763,18 +1809,18 @@ You will need sufficient space on your hard disk to host a guest operating syste
 </div>
 </li>
 <li>
-<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit</code> or <code>Vagrantfile_64bit</code>) simply <code>vagrantfile</code></p>
+<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit_FFTW</code> or <code>Vagrantfile_64bit_FFTW</code>) simply <code>vagrantfile</code></p>
 </li>
 <li>
 <p>If you use our vagrant files, you will need to make a directory <code>LSDTopoTools</code> in the same directory as your folders for different vagrant boxes.
-For example, you might make a directory <code>C:\vagrantboxes\</code>, and in that directory you can put both <code>LSDTopoTools</code> and <code>Ubuntu32</code> (or some such name) directories. You will put the vagrant file in the <code>Ubuntu32</code> directory.
+For example, you might make a directory <code>C:\VagrantBoxes\</code>, and in that directory you can put both <code>LSDTopoTools</code> and <code>Ubuntu32_FFTW</code> (or some such name) directories. You will put the vagrant file in the <code>Ubuntu32_FFTW</code> directory.
 Your tree might look a bit like this:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-directory_struct" data-lang="directory_struct">C:\vagrantboxes\
-|--Ubuntu32
+|--Ubuntu32_FFTW
    |-- vagrantfile
-|--Ubuntu64
+|--Ubuntu64_FFTW
    |-- vagrantfile
 |--LSDTopoTools</code></pre>
 </div>
@@ -1805,11 +1851,11 @@ In the above file structures the vagrantfiles have been renamed from the vagrant
 </div>
 </li>
 <li>
-<p>Go into the folder with the operating system you want (e.g. <code>Ubuntu32</code>):</p>
+<p>Go into the folder with the operating system you want (e.g. <code>Ubuntu32_FFTW</code>):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; cd C:\vagrantboxes
-PS: &gt; cd C:\Ubuntu32</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; cd C:\VagrantBoxes
+PS: &gt; cd C:\Ubuntu32_FFTW</code></pre>
 </div>
 </div>
 </li>
@@ -1876,7 +1922,7 @@ You will run everything through an ssh terminal, using a command line interface.
 <p>You will use ssh to communicate with your Vagrant server. This server is <strong>not on the internet</strong> but rather is living <strong>on your computer</strong>.</p>
 </li>
 <li>
-<p>Vagrant is clever in that it sets up an <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> for your vagrant server (in other words your Linux machine living on your host computer, which could be Windows, Liunux or OSX), and as such ssh can establish a connection to this machine via ssh.</p>
+<p>Vagrant is clever in that it sets up an <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> for your vagrant server (in other words your Linux machine living on your host computer, which could be Windows, Linux or OSX), and as such ssh can establish a connection to this machine via ssh.</p>
 </li>
 <li>
 <p>Vagrant&#8217;s default settings are to set your server up to sit on host <strong>127.0.0.1</strong> and port <strong>2222</strong>. You will need to use these settings in putty.exe</p>
@@ -1893,7 +1939,7 @@ You will run everything through an ssh terminal, using a command line interface.
 <p>If you are starting from a Linux or OSX machine, an ssh client is built into your command prompt and you can just type <code>vagrant ssh</code> into the command prompt.</p>
 </li>
 <li>
-<p>If you are on Windows, you need to download [<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" class="bare">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>]putty.exe and run it.</p>
+<p>If you are on Windows, you need to download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> and run it.</p>
 </li>
 <li>
 <p>In putty, set the host to <strong>127.0.0.1</strong> and the port to <strong>2222</strong>. These are vagrant&#8217;s default settings.</p>
@@ -1908,14 +1954,14 @@ You will run everything through an ssh terminal, using a command line interface.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_your_vagrant_box_and_file_synching">2.3.3. Your Vagrant box and file synching</h4>
+<h4 id="_your_vagrant_box_and_file_syncing">2.3.3. Your Vagrant box and file syncing</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>So you are logged in. Now what? It turns out Vagrant has done some clever things with your files.</p>
 </li>
 <li>
-<p>Vagrant can <a href="https://www.vagrantup.com/docs/getting-started/synced_folders.html">synch folders</a> across your Vagrant box and your host computer (that is, the computer you started vagrant from).</p>
+<p>Vagrant can <a href="https://www.vagrantup.com/docs/getting-started/synced_folders.html">sync folders</a> across your Vagrant box and your host computer (that is, the computer you started vagrant from).</p>
 </li>
 <li>
 <p>When you log in to your vagrant box, you will not be in the same folder where I have built the <strong>LSDTopoTools</strong> file structures. You need to navigate down to this:</p>
@@ -1932,22 +1978,48 @@ $ ls
 STUFF</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>You can also jump directly there:</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ cd /LSDTopoTools</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As you can see above, the <strong>LSDTopoTools</strong> folder contains folders for different <strong>LSDTopoTools</strong> packages, for topographic datasets.</p>
 </li>
 <li>
-<p>As you can see above, the LSDTopoTools folder contains folders for different LSDTopoTools packages, for topographic datasets, and for something called FFTW,
-which is a package used by LSDTopoTools for spectral analysis.</p>
-</li>
-<li>
-<p>Here is the amazing thing: the files that are in LSDTopoTools folder in your vagrant box <strong>ARE ALSO</strong> visible, and synched, in your howst computer.
-So if you use LSDTopoTools to do some analysis within your vagrant box, you will be able to see the files within your host computer as well.
-This means that you can, for example, do a Linux based LSDTopoTools analysis and than plot that analysis in a GIS on your host windows box without having to transfer files.
+<p>Here is the amazing thing: the files that are in LSDTopoTools folder in your vagrant box <strong>ARE ALSO</strong> visible, and synced, in your host computer.
+So if you use <strong>LSDTopoTools</strong> to do some analysis within your vagrant box, you will be able to see the files within your host computer as well.
+This means that you can, for example, do a Linux based <strong>LSDTopoTools</strong> analysis and then plot that analysis in a GIS on your host windows box without having to transfer files.
 Not only that, but you can modify the code, update python scripts, change parameter files, etc., with your favourite text editor in Windows (or OSX, or whatever) and those files will be visible to your Vagrant box. Fantastic!</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_shutting_things_down">2.3.4. Shutting things down</h4>
+<h4 id="_updating_to_the_latest_versions_of_the_software">2.3.4. Updating to the latest versions of the software</h4>
+<div class="paragraph">
+<p>To check out the latest version of our software you can run the <a href="https://www.vagrantup.com/docs/cli/provision.html">vagrant provision</a> command</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; vagrant up
+PS: &gt; vagrant provision</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shutting_things_down">2.3.5. Shutting things down</h4>
 <div class="paragraph">
 <p>When you are finished with your session, you just need to go into the powershell or a terminal and type:</p>
 </div>
@@ -1958,9 +2030,33 @@ Not only that, but you can modify the code, update python scripts, change parame
 </div>
 </div>
 <div class="sect3">
-<h4 id="_brief_notes_for_setting_up_your_own_vagrant_server">2.3.5. Brief notes for setting up your own Vagrant server</h4>
+<h4 id="_if_you_want_to_start_from_scratch">2.3.6. If you want to start from scratch</h4>
 <div class="paragraph">
-<p>We have written Vagrant files for you so you don&#8217;t have to do any of this, but if you want to set up your own Vagrant boxes with your own software here are some notes.</p>
+<p>If you want to remove the virtual machine, start it up and than run <a href="https://www.vagrantup.com/docs/cli/destroy.html">vagrant destroy</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS: &gt; vagrant up
+PS: &gt; vagrant destroy</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_brief_notes_for_setting_up_your_own_vagrant_server">2.3.7. Brief notes for setting up your own Vagrant server</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This section is for customising your vagrant environment (or rather, your Ubuntu environment that vagrant sets up for you) and can be safely ignored by 95% of <strong>LSDTopoTools</strong> users. We include the below notes for obsessive hackers who have nothing better to do.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We have written Vagrant files for you so you don&#8217;t have to customise your working environment, but if you want to set up your own Vagrant boxes with your own software here are some notes.</p>
 </div>
 <div class="sect4">
 <h5 id="_initiating_a_vagrant_box">Initiating a Vagrant box</h5>
@@ -2019,7 +2115,7 @@ Not only that, but you can modify the code, update python scripts, change parame
 <div class="sect4">
 <h5 id="_notes_on_the_base_box">Notes on the base box</h5>
 <div class="paragraph">
-<p>Vagrant sets up a linux server Living in your computer (it is called the <strong>Host</strong> computer). The server will run a linux operating system, and you need to choose a functioning base system
+<p>Vagrant sets up a Linux server living in your computer (it is called the <strong>Host</strong> computer). The server will run a Linux operating system, and you need to choose a functioning base system
 <a href="https://atlas.hashicorp.com/boxes/search">vagrant base boxes</a>. Here we have started with <code>ubuntu/precise32</code>. You might want to try other base boxes, they can be found at the <a href="https://atlas.hashicorp.com/boxes/search">atlas website</a>.</p>
 </div>
 <div class="admonitionblock note">
@@ -2113,15 +2209,80 @@ To get these working you need to install various packages in <a href="https://ww
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you are using <a href="https://www.vagrantup.com/">Vagrant</a> to set up LSDTopoTools in a Virtual Machine within Windows, we recommend installing Python using <a href="http://conda.pydata.org/miniconda.html">Miniconda</a> in your Windows machine, rather than installing within your Virtual Linux box.
+If you are using <a href="https://www.vagrantup.com/">Vagrant</a> to set up LSDTopoTools in a Virtual Machine, we recommend installing Python using <a href="http://conda.pydata.org/miniconda.html">Miniconda</a> on your host machine, rather than installing within your Virtual Linux box.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_getting_python_running_on_linux_and_this_should_also_work_for_osx">2.4.1. Getting python running on Linux (and this should also work for OSX)</h4>
+<h4 id="_first_option_use_miniconda_works_on_all_operating_systems">2.4.1. First option: use Miniconda (works on all operating systems)</h4>
 <div class="paragraph">
-<p>It is quite straightforward to install these on a Linux or OSX system:</p>
+<p>We have found the best way to install python is <a href="http://conda.pydata.org/miniconda.html">miniconda</a>. We will use <strong>Python 2.7</strong>, so use the Python 2.7 installer.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you install Python 3.5 instead of 2.7 GDAL will not work.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you have installed that, you can go into a powershell or terminal window and get the other stuff you need:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-consol" data-lang="consol">$ conda install scipy
+$ conda install matplotlib
+$ conda install pandas
+$ conda install gdal
+$ conda install spyder</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only difference in Windows is that your prompt in powershell will say <code>PS&gt;</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Spyder will not work on our vagrant server, so you need to install this on your host computer.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To run spyder you just type <code>spyder</code> at the command line.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Spyder needs an older version of a package called <strong>PyQt</strong>. If spyder doesn&#8217;t start correctly, run:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-consol" data-lang="consol">$ conda install pyqt=4.10 -f</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getting_python_running_on_linux_and_this_should_also_work_for_osx_not_using_miniconda">2.4.2. Getting python running on Linux (and this should also work for OSX) NOT using miniconda</h4>
+<div class="paragraph">
+<p>If you don&#8217;t want to use <a href="http://conda.pydata.org/miniconda.html">miniconda</a>, it is quite straightforward to install these on a Linux or OSX system:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2139,7 +2300,7 @@ $ yum install python-pip</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In OSX, you need a package manager such as <a href="http://brew.sh/">Homebrew</a>, and you can follow similar steps.</p>
+<p>In OSX, you need a package manager such as <a href="http://brew.sh/">Homebrew</a>, and you can follow similar steps (but why not use <a href="http://conda.pydata.org/miniconda.html">miniconda</a>?).</p>
 </div>
 <div class="paragraph">
 <p>After that, you need:</p>
@@ -2170,7 +2331,7 @@ $ yum install python-pip</code></pre>
 <p>You can get all this with a combination of <code>pip</code> and <code>sudo</code>, <code>yum</code> or <code>homebrew</code>, depending on your operating system.</p>
 </div>
 <div class="paragraph">
-<p>For example, with and [Ubuntu] system, you can use:</p>
+<p>For example, with an <a href="http://www.ubuntu.com/">Ubuntu</a> system, you can use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2182,50 +2343,62 @@ $ sudo apt-get install spyder</code></pre>
 <p>The <a href="http://www.gdal.org/index.html">GDAL</a> python tools are a bit harder to install; see here: <a href="https://pypi.python.org/pypi/GDAL/" class="bare">https://pypi.python.org/pypi/GDAL/</a>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_installing_python_on_windows">2.4.2. Installing python on Windows</h4>
+</div>
+<div class="sect2">
+<h3 id="_setting_up_your_file_system_and_keeping_it_clean">2.5. Setting up your file system and keeping it clean</h3>
 <div class="paragraph">
-<p>In Windows, there are more options. One way to get <a href="https://www.python.org/">Python</a> set up is to use <a href="http://python-xy.github.io/">Python(x,y)</a>.
-The problem with <a href="http://python-xy.github.io/">Python(x,y)</a> is it installs everything that a scientists could ever conceivably use
-(so this includes a vast amount of stuff you will never use) and in addition it is not so easy to update. It does offer update packages but these have dependencies that often lead to a dead-end, so that you have to uninstall and reinstall everything to get back on the update track.</p>
+<p>The past decade has seen rapid advances in user interfaces, the result of which is that you don&#8217;t really have to know anything about how computers work to use modern computing devices. I am afraid nobody associated with this software project is employed to write a slick user interface. In addition, we don&#8217;t want a slick user interface since sliding and tapping on a touchscreen to get what you want does not enhance repoducible data analysis. So I am very sorry to say that to use this software you will need to know something about computers.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://conda.pydata.org/docs/index.html">Conda</a> is a simple installation environment that can work on your Windows machine and we find them easier to update than <a href="http://python-xy.github.io/">Python(x,y)</a>. If you want to install everything all at once (much like in Python(x,y), you should go for <a href="https://www.continuum.io/downloads">Anaconda</a>.</p>
-</div>
-<div class="paragraph">
-<p>However, we have used <a href="http://conda.pydata.org/miniconda.html">Miniconda</a> since we don&#8217;t need every scientific extension to python, and want to save space for all that delicious topographic data (e.g., from <a href="http://www.opentopography.org/">OpenTopography</a>.</p>
-</div>
+<p>If you are not familiar with Linux or directory structures this is essential reading. Even if you are familiar</p>
 </div>
 <div class="sect3">
-<h4 id="_using_miniconda_to_install_the_relevant_python_packages_in_windows">2.4.3. Using Miniconda to install the relevant python packages in Windows</h4>
+<h4 id="_files_and_directories">2.5.1. Files and directories</h4>
 <div class="paragraph">
-<p>If you have a Windows machine, the recommended setup is first follow the instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> and then set up python using <a href="http://conda.pydata.org/miniconda.html">Miniconda</a>. Miniconda is a package manager that helps install packages and keep them updated.</p>
+<p>Everything in a computer is organised into files. These are collections of numbers and/or text that contain information and sometimes programs. These files need to be put somewhere so they are organised into directories which can be nested: i.e., a directory can be inside of another directory. Linux users are born with this knowledge, but users of more intuitive devices and operating systems are not.</p>
 </div>
 <div class="paragraph">
-<p>You could install python within your linux virtual machine (which we will set up using vagrant), but the clever thing about vagrant is it syncs your linux files to your windows files and vice versa so you can do your data visualisation in Windows without the the linux operating system slowing things down. So we reccomend installing python in windows. To do that:</p>
+<p>Our software is distributed as source code. These are files with all the instructions for the programs. They are not the programs themselves! Most of the instructions live in <strong>objects</strong> that have both a <code>cpp</code> and <code>hpp</code> file. They are stored in a directory together. Contained alongside these files are a few other directory. There is always a <code>TNT</code> folder for storing some files for matrix and vector operations. There will always be another directory with some variant of the word <code>driver</code> in it. Then there might be some other directories. <strong>Do not move these files around! Their location relative to each other is important!!</strong>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download and install <a href="http://conda.pydata.org/miniconda.html">Miniconda</a>.</p>
-</li>
-<li>
-<p>Open a <a href="https://en.wikipedia.org/wiki/Windows_PowerShell">powershell window</a>.</p>
-</li>
-<li>
-<p>Install scipy, pandas, matplotlib, gdal and spyder:</p>
+<div class="paragraph">
+<p>Inside the folder that has <code>driver</code> in the name there will be yet more <code>cpp</code> files. There will also be files with the extension <code>make</code>. These <code>make</code> files are instructions to change the source code into a program that you can run. The <code>make</code> file assumes that files are in specific directories relative to each other so it is important not to move the relative locations of the <code>cpp</code> files and the various directories such as the <code>TNT</code> directory. If you move these files the you will not be able to <code>make</code> the programs.</p>
+</div>
+<div class="paragraph">
+<p>We tend to keep data separate from the programs. So you should make a <strong>different</strong> set of folders for your raw data and for the outputs of our programs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directories_in_vagrant">2.5.2. Directories in Vagrant</h4>
+<div class="paragraph">
+<p>If you use our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a> then you will need some specific directories. Our instructions assume this directory structure so if you have your own Linux box and you want to copy and paste things from our instructions then you should replicate this directory structure.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you use vagrant there will be directories in your host machine (i.e., your computer) and on the client machine (i.e., the Linux virtual machine that lives inside of you host machine). The file systems of these two computers are synced so if you change a file in one you will change the file in the other!
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_vagrant_directories_in_windows">Vagrant directories in windows</h5>
+<div class="paragraph">
+<p>In windows you should have a directory called something like <code>VagrantBoxes</code>. Inside this directory you need directories to store the vagrantfiles, and a directory called <code>LSDTopoTools</code>. The directories need to look like this</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">PS C:\ conda install scipy
-PS C:\ conda install matplotlib
-PS C:\ conda install pandas
-PS C:\ conda install gdal
-PS C:\ conda install spyder</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">|-VagrantFiles
+  |-LSDTopoTools
+  |-Ubuntu32_FFTW
+    | vagrantfile
+  |-Ubuntu32
+    | vagrantfile</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>After each of these you will need to say "yes" to the packages, and then wait a while as things download and install.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2233,26 +2406,148 @@ PS C:\ conda install spyder</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Installing the above packages will install a bunch of dependent packages that you can use as well, such as Sphinx and iPython.
+The names <code>VagrantBoxes</code> and <code>Ubuntu32</code>, <code>Ubuntu32_FFTW</code> don&#8217;t really matter; you just need to have a place to contain all your files associated with vagrant and within this subdirectories for vagrantfiles. If your vagrantfile is for and Ubuntu 32 bit system that includes FFTW then you might call the folder <code>Ubuntu32_FFTW</code>.
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>Congratulations! You should now have everything you need for LSDTopoTools visualisation and automation on you Windows computer!</p>
-</li>
-</ol>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+There <strong>MUST</strong> be an <code>LSDTopoTools</code> directory one level above your vagrantfile. This directory name is <strong>case sensitive</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When you make the <code>LSDTopoTools</code> directory it will initially be empty. When you run <code>vagrant up</code> it will fill up with stuff (see below).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_vagrant_directories_in_the_client_linux_machine">Vagrant directories in the client Linux machine</h5>
+<div class="paragraph">
+<p>If you use our vagrantfiles to set up <strong>LSDTopoTools</strong>, they will construct a file system. It will have a directory <code>LSDTopoTools</code> in the root directory and within that directory will be two directories called <code>Git_projects</code> and <code>Topographic_projects</code>. The file system looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Ubuntu file system</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">|-LSDTopoTools
+  |-Git_projects
+    |-LSDTopoTools_AnalysisDriver
+      |- lots and lots of files and some directories
+    |-LSDTopoTools_ChannelExtraction
+      |- lots and lots of files and some directories
+    |-More directories that hold source code
+  |-Topographic_projects
+    |-Test_data
+      |- Some topographic datasets</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These files are in the root directory so you can get to the by just using <code>cd \</code> and then the name of the folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is the clever bit: after you have run <code>vagrant up</code> these folders will also appear in your host system. But they will be in your <code>VagrantBoxes</code> folder. So in Linux the path to the git projects folder is <code>/LSDTopoTools/Git_projects</code> and in Windows the path will be something like <code>C:\VagrantBoxes\LSDTopoTools\Git_projects</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_difference_between_the_source_code_and_the_programs">2.5.3. Difference between the source code and the programs</h4>
+<div class="paragraph">
+<p>You can download our various packages using <code>git</code>, but many of them will be downloaded automatically by our <strong>vagrantfiles</strong>. Suppose you were looking at the <code>LSDTopoTools_ChiMudd2014</code> package. In our Linux vagrant system, the path to this would be <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014
+&amp; ls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will see a large number of files ending with <code>.cpp</code> and <code>.hpp</code>. These are files containing the instructions for computation. But they are not the program! You need to translate these files into something the computer can understand and for this you use a compiler. But there is another layer because we use lots of files so we need to compile lots of files, so we use something called a <code>makefile</code> which is a set of instructions about what bits of source code to mash together to make a program.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>*makefiles</strong> are in a folder called <code>driver_functions_MuddChi2014</code>. All of our packages have a directory with some variation of <code>driver</code> in the name. You need to go into this folder to get to the makefiles. You can see them with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014
+$ ls *.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will list a bunch of makefiles. By running the command <code>make -f</code> and then the name of a makefile you will compile a program. The <code>-f</code> just tells <code>make</code> that you are using a makefile with a specific name and not a file called <code>make</code>.</p>
+</div>
+<div class="paragraph">
+<p>Calling <code>make</code> with a <strong>makefile</strong> results in a program, that has the extension <code>.out</code> or <code>.exe</code>. The extension doesn&#8217;t really matter. We could have told the makefile to give the program the extension <code>.hibswinthecup</code> and it should still work. BUT it will only work with the operating system within which it was compiled: in this case the Ubuntu system that vagrant set up.</p>
+</div>
+<div class="paragraph">
+<p>The crucial thing to realise here is that the program is located in the <code>driver_functions_MuddChi2014</code> directory. If you want to run this program you need to be in this directory. In Linux you can check what directory you are in by typing <code>pwd</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_know_where_your_data_is">2.5.4. Know where your data is</h4>
+<div class="paragraph">
+<p>When you run a makefile it will create a program sitting in some directory. Your data, if you are being clean and organised, will sit somewhere else.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You need to tell the programs where the data is!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Most of our programs need to look for another file, sometimes called a <strong>driver</strong> file and sometimes called a <strong>parameter</strong> file. We probably should use a consistent naming convention for these files but I&#8217;m afraid you will need to live with our sloppiness. You get what you pay for, after all.</p>
+</div>
+<div class="paragraph">
+<p>The programs will be in your source code folders, so for example, you might have a program called <code>get_chi_profiles.exe</code> in the <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code> directory. You then have to tell this program where the driver or parameter file is:</p>
+</div>
+<div class="listingblock">
+<div class="title">A typical call to an <strong>LSDTopoTools</strong> program</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014
+$ ./git_get_profiles.exe /LSDTopoTools/Topographic_projects/Test_data/ Example.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above examples, <code>./git_get_profiles.exe</code> is calling the program.</p>
+</div>
+<div class="paragraph">
+<p><code>/LSDTopoTools/Topographic_projects/Test_data/</code> is the folder where the driver/parameter file is. We tend to keep the topographic data and parameter files together. The final <code>/</code> is important: some of our programs will check for it but others won&#8217;t (sorry) and they will not run properly without it.</p>
+</div>
+<div class="paragraph">
+<p><code>Example.driver</code> is the filename of the driver/parameter file.</p>
+</div>
+<div class="paragraph">
+<p>In the above example it means that the parameter file will be in the folder <code>/LSDTopoTools/Topographic_projects/Test_data/</code> even though your program is in a different folder (<code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>).</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary">2.5. Summary</h3>
+<h3 id="_summary">2.6. Summary</h3>
 <div class="paragraph">
-<p>This chapter has given an overview of what software is necessary to use LSDTopoTools.
+<p>This chapter has given an overview of what software is necessary to use <strong>LSDTopoTools</strong>.
 The appendices contain information about installing this software on both
 <a href="#_setting_up_on_windows">Windows</a> and <a href="#_setting_up_on_linux">Linux</a> operating systems, but these are only for stubborn people who like to do everything by hand.
-If you want to just get things working, use our <a href="https://www.vagrantup.com/">Vagrant</a> files.</p>
+If you want to just get things working, use our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.</p>
 </div>
 </div>
 </div>
@@ -2292,8 +2587,8 @@ Finally we describe some tools that you can use to lave a look at your raster da
 <div class="sect2">
 <h3 id="_the_terminal_and_powershells">3.1. The terminal and powershells</h3>
 <div class="paragraph">
-<p>Our software works primarily through a terminal (in Linux) or poweshell (in Windows) window.
-We don&#8217;t have installation notes for OSX but we reccomend if you are on OSX that you use the vagrant setup, which means you will have a nice little linux server running inside your OSX machine, and can follow the linux instructions.
+<p>Our software works primarily through a terminal (in Linux) or powershell (in Windows) window.
+We don&#8217;t have installation notes for OSX but we recommend if you are on MacOS that you use the vagrant setup, which means you will have a nice little Linux server running inside your MacOS machine, and can follow the Linux instructions.
 A terminal or powershell window is an interface through which you can issue text-based commands to your computer.</p>
 </div>
 <div class="paragraph">
@@ -2308,7 +2603,7 @@ but if you are using Ubuntu you can type <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</
 In KDE a terminal is also called a "Konsole".</p>
 </div>
 <div class="paragraph">
-<p>Once you have opened a terminal window you will see a command prompt. In linux the command prompt will look a bit like this:</p>
+<p>Once you have opened a terminal window you will see a command prompt. In Linux the command prompt will look a bit like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2580,7 +2875,7 @@ since it is a widely used projection system with units of meters.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you installed our software using vagrant this will be installed automatically. Instructions are here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+If you installed our software using vagrant this will be installed automatically. Instructions are here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -2964,7 +3259,7 @@ are both considered the same:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This can result in an ESRI <code><strong>.hdr</code> file overwriting an ENVI <code></strong>.hdr</code> file
+<p>This can result in an ESRI <code>*.hdr</code> file overwriting an ENVI <code>*.hdr</code> file
 and causing the code to fail to load the data. To avoid this ensure that
 input and output filenames from GDAL processes are unique.</p>
 </div>
@@ -3021,7 +3316,7 @@ at the extent of the raster using <code>gdalinfo</code>.</p>
 To look at the data, there are a number of options.
 The most common way of looking at topographic data is by using a Geographic Information System (or GIS).
 The most popular commercial GIS is <a href="https://www.arcgis.com/features/">ArcGIS</a>.
-Viable open source alternatives are [QGIS] is you want something similar to ArcGIS,
+Viable open source alternatives are <a href="http://www.qgis.org/en/site/">QGIS</a> is you want something similar to ArcGIS,
 and <a href="http://www.uoguelph.ca/~hydrogeo/Whitebox/index.html">Whitebox</a> if you want something quite lightweight.</p>
 </div>
 <div class="sect3">
@@ -3067,7 +3362,7 @@ but if you just want to get started you can always skip to the <a href="#_where_
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This section covers the way you get individual packages from our repository, but if you follow the instructions on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> then the most commonly used packages will be downloaded <strong>automatically</strong>. If you use our Vagrant setup you can
+This section covers the way you get individual packages from our repository, but if you follow the instructions on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> then the most commonly used packages will be downloaded <strong>automatically</strong>. If you use our Vagrant setup you can
 </td>
 </tr>
 </table>
@@ -3140,7 +3435,7 @@ Within this directory there will be <code>driver_function_*</code> directories a
 <h5 id="_driver_functions">Driver functions</h5>
 <div class="paragraph">
 <p>If you are using LSDTopoTools simply to produce derivative datasets from your topographic data,
-the programs you will use are <strong>driver functions</strong>. When compiled  these form self enclosed analysis tools.
+the programs you will use are <strong>driver functions</strong>. When compiled  these form self contained analysis tools.
 Usually they are run by calling parameter files that point to the dataset you want to analyze, and the parameters you want to use in the analysis.</p>
 </div>
 <div class="paragraph">
@@ -3186,7 +3481,7 @@ you can go to our automatically generated documentation pages, located here: <a 
 <div class="sect4">
 <h5 id="_libraries">Libraries</h5>
 <div class="paragraph">
-<p>THe objects in LSDTopoTools required something called the <a href="http://math.nist.gov/tnt/">Template Numerical Toolkit</a>,
+<p>The objects in LSDTopoTools required something called the <a href="http://math.nist.gov/tnt/">Template Numerical Toolkit</a>,
 which handles the rasters and does some computation. It comes with the LSDTopoTools package.
 You will see it in a subfolder within the folder containing the objects.
 This library compiled along with the code using instructions from the makefile.
@@ -3252,7 +3547,7 @@ $ git config --global user.email johndoe@example.com</code></pre>
 <div class="paragraph">
 <p>Now, if you are the kind of person who cares what the internet thinks of you,
 you might want to set your email and username to be the same as on your <a href="https://github.com/">Github</a> account
-(this is easily done online) so that your contributions to open source projects wil be documented online.</p>
+(this is easily done online) so that your contributions to open source projects will be documented online.</p>
 </div>
 <div class="paragraph">
 <p>You can <code>config</code> some other stuff as well, if you feel like it, such as your editor and merge tool.
@@ -3291,8 +3586,7 @@ $ git config --global core.editor emacs</code></pre>
 <div class="paragraph">
 <p>Okay, once you have set up git, you are ready to get some code!
 To get the code, you will need to <code>clone</code> it from a repository.
-Most of our code is hosted on <a href="https://github.com/">Github</a>,
-later in this chapter we &lt;&lt;<a href="https://github.com/">Github</a>,point you to some of our repositories&gt;&gt;,
+Most of our code is hosted on <a href="https://github.com/">Github</a>, and the repository <a href="https://github.com/LSDtopotools" class="bare">https://github.com/LSDtopotools</a>,
 but for now we will run you through an example.</p>
 </div>
 <div class="paragraph">
@@ -3384,7 +3678,7 @@ If you are downloading an LSDTopoTools repository from github, you won&#8217;t n
 </div>
 <div class="paragraph">
 <p>So now you gave run <code>git init</code> in some folder to initiate a repository.
-You will now want to add files with the add command::</p>
+You will now want to add files with the add command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3416,7 +3710,7 @@ $ git add A_specific.file</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Where the . indicates you want everything in the current directory including subfolders.</p>
+<p>Where the <code>.</code> indicates you want everything in the current directory including subfolders.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3449,7 +3743,7 @@ $ git push -u origin master
 </div>
 <div class="paragraph">
 <p>Once you have uploaded an initial copy, you will need to keep it in sync with
-local copies. You can push things to github with::</p>
+local copies. You can push things to github with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3490,13 +3784,25 @@ but there are many resources on the web for using git so help is only a few elec
 <h3 id="_where_to_get_the_code">4.3. Where to get the code</h3>
 <div class="paragraph">
 <p>Okay, now to actually get the code! There are several versions floating around.
-<strong>They are not all the same!</strong>. The best two ways to get the code both involve downloading the code from <a href="https://github.com">github</a>.</p>
+<strong>They are not all the same!</strong> The best two ways to get the code both involve downloading the code from <a href="https://github.com">github</a>.</p>
 </div>
 <div class="paragraph">
 <p>One way to do this is to go into a repository and download the repository as a <code>.zip</code> file.</p>
 </div>
 <div class="paragraph">
 <p>If, however, you are planning on keeping up with updates, it is probably better to use the software <code>git</code> to get the code.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you have used our vagrant installation, you will automatically have several of our repositories whoich you can update with the command <code>vagrant up</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_latest_release_versions_on_github">4.3.1. Latest release versions on GitHub</h4>
@@ -3505,9 +3811,7 @@ but there are many resources on the web for using git so help is only a few elec
 </div>
 <div class="paragraph">
 <p>The github site is: <a href="https://github.com/LSDtopotools" class="bare">https://github.com/LSDtopotools</a>.
-This site contains a number of offerings: documentation, notes, automation scripts, plotting scripts and other goodies.
-At the moment (September, 2015) the "latest release" offerings here are rather limited,
-but we hope to change this in the near future.</p>
+This site contains a number of offerings: documentation, notes, automation scripts, plotting scripts and other goodies.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3559,7 +3863,7 @@ We are now ready to actually move on to using the code!</p>
 This is fine as long as you know what you are doing!</p>
 </div>
 <div class="paragraph">
-<p>If you followed the instructions here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>,
+<p>If you followed the instructions here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>,
 then you will have all of the necessary software installed apart from python.</p>
 </div>
 <div class="paragraph">
@@ -4010,21 +4314,24 @@ inserts a bunch of stupid formatting like Wordpad or Word.</p>
 <p>In fact most text editors in Windows systems have the unfortunate habit of
 inserting diabolical hidden characters, called <a href="http://en.wikipedia.org/wiki/Control_character">control characters</a>
 that you will never see or notice if you just look at text but will completely
-screw up the program. We have endeavored to remove these characters
+screw up the program. We have endeavoured to remove these characters
 within our code, but I highly recommend editing the parameter file either
-in linux, or using a text editor on Windows that won&#8217;t insert these characters.</p>
+in Linux, or using a text editor on Windows that won&#8217;t insert these characters.</p>
 </div>
 <div class="paragraph">
-<p>For windows, we use <a href="http://www.pspad.com/">Pspad</a> or <a href="https://atom.io/">Atom</a></p>
+<p>A great text editor that works on all operating systems and is open source is <a href="http://brackets.io/">Brackets</a>.</p>
 </div>
 <div class="paragraph">
-<p>For linux, we use either <a href="http://en.wikipedia.org/wiki/Emacs">emacs</a> or <a href="http://en.wikipedia.org/wiki/Vim_(text_editor)">vim</a></p>
+<p>For Windows, we use <a href="http://www.pspad.com/">Pspad</a> or <a href="https://atom.io/">Atom</a></p>
+</div>
+<div class="paragraph">
+<p>For Linux, we use either <a href="http://en.wikipedia.org/wiki/Emacs">emacs</a> or <a href="http://en.wikipedia.org/wiki/Vim_(text_editor)">vim</a></p>
 </div>
 <div class="paragraph">
 <p>You can also use <a href="http://brackets.io/">brackets</a> for both Windows and Linux.</p>
 </div>
 <div class="paragraph">
-<p>These linux text editors take a bit of getting used to, so unless you are going to start
+<p>These Linux text editors take a bit of getting used to, so unless you are going to start
 writing code, you should probably stick with <strong>Brackets</strong>, <strong>Pspad</strong> or <strong>Atom</strong>.</p>
 </div>
 <div class="paragraph">
@@ -4049,7 +4356,7 @@ This feature is what makes <a href="https://www.vagrantup.com/">Vagrant</a> so a
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Okay, let&#8217;s get started modifying this file. Open it in your text editor. It will look a little bit like this::</p>
+<p>Okay, let&#8217;s get started modifying this file. Open it in your text editor. It will look a little bit like this:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
@@ -4308,7 +4615,7 @@ These are the fill raster: <code>WA_fill.bil</code> and the hillshade raster <co
 <li>
 <p>Now that you&#8217;ve done some analyses,
 you can look at the data in either your favorite GIS or using python.
-If you don&#8217;t know how to do that, you should have a look at our appendix: <a href="#Tools-for-viewing-data">[Tools-for-viewing-data]</a>.</p>
+If you don&#8217;t know how to do that, you should have a look at our appendix: <a href="#_appendix_f_tools_for_viewing_data">Appendix F: Tools for viewing data</a>.</p>
 </li>
 </ol>
 </div>
@@ -4352,16 +4659,16 @@ If you haven&#8217;t done this, go to the previous chapter: <a href="#_first_ana
 If you don&#8217;t know what these are go to the previous chapters.</p>
 </li>
 <li>
-<p>You need to get and compile the source code; see here: <a href="#get-and-compile-source">[get-and-compile-source]</a>.</p>
+<p>You need to get and compile the source code; see here: <a href="#_get_and_compile_your_first_lsdtopotools_program">Get and compile your first LSDTopoTools program</a>.</p>
 </li>
 <li>
-<p>If you have not used our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, you should make a folder for your data; see here: <a href="#make-folder">[make-folder]</a>.</p>
+<p>If you have not used our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, you should make a folder for your data; see here: <a href="#_preparing_your_data_and_folders">Preparing your data and folders</a>.</p>
 </li>
 <li>
-<p>If you don&#8217;t have data, get the example data; see here: <a href="#get-example-data">[get-example-data]</a>. These data are downlaoded automatically by our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.</p>
+<p>If you don&#8217;t have data, get the example data; see here: <a href="#_the_example_data">The example data</a>. These data are downloaded automatically by our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.</p>
 </li>
 <li>
-<p>Move the parameter file to the data folder; see here: <a href="#param-to-data-folder">[param-to-data-folder]</a>.</p>
+<p>Move the parameter file to the data folder; see here: <a href="#_placing_the_paramfile">Placing the paramfile</a>.</p>
 </li>
 <li>
 <p>Rename your parameter file (so you don&#8217;t confuse this with other analyses). You can do this
@@ -4388,8 +4695,8 @@ It is the <em>format</em> of this file that is important, not the filename.
 </li>
 <li>
 <p>Open two terminal windows (Instructions here: <a href="#_the_terminal_and_powershells">The terminal and powershells</a>).
-If you are using the Vagrant version of our software this means having two connections to the ubuntu server. For example, in windows you would run <code>vagrant up</code> once, and then connect to the client using <code>putty.exe</code> twice. In other operating sytems just use the local ssh utilities (<a href="https://mediatemple.net/community/products/dv/204405144/using-ssh-in-terminal.app-(mac-os-x)">OS X</a>, <a href="https://support.suso.com/supki/SSH_Tutorial_for_Linux">linux</a>) to connect to the vagrant box twice. The vagrant box, which runs Ubuntu, is almost always on <code>host 127.0.0.1</code> and <code>port 2222</code>.
-See the section on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> for details.</p>
+If you are using the Vagrant version of our software this means having two connections to the Ubuntu server. For example, in windows you would run <code>vagrant up</code> once, and then connect to the client using <code>putty.exe</code> twice. In other operating sytems just use the local ssh utilities (<a href="https://mediatemple.net/community/products/dv/204405144/using-ssh-in-terminal.app-(mac-os-x)">OS X</a>, <a href="https://support.suso.com/supki/SSH_Tutorial_for_Linux">linux</a>) to connect to the vagrant box twice. The vagrant box, which runs Ubuntu, is almost always on <code>host 127.0.0.1</code> and <code>port 2222</code>.
+See the section on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> for details.</p>
 </li>
 </ol>
 </div>
@@ -4404,7 +4711,7 @@ See the section on <a href="#_installing_lsdtopotools_on_a_windows_machine_using
 somewhere else. You will now need to modify this file.</p>
 </li>
 <li>
-<p>Open the file in your favorite text editor. There are lots of good ones but <a href="http://brackets.io/">Brackets</a> gives a consistent environment acrtoss operating systems and is free. <a href="https://atom.io/">Atom</a> is also nice. The parameter file that gets downloaded with the <code>AnalysisDriver</code> package looks like this:</p>
+<p>Open the file in your favorite text editor. There are lots of good ones but <a href="http://brackets.io/">Brackets</a> gives a consistent environment across operating systems and is free. <a href="https://atom.io/">Atom</a> is also nice. The parameter file that gets downloaded with the <code>AnalysisDriver</code> package looks like this:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
@@ -4528,7 +4835,7 @@ itself. This technique is employed to smooth high frequency noise, such as that 
 <p>For LiDAR data, we have found that you want a polyfit window that is around 7 metres in radius.
 This is based on work by <a href="http://pages.uoregon.edu/~jroering/outgoing/2010RoeringTreesSoilEPSL2010.pdf">Roering et al., 2010</a> and
 <a href="http://www.geos.ed.ac.uk/homes/smudd/Hurst_JGR2012.pdf">Hurst et al., 2012</a>.
-For coarser data, you probably want to smooth over at least 1 pixel radius, so if you havbe a 10m DEM your window radius should be &gt;10m.</p>
+For coarser data, you probably want to smooth over at least 1 pixel radius, so if you have a 10m DEM your window radius should be &gt;10m.</p>
 </div>
 <div class="paragraph">
 <p>In this example we are using old NextMap data (it was processed around 2007). Sadly this data isn&#8217;t so great: it is full of lumps.
@@ -4611,7 +4918,7 @@ write curvature: true</code></pre>
 <ol class="arabic">
 <li>
 <p>You will now need to run the program <code>LSDTT_analysis_from_paramfile.out</code>.
-Some details about running this program are in the first tutorial (<a href="#First-analysis">[First-analysis]</a>) in case you have forgotten.</p>
+Some details about running this program are in the first tutorial (<a href="#_first_analysis">First Analysis</a>) in case you have forgotten.</p>
 </li>
 <li>
 <p>I renamed my parameter file `Whiteadder_Surf.LSDTT_driver, so to run the code you need to type the following into the command line::</p>
@@ -4660,10 +4967,10 @@ and valleys have positive curvature. This is reversed in <code>ArcMap</code>. Ou
 <div class="sectionbody">
 <div class="paragraph">
 <p>Landscapes are almost always dissected by a network of channels,
-and extracting channel networks from topographic data is a common yet frequently challenging task in topographic analysis.  We have a variety of different channel network extraction algorithms that can be used depending on the characteristics of the landscape to be studied (such as the relief and presence of artifical features), or the resolution of the available digital elevation models (DEMs).
+and extracting channel networks from topographic data is a common yet frequently challenging task in topographic analysis.  We have a variety of different channel network extraction algorithms that can be used depending on the characteristics of the landscape to be studied (such as the relief and presence of artificial features), or the resolution of the available digital elevation models (DEMs).
 In this chapter we go through the many methods of channel extraction available within <a href="https://lsdtopotools.github.io/">LSDTopoTools</a>,
 ranging from rudimentary methods (e.g., <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>)
-to methods that aim to precicely locate channel heads from high resolution data.</p>
+to methods that aim to precisely locate channel heads from high resolution data.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -4674,19 +4981,28 @@ to methods that aim to precicely locate channel heads from high resolution data.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the channel extraction method that you would like to use.</p>
+<p>You can set up <strong>LSDTopoTools</strong> by following these instructions: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>. Note that our vagrant setup also works on MacOS and Linux systems. If you follow those instructions you will have the channel extraction repository on your LSDTopoTools system.</p>
 </li>
 <li>
-<p>Make sure your DEM is in <code>bil</code> format and is in the repository folder</p>
+<p>If you have used vagrant, navigate to <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/driver_functions_ChannelExtraction/</code>.</p>
 </li>
 <li>
-<p>Create a parameter file for your DEM</p>
+<p>If you have not used vagrant, clone the repository using <code>git clone <a href="https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git" class="bare">https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git</a></code>.</p>
+</li>
+<li>
+<p>Choose the channel extraction method that you would like to use, and use <code>make</code> to compile it.</p>
+</li>
+<li>
+<p>Make sure your DEM is in <code>bil</code> format. This is the <strong>ENVI</strong> bil format and not the Arc bil format. If you need to read about converting data read this section: <a href="#translating-your-raster-into-something-that-can-be-used-by-lsdtopotoolbox">Translating your raster into something that can be used by LSDTopoToolbox</a></p>
+</li>
+<li>
+<p>Create a parameter file for your DEM, put it in your data folder.</p>
 </li>
 <li>
 <p>Compile the code using <code>make -f channel_extraction_TypeOfExtraction.make</code>, where <code>TypeOfExtraction</code> is the extraction method you want to use (either area_threshold, pelletier, geonet, or dreich).</p>
 </li>
 <li>
-<p>Run the program with <code>./channel_extraction_TypeOfExtraction.out /path_to_repository_folder/ parameter_file.driver</code></p>
+<p>Run the program with <code>./channel_extraction_TypeOfExtraction.out /path_to_data_folder/ parameter_file.driver</code></p>
 </li>
 <li>
 <p>Open the resulting <code>bil</code> and CSV files in the GIS of your choice.</p>
@@ -4698,16 +5014,25 @@ to methods that aim to precicely locate channel heads from high resolution data.
 <div class="sect2">
 <h3 id="_get_the_code_for_channel_extraction">7.1. Get the code for channel extraction</h3>
 <div class="paragraph">
-<p>Our code for channel extraction can be found in our GitHub repository.  This repository contains code for extracting channel networks using a variety of different methods ranging from simple contributing area thresholds to more complex geometric and theoretical approaches for extracting channels from high-resolution datasets.</p>
+<p>Our code for channel extraction can be found in our <a href="https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction">GitHub repository</a>.  This repository contains code for extracting channel networks using a variety of different methods ranging from simple contributing area thresholds to more complex geometric and theoretical approaches for extracting channels from high-resolution datasets.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">If you use our vagrantfiles</div>
+<div class="paragraph">
+<p>If you use our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a> to set up your system, the channel extraction repository will already be downloaded onto your virtual machine.
+You can find the repository in the directory <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/</code> directory. You can use <code>cd</code> to go directly there.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_clone_the_github_repository">7.1.1. Clone the GitHub repository</h4>
 <div class="paragraph">
-<p>First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/home/LSDTT_repositories</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
+<p>If you haven&#8217;t run our vagrant setup, you need to clone the repository. First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/LSDTopoTools/Git_projects/</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ cd /home/LSDTT_repositories/</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects/</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4716,7 +5041,7 @@ to methods that aim to precicely locate channel heads from high resolution data.
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_repositories/
+/LSDTopoTools/Git_projects/
 $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git</code></pre>
 </div>
 </div>
@@ -4737,7 +5062,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git</
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/home/LSDTT_repositories/
+/LSDTopoTools/Git_projects/
 $ wget https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction/archive/master.zip
 $ gunzip master.zip</code></pre>
 </div>
@@ -4803,7 +5128,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/indian_cre
 <div class="sect2">
 <h3 id="_basic_channel_extraction_using_thresholds">7.2. Basic channel extraction using thresholds</h3>
 <div class="paragraph">
-<p>One of the most simple ways of extracting channel networks from DEMs uses a contributing area threshold.  This method is useful for coarse resolution (e.g. &gt;10m) DEMs, where topographic features of the channel heads themselves cannot be reliably identified from the DEM. The user has to specify the threshold area, which represents the upstream area that must drain to a pixel before it is considered as part of the channel.</p>
+<p>One of the simplest ways of extracting channel networks from DEMs uses a contributing area threshold.  This method is useful for coarse resolution (e.g. &gt;10m) DEMs, where topographic features of the channel heads themselves cannot be reliably identified from the DEM. The user has to specify the threshold area, which represents the upstream area that must drain to a pixel before it is considered as part of the channel.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4910,7 +5235,7 @@ Threshold area for channel extraction</code></pre>
 <div class="sect2">
 <h3 id="_geometric_channel_extraction_methods">7.3. Geometric channel extraction methods</h3>
 <div class="paragraph">
-<p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detech channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in LSDTopoTools, and a similar geometric method available within LSDTopoTools.</p>
+<p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detect channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in <strong>LSDTopoTools</strong>, and a similar geometric method available within <strong>LSDTopoTools</strong>.</p>
 </div>
 <div class="sect3">
 <h4 id="_geonet_external_software">7.3.1. Geonet (external software)</h4>
@@ -5598,7 +5923,7 @@ These can be enabled by setting a flag inside the driver on line 141.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Channel Heads</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Channel head raster named <code>&lt;prefix&gt;_DEM_CH.flt</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A file containing channel heads, which can be generated using the <a href="http://csdms.colorado.edu/wiki/Model:DrEICH_algorithm">DrEICH algorithm</a>. See the <a href="#Channel Extraction">[Channel Extraction]</a> chapter for more information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A file containing channel heads, which can be generated using the <a href="http://csdms.colorado.edu/wiki/Model:DrEICH_algorithm">DrEICH algorithm</a>. See the <a href="#_channel_extraction">Channel extraction</a> chapter for more information.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Floodplain Mask</p></td>
@@ -7124,8 +7449,7 @@ the user should read <a href="http://mit.edu/perron/www/files/PerronRoyden13.pdf
 <p>This document guides the user through the installation process, and explains how to use the model.
 You will need a C++ compiler for this tutorial. If you have no idea what a C++ compiler is, see the appendix.
 Visualisation of the model results is performed using Python scripts. We recommend installing
-<a href="https://code.google.com/p/pythonxy/">Python(x,y)</a> or <a href="https://www.continuum.io/downloads">Anaconda</a>
-and running the scripts within Spyder (which is installed with Python(x,y) and Anaconda).</p>
+<a href="http://conda.pydata.org/miniconda.html">miniconda</a> and then installing Spyder and the Scipy packages using the <code>conda</code> command. You can then run visualisation using Spyder.</p>
 </div>
 <div class="paragraph">
 <p>Both the recommended compiler and Python are <strong>open source</strong>: you do not need to buy any
@@ -7138,7 +7462,7 @@ and running the scripts within Spyder (which is installed with Python(x,y) and A
 </div>
 <div class="paragraph">
 <p>Chi analysis is a method for examining channel profiles.
-If you are familiar with chi analysis, you can skip ahead to the section <a href="#Get and compile the chi analysis tools">[Get and compile the chi analysis tools]</a>.
+If you are familiar with chi analysis, you can skip ahead to the section <a href="#_get_the_chi_analysis_tools">Get the chi analysis tools</a>.
 This section covers the background to the method, and why it is useful.</p>
 </div>
 <div class="sect3">
@@ -7193,7 +7517,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code><
 </div>
 </div>
 <div class="paragraph">
-<p>If you have used our [vagrantfiles] and vagrant, you can update the existing repository with:</p>
+<p>If you have used our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a> and vagrant, you can update the existing repository with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7234,30 +7558,37 @@ so if you previously downloaded a zipper repository this will overwrite it.
 <div class="sect3">
 <h4 id="_compile_the_code_6">11.2.2. Compile the code</h4>
 <div class="paragraph">
-<p>Okay, now you should have the code. You will still be sitting in the directory
+<p>Okay, now you should have the code. If you have downloaded or cloned the code yourself, you will still be sitting in the directory
 <code>/LSDTopoTools/Git_projects</code>, so navigate up to the directory <code>LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you are using our vagrant distribution the code will be automatically cloned and you can get it by going directly to the appropriate folder:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-/LSDTopoTools/Git_projects
-$ cd LSDTopoTools_ChiMudd2014
-$ cd driver_functions_MuddChi2014</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>There are a number of makefiles (thse with extension <code>.make</code> in this folder).
-These do a number of different things that will be explained later in this chapter.
+<p>There are a number of makefiles (thse with extension <code>.make</code> in this folder). You can have a look at all of them by running the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls *.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These makefiles do a number of different things that will be explained later in this chapter.
 We will compile them as we go through the various different types of chi analysis.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_get_some_example_data">11.2.3. Get some example data</h4>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 If you are using our <strong>vagrantfiles</strong> then the data is already in the <code>/LSDTopoTools/Topographic_projects/Test_data</code> directory, and you don&#8217;t need to download anything.
@@ -7307,6 +7638,18 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Mandakini.
 </div>
 <div class="sect2">
 <h3 id="_chi_analysis_part_1_getting_the_channel_profiles">11.3. Chi analysis, part 1: getting the channel profiles</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This section describes the steps in running analyses described in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/full">Mudd et al. (2014)</a>. These are mainly aimed at constraining the \(m/n\) ratio in various landscapes. If you want to capture the steepness of all channels in a landscape you should go to the section: <a href="#_chi_analysis_part_3_getting_chi_gradients_for_the_entire_landscape">Chi analysis part 3: Getting chi gradients for the entire landscape</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Our chi analysis method involves two steps.
 The first extracts a channel profile
@@ -7721,37 +8064,28 @@ In Linux the program should be proceeded with <code>./</code>. Here is an exampl
 </div>
 </li>
 <li>
-<p>This will generate several files</p>
-<div class="paragraph">
-<div class="title">Files generated by chi2_write_channel_file.exe.</div>
-<p>Note that for <code>flt</code> and <code>bil</code> formats each dataset will consist of a <code>bil</code> and a <code>hdr</code> file.</p>
-</div>
-</li>
-</ol>
-</div>
+<p>This will generate several files. Note that for <code>flt</code> and <code>bil</code> formats each dataset will consist of a <code>bil</code> and a <code>hdr</code> file.</p>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 15. Files generated by chi2_write_channel_file.exe.</caption>
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File name contains</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File name contains</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>basin</em></code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Immediately before the <code>.flt</code> extension the junction number will also be listed.
 This file is a raster containing the outline of the contributing pixels to the basin
 drained by the extracted channel network.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>ChanNet</em></code>, with extension <code>chan</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A hillshade raster. After <code><em>ChanNet</em></code> the basin number will be printed.
 This file is used by subsequent chi analysis: that is, further analysis does not involve the DEM,
 all of the necessary information is translated into the <code>.chan</code> file.</p></td>
@@ -7759,47 +8093,47 @@ all of the necessary information is translated into the <code>.chan</code> file.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">.csv
 This file can be imported into ArcMap or other GIS software.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This file contain data on the nodes making up the channels in the <code>chan</code> file,
 but the csv file can be imported into ArcMap or QGIS.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>+
-ArcMap should be able to see the '.csv' file.</p>
+</li>
+<li>
+<p>ArcMap should be able to see the '.csv' file.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/channel_csv.jpg" alt="Load a csv file">
+</div>
+<div class="title">Figure 10. Adding a csv file in ArcMap</div>
 </div>
 <div class="paragraph">
-<p>+
-.Adding a csv file in ArcMap
-image::images/channel_csv.jpg[Load a csv file]</p>
+<p>If you load this layer and right click on it, you should be able to load the xy data</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/csv_show_xy.jpg" alt="Show xy data in ArcMap">
+</div>
+<div class="title">Figure 11. Showing x and y data in ArcMap</div>
 </div>
 <div class="paragraph">
-<p>+
-If you load this layer and right click on it, you should be able to load the xy data</p>
-</div>
-<div class="paragraph">
-<p>+
-.Showing x and y data in ArcMap
-image::images/csv_show_xy.jpg[Show xy data in ArcMap]</p>
-</div>
-<div class="paragraph">
-<p>+
-Loading the csv file will give you a shapefile with the channel nodes, and loading the <code><em>basin</em></code>
+<p>Loading the csv file will give you a shapefile with the channel nodes, and loading the <code><em>basin</em></code>
 file will give you the basin. Here is the basin and the channel for junction <code>51</code> of the
 Mandakini dataset</p>
 </div>
-<div class="paragraph">
-<p>+
-.The extraced basin with its channels
-image::images/Mandakini_extracted_chan_and_basin.jpg[Channel and basin]</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Mandakini_extracted_chan_and_basin.jpg" alt="Channel and basin">
+</div>
+<div class="title">Figure 12. The extraced basin with its channels</div>
 </div>
 <div class="paragraph">
-<p>+
-Note how the channel extends downstream from the selected junction. It stops one node before the
+<p>Note how the channel extends downstream from the selected junction. It stops one node before the
 next junction. This way you can get an entire tributary basin that stops one node short of its
 confluence with the main stem channel.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -7811,7 +8145,7 @@ f the channel is not generated from a DEM these six rows can contain placeholder
 The six rows are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 15. First six rows of the .chan file.</caption>
+<caption class="title">Table 16. First six rows of the .chan file.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -7858,7 +8192,7 @@ scripts can be written to merge data from the channel files with DEM data.</p>
 <p>The rest of the channel file consists of rows with 9 columns.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 16. Chan file contents, the first 6 rows are listed in the table above.</caption>
+<caption class="title">Table 17. Chan file contents, the first 6 rows are listed in the table above.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -7975,6 +8309,14 @@ entire process should take no more than a few minutes.</p>
 </div>
 <div class="sect2">
 <h3 id="_chi_profile_analysis_part_2_constraining_m_n_and_transforming_profiles">11.4. Chi profile analysis, part 2: constraining m/n and transforming profiles</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">If you want to get all channels in a drainage basin</div>
+<div class="paragraph">
+<p>These instructions use the statistical algorithms of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract&gt;">Mudd et al (2014)</a> to determine and \(m/n\) ratio for specific channels. If you want to extract either the chi coordinate or the chi slope, you should follow these instructions: <a href="#_chi_analysis_part_3_getting_chi_gradients_for_the_entire_landscape">Chi analysis part 3: Getting chi gradients for the entire landscape</a>. You can also get \(k_{sn}\) values for the entrire landscape if you follow the instructions in part 3 and set the \(A_0\) parameter to 1 in the parameter file.</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>This is part 2 of the chi profile analysis documentation.
 Part 1 can be found here in the section <a href="#_chi_analysis">part 1: getting the channel profiles</a>.
@@ -7999,7 +8341,7 @@ are described by <a href="http://web.mit.edu/perron/www/files/PerronRoyden13.pdf
 <div class="sect3">
 <h4 id="_steps_involved_to_perform_channel_analysis">11.4.1. Steps involved to perform channel analysis</h4>
 <div class="paragraph">
-<p>After preparing the data (see section <a href="#Chi part 1">[Chi part 1]</a>),
+<p>After preparing the data (see section <a href="#_chi_analysis">part 1: getting the channel profiles</a>),
 performing the channel analysis involves 3 steps, including visualization of the data.</p>
 </div>
 <div class="olist arabic">
@@ -8031,7 +8373,7 @@ be compiled by caling the makefile <code>chi_m_over_n_analysis.make</code>.</p>
 </div>
 <div class="paragraph">
 <p>If you are using a windows machine and have installed <a href="http://www.cygwin.com/">Cygwin</a>
-you need to ensure that you have installed the make utility.
+you need to ensure that you have installed the <code>make</code> utility. However we recommend you use our vagrant setup, wherein <code>make</code> is installed for you.
 The below instructions use the linux command prompt symbol (<code>$</code>),
 but as long as you have make and a compiler installed on widows these
 instructions should also work in a powershell terminal. See the section:
@@ -8052,7 +8394,7 @@ instructions should also work in a powershell terminal. See the section:
 <div class="sect4">
 <h5 id="_running_the_code_2">Running the code</h5>
 <div class="paragraph">
-<p>The program 'chi_m_over_n_analysis.exe` is run with 2 arguments to the command line.</p>
+<p>The program <code>chi_m_over_n_analysis.exe</code> is run with 2 arguments to the command line.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -8072,7 +8414,7 @@ for the driver file but this is not a requirement.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./chi_m_over_n_analysis.exe /home/smudd/topographic_tools/test_suites/Mandakini/ chi_parameters.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">./chi_m_over_n_analysis.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8083,7 +8425,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 (e.g., a string describing them). The parameters are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 17. Cheat sheet for driver file</caption>
+<caption class="title">Table 18. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -8100,7 +8442,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of the channel file</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The original name of the DEM. If your <code>.chan</code> file is called <code>mandakini_ChanNet_21729.chan</code>, then the first row of the driver file should be <code>mandakini</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The original name of the DEM. If your <code>.chan</code> file is called <code>mandakini_ChanNet_76.chan</code>, then the first row of the driver file should be <code>mandakini</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -8115,7 +8457,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Junction number of channel.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the junction number that was specified when the <code>.chan</code> file was created. So if your <code>.chan</code> file is called <code>mandakini_ChanNet_21729.chan</code>, then the fourth row should be <code>21729</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the junction number that was specified when the <code>.chan</code> file was created. So if your <code>.chan</code> file is called <code>mandakini_ChanNet_76.chan</code>, then the fourth row should be <code>76</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
@@ -8125,7 +8467,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">\(A_0\)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference drainage area for integrating to chi space (\(m^2\))</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference drainage area for integrating to chi space (\(m^2\)). If you want to calculate channel steepness index (\(k_{sn}\)) you should set this to 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
@@ -8149,7 +8491,7 @@ the fewer segments you will get (see <a href="http://onlinelibrary.wiley.com/doi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">starting \(m/n\)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The starting m/n value to test the likelihood of.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The starting \(m/n\) value to test the likelihood of.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
@@ -8204,15 +8546,15 @@ analysis as a fraction of the area at the midpoint of an interval.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Target skip</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The "target skip", which is the average number of nodes the routine skips when it is trying to compute the best segments.
-If the DEM is 90m resolution, for example, the resolution the algorithm will work at is ~300 meters. Here is an example file:</p></td>
+If the DEM is 90m resolution, for example, the resolution the algorithm will work at is ~300 meters.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>And here is the cheat sheet (also included in <code>driver_cheat_sheet.txt</code>):</p>
+<p>And here is the cheat sheet (also included in <code>driver_cheat_sheet.txt</code>, which you can look at in the directory <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code> if you used our vagrant distribution):</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 18. Cheat sheet for driver file</caption>
+<caption class="title">Table 19. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -8248,7 +8590,7 @@ Could reduce to, say 100 or even 50.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A_0 for chi analysis: probably don&#8217;t need to change.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A_0 for chi analysis: probably don&#8217;t need to change. If you want to calculate channel steepness index, \(k_{sn}\), set to 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
@@ -8326,8 +8668,8 @@ Increasing the skip value can reduce computational time required.
 </div>
 <div class="paragraph">
 <p>You can expect the computation to take several minutes
-(e.g. minimum segment length ~20, target nodes ~100, skip set so mainstem has 300-500 nodes analysed)
-to many hours (e.g. minimum segment length of 5, target nodes of 120-140, skip set such that thousands of nodes are analysed).</p>
+(e.g., minimum segment length ~20, target nodes ~100, skip set so mainstem has 300-500 nodes analysed)
+to many hours (e.g., minimum segment length of 5, target nodes of 120-140, skip set such that thousands of nodes are analysed).</p>
 </div>
 </div>
 <div class="sect4">
@@ -8371,7 +8713,7 @@ For example, the filename:</p>
 <p>The format of the file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 19. The format of the .movern file</caption>
+<caption class="title">Table 20. The format of the .movern file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -8475,9 +8817,9 @@ and driver name of your files:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-python" data-lang="python"># set the directory and filename
-DataDirectory =  "/home/smudd/topographic_tools/test_suites/Mandakini/"
+DataDirectory =  "/LSDTopoTools/Topographic_projects/Test_data"
 
-DriverFileName = "chi_parameters.driver"</code></pre>
+DriverFileName = "Example_Mudd2014.driver"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8486,7 +8828,7 @@ DriverFileName = "chi_parameters.driver"</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-python" data-lang="python"># set the directory and filename
-DataDirectory =  "m:\\topographic_tools\\test_suites\\Mandakini\\"</code></pre>
+DataDirectory =  "c:VagrantBoxes\\LSDTopoTools\\Topographic_projects\\Test_data"</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -8536,14 +8878,14 @@ the next four (<code>start_</code>) dictate where the parameter will start, and 
 5, 9, and 13.</p>
 </div>
 <div class="paragraph">
-<p>The driver files will be numbered (e.g., <code>my_driver.1.driver</code>, <code>my_driver.2.driver</code>, etc.):</p>
+<p>The driver files will be numbered (e.g., <code>Example_Mudd2014.1.driver</code>, <code>Example_Mudd2014.2.driver</code>, etc.):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ls *.driver
-chi_parameters.1.driver
-chi_parameters.2.driver
-chi_parameters.driver</code></pre>
+Example_Mudd2014.1.driver
+Example_Mudd2014.2.driver
+Example_Mudd2014.driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8551,7 +8893,7 @@ chi_parameters.driver</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_m_over_n_analysis.exe /home/smudd/topographic_tools/test_suites/Mandakini/ my_driver.1.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_m_over_n_analysis.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.1.driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8559,11 +8901,12 @@ chi_parameters.driver</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ nohup nice ./chi_m_over_n_analysis.exe /home/smudd/topographic_tools/test_suites/Mandakini/ my_driver.1.driver &amp;</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ nohup nice ./chi_m_over_n_analysis.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.1.driver &amp;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And then just keep running them in succession until you use up all of your CPUs (luckily at Edinburgh we have quite a few)!</p>
+<p>And then just keep running them in succession until you use up all of your CPUs (luckily at Edinburgh we have quite a few)!
+Sadly, this really only works if you have a cluster, so it is not so great if you are using a single Vagrant machine.</p>
 </div>
 <div class="paragraph">
 <p>We have also written an additional python script called <code>Run_drivers_for_mn.py</code> which simply looks for all the drivers in folder
@@ -8573,7 +8916,7 @@ In this case the relevant line is line 18:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-python" data-lang="python">DataDirectory =  "/home/smudd/topographic_tools/test_suites/Mandakini/"</code></pre>
+<pre class="highlight"><code class="language-python" data-lang="python">DataDirectory =  "/LSDTopoTools/Topographic_projects/Test_data"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8620,7 +8963,7 @@ with two arguments: the path name and the driver name:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_get_profiles.exe /home/smudd/topographic_tools/test_suites/Mandakini/ chi_parameters.driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_get_profiles.exe /LSDTopoTools/Topographic_projects/Test_data Example_Mudd2014.driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8650,11 +8993,11 @@ those values which have "plausible" values of the \(m/n\) ratio
 </div>
 <div class="paragraph">
 <p>For each \(m/n\) ratio tested, the code produces a file with the extension <code>.tree</code> and the string within the filename <code><em>fullProfileMC_forced</em></code>.
-This filename also contains the m/n value so for example a filename might be called:</p>
+This filename also contains the \(m/n\) value so for example a filename might be called:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">pa_basin_fullProfileMC_forced_0.3_5_2_20_100_3124.tree</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">mandakini_fullProfileMC_forced_0.3_5_2_20_100_3124.tree</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8770,7 +9113,7 @@ Here is an example:</p>
 <div class="content">
 <img src="images/AICc_plotting.jpg" alt="AICc plot">
 </div>
-<div class="title">Figure 10. The AICc as a function of m/n. The m/n with the minimum AICc is the most likely m/n</div>
+<div class="title">Figure 13. The AICc as a function of m/n. The m/n with the minimum AICc is the most likely m/n</div>
 </div>
 <div class="paragraph">
 <p>To run the <code>AICc_plotting.py</code> script you must modify the path name and filename after line 35 of the script.
@@ -8801,7 +9144,7 @@ Each tributary is plotted with a different colour.  Here is an example:</p>
 <div class="content">
 <img src="images/chi_profile.jpg" alt="Chi profiles">
 </div>
-<div class="title">Figure 11. Profiles of elevation as a function of \(\chi\).</div>
+<div class="title">Figure 14. Profiles of elevation as a function of \(\chi\).</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8825,7 +9168,7 @@ The colour scheme from the first figure is carried forward, so that it is easy t
 <div class="content">
 <img src="images/M_chi.jpg" alt="M_chi">
 </div>
-<div class="title">Figure 12. A plot of \(M_{\chi}\) as a function of \(\chi\).</div>
+<div class="title">Figure 15. A plot of \(M_{\chi}\) as a function of \(\chi\).</div>
 </div>
 <div class="paragraph">
 <p>The third figure displays the longitudinal channel profiles (elevation as a function of flow distance),
@@ -8835,7 +9178,7 @@ but these channel profiles are coloured by the gradient in \(\chi\)-elevation sp
 <div class="content">
 <img src="images/profile_Mchi_colour.jpg" alt="M_chi distributed">
 </div>
-<div class="title">Figure 13. A plot of \(M_{\chi}\) in profiles.</div>
+<div class="title">Figure 16. A plot of \(M_{\chi}\) in profiles.</div>
 </div>
 </div>
 <div class="sect4">
@@ -8853,7 +9196,7 @@ Here is an example plot:</p>
 <div class="content">
 <img src="images/mn_sensitivity.jpg" alt="sensitivity of m/n ratio">
 </div>
-<div class="title">Figure 14. Box and whisker plots of m/n ratios: this shows how m/n varies as a function of segment fitting parameters.</div>
+<div class="title">Figure 17. Box and whisker plots of m/n ratios: this shows how m/n varies as a function of segment fitting parameters.</div>
 </div>
 </div>
 <div class="sect4">
@@ -8889,7 +9232,7 @@ Here is an example:</p>
 <div class="content">
 <img src="images/raster_chan.jpg" alt="Map of channels">
 </div>
-<div class="title">Figure 15. A map showing the channels (colored by their number) within a basin</div>
+<div class="title">Figure 18. A map showing the channels (colored by their number) within a basin</div>
 </div>
 </li>
 <li>
@@ -8903,7 +9246,7 @@ where \(M_{\chi}\) is plotted on the channel profile. Here is an example:</p>
 <div class="content">
 <img src="images/raster_Mchi.jpg" alt="M_chi in a basin">
 </div>
-<div class="title">Figure 16. The \(M_{\chi}\) of channels within a basin</div>
+<div class="title">Figure 19. The \(M_{\chi}\) of channels within a basin</div>
 </div>
 </li>
 </ol>
@@ -8922,7 +9265,7 @@ where \(M_{\chi}\) is plotted on the channel profile. Here is an example:</p>
 <div class="content">
 <img src="images/workflow.png" alt="m over n workflow">
 </div>
-<div class="title">Figure 17. The workflow for finding the m over n ratio</div>
+<div class="title">Figure 20. The workflow for finding the m over n ratio</div>
 </div>
 </div>
 </div>
@@ -8939,7 +9282,7 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 <div class="sect3">
 <h4 id="_compile_the_code_7">11.5.1. Compile the code</h4>
 <div class="paragraph">
-<p>The chi gradient mapping tool can be compiled by navigating to the driver function folder and running <code>make</code>:</p>
+<p>The chi gradient mapping tool can be compiled by navigating to the driver function folder and running <code>make</code>. If you are using our vagrant setup you can go directly to the correct folder by typing <code>cd /LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>. Once there, run the command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8955,7 +9298,7 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The path to the parameter file. This <strong>MUST</strong> inclde the trailing slash (i.e., <code>/home/test_data/some_data</code> is incorrect whereas <code>/home/test_data/some_data/</code> is correct).</p>
+<p>The path to the parameter file. This <strong>MUST</strong> inclde the trailing slash (i.e., <code>/LSDTopoTools/Topographic_projects/Test_data</code> is incorrect whereas <code>/LSDTopoTools/Topographic_projects/Test_data/</code> is correct).</p>
 </li>
 <li>
 <p>The name of the parameter file.</p>
@@ -8963,11 +9306,11 @@ The routines calculate the gradient in chi space (which we call \(M_{\chi}\)) bu
 </ol>
 </div>
 <div class="paragraph">
-<p>So if the parameter file is located at <code>/home/test_data/some_data/</code> and it is called <code>test_chi_map.param</code>, you run the program with:</p>
+<p>So if the parameter file is located at <code>/LSDTopoTools/Topographic_projects/Test_data</code> and it is called <code>test_chi_map.param</code>, you run the program with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /home/test_data/some_data/ test_chi_map.param</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /LSDTopoTools/Topographic_projects/Test_data test_chi_map.param</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9029,7 +9372,7 @@ The parameter file has a specific format, but the filename can be anything you w
 The reason we use <code>bil</code> format is because it retains georeferencing which is essential to our file output since many of the files output to <code>csv</code> format with latitude and longitude as coordinates.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 20. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
+<caption class="title">Table 21. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -9072,7 +9415,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 21. Options for determining which channels and basins to analyse, including settings for the fill function.</caption>
+<caption class="title">Table 22. Options for determining which channels and basins to analyse, including settings for the fill function.</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -9121,7 +9464,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 22. Parameters for calculating the chi coordinate.</caption>
+<caption class="title">Table 23. Parameters for calculating the chi coordinate.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -9158,7 +9501,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 23. Parameters for calculating the segments of similar chi slope (\(M_{\chi}\)). More details on the use fo these parameters can be found in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES 2014</a>.</caption>
+<caption class="title">Table 24. Parameters for calculating the segments of similar chi slope (\(M_{\chi}\)). More details on the use fo these parameters can be found in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES 2014</a>.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -9213,7 +9556,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 24. Keywords for setting which analyses to be preformed and which files to print. <strong>These are all booleans!</strong> **Defaults are all false so these parameters must be set to true to perform analyses and print to file.</caption>
+<caption class="title">Table 25. Keywords for setting which analyses to be preformed and which files to print. <strong>These are all booleans!</strong> **Defaults are all false so these parameters must be set to true to perform analyses and print to file.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -9282,9 +9625,9 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 
 # These are parameters for the file i/o
 # IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
-read path: /home/smudd/SMMDataStore/analysis_for_papers/Indus/
-write path: /home/smudd/SMMDataStore/analysis_for_papers/Indus/NewChi/
-read fname: Indus_Coarse
+read path: /LSDTopoTools/Topographic_projects/Test_data
+write path: /LSDTopoTools/Topographic_projects/Test_data
+read fname: Mandakini
 channel heads fname: NULL
 
 # Parameter for filling the DEM
@@ -9361,7 +9704,17 @@ All of the files contain <strong>latitude</strong> and <strong>longitude</strong
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-python" data-lang="python">def TestMappingToolsLassoCSV():
-    DataDirectory = "T://analysis_for_papers//Indus//IndusChi//"
+    DataDirectory = "C://VagrantBoxes//LSDTopoTools//Topographic_projects//Test_data//"
+    LSDP.ConvertAllCSVToGeoJSON(DataDirectory)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this is if your run the python script within windows. If you run it within your agrant Linux machine the directory would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def TestMappingToolsLassoCSV():
+    DataDirectory = "/LSDTopoTools/Topographic_projects/Test_data/"
     LSDP.ConvertAllCSVToGeoJSON(DataDirectory)</code></pre>
 </div>
 </div>
@@ -9392,8 +9745,14 @@ All of the files contain <strong>latitude</strong> and <strong>longitude</strong
 <h2 id="_basin_averaged_cosmogenic_analysis">12. Basin averaged cosmogenic analysis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The LSDCosmoBasin toolkit is designed to automate calculation of basin averaged denudation rates determined estimated from the concentration of in situ cosmogenic nuclides.
+<p>We have developed a toolkit to automate calculation of basin (or catchement) averaged denudation rates estimated from the concentration of in situ cosmogenic nuclides in stream sediment. This toolkit is called the <a href="http://www.earth-surf-dynam.net/4/655/2016/">CAIRN method</a>.
 Currently <sup>10</sup>Be and <sup>26</sup>Al are supported.</p>
+</div>
+<div class="paragraph">
+<p>If you use this to calculate denudation rates that are later published, please cite this paper:</p>
+</div>
+<div class="paragraph">
+<p>Mudd, S. M., Harel, M.-A., Hurst, M. D., Grieve, S. W. D., and Marrero, S. M.: The CAIRN method: automated, reproducible calculation of catchment-averaged denudation rates from cosmogenic nuclide concentrations, <em>Earth Surf. Dynam.</em>, 4, 655-674, doi:10.5194/esurf-4-655-2016, 2016.</p>
 </div>
 <div class="paragraph">
 <p>The toolkit requires:</p>
@@ -9434,11 +9793,11 @@ If one of these steps doesn&#8217;t make sence see the full documentation.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>You will want a directory for both the source code and the data. Make these directories.</p>
+<p>You will want a directory for both the source code and the data. Make these directories. Our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">Vagrantfiles</a> automate this process meaning if they use them all the work setting up the system is done for you.</p>
 </li>
 <li>
 <p>Get the latest version of the source code from <a href="https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide" class="bare">https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide</a>
-If you don&#8217;t have it, use</p>
+If you don&#8217;t have it (i.e., if you haven&#8217;t used our vagrantfiles), use</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide.git</code></pre>
@@ -9453,12 +9812,12 @@ If you don&#8217;t have it, use</p>
 </div>
 </div>
 <div class="paragraph">
-<p>in your source code directory.</p>
+<p>in your source code directory. In our vagrant machine, the source code is located in the directory <code>/LSDTopoTools/Git_projects/LSDTopoTools_CRNBasinwide</code>. You can also update the source code by using the <code>vagrant provision</code> command after you run <code>vagrant up</code>.</p>
 </div>
 </li>
 <li>
 <p>If you have just downloaded the source code, or if it has updates, you need to compile the code.
-Go into the folder <strong>driver_functions_CRNBasinwide</strong> and use make:</p>
+Go into the directory <strong>driver_functions_CRNBasinwide</strong>. If you use our vagrantfiles you can jump straight to the correct driectory using the the command <code>cd /LSDTopoTools/Git_projects/LSDTopoTools_CRNBasinwide/driver_functions_CRNBasinwide</code>  and use <code>make</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ make -f Spawn_DEMS_for_CRN.make
@@ -9494,8 +9853,8 @@ $ wget https://github.com/LSDtopotools/LSDAutomation/raw/master/PrepareCRNRaster
 You will need to update the path and the prefix at the bottom of this file.</p>
 </li>
 <li>
-<p>In addition, sample names with the underscore character (<code><em></code>) are not allowed. The script
-<code>EliminateUnderscoreFromCRNDataSampleNames.py</code> will replace all <code></em></code> characters with <code>-</code> characters.
+<p>In addition, sample names with the underscore character (_) are not allowed. The script
+<code>EliminateUnderscoreFromCRNDataSampleNames.py</code> will replace all _ characters with <code>-</code> characters.
 You need to open this file and change the target directory before running. It will modify all <code>*_CRNData.csv</code> files it finds in that directory.</p>
 </li>
 <li>
@@ -9801,7 +10160,7 @@ The parameter names are not case sensitive. The parameter values are case sensit
 These parameters are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 25. File input and output options</caption>
+<caption class="title">Table 26. File input and output options</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -10031,7 +10390,7 @@ LC07_11,-31.122417,-71.576194,Be10,120502,2500,07KNSTD,0.987</code></pre>
 then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.csv</code> in your data folder.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 26. CRNData.csv format (the first row contains a header)</caption>
+<caption class="title">Table 27. CRNData.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -10099,7 +10458,7 @@ then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.c
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. Nuclide standardisation options</caption>
+<caption class="title">Table 28. Nuclide standardisation options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -10187,7 +10546,7 @@ shielding for you. Note: topographic shielding is the most computationally deman
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 28. CRNRasters.csv format (the first row contains a header)</caption>
+<caption class="title">Table 29. CRNRasters.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 37%;">
@@ -10543,7 +10902,7 @@ SpawnedBasin_12.hdr  SpawnedBasin_19.hdr  SpawnedBasin_9.hdr       SpawnedBasin_
 <div class="content">
 <img src="images/Shielding.jpg" alt="Shielding raster">
 </div>
-<div class="title">Figure 18. One of the shielding rasters (for sample name <code>18</code>) from the San Bernardino dataset (viewed in QGIS2.2)</div>
+<div class="title">Figure 21. One of the shielding rasters (for sample name <code>18</code>) from the San Bernardino dataset (viewed in QGIS2.2)</div>
 </div>
 </div>
 <div class="sect3">
@@ -11052,7 +11411,7 @@ In the example this prefix is <code>SanBern</code> (or <code>SanBern_Spawned</co
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 29. Method flag options</caption>
+<caption class="title">Table 30. Method flag options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -11143,7 +11502,7 @@ A new version of the CRONUS caluclator should be available late 2016 but should 
 It contains the following data in comma separated columns:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 30. Columns in the <code>_CRNResults.csv</code> file</caption>
+<caption class="title">Table 31. Columns in the <code>_CRNResults.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -11499,7 +11858,7 @@ if __name__ == "__main__":
 The format of this file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 31. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
+<caption class="title">Table 32. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -11674,7 +12033,7 @@ This step can be done automatically by tweaking the driver file to extract the b
 <div class="sect3">
 <h4 id="_compiling_the_driver_function">13.1.3. Compiling the driver function</h4>
 <div class="paragraph">
-<p>You will need to download all of the code. This will have a directory with the objects (their names start with LSD). Note that this tool utilises the PCL library: www.pointclouds.org[PCL homepage].  Hopefully this is already installed on your University server (it is on the University of Edinburgh server).  It probably won&#8217;t be installed on your laptop, unless you have installed it yourself at some point.  This tool <strong>will not work</strong> if the PCL library is not installed!</p>
+<p>You will need to download all of the code. This will have a directory with the objects (their names start with LSD). Note that this tool utilises the PCL library: <a href="http://www.pointclouds.org/">PCL homepage</a>.  Hopefully this is already installed on your University server (it is on the University of Edinburgh server).  It probably won&#8217;t be installed on your laptop, unless you have installed it yourself at some point.  This tool <strong>will not work</strong> if the PCL library is not installed!</p>
 </div>
 <div class="paragraph">
 <p>Within the directory with the objects, there will be two additional directories:</p>
@@ -11831,7 +12190,7 @@ LSDTopoToolbox without ever knowing anything about it, but if you want you can r
 <div class="sect2">
 <h3 id="_channel_long_profile_swaths">13.2. Channel Long Profile Swaths</h3>
 <div class="paragraph">
-<p>Here another use of the swath tools feature is exploited. You can use it to automatically create long profiles along a channel using a value other than elevation, for example. (This usage is hinted at in the <a href="http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html" class="bare">http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html</a> [Hergarten et al. (2014) paper]. This application is mainly suited to where there is:</p>
+<p>Here another use of the swath tools feature is exploited. You can use it to automatically create long profiles along a channel using a value other than elevation, for example. (This usage is hinted at in the <a href="http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html">Hergarten et al. (2014) paper</a>. This application is mainly suited to where there is:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -11859,7 +12218,7 @@ LSDTopoToolbox without ever knowing anything about it, but if you want you can r
 <div class="content">
 <img src="images/LongSwath2.png" alt="LongSwath2">
 </div>
-<div class="title">Figure 19. Distribution of median grain size along channel long profile. Upper(Q75) and Lower(Q25) quartiles shown in dashed line.</div>
+<div class="title">Figure 22. Distribution of median grain size along channel long profile. Upper(Q75) and Lower(Q25) quartiles shown in dashed line.</div>
 </div>
 <div class="ulist">
 <ul>
@@ -11872,7 +12231,7 @@ LSDTopoToolbox without ever knowing anything about it, but if you want you can r
 <div class="content">
 <img src="images/LongSwath1.png" alt="LongSwath1">
 </div>
-<div class="title">Figure 20. Average channel elevation change for two different model simulations using LSDCatchmentModel</div>
+<div class="title">Figure 23. Average channel elevation change for two different model simulations using LSDCatchmentModel</div>
 </div>
 <div class="ulist">
 <ul>
@@ -12122,7 +12481,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM
 <div class="content">
 <img src="images/Bailey_map.png" alt="Shaded relief map of Mid Bailey Run">
 </div>
-<div class="title">Figure 21. Shaded relief image of Mid Bailey Run catchment, Ohio USA, UTM Zone 17N</div>
+<div class="title">Figure 24. Shaded relief image of Mid Bailey Run catchment, Ohio USA, UTM Zone 17N</div>
 </div>
 </div>
 <div class="sect3">
@@ -12173,7 +12532,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM
 <p>In order to run the floodplain extraction code you must first create a parameter file for your DEM.  This should be placed in the same folder as your DEM and the channel heads <code>csv</code> file.  The file should have an identifying string, followed by a space, then the information for your DEM. The paramter file should be a named with the extension <code>.driver</code> with the following structure:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. Structure of the parameter file. The rows <strong>MUST</strong> be in this order.</caption>
+<caption class="title">Table 33. Structure of the parameter file. The rows <strong>MUST</strong> be in this order.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -12348,7 +12707,7 @@ UpperPercentile 75</code></pre>
 <div class="content">
 <img src="images/Bailey_FP.png" alt="Mid Bailey Run floodplain">
 </div>
-<div class="title">Figure 22. Floodplain extracted for Mid Bailey Run, Ohio. The coordinate system is UTM Zone 17N.</div>
+<div class="title">Figure 25. Floodplain extracted for Mid Bailey Run, Ohio. The coordinate system is UTM Zone 17N.</div>
 </div>
 </div>
 </div>
@@ -12619,7 +12978,7 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 <p>The order of the parameters in the parameter file is not strict, but we stick to the convention used in the sample file for reference here. The parameter names must not be changed, and must be lowercase.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Guide to the parameter file. Row/parameters can be in any order.</caption>
+<caption class="title">Table 34. Guide to the parameter file. Row/parameters can be in any order.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -13074,6 +13433,14 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 <div class="sect1">
 <h2 id="_software">Appendix A: Software</h2>
 <div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="title">BEFORE YOU READ ANY OF THIS</div>
+<div class="paragraph">
+<p>These sections are for information only: if you just want to get LSDTopoTools working all you need to read is the section on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>There are quite a few different components you need to get working on your system to perform the examples in this book (sorry!).
 Some of these are essential, and some are optional and included for completeness.
@@ -13081,14 +13448,6 @@ In the following appendices, instructions for getting them installed on <a href=
 or <a href="#_setting_up_on_linux">Linux</a> are included. Since the author of this book does not have any computers running on friut-based operating system,
 I&#8217;m afraid instructions for getting the software working on such systems will require a bit of homework,
 but in theory installation on such systems should be similar to installation on Linux systems.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">BEFORE YOU READ ANY OF THIS</div>
-<div class="paragraph">
-<p>These sections are for information only: if you just want to get LSDTopoTools working all you need to read is the section on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.</p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_essentials">A.1. Essentials</h3>
@@ -13183,7 +13542,7 @@ The source code for LSDTopoTools is on <a href="https://github.com/">github</a> 
 <div class="sect3">
 <h4 id="_a_virtual_machine">A.2.1. A virtual machine</h4>
 <div class="paragraph">
-<p>This is essential if you are going to follow our instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>,
+<p>This is essential if you are going to follow our instructions for <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>,
 which is propbably what you will want to do if you do not have a Linux machine.</p>
 </div>
 <div class="paragraph">
@@ -13273,7 +13632,7 @@ so if you fancy contributing to the documentation of getting the latest version,
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You should only do this if you are some kind of Windows purist (does such a thing exist?). LSDTopoTools works best in Linux and at the moment the best way to get a linux server working within your Windows machine is to use Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+You should only do this if you are some kind of Windows purist (does such a thing exist?). <strong>LSDTopoTools</strong> works best in Linux and at the moment the best way to get a linux server working within your Windows machine is to use Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -13288,7 +13647,7 @@ However, you can get Windows to behave a bit like Linux which will make your lif
 </div>
 <div class="paragraph">
 <p><strong>Let me type that in bold text: it will be far easier to do things in a Linux environment than in a Windows environment.
-I strongly encourage you to <a href="#_turning_your_windows_machine_into_a_linux_machine">build a virtual machine</a>.</strong></p>
+I strongly encourage you to <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">use our Vagrant setup</a>.</strong></p>
 </div>
 <div class="sect2">
 <h3 id="_working_with_the_powershell">B.1. Working with the powershell</h3>
@@ -13333,7 +13692,7 @@ The <code>PS&gt;</code> denotes the powershell propmpt.
 <td class="content">
 You might not have administrator priviliges on your computer.
 In that case you will need to convince the administrator to install everything for you,
-or you can ask them to install a linux virtual machine, which is described in the section <a href="#Turning-your-windows-machine-into-a-linux-machine">[Turning-your-windows-machine-into-a-linux-machine]</a>.
+or you can ask them to install a linux virtual machine, which is described in the section <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -13345,7 +13704,7 @@ or you can ask them to install a linux virtual machine, which is described in th
 <div class="paragraph">
 <p>Take a deep breath. I am afraid this is going to take a while.
 It can be done, but you may need psychological treatment before the end.
-You might consider following our instructions for <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a> instead of trying to get the software installed within a Windows environment.</p>
+You might consider following our instructions for <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> instead of trying to get the software installed within a Windows environment.</p>
 </div>
 <div class="sect3">
 <h4 id="_package_management">B.2.1. Package management</h4>
@@ -13446,7 +13805,7 @@ You can install the 2013 version using chocolatey:</p>
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 23. Cygwin setup.</div>
+<div class="title">Figure 26. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
@@ -13748,7 +14107,7 @@ what you are really going to do is use software to create a <a href="https://en.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Only do this if you want total control of your Linux enviroment. If you want us to do everything for you, read the instructions on <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+Only do this if you want total control of your Linux enviroment. If you want us to do everything for you, read the instructions on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> and don&#8217;t continue reading this section!
 </td>
 </tr>
 </table>
@@ -13935,7 +14294,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-These instructions involve building your own operating system with a virtual machine. You can do this if you want more control, but most users should follow the simpler process of creating an lSDTopoTools server using Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_on_a_windows_machine_using_virtualbox_and_vagrant">Installing LSDTopoTools on a Windows machine using VirtualBox and Vagrant</a>.
+These instructions involve building your own operating system with a virtual machine. You can do this if you want more control, but most users should follow the simpler process of creating an lSDTopoTools server using Vagrant. Instructions can be found here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.
 </td>
 </tr>
 </table>
@@ -14517,7 +14876,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. File input and output options</caption>
+<caption class="title">Table 35. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14582,7 +14941,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 36. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14686,7 +15045,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Parameters for the fill function</caption>
+<caption class="title">Table 37. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14723,7 +15082,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for hillshading</caption>
+<caption class="title">Table 38. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14763,7 +15122,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for flow info calculations</caption>
+<caption class="title">Table 39. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14793,7 +15152,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">E.3.4. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Parameters for chi calculations</caption>
+<caption class="title">Table 40. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14835,7 +15194,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.5. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 41. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14869,7 +15228,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">E.3.6. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for drainage area extraction</caption>
+<caption class="title">Table 42. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14897,7 +15256,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">E.3.7. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 43. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14937,7 +15296,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">E.3.8. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 44. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -14965,7 +15324,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">E.3.9. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 44. Parameters for chi calculations</caption>
+<caption class="title">Table 45. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15139,7 +15498,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 45. Example basin list for scripting purposes</caption>
+<caption class="title">Table 46. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
