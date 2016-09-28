@@ -948,12 +948,13 @@ MathJax.Hub.Config({
 <li><a href="#_parameters_for_the_fill_function">F.3.1. Parameters for the fill function</a></li>
 <li><a href="#_parameters_for_hillshading">F.3.2. Parameters for hillshading</a></li>
 <li><a href="#_parameters_for_flow_info_calculations">F.3.3. Parameters for flow info calculations</a></li>
-<li><a href="#_parameters_for_chi_calculations">F.3.4. Parameters for chi calculations</a></li>
-<li><a href="#_parameters_for_polyfit_and_slope_calculations">F.3.5. Parameters for polyfit and slope calculations</a></li>
-<li><a href="#_parameters_for_drainage_area_extraction">F.3.6. Parameters for drainage area extraction</a></li>
-<li><a href="#_parameters_for_single_thread_channel_extraction">F.3.7. Parameters for single thread channel extraction</a></li>
-<li><a href="#_parameters_for_area_threshold_channel_extraction">F.3.8. Parameters for area threshold channel extraction</a></li>
-<li><a href="#_parameters_for_hydrology_and_slope_stability">F.3.9. Parameters for hydrology and slope stability</a></li>
+<li><a href="#_parameters_for_masking">F.3.4. Parameters for masking</a></li>
+<li><a href="#_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</a></li>
+<li><a href="#_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</a></li>
+<li><a href="#_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</a></li>
+<li><a href="#_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</a></li>
+<li><a href="#_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</a></li>
+<li><a href="#_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</a></li>
 </ul>
 </li>
 </ul>
@@ -4320,7 +4321,7 @@ modify the paths shown below appropriately.
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
 LSDTopoTools/Topographic_projects/Test_data
-$ cp LSDTopoTools/Git_projects//LSDTopoTools_AnalysisDriver/Analysis_driver/Example.LSDTT_driver Example.LSDTT_driver</code></pre>
+$ cp LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver/Example.LSDTT_driver Example.LSDTT_driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4329,8 +4330,8 @@ $ cp LSDTopoTools/Git_projects//LSDTopoTools_AnalysisDriver/Analysis_driver/Exam
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver
-$ cp Example.LSDTT_driver LSDTopoTools/Topographic_projects/Test_data/Example.LSDTT_driver</code></pre>
+/LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver
+$ cp Example.LSDTT_driver /LSDTopoTools/Topographic_projects/Test_data/Example.LSDTT_driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4339,7 +4340,7 @@ $ cp Example.LSDTT_driver LSDTopoTools/Topographic_projects/Test_data/Example.LS
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-LSDTopoTools/Topographic_projects/Test_data
+/LSDTopoTools/Topographic_projects/Test_data
 $ ls
 Example.LSDTT_driver  gabilan.bil    gabilan.hdr
 Mandakini.bil         Mandakini.hdr  WA.bil       WA.hdr</code></pre>
@@ -4478,7 +4479,7 @@ first make sure the data is there using <code>ls</code> and then type <code>pwd<
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">$ pwd
-LSDTopoTools/Topographic_projects/Test_data</code></pre>
+/LSDTopoTools/Topographic_projects/Test_data</code></pre>
 </div>
 </div>
 </li>
@@ -4497,7 +4498,7 @@ These names are <strong>CASE SENSITIVE</strong>. In our case the name of the DEM
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: LSDTopoTools/Topographic_projects/Test_data
+read path: /LSDTopoTools/Topographic_projects/Test_data
 read fname: WA
 
 # Parameters for various topographic analysis
@@ -4627,7 +4628,7 @@ The name of the parameter file includes extension.
 So to run the program you type this:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./LSDTT_analysis_from_paramfile.out LSDTopoTools/Topographic_projects/Test_data Whiteadder.LSDTT_driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/Test_data Whiteadder.LSDTT_driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4811,7 +4812,7 @@ read fname: WhiteadderDEM</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: LSDTopoTools/Topographic_projects/Test_data
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/Test_data
 read fname: WA</code></pre>
 </div>
 </div>
@@ -4945,7 +4946,7 @@ we will now move on to performing the analyses. It should look like this:</p>
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: LSDTopoTools/Topographic_projects/Test_data
+read path: /LSDTopoTools/Topographic_projects/Test_data
 read fname: WA
 write fname: Whiteadder
 
@@ -4977,7 +4978,7 @@ Some details about running this program are in the first tutorial (<a href="#_fi
 <p>I renamed my parameter file `Whiteadder_Surf.LSDTT_driver, so to run the code you need to type the following into the command line::</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out LSDTopoTools/Topographic_projects/Test_data Whiteadder_Surf.LSDTT_driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/Test_data Whiteadder_Surf.LSDTT_driver</code></pre>
 </div>
 </div>
 </li>
@@ -15188,6 +15189,16 @@ The holes are filled and the nodata around the edges is trimmed.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Write a hillshade raster.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write mask threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a masked raster. This will contain the original data but data above or below a threshold (you decide which one using other parameters) is changed to nodata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write curvature mask threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write a mask raster based on curvature. This doesn&#8217;t retain the curvature values, but rather yeilds nodata if you are obve or below a threshold (you set that with a parameter) and otherwise 1.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">write slope</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Write a slope raster.</p></td>
@@ -15366,9 +15377,55 @@ These are NOT case sensitive.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_chi_calculations">F.3.4. Parameters for chi calculations</h4>
+<h4 id="_parameters_for_masking">F.3.4. Parameters for masking</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for chi calculations</caption>
+<caption class="title">Table 40. Parameters for masking operations</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">curvature_mask_nodataisbelowthreshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This works like a boolean. Anything other than 1 is treated as false. If true, anything below the threshold is masked (i.e., turned to nodata). If false anything above threshold is turned to nodata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">curvature_mask_threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A threshold value of curvature from which to derive the mask</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mask_nodataisbelowthreshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This works like a boolean. Anything other than 1 is treated as false. If true, anything below the threshold is masked (i.e., turned to nodata). If false anything above threshold is turned to nodata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mask_threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A threshold value from which to derive the mask of nodata values.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 41. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15408,9 +15465,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_polyfit_and_slope_calculations">F.3.5. Parameters for polyfit and slope calculations</h4>
+<h4 id="_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 42. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15442,9 +15499,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_drainage_area_extraction">F.3.6. Parameters for drainage area extraction</h4>
+<h4 id="_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for drainage area extraction</caption>
+<caption class="title">Table 43. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15470,9 +15527,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_single_thread_channel_extraction">F.3.7. Parameters for single thread channel extraction</h4>
+<h4 id="_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 44. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15510,9 +15567,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_area_threshold_channel_extraction">F.3.8. Parameters for area threshold channel extraction</h4>
+<h4 id="_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 44. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 45. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15538,9 +15595,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_hydrology_and_slope_stability">F.3.9. Parameters for hydrology and slope stability</h4>
+<h4 id="_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 45. Parameters for chi calculations</caption>
+<caption class="title">Table 46. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15714,7 +15771,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 46. Example basin list for scripting purposes</caption>
+<caption class="title">Table 47. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
