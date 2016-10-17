@@ -792,37 +792,74 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_hydrological_and_erosion_modelling">15. Hydrological and Erosion Modelling</a>
+<li><a href="#_calculating_drainage_density">15. Calculating drainage density</a>
 <ul class="sectlevel2">
-<li><a href="#_origins_relation_to_caesar_lisflood">15.1. Origins: relation to CAESAR-Lisflood</a></li>
-<li><a href="#_compilation">15.2. Compilation</a>
+<li><a href="#_get_the_code_for_drainage_density_analysis">15.1. Get the code for drainage density analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_dependencies">15.2.1. Dependencies</a></li>
+<li><a href="#_clone_the_github_repository_4">15.1.1. Clone the GitHub repository</a></li>
+<li><a href="#_alternatively_get_the_zipped_code_6">15.1.2. Alternatively, get the zipped code</a></li>
+<li><a href="#_get_the_example_datasets_4">15.1.3. Get the example datasets</a></li>
+<li><a href="#_get_the_example_parameter_files_3">15.1.4. Get the example parameter files</a></li>
+<li><a href="#_python_scripts">15.1.5. Python scripts</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model">15.3. Running the Model</a>
+<li><a href="#_preliminary_steps_2">15.2. Preliminary steps</a>
 <ul class="sectlevel3">
-<li><a href="#_outputs">15.3.1. Outputs</a></li>
-<li><a href="#_dem_preparation">15.3.2. DEM preparation</a></li>
-<li><a href="#_model_run_time_controls">15.3.3. Model run time controls</a></li>
+<li><a href="#_getting_the_channel_head_file_2">15.2.1. Getting the channel head file</a></li>
+<li><a href="#_selecting_a_window_size_2">15.2.2. Selecting a window size</a></li>
 </ul>
 </li>
-<li><a href="#_parameter_file">15.4. Parameter File</a></li>
-<li><a href="#_running_the_code_in_parallel">15.5. Running the code in Parallel</a></li>
-<li><a href="#_notes_for_hpc_use">15.6. Notes for HPC use</a></li>
+<li><a href="#_analysing_drainage_density_for_all_basins">15.3. Analysing drainage density for all basins</a>
+<ul class="sectlevel3">
+<li><a href="#_creating_the_paramter_file_2">15.3.1. Creating the paramter file</a></li>
+<li><a href="#_step_1_get_the_junctions_of_all_the_basins">15.3.2. Step 1: Get the junctions of all the basins</a></li>
+<li><a href="#_step_2_get_the_drainage_density_of_each_basin">15.3.3. Step 2: Get the drainage density of each basin</a></li>
+<li><a href="#_step_3_plotting_the_data">15.3.4. Step 3: Plotting the data</a></li>
+<li><a href="#_summary_11">15.3.5. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">16. Landscape Evolution Modelling with LSDTopoTools</a>
+<li><a href="#_analysing_drainage_density_for_basins_with_crn_derived_erosion_rates">15.4. Analysing drainage density for basins with CRN-derived erosion rates</a>
+<ul class="sectlevel3">
+<li><a href="#_formatting_your_erosion_rate_data">15.4.1. Formatting your erosion rate data</a></li>
+<li><a href="#_creating_the_paramter_file_3">15.4.2. Creating the paramter file</a></li>
+<li><a href="#_step_1_run_the_code">15.4.3. Step 1: Run the code</a></li>
+<li><a href="#_step_2_plot_the_data">15.4.4. Step 2: Plot the data</a></li>
+<li><a href="#_summary_12">15.4.5. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_hydrological_and_erosion_modelling">16. Hydrological and Erosion Modelling</a>
 <ul class="sectlevel2">
-<li><a href="#_model_parameters_and_components">16.1. Model Parameters and Components</a>
+<li><a href="#_origins_relation_to_caesar_lisflood">16.1. Origins: relation to CAESAR-Lisflood</a></li>
+<li><a href="#_compilation">16.2. Compilation</a>
 <ul class="sectlevel3">
-<li><a href="#_model_domain">16.1.1. Model Domain</a></li>
-<li><a href="#_fluvial_component">16.1.2. Fluvial Component</a></li>
-<li><a href="#_hillslope_component">16.1.3. Hillslope Component</a></li>
+<li><a href="#_dependencies">16.2.1. Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#_running_the_model_2">16.2. Running the Model</a></li>
-<li><a href="#_model_output">16.3. Model Output</a></li>
+<li><a href="#_running_the_model">16.3. Running the Model</a>
+<ul class="sectlevel3">
+<li><a href="#_outputs">16.3.1. Outputs</a></li>
+<li><a href="#_dem_preparation">16.3.2. DEM preparation</a></li>
+<li><a href="#_model_run_time_controls">16.3.3. Model run time controls</a></li>
+</ul>
+</li>
+<li><a href="#_parameter_file">16.4. Parameter File</a></li>
+<li><a href="#_running_the_code_in_parallel">16.5. Running the code in Parallel</a></li>
+<li><a href="#_notes_for_hpc_use">16.6. Notes for HPC use</a></li>
+</ul>
+</li>
+<li><a href="#_landscape_evolution_modelling_with_lsdtopotools">17. Landscape Evolution Modelling with LSDTopoTools</a>
+<ul class="sectlevel2">
+<li><a href="#_model_parameters_and_components">17.1. Model Parameters and Components</a>
+<ul class="sectlevel3">
+<li><a href="#_model_domain">17.1.1. Model Domain</a></li>
+<li><a href="#_fluvial_component">17.1.2. Fluvial Component</a></li>
+<li><a href="#_hillslope_component">17.1.3. Hillslope Component</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_model_2">17.2. Running the Model</a></li>
+<li><a href="#_model_output">17.3. Model Output</a></li>
 </ul>
 </li>
 <li><a href="#_software">Appendix A: Software</a>
@@ -879,7 +916,7 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_windows_installation_summary">B.6. Windows installation summary</a></li>
 <li><a href="#_turning_your_windows_machine_into_a_linux_machine">B.7. Turning your windows machine into a Linux machine</a></li>
-<li><a href="#_summary_11">B.8. Summary</a></li>
+<li><a href="#_summary_13">B.8. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_setting_up_on_linux">Appendix C: Setting up on Linux</a>
@@ -912,76 +949,71 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#_cloning_or_forking_the_documentation">C.9. Cloning or forking the documentation</a></li>
-<li><a href="#_summary_12">C.10. Summary</a></li>
+<li><a href="#_summary_14">C.10. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_setting_up_on_macos">Appendix D: Setting up on MacOS</a>
+<li><a href="#_code_structure">Appendix D: Code Structure</a>
 <ul class="sectlevel2">
-<li><a href="#_looking_at_the_data">D.1. Looking at the data</a></li>
-</ul>
-</li>
-<li><a href="#_code_structure">Appendix E: Code Structure</a>
-<ul class="sectlevel2">
-<li><a href="#_source_files_drivers_headers_and_implementaions">E.1. Source Files: Drivers, Headers, and Implementaions.</a></li>
-<li><a href="#_a_closer_look_at_the_source_files">E.2. A closer look at the source files</a>
+<li><a href="#_source_files_drivers_headers_and_implementaions">D.1. Source Files: Drivers, Headers, and Implementaions.</a></li>
+<li><a href="#_a_closer_look_at_the_source_files">D.2. A closer look at the source files</a>
 <ul class="sectlevel3">
-<li><a href="#_lsdraster">E.2.1. LSDRaster</a></li>
-<li><a href="#_lsdindexraster">E.2.2. LSDIndexRaster</a></li>
-<li><a href="#_lsdflowinfo">E.2.3. LSDFlowInfo</a></li>
-<li><a href="#_lsdindexchannel">E.2.4. LSDIndexChannel</a></li>
-<li><a href="#_lsdchannel">E.2.5. LSDChannel</a></li>
-<li><a href="#_lsdjunctionnetwork">E.2.6. LSDJunctionNetwork</a></li>
-<li><a href="#_lsdindexchanneltree">E.2.7. LSDIndexChannelTree</a></li>
-<li><a href="#_lsdchinetwork">E.2.8. LSDChiNetwork</a></li>
-<li><a href="#_lsdmostlikelypartitionsfinder">E.2.9. LSDMostLikelyPartitionsFinder</a></li>
-<li><a href="#_lsdstatstools">E.2.10. LSDStatsTools</a></li>
+<li><a href="#_lsdraster">D.2.1. LSDRaster</a></li>
+<li><a href="#_lsdindexraster">D.2.2. LSDIndexRaster</a></li>
+<li><a href="#_lsdflowinfo">D.2.3. LSDFlowInfo</a></li>
+<li><a href="#_lsdindexchannel">D.2.4. LSDIndexChannel</a></li>
+<li><a href="#_lsdchannel">D.2.5. LSDChannel</a></li>
+<li><a href="#_lsdjunctionnetwork">D.2.6. LSDJunctionNetwork</a></li>
+<li><a href="#_lsdindexchanneltree">D.2.7. LSDIndexChannelTree</a></li>
+<li><a href="#_lsdchinetwork">D.2.8. LSDChiNetwork</a></li>
+<li><a href="#_lsdmostlikelypartitionsfinder">D.2.9. LSDMostLikelyPartitionsFinder</a></li>
+<li><a href="#_lsdstatstools">D.2.10. LSDStatsTools</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_analysis_driver_options">Appendix F: Analysis Driver Options</a>
+<li><a href="#_analysis_driver_options">Appendix E: Analysis Driver Options</a>
 <ul class="sectlevel2">
-<li><a href="#_analysisdriver_file_input_and_output_options">F.1. AnalysisDriver file input and output options</a></li>
-<li><a href="#_analysisdriver_files_to_write">F.2. AnalysisDriver files to write</a></li>
-<li><a href="#_analysisdriver_parameter_values">F.3. AnalysisDriver parameter values</a>
+<li><a href="#_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</a></li>
+<li><a href="#_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</a></li>
+<li><a href="#_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters_for_the_fill_function">F.3.1. Parameters for the fill function</a></li>
-<li><a href="#_parameters_for_hillshading">F.3.2. Parameters for hillshading</a></li>
-<li><a href="#_parameters_for_flow_info_calculations">F.3.3. Parameters for flow info calculations</a></li>
-<li><a href="#_parameters_for_masking">F.3.4. Parameters for masking</a></li>
-<li><a href="#_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</a></li>
-<li><a href="#_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</a></li>
-<li><a href="#_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</a></li>
-<li><a href="#_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</a></li>
-<li><a href="#_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</a></li>
-<li><a href="#_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</a></li>
+<li><a href="#_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</a></li>
+<li><a href="#_parameters_for_hillshading">E.3.2. Parameters for hillshading</a></li>
+<li><a href="#_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</a></li>
+<li><a href="#_parameters_for_masking">E.3.4. Parameters for masking</a></li>
+<li><a href="#_parameters_for_chi_calculations">E.3.5. Parameters for chi calculations</a></li>
+<li><a href="#_parameters_for_polyfit_and_slope_calculations">E.3.6. Parameters for polyfit and slope calculations</a></li>
+<li><a href="#_parameters_for_drainage_area_extraction">E.3.7. Parameters for drainage area extraction</a></li>
+<li><a href="#_parameters_for_single_thread_channel_extraction">E.3.8. Parameters for single thread channel extraction</a></li>
+<li><a href="#_parameters_for_area_threshold_channel_extraction">E.3.9. Parameters for area threshold channel extraction</a></li>
+<li><a href="#_parameters_for_hydrology_and_slope_stability">E.3.10. Parameters for hydrology and slope stability</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_tools_for_viewing_data">Appendix G: Tools for viewing data</a>
+<li><a href="#_tools_for_viewing_data">Appendix F: Tools for viewing data</a>
 <ul class="sectlevel2">
-<li><a href="#_arcmap">G.1. ArcMap</a></li>
-<li><a href="#_qgis_3">G.2. QGIS</a></li>
-<li><a href="#_lsdtopotools_python_mapping_functions">G.3. LSDTopoTools python mapping functions</a></li>
-<li><a href="#_summary_13">G.4. Summary</a></li>
+<li><a href="#_arcmap">F.1. ArcMap</a></li>
+<li><a href="#_qgis_3">F.2. QGIS</a></li>
+<li><a href="#_lsdtopotools_python_mapping_functions">F.3. LSDTopoTools python mapping functions</a></li>
+<li><a href="#_summary_15">F.4. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix H: Automation and Supercomputing for LSDTopoTools</a>
+<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix G: Automation and Supercomputing for LSDTopoTools</a>
 <ul class="sectlevel2">
-<li><a href="#_embarassingly_parallel_topographic_analysis">H.1. Embarassingly Parallel Topographic Analysis</a>
+<li><a href="#_embarassingly_parallel_topographic_analysis">G.1. Embarassingly Parallel Topographic Analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">H.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">G.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
 </ul>
 </li>
-<li><a href="#_topographic_analysis_on_a_supercomputer">H.2. Topographic Analysis on a Supercomputer</a>
+<li><a href="#_topographic_analysis_on_a_supercomputer">G.2. Topographic Analysis on a Supercomputer</a>
 <ul class="sectlevel3">
-<li><a href="#_launching_jobs_with_the_batch_system">H.2.1. Launching jobs with the batch system</a></li>
-<li><a href="#_checking_your_jobs">H.2.2. Checking your jobs</a></li>
+<li><a href="#_launching_jobs_with_the_batch_system">G.2.1. Launching jobs with the batch system</a></li>
+<li><a href="#_checking_your_jobs">G.2.2. Checking your jobs</a></li>
 </ul>
 </li>
-<li><a href="#_module_issues">H.3. Module issues</a></li>
-<li><a href="#_compilation_and_library_issues">H.4. Compilation and library issues</a></li>
+<li><a href="#_module_issues">G.3. Module issues</a></li>
+<li><a href="#_compilation_and_library_issues">G.4. Compilation and library issues</a></li>
 </ul>
 </li>
 </ul>
@@ -2573,7 +2605,7 @@ $ ./git_get_profiles.exe /LSDTopoTools/Topographic_projects/Test_data/ Example.d
 <div class="paragraph">
 <p>This chapter has given an overview of what software is necessary to use <strong>LSDTopoTools</strong>.
 The appendices contain information about installing this software on both
-<a href="#_setting_up_on_windows">Windows</a>, <a href="#_setting_up_on_linux">Linux</a>, and <a href="#_setting_up_on_macos">MacOS</a> operating systems, but these are only for stubborn people who like to do everything by hand.
+<a href="#_setting_up_on_windows">Windows</a>, <a href="#_setting_up_on_linux">Linux</a>, and <a href="#Setting up on MacOS">MacOS</a> operating systems, but these are only for stubborn people who like to do everything by hand.
 If you want to just get things working, use our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.</p>
 </div>
 </div>
@@ -4260,7 +4292,8 @@ To convert the data to ENVI <code>bil</code> format (which is our preferred form
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ls
 WA.bil                      WA.hdr
-WhiteadderDEM.bil.aux.xml   WhiteadderDEM.tif</code></pre>
+WhiteadderDEM.bil.aux.xml   WhiteadderDEM.tif
+&lt;&lt;and other stuff&gt;&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4286,9 +4319,19 @@ your analysis exactly. This differentiates our software from GUI driven
 software like ArcMap and QGIS.</p>
 </div>
 <div class="paragraph">
+<p>If you use vagrant there are two example parameter files. One is in the source code repository (the one with all the <code>.cpp</code> files) and the other is in the directory with the test data. The one in the source code directory is for people who are not using the test data. If you do use the test data the example parameter file is <code>/LSDTopoTools/Topographic_projects/Test_data/Vagrant_Example.LSDTT_driver</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Moving parameter files around</div>
+<div class="paragraph">
+<p>Most of these instructions will use the paramter files that are provided automatically by our vagrant files. However, if you start to use our software you will be most likeley have to move, rename and manipulate our parameter files. Here are instructions on how to do so.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Okay, lets actually move the file. An example file came with the source code (the one that came in the <code>LSDTopoTools_AnalysisDriver</code> folder.)
 You can use the cp` command to make a copy of this file in your data folder.</p>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -4314,19 +4357,19 @@ modify the paths shown below appropriately.
 </tr>
 </table>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>If you follow our advice, go into the folder with the data and copy across the parameter file:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
-LSDTopoTools/Topographic_projects/Test_data
+/LSDTopoTools/Topographic_projects/Test_data
 $ cp LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver/Example.LSDTT_driver Example.LSDTT_driver</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Alternatively you can copy from the <code>Analysis_driver</code> folder:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
@@ -4334,9 +4377,9 @@ $ cp LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver/Examp
 $ cp Example.LSDTT_driver /LSDTopoTools/Topographic_projects/Test_data/Example.LSDTT_driver</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Now make sure you are in the topography folder and check to see if the file is there:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ pwd
@@ -4346,13 +4389,18 @@ Example.LSDTT_driver  gabilan.bil    gabilan.hdr
 Mandakini.bil         Mandakini.hdr  WA.bil       WA.hdr</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>We will use <code>Example.LSDTT_driver</code> as a template, but will want to change some of the values in that file.
 You might want to keep the original, so we suggest making a copy of the parameter file:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">cp Example.LSDTT_driver Whiteadder.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -4419,8 +4467,8 @@ This feature is what makes <a href="https://www.vagrantup.com/">Vagrant</a> so a
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: /home/topographic_data/IfSAR
-read fname: WhiteadderDEM
+read path: /LSDTopoTools/Topographic_projects/Test_data/
+read fname: WA
 
 # Parameters for various topographic analysis
 min_slope_for_fill: 0.0001
@@ -4488,7 +4536,7 @@ first make sure the data is there using <code>ls</code> and then type <code>pwd<
 So if the DEM is called <code>WhiteadderDEM.bil</code> then the <code>read fname</code> would be <code>WhiteadderDEM</code>.
 These names are <strong>CASE SENSITIVE</strong>. In our case the name of the DEM is <code>WA.bil</code> so <code>read fname</code> would be <code>WA</code>.</p>
 <div class="paragraph">
-<p>You should modify your parameter file with the correct directory:</p>
+<p>You should modify your parameter file with the correct directory (the file in the example dataset folder should already be correctly formatted):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4498,7 +4546,7 @@ These names are <strong>CASE SENSITIVE</strong>. In our case the name of the DEM
 # File information
 dem read extension: bil
 dem write extension: bil
-read path: /LSDTopoTools/Topographic_projects/Test_data
+read path: /LSDTopoTools/Topographic_projects/Test_data/
 read fname: WA
 
 # Parameters for various topographic analysis
@@ -4628,8 +4676,20 @@ The name of the parameter file includes extension.
 So to run the program you type this:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/Test_data Whiteadder.LSDTT_driver</code></pre>
+<pre class="highlight"><code class="language-console" data-lang="console">./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/Test_data Vagrant_Example.LSDTT_driver</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If your example driver is not called <code>Vagrant_Example.LSDTT_driver</code> you will need to modify the above line to reflect the filename you have chosen.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The <code>./</code> is a Linux thing.
@@ -5035,7 +5095,7 @@ to methods that aim to precisely locate channel heads from high resolution data.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>You can set up <strong>LSDTopoTools</strong> by following these instructions: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>. Note that our vagrant setup also works on MacOS and Linux systems. If you follow those instructions you will have the channel extraction repository on your LSDTopoTools system.</p>
+<p>You can set up <strong>LSDTopoTools</strong> by following these instructions: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>. If you follow those instructions you will have the channel extraction repository on your LSDTopoTools system.</p>
 </li>
 <li>
 <p>If you have used vagrant, navigate to <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/driver_functions_ChannelExtraction/</code>.</p>
@@ -5047,7 +5107,7 @@ to methods that aim to precisely locate channel heads from high resolution data.
 <p>Choose the channel extraction method that you would like to use, and use <code>make</code> to compile it.</p>
 </li>
 <li>
-<p>Make sure your DEM is in <code>bil</code> format. This is the <strong>ENVI</strong> bil format and not the Arc bil format. If you need to read about converting data read this section: <a href="#translating-your-raster-into-something-that-can-be-used-by-lsdtopotoolbox">Translating your raster into something that can be used by LSDTopoToolbox</a></p>
+<p>Make sure your DEM is in <code>bil</code> format. This is the <strong>ENVI</strong> bil format and not the Arc bil format. If you need to read about converting data read this section: <a href="#translating-your-raster-into-something-that-can-be-used-by-lsdtopotoolbox">Translating your raster into something that can be used by LSDTopoToolbox</a>.</p>
 </li>
 <li>
 <p>Create a parameter file for your DEM, put it in your data folder.</p>
@@ -5138,7 +5198,16 @@ so if you previously downloaded a zipper repository this will overwrite it.
 <div class="sect3">
 <h4 id="_get_the_example_datasets">7.1.3. Get the example datasets</h4>
 <div class="paragraph">
-<p>We have provided some example datasets which you can use in order to test the channel extraction algorithms. In this tutorial we will work using a lidar dataset from Indian Creek, Ohio. You can get it from our ExampleTopoDatasets repository using <code>wget</code>:</p>
+<p>We have provided some example datasets which you can use in order to test the channel extraction algorithms. In this tutorial we will work using a lidar dataset from Indian Creek, Ohio. It is a bit large so we don&#8217;t include it with the standard test datasets. If you are using our vagrant server, you should go into the test data folder and download it using wget:</p>
+</div>
+<div class="listingblock">
+<div class="title">If you are using a Vagrant server</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Topographic_projects/Test_data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you can download the data from our <a href="https://github.com/LSDtopotools/ExampleTopoDatasets">ExampleTopoDatasets repository</a> using <code>wget</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5154,6 +5223,18 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/indian_cre
 <img src="images/ind_map.png" alt="Shaded relief map of Indian Creek">
 </div>
 <div class="title">Figure 3. Shaded relief image of Indian Creek catchment, Ohio USA, UTM Zone 17N</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also work with the DEM <code>gabilan.bil</code> that is included by default in the <code>/LSDTopoTools/Topographic_projects/Test_data</code> folder but you will need tochange the parameter files to reflect the different DEM name.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -9842,7 +9923,7 @@ Currently <sup>10</sup>Be and <sup>26</sup>Al are supported.</p>
 <div class="title">Quick guide if you already know what you are doing</div>
 <div class="paragraph">
 <p>If you already know what you are doing, here is a quick guide to walk you through the process.
-If one of these steps doesn&#8217;t make sence see the full documentation.</p>
+If one of these steps doesn&#8217;t make sense see the full documentation.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -12780,7 +12861,577 @@ UpperPercentile 75</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hydrological_and_erosion_modelling">15. Hydrological and Erosion Modelling</h2>
+<h2 id="_calculating_drainage_density">15. Calculating drainage density</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Drainage density is a fundamental landscape metric which describes the total length of channels in a basin normalised by the basin area, first described by Horton (1945).  In this chapter we describe how to calculate the drainage density and mean hilltop curvature of a specified order of drainage basins (for example, all second order basins). We also include code which will calculate the drainage density of each basin given a list of cosmogenic radionuclide (CRN)-derived erosion rate data. We used this code to examine the relationship between drainage density and erosion rate in our paper published in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2015JF003747/full">JGR Earth Surface</a> in 2016.</p>
+</div>
+<div class="paragraph">
+<p>Citation: Clubb, F. J., S. M. Mudd, M. Attal, D. T. Milodowski, and S. W. D. Grieve (2016), The relationship between drainage density, erosion rate, and hilltop curvature: Implications for sediment transport processes, J. Geophys. Res. Earth Surf., 121, doi:10.1002/2015JF003747.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick guide if you already know what you are doing</div>
+<div class="paragraph">
+<p>Here is a quick overview of how to set up and run the code, if you have done it before:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the channel extraction method that you would like to use.</p>
+</li>
+<li>
+<p>Make sure your DEM is in <code>bil</code> format and is in the Topographic_projects folder</p>
+</li>
+<li>
+<p>Create a parameter file for your DEM</p>
+</li>
+<li>
+<p>Make sure you have created a channel network for your DEM, and have the <code>_CH</code> file in your repository.</p>
+</li>
+<li>
+<p>Compile step 1 of the code using <code>make -f drainage_density_step1_junctions.make</code></p>
+</li>
+<li>
+<p>Run step 1 of the program with <code>./drainage_density_step1_junctions.out /path_to_data_folder/ parameter_file.driver</code></p>
+</li>
+<li>
+<p>Compile step 2 of the code using <code>make -f drainage_density_step2_basins.make</code></p>
+</li>
+<li>
+<p>Run step 2 of the code using <code>./drainage_density_step2_basins.out /path_to_data_folder/ parameter_file.driver</code></p>
+</li>
+<li>
+<p>Run the Python scripts to plot the data.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_the_code_for_drainage_density_analysis">15.1. Get the code for drainage density analysis</h3>
+<div class="paragraph">
+<p>The code for the drainage density analysis can be found in our GitHub repository.  This repository contains code for extracting the drainage density for a series of basins defined by points from cosmogenic radionuclide samples, as well as the drainage density and mean hilltop curvature for basins of a specified order.</p>
+</div>
+<div class="sect3">
+<h4 id="_clone_the_github_repository_4">15.1.1. Clone the GitHub repository</h4>
+<div class="paragraph">
+<p>First navigate to the folder where you will keep the GitHub repository.  If you have downloaded LSDTopoTools using vagrant, then this should be in the folder <code>Git_projects</code>.  Please refer to the chapter on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> for more information on this.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/$ cd /LSDTopoTools
+vagrant@vagrant-ubuntu-precise-32:/$ cd /Git_projects</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use the command <code>pwd</code> to check you are in the right folder.  Once you are in this folder, you can clone the repository from the <a href="https://github.com">GitHub website</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ pwd
+/LSDTopoTools/Git_projects
+vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ git clone https://github.com/LSDtopotools/LSDTopoTools_DrainageDensity.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Navigate to this folder again using the <code>cd</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd LSDTopoTools_DrainageDensity/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatively_get_the_zipped_code_6">15.1.2. Alternatively, get the zipped code</h4>
+<div class="paragraph">
+<p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ pwd
+/LSDTopoTools/Git_projects
+vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ wget https://github.com/LSDtopotools/LSDTopoTools_DrainageDensity/archive/master.zip
+vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ gunzip master.zip</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="https://github.com">GitHub</a> zips all repositories into a file called <code>master.zip</code>,
+so if you previously downloaded a zipper repository this will overwrite it.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_the_example_datasets_4">15.1.3. Get the example datasets</h4>
+<div class="paragraph">
+<p>We have provided some example datasets which you can use in order to test the drainage density analysis. In this tutorial we will work using a LiDAR dataset from the Guadalupe Mountains, New Mexico.  This is a clip of the original dataset, which we have resampled to 2 m resolution. The full dataset is available from <a href="http://www.opentopography.org/">OpenTopography.</a>. If you are using the vagrant distribution, create a new folder within the <code>Topographic_projects</code> folder, and then navigate to this folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Topographic_projects$ mkdir Guadalupe_NM
+vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Topographic_projects$ cd Guadalupe_NM/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can get the clip from our ExampleTopoDatasets repository using <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Guadalupe_DEM.bil
+$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Guadalupe_DEM.hdr</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This dataset is already in the preferred format for use with LSDTopoTools (the ENVI <code>bil</code> format). The figure below shows a shaded relief map of part of the Guadalupe Mountains DEM which will be used in these examples.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Guadalupe_map.png" alt="Shaded relief map of Guadalupe Mountains" width="600" height="400">
+</div>
+<div class="title">Figure 26. Shaded relief image of the Guadalupe Mountains DEM, NM, USA, UTM Zone 17N</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_the_example_parameter_files_3">15.1.4. Get the example parameter files</h4>
+<div class="paragraph">
+<p>We have also provided some examples parameter files that are used to run the drainage density analysis.  These should be placed in the same folder as your DEM (e.g. in the folder <code>/LSDTopoTools/Topographic_projects/Guadalupe_NM/</code>. You can get the example parameter file using <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/tree/master/example_parameter_files/drainage_density_guadalupe.driver</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_python_scripts">15.1.5. Python scripts</h4>
+<div class="paragraph">
+<p>We have also provided some Python scripts for creating figures from the draiange density analysis.  These should produce similar figures to those in Clubb et al. (2016), JGR-ES.  These scripts are in the directory <code>Python_scripts</code> within <code>LSDTopoTools_DrainageDensity</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects/LSDTopoTools_DrainageDensity$ cd Python_scripts
+vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects/LSDTopoTools_DrainageDensity/Python_scripts$ ls
+drainage_density_plot.py	drainage_density_plot_cosmo.py</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preliminary_steps_2">15.2. Preliminary steps</h3>
+<div class="sect3">
+<h4 id="_getting_the_channel_head_file_2">15.2.1. Getting the channel head file</h4>
+<div class="paragraph">
+<p>Before the drainage density analysis can be run, you must create a channel network for your DEM.  This can be done using the <a href="#_channel_extraction">Channel extraction</a> algorithms within LSDTopoTools.  There are several channel extraction algorithms which you can choose from: for more details please refer to the <a href="#_channel_extraction">Channel extraction</a> section.  Once you have run the channel extraction algorithm, you must make sure that the <code>bil</code> and <code>hdr</code> files with the channel head locations are placed in the same folder as the DEM you intend to use for the drainage density analysis.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_selecting_a_window_size_2">15.2.2. Selecting a window size</h4>
+<div class="paragraph">
+<p>Before we can run the drainage density algorithm, we need to calculate the correct window size for calculating mean hilltop curvature across the DEM.  Please refer to the <a href="#_selecting_a_window_size">Selecting A Window Size</a> section for information on how to calculate a window size for your DEM.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_analysing_drainage_density_for_all_basins">15.3. Analysing drainage density for all basins</h3>
+<div class="paragraph">
+<p>This section provides instructions for how to extract the drainage density and mean hilltop curvature for every basin in the landscape of a given order (e.g. all second order drainage basins).</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_the_paramter_file_2">15.3.1. Creating the paramter file</h4>
+<div class="paragraph">
+<p>In order to run the drainage density analysis code you must first create a parameter file for your DEM.  This should be placed in the same folder as your DEM and the channel heads <code>bil</code> file.  If you followed the instructions in the <a href="#_get_the_code_for_drainage_density_analysis">Get the code for drainage density analysis</a> section then you will already have an example parameter file for the Guadalupe Mountains DEM called <code>drainage_density_guadalupe.driver</code>.  Parameter files should have the following structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">Name of the DEM without extension
+Name of the channel heads file - will vary depending on your channel extraction method
+Minimum slope for filling the DEM
+Order of basins to extract
+Window size (m): calculate for your DEM resolution</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An example parameter file for the Guadalupe Mountains DEM is set out below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">Guadalupe_DEM
+Guadalupe_DEM_CH_DrEICH
+0.0001
+2
+6</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_1_get_the_junctions_of_all_the_basins">15.3.2. Step 1: Get the junctions of all the basins</h4>
+<div class="paragraph">
+<p>The first step of the analysis creates a text file with all the junction numbers of the basins of the specified stream order.  Before the code can be run, you must compile it using the makefile in the folder <code>LSDTopoTools_DrainageDensity/driver_functions_DrainageDensity</code>.  Navigate to the folder using the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd driver_functions_DrainageDensity/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and compile the code with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f drainage_density_step1_junctions.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may come up with some warnings, but should create the file <code>drainage_density_step1_junctions.out</code>. You can then run the program with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./drainage_density_step1_junctions.out /path/to/DEM/location/ name_of_parameter_file.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For our example, the command would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./drainage_density_step1_junctions.out /LSDTopoTools/Topographic_projects/Guadalupe_NM/ drainage_density_guadalupe.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The program will create a text file called <code>DEM_name_DD_junctions.txt</code> which will be ingested by step 2 of the analysis.  It will also create some new rasters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DEM_name_fill: the filled DEM</p>
+</li>
+<li>
+<p>DEM_name_HS: a hillshade of the DEM</p>
+</li>
+<li>
+<p>DEM_name_SO: the channel network</p>
+</li>
+<li>
+<p>DEM_name_JI: the locations of all the tributary junctions</p>
+</li>
+<li>
+<p>DEM_name_CHT: the curvature for all the hilltops in the DEM</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_2_get_the_drainage_density_of_each_basin">15.3.3. Step 2: Get the drainage density of each basin</h4>
+<div class="paragraph">
+<p>The second step of the analysis ingests the junctions text file created in step 1. For each junction it will extract the upstream drainage basin, and calculate the drainage density and mean hilltop curvature for the basin.  This will be written to a text file which can be plotted up using our Python script.</p>
+</div>
+<div class="paragraph">
+<p>First, compile the code with the makefile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f drainage_density_step2_basins.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may come up with some warnings, but should create the file <code>drainage_density_step2_basins.out</code>. You can then run the program with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./drainage_density_step2_basins.out /path/to/DEM/location/ name_of_parameter_file.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For our example, the command would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./drainage_density_step2_basins.out /LSDTopoTools/Topographic_projects/Guadalupe_NM/ drainage_density_guadalupe.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This program will create 2 text files.  The first one will be called <code>DEM_name_drainage_density_cloud.txt</code> and will have 3 rows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Drainage density of the basin</p>
+</li>
+<li>
+<p>Mean hilltop curvature of the basin</p>
+</li>
+<li>
+<p>Drainage area of the basin</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This text file represents the data for every basin in the DEM.  The second text file will be called <code>DEM_name_drainage_density_binned.txt</code>, where the drainage density and hilltop curvature data has been binned with a bin width of 0.005 m<sup>-1</sup>.  It has 6 rows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Mean hilltop curvature for the bin</p>
+</li>
+<li>
+<p>Standard deviation of curvature</p>
+</li>
+<li>
+<p>Standard error of curvature</p>
+</li>
+<li>
+<p>Drainage density for the bin</p>
+</li>
+<li>
+<p>Standard deviation of drainage density</p>
+</li>
+<li>
+<p>Standard error of drainage density</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These text files are read by <code>drainage_density_plot.py</code> to create plots of the drainage density and mean hilltop curvature.  The code also produces <code>DEM_name_basins.bil</code>, which is a raster with all the basins analysed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_3_plotting_the_data">15.3.4. Step 3: Plotting the data</h4>
+<div class="paragraph">
+<p>Navigate to the folder <code>Python_scripts</code> within the <code>LSDTopoTools_DrainageDensity</code> repository.  You should find the following files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects/LSDTopoTools_DrainageDensity/Python_scripts$ ls
+drainage_density_plot.py	drainage_density_plot_cosmo.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open the file called <code>drainage_density_plot_cosmo.py</code>.  We suggest doing this on your host machine rather than the virtual machine: for instructions about how to install Python on your host machine please see the section on <a href="#_getting_python_running">Getting python running</a>.</p>
+</div>
+<div class="paragraph">
+<p>Open the file called <code>drainage_density_plot.py</code>.  We suggest doing this on your host machine rather than the virtual machine: for instructions about how to install Python on your host machine please see the section on <a href="#_getting_python_running">Getting python running</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to run the script on the example dataset you can just run it without changing anything. The script will create the file <code>Guadalupe_DEM_drainage_density_all_basins.png</code> in the same folder as your DEM is stored in.  If you want to run it on your own data, simply open the Python script in your favourite text editor.  At the bottom of the file you need to change the DataDirectory (Line 165) and the DEM identifier (Line 167) to reflect your data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># Set the data directory here - this should point to the folder with your DEM
+DataDirectory = 'C:\\vagrantboxes\\LSDTopoTools\\Topographic_projects\\Guadalupe_NM\\'
+# Name of the DEM WITHOUT FILE EXTENSION
+DEM_name = 'Guadalupe_DEM'
+make_plots(DataDirectory, DEM_name)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should end up with a plot like the one below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Guadalupe_DEM_drainage_density_all_basins.png" alt="Plot of drainage density against mean hilltop curvature" width="600" height="400">
+</div>
+<div class="title">Figure 27. Plot of drainage density against mean hilltop curvature for the Guadalupe Mountains example dataset</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_summary_11">15.3.5. Summary</h4>
+<div class="paragraph">
+<p>You should now be able to extract the drainage density and mean hilltop curvature for all basins of a given order for your DEM, and use Python to plot the results.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_analysing_drainage_density_for_basins_with_crn_derived_erosion_rates">15.4. Analysing drainage density for basins with CRN-derived erosion rates</h3>
+<div class="paragraph">
+<p>This section provides instructions for how to extract the drainage density for basins upstream of a series of point locations, such as cosmogenic radionuclide (CRN)-derived erosion rate samples.  As an example, we will use the erosion rate data collected by Hurst et al. (2012) and Riebe et al. (2000) for the Feather River, Northern California.  The lidar data for this area is available from <a href="http://www.opentopography.org/">OpenTopography</a>. We haven&#8217;t included it in our example datasets as it is too large, but information on how to convert it into the right format can be found in our section on <a href="#_gdal">GDAL</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_formatting_your_erosion_rate_data">15.4.1. Formatting your erosion rate data</h4>
+<div class="paragraph">
+<p>The program needs to read in a text file with the erosion rate data.  This file needs to be called <code>DEM_name_cosmo.txt</code> where <code>DEM_name</code> is the name of the DEM <strong>without extension</strong>.  The file should have a row for each sample, with 4 columns, each separated by a space:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>X coordinate - same as DEM coordinate system</p>
+</li>
+<li>
+<p>Y coordinate - same as DEM coordinate system</p>
+</li>
+<li>
+<p>Erosion rate of the sample</p>
+</li>
+<li>
+<p>Error of the sample</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example of the file for the Feather River is shown below (UTM Zone 10N):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">640504.269	4391321.669	125.9	23.2
+647490.779	4388656.033	253.8	66.6
+648350.747	4388752.059	133.3	31.9
+643053.985	4388961.321	25.2	2.7
+643117.485	4389018.471	18.5	2
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This file has to be stored <strong>in the same folder as your DEM</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_the_paramter_file_3">15.4.2. Creating the paramter file</h4>
+<div class="paragraph">
+<p>Along with the text file with the erosion rate data, you must also create a parameter file to run the code with.  This should have the same format as the parameter file for running the analysis on all the basins, minus the last two lines. The format is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">Name of the DEM without extension
+Name of the channel heads file - will vary depending on your channel extraction method
+Minimum slope for filling the DEM</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should also be stored in the same folder as your DEM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_1_run_the_code">15.4.3. Step 1: Run the code</h4>
+<div class="paragraph">
+<p>Before the code can be run, you must compile it using the makefile in the folder <code>LSDTopoTools_DrainageDensity/driver_functions_DrainageDensity</code>.  Navigate to the folder using the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd driver_functions_DrainageDensity/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and compile the code with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f get_drainage_density_cosmo.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may come up with some warnings, but should create the file <code>get_drainage_density_cosmo.out</code>. You can then run the program with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./get_drainage_density_cosmo.out /path/to/DEM/location/ name_of_parameter_file.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>/path/to/DEM/location</code> is the path to your DEM, and <code>name_of_parameter_file.driver</code> is the name of the parameter file you created.</p>
+</div>
+<div class="paragraph">
+<p>The program will create a text file called <code>DEM_name_drainage_density_cosmo.txt</code> which can be ingested by our Python script to plot up the data.  This file has 9 rows with the following data:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Drainage density of the basin</p>
+</li>
+<li>
+<p>Mean basin slope</p>
+</li>
+<li>
+<p>Standard deviation of slope</p>
+</li>
+<li>
+<p>Standard error of slope</p>
+</li>
+<li>
+<p>Basin erosion rate</p>
+</li>
+<li>
+<p>Error of the basin erosion rate</p>
+</li>
+<li>
+<p>Basin drainage area</p>
+</li>
+<li>
+<p>Mean hilltop curvature of the basin</p>
+</li>
+<li>
+<p>Standard error of hilltop curavture</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It will also create some new rasters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DEM_name_slope: slope of the DEM</p>
+</li>
+<li>
+<p>DEM_name_curv: curvature of the DEM</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_2_plot_the_data">15.4.4. Step 2: Plot the data</h4>
+<div class="paragraph">
+<p>Navigate to the folder <code>Python_scripts</code> within the <code>LSDTopoTools_DrainageDensity</code> repository.  You should find the following files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects/LSDTopoTools_DrainageDensity/Python_scripts$ ls
+drainage_density_plot.py	drainage_density_plot_cosmo.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open the file called <code>drainage_density_plot_cosmo.py</code>.  We suggest doing this on your host machine rather than the virtual machine: for instructions about how to install Python on your host machine please see the section on <a href="#_getting_python_running">Getting python running</a>.</p>
+</div>
+<div class="paragraph">
+<p>Open the Python script in your favourite text editor.  At the bottom of the file you need to change the DataDirectory (Line 131) and the DEM identifier (Line 133) to reflect your data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># change this to the path to your DEM
+DataDirectory = 'C:\\vagrantboxes\\LSDTopoTools\\Topographic_projects\\Feather_River\\'
+# Name of the DEM WITHOUT FILE EXTENSION
+DEM_name = 'fr1m_nogaps'
+make_plots(DataDirectory, DEM_name)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should end up with a plot like the one below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/fr1m_nogaps_drainage_density_cosmo.png" alt="Plot of drainage density against erosion rate" width="600" height="400">
+</div>
+<div class="title">Figure 28. Plot of drainage density against erosion rate for basins with CRN samples for Feather River, California</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_summary_12">15.4.5. Summary</h4>
+<div class="paragraph">
+<p>You should now be able to extract the drainage density for a series of different basins across the landscape.  These can either be all basins of a specific order (Step 1), or basins defined by point coordinates (e.g. for catchment-averaged erosion rates from CRN samples in Step 2).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hydrological_and_erosion_modelling">16. Hydrological and Erosion Modelling</h2>
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -12848,7 +13499,7 @@ UpperPercentile 75</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_origins_relation_to_caesar_lisflood">15.1. Origins: relation to CAESAR-Lisflood</h3>
+<h3 id="_origins_relation_to_caesar_lisflood">16.1. Origins: relation to CAESAR-Lisflood</h3>
 <div class="paragraph">
 <p>The model is based on a 'light', stripped-down C++ translation of the CAESAR-Lisflood model. Unlike the CAESAR model, there is no graphical user interface (GUI), as in keeping with the LSDTopoTools mantra, the code is designed to be run from a command line, console, or terminal interace. This helps facilitate geomorphic modelling that is not dependent on a series of mouse-clicks, or propriatary operating systems and libraries. The Catchment Model code can be run on a range of operating systems and computing platforms, including Linux, MacOS, and Windows. However, GUIs can be useful for modelling, so if you would prefer to use a model in GUI-mode then <a href="https://sourceforge.net/projects/caesar-lisflood/">CAESAR-Lisflood</a> is a good choice for this. The LSDCatchmentModel model is designed to reproduce some of the core functionality in CAESAR-Lisflood, while being faster and cross platform, and to scale up to running on a supercomputer if the resources are available to you. One of the limitations for some users of CAESAR-Lisflood is that you need a dedicated Windows box to do your simulations, and you can&#8217;t send them off to a cluster computer-type facility, which typically run Unix-based operating systems. (Unless you have a bunch of spare Windows PCs&#8230;&#8203;)</p>
 </div>
@@ -12869,7 +13520,7 @@ There is no current plan to maintain the code in tandem with CAESAR-Lisflood. LS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation">15.2. Compilation</h3>
+<h3 id="_compilation">16.2. Compilation</h3>
 <div class="paragraph">
 <p>Several versions of the make file are provided, for different situations. It is planned in the future to make a single proper makefile with different options that cover the separate versions at present. For now, you will have to select from one of the following:</p>
 </div>
@@ -12909,7 +13560,7 @@ There is no current plan to maintain the code in tandem with CAESAR-Lisflood. LS
 <p>You will get an executable called <code>CatchmentModel_OpenMP_Optimised.out</code> or similar, depending on which makefile you used.</p>
 </div>
 <div class="sect3">
-<h4 id="_dependencies">15.2.1. Dependencies</h4>
+<h4 id="_dependencies">16.2.1. Dependencies</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -12931,7 +13582,7 @@ There is no current plan to maintain the code in tandem with CAESAR-Lisflood. LS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model">15.3. Running the Model</h3>
+<h3 id="_running_the_model">16.3. Running the Model</h3>
 <div class="paragraph">
 <p>The model runs from the command line/terminal/console. You specify the model executable name (CatchmentModel.out) followed by the path name to the parameter file and the parameter file itself. The model will print out updates to the terminal window regularly, keeping you updated to the stage it is at and if there are any errors. The DEM of your catchment must be present in the same folder as your parameter file and must be correctly formatted.</p>
 </div>
@@ -12972,13 +13623,13 @@ There is no current plan to maintain the code in tandem with CAESAR-Lisflood. LS
 <p>The model also prints out when it is writing output raster files, such as water depths, elevation difference etc. These files are outputted to the directory specified in the parameter file.</p>
 </div>
 <div class="sect3">
-<h4 id="_outputs">15.3.1. Outputs</h4>
+<h4 id="_outputs">16.3.1. Outputs</h4>
 <div class="paragraph">
 <p>CatchmentModel generates similar outputs to CAESAR-Lisflood, i.e. a timeseries text file of the water discharge, and sediment fluxes; as well as raster files for water depths, elevations, erosion amounts, and so on. These can be outputted at an interval specified in the parameter file. Output files can be saved in ascii (.asc), or binary (.flt) format.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dem_preparation">15.3.2. DEM preparation</h4>
+<h4 id="_dem_preparation">16.3.2. DEM preparation</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -13011,7 +13662,7 @@ The model will actually route water off <strong>all</strong> edges of the catchm
 </div>
 </div>
 <div class="sect3">
-<h4 id="_model_run_time_controls">15.3.3. Model run time controls</h4>
+<h4 id="_model_run_time_controls">16.3.3. Model run time controls</h4>
 <div class="paragraph">
 <p>A sample parameter file is provided for the Boscastle floods simulation. This is a 48-hour simulation using a 5m DEM, over a catchment 3km x 5.5km (about 700000 grid cells). It will take about 2-3 hours to run on a mid-range Desktop machine. (You can dramatically speed this up by using a coarser DEM.) Number of domain grid cells is the main control on compute time. With a multi-core machine, the run time can be significantly reduced, depending on the number of cores you have.</p>
 </div>
@@ -13033,7 +13684,7 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameter_file">15.4. Parameter File</h3>
+<h3 id="_parameter_file">16.4. Parameter File</h3>
 <div class="paragraph">
 <p>The parameter file is read by the CatchmentModel program when it starts, setting the variables for various components of the model, as well as the names of the DEM files and supplementary input files needed for the model simulation. It is a plain text file and can be called anything you like. By convention, the example parameter file supplied with the code has the suffix <code>.params</code>, but you may use whatever you like.</p>
 </div>
@@ -13294,7 +13945,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </table>
 </div>
 <div class="sect2">
-<h3 id="_running_the_code_in_parallel">15.5. Running the code in Parallel</h3>
+<h3 id="_running_the_code_in_parallel">16.5. Running the code in Parallel</h3>
 <div class="paragraph">
 <p>I&#8217;ve mentioned that the code has features that allow certain sections to run on parallel computing technology, such as a multi-core desktop PC, or a cluster computer with multiple CPUs. The included makefiles will compile this feature by deafult, and most computers are set up to run in parallel, given appropriate software. However, it is a good idea to double check your computing environment is set up correctly for parallel execution of the code.</p>
 </div>
@@ -13309,7 +13960,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect2">
-<h3 id="_notes_for_hpc_use">15.6. Notes for HPC use</h3>
+<h3 id="_notes_for_hpc_use">16.6. Notes for HPC use</h3>
 <div class="paragraph">
 <p>As it currently stands, CatchmentModel is designed for shared-memory architectures, i.e. single-nodes on cluster machines. Of course, you can take advantage of HPC services, as they usually high-spec compute nodes with decent numbers of CPUs and memory. The code lends itself well to 'embarassingly' parallel task farming, whereby you run multiple instances of the code with different datasets or parameters, for example. An HPC service is very useful for this as you can set potentially hundreds of simulations going at the same time, and get your results back much quicker. Consult your friendly HPC service for details of how to do this, as the instructions will vary between HPC environment.</p>
 </div>
@@ -13317,7 +13968,7 @@ For catchment mode this is an important variable as it controls the peak and dur
 </div>
 </div>
 <div class="sect1">
-<h2 id="_landscape_evolution_modelling_with_lsdtopotools">16. Landscape Evolution Modelling with LSDTopoTools</h2>
+<h2 id="_landscape_evolution_modelling_with_lsdtopotools">17. Landscape Evolution Modelling with LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The LSD Topo Toolbox contains a landscape evolution model. The model implementation is contained in the LSDRasterModel files. The driver file is <code>model_driver.cpp</code>. The landscape model is partly based on the FastScape algorithm <a href="http://www.sciencedirect.com/science/article/pii/S0169555X12004618">(Braun 2013)</a>, an efficient method for solving the stream power law for fluvial incision, as well as the MUDDPile algorithms for hillslope evolution. It contains both hillslope and fluvial components, which can be run individually, simulating a single hillside for example, or together, to simulate whole landscape evolution. The model will run from default parameters if none are supplied, but the user can also specify their own choice of parameters for the model run, which are detailed below.</p>
@@ -13372,9 +14023,9 @@ Rigidity:		1000000</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_parameters_and_components">16.1. Model Parameters and Components</h3>
+<h3 id="_model_parameters_and_components">17.1. Model Parameters and Components</h3>
 <div class="sect3">
-<h4 id="_model_domain">16.1.1. Model Domain</h4>
+<h4 id="_model_domain">17.1.1. Model Domain</h4>
 <div class="paragraph">
 <div class="title">Run Name</div>
 <p>This is the name that will be appened to all output files generated during the model run. The model will check to see if this name has already been used before overwriting existing output files.</p>
@@ -13425,7 +14076,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fluvial_component">16.1.2. Fluvial Component</h4>
+<h4 id="_fluvial_component">17.1.2. Fluvial Component</h4>
 <div class="paragraph">
 <div class="title">Fluvial</div>
 <p>Turns the fluvial component <strong>on</strong> or <strong>off</strong>, with these respective keywords.</p>
@@ -13454,7 +14105,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hillslope_component">16.1.3. Hillslope Component</h4>
+<h4 id="_hillslope_component">17.1.3. Hillslope Component</h4>
 <div class="paragraph">
 <p>The hillslope component comes in two flavours, a linear model and a non-linear one.</p>
 </div>
@@ -13477,7 +14128,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_model_2">16.2. Running the Model</h3>
+<h3 id="_running_the_model_2">17.2. Running the Model</h3>
 <div class="paragraph">
 <p>Once compiled, the model is run using:</p>
 </div>
@@ -13491,7 +14142,7 @@ This code determines the output sides of the model grid. I.e. which sides are fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_output">16.3. Model Output</h3>
+<h3 id="_model_output">17.3. Model Output</h3>
 
 </div>
 </div>
@@ -13927,7 +14578,7 @@ This is for information only. You should use Vagrant instead.
 <div class="content">
 <img src="images/cygwin_setup.jpg" alt="Cygwin setup window">
 </div>
-<div class="title">Figure 26. Cygwin setup.</div>
+<div class="title">Figure 29. Cygwin setup.</div>
 </div>
 <div class="paragraph">
 <p>Scroll down the the <code>devel</code> menu and select the following packages:</p>
@@ -14353,7 +15004,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_11">B.8. Summary</h3>
+<h3 id="_summary_13">B.8. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to pull up a powershell and call the essential programs we will be working with in this course.</p>
 </div>
@@ -14900,73 +15551,24 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_12">C.10. Summary</h3>
+<h3 id="_summary_14">C.10. Summary</h3>
 <div class="paragraph">
 <p>Well, you have probably spent some time installing all of these software packages so relax for a bit and enjoy the beverage of your choice!</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_on_macos">Appendix D: Setting up on MacOS</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>It is possible to run <strong>LSDTopoTools</strong> natively on MacOS, because they run on Linux and MacOS is built on top of Linux. However, we are not even going to tell you how to do that since it is 1000x easier just to set up a Linux server in your MacOS machine using <a href="https://www.vagrantup.com/">Vagrant</a>. Instructions can be found here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="_looking_at_the_data">D.1. Looking at the data</h3>
-<div class="paragraph">
-<p>If you have used our <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">instructions on setting up using Vagrant</a>, then your MacOS machine will be able to see files (rasters, point data, paramfiles) generated by you Linux server. To look at these you should have:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>A GIS. <a href="http://www.qgis.org/en/site/">QGIS</a> is a good, ope-source GIS. You can <a href="http://www.qgis.org/en/site/forusers/download.html">download it from here</a></p>
-</li>
-<li>
-<p>Python. We strongly recommend using <a href="http://conda.pydata.org/miniconda.html">miniconda</a> to install python. Our plotting scripts use <strong>Python 2.7</strong> so you should download that one. Once miniconda is downloaded, go into a <a href="http://www.howtogeek.com/210147/how-to-open-terminal-in-the-current-os-x-finder-location/">terminal window</a> and run the following:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ conda install scipy
-$ conda install pandas
-$ conda install matplotlib
-$ conda install gdal
-$ conda install spyder
-$ conda install pyqt=4.10 -f</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The last command is because spyder and matplotlib use conflicting versions of something called PyQt (as of September 2016).</p>
-</div>
-</li>
-<li>
-<p>A text editor. We recommend <a href="http://brackets.io/">Brackets</a> but there are many other choices. <a href="https://atom.io/">Atom</a> also works on MacOS.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Even though QGIS and python both have Linux installers, don&#8217;t install them on your Linux server for use with LSDTopoTools. This is because we use these programs to look at data, and our vagrant server cannot produce windows. You should do this n your native operating system.
-</td>
-</tr>
-</table>
+<p>Unresolved directive in LSDTT_docs.asc - include::book/CC-Setting-Up-On-MacOS/C-Setting-Up-On-MacOS.asc[]</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_code_structure">Appendix E: Code Structure</h2>
+<h2 id="_code_structure">Appendix D: Code Structure</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can happily use LSDTopoTools oblivious to the inner-workings of the code and how it all connects together to produce a suite of topographic analyses at your disposal. Ignorance is, as they say, bliss. No knowledge of Classes, Drivers, Objects, and so on, is needed to run the basic analyses supplied in the distribution of this software. However, you might wish to write your own driver functions, and may even be considering contributing to the core parts of the code. This way you can make your topographic techniques and algorithmic awesomeness available to like-minded geoscientists. Earlier, we mentioned breifly how the code is structured in the main body of this documentation. For those intrepid interrogators of empirical inquisition who have made it four levels down into the Appendix section, first of all, we salute you, and we reward you with a deeper look into how the code is structured, should you wish to contribute your own additions to the repository.</p>
 </div>
 <div class="sect2">
-<h3 id="_source_files_drivers_headers_and_implementaions">E.1. Source Files: Drivers, Headers, and Implementaions.</h3>
+<h3 id="_source_files_drivers_headers_and_implementaions">D.1. Source Files: Drivers, Headers, and Implementaions.</h3>
 <div class="paragraph">
 <p>There are two main parts of the LSDTopoTools source code: the driver functions and the core component source files. The core files contain the implementations of topographic analyses, and many other functions for creating rasters, sorting data, performin file operations, writing output, and so on.  All the core source files are name like <code>LSDSomeFile. pp</code>. They also come in pairs: a <code>LSDSomeClass.cpp</code> source file comes with a <code>LSDSomeClass.hpp</code> header file. The header file describes the interface to a parituclar source file. In other words, <code>LSDSomeClass.hpp</code> tells us what all the methods and data structures of a particular source file (<code>LSD.cpp</code>) are. For functions (or class methods to be precise&#8230;&#8203;) the header file tells us what type of parameters the functions take as arguments, and what data types (if any) these functions return. They also describe how data structures are stored. For example, we could look in <code>LSDRaster.hpp</code> to see how the data members of a Raster are defined. We would see that an <code>LSDRaster</code> object has some meta-data telling us about the extent and coordinates of the the raster data, and an array that stores each pixel value in the raster. It would also tell us which functions (methods) would return information about the <code>LSDRaster</code> object. If we wanted to know the number of rows in a raster object we would see in the header file there is a <code>getNRows()</code> function, and so on. The <code>.cpp</code> files tell us <em>how</em> these functions are implemented, e.g. what exactly each function does when parameters are passed to it, and how it maniplulates the data stored with the object.</p>
 </div>
@@ -14993,33 +15595,33 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_a_closer_look_at_the_source_files">E.2. A closer look at the source files</h3>
+<h3 id="_a_closer_look_at_the_source_files">D.2. A closer look at the source files</h3>
 <div class="sect3">
-<h4 id="_lsdraster">E.2.1. LSDRaster</h4>
+<h4 id="_lsdraster">D.2.1. LSDRaster</h4>
 <div class="paragraph">
 <p>LSDRaster is the class that contains methods for mainipulating arrays of raster data loaded from a DEM file. There are also data members that store metadata about the raster, such as the typical header data you would find in a DEM file. It can perform typical analyses such as creating a hillshade raster, calculating curvature of ridgetops, calculating the location of channel heads in a landscape, filling sinks and pits in a DEM and so on&#8201;&#8212;&#8201;mainly analyses that are performed on the entire raster dataset. It also does the basic reading and writing to DEM files.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexraster">E.2.2. LSDIndexRaster</h4>
+<h4 id="_lsdindexraster">D.2.2. LSDIndexRaster</h4>
 <div class="paragraph">
 <p>A simple and fairly short class that stores rasters data as integers, used for indexing of raster data, calculating bounding boxes for rasters with lots of <code>NoData</code> values around the edge (or surounding basins). Very similar to LSDRaster class except is only used for when an index or mask of a given raster is needed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdflowinfo">E.2.3. LSDFlowInfo</h4>
+<h4 id="_lsdflowinfo">D.2.3. LSDFlowInfo</h4>
 <div class="paragraph">
 <p>This class performs operations such as calculating flow direction, calculating upstream contributing pixels in a raster, calculating sources based on threshold pixel methods, and other flow related information (based on <strong>topographic</strong> analysis&#8201;&#8212;&#8201;not based on any particular hydrological fluid flow calculations). Note how this object has include statements for LSDRaster and LSDIndexRaster&#8201;&#8212;&#8201;it returns these type of objects from many of its methods. It uses the FastScape algorithm of Braun and Willet (2014).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexchannel">E.2.4. LSDIndexChannel</h4>
+<h4 id="_lsdindexchannel">D.2.4. LSDIndexChannel</h4>
 <div class="paragraph">
 <p>This object contains the node indexes as well as the row and col indices for individual channel segments.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdchannel">E.2.5. LSDChannel</h4>
+<h4 id="_lsdchannel">D.2.5. LSDChannel</h4>
 <div class="paragraph">
 <p>LSDChannel is our first class that inherits the public methods and data members of another, namely LSDIndexChannel. This means we have direct access to the public members of that class. Note, in the source code:</p>
 </div>
@@ -15036,31 +15638,31 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdjunctionnetwork">E.2.6. LSDJunctionNetwork</h4>
+<h4 id="_lsdjunctionnetwork">D.2.6. LSDJunctionNetwork</h4>
 <div class="paragraph">
 <p>JunctionNetwork contains the main parts of the implemented FastScape algorithm for creating channel junction networks that can be searched for network connectivity. The main inputs are a FlowInfo object and list of source nodes. It also contains functions for returning IndexChannel objects after calculating the layout of channel networks.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexchanneltree">E.2.7. LSDIndexChannelTree</h4>
+<h4 id="_lsdindexchanneltree">D.2.7. LSDIndexChannelTree</h4>
 <div class="paragraph">
 <p>This object spawns vectors of LSDIndexChannels. They can be indexed by the LSDChannel network, but can also be independent of the channel network, storing longest channels from sources, for example. The class is designed to be flexible, it can be used either with the LSDFlowInfo or LSDJunctionNetwork classes.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdchinetwork">E.2.8. LSDChiNetwork</h4>
+<h4 id="_lsdchinetwork">D.2.8. LSDChiNetwork</h4>
 <div class="paragraph">
 <p>This is used to perform chi-related analyses on channels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdmostlikelypartitionsfinder">E.2.9. LSDMostLikelyPartitionsFinder</h4>
+<h4 id="_lsdmostlikelypartitionsfinder">D.2.9. LSDMostLikelyPartitionsFinder</h4>
 <div class="paragraph">
 <p>This object is principally used to identify segments of differing channel steepness in chi-zeta space. It contains the implementation of the segment fitting algorithm, including the statistical model that determines the most likely partitionining combination of channels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdstatstools">E.2.10. LSDStatsTools</h4>
+<h4 id="_lsdstatstools">D.2.10. LSDStatsTools</h4>
 <div class="paragraph">
 <p>The StatsTools files contain a number of classes and standalone functions that perform statistical analyses. A number of other utility functions are implemented here, such as file name parsing and formatting.</p>
 </div>
@@ -15069,7 +15671,7 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_analysis_driver_options">Appendix F: Analysis Driver Options</h2>
+<h2 id="_analysis_driver_options">Appendix E: Analysis Driver Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>LSDTopoTools is composed of a number of objects (e.g., LSDRaster, LSDChannel, LSDFlowInfo, etc.) which are then called from programs we call driver functions.
@@ -15091,7 +15693,7 @@ The order of the keywords does not matter.
 Comments can be inserted into the parameter file using the hash symbol (<code>#</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_file_input_and_output_options">F.1. AnalysisDriver file input and output options</h3>
+<h3 id="_analysisdriver_file_input_and_output_options">E.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 35. File input and output options</caption>
 <colgroup>
@@ -15142,7 +15744,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_files_to_write">F.2. AnalysisDriver files to write</h3>
+<h3 id="_analysisdriver_files_to_write">E.2. AnalysisDriver files to write</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -15268,9 +15870,9 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 </table>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_parameter_values">F.3. AnalysisDriver parameter values</h3>
+<h3 id="_analysisdriver_parameter_values">E.3. AnalysisDriver parameter values</h3>
 <div class="sect3">
-<h4 id="_parameters_for_the_fill_function">F.3.1. Parameters for the fill function</h4>
+<h4 id="_parameters_for_the_fill_function">E.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 37. Parameters for the fill function</caption>
 <colgroup>
@@ -15307,7 +15909,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_hillshading">F.3.2. Parameters for hillshading</h4>
+<h4 id="_parameters_for_hillshading">E.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 38. Parameters for hillshading</caption>
 <colgroup>
@@ -15347,7 +15949,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_flow_info_calculations">F.3.3. Parameters for flow info calculations</h4>
+<h4 id="_parameters_for_flow_info_calculations">E.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 39. Parameters for flow info calculations</caption>
 <colgroup>
@@ -15377,7 +15979,7 @@ These are NOT case sensitive.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_masking">F.3.4. Parameters for masking</h4>
+<h4 id="_parameters_for_masking">E.3.4. Parameters for masking</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 40. Parameters for masking operations</caption>
 <colgroup>
@@ -15423,7 +16025,7 @@ These are NOT case sensitive.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</h4>
+<h4 id="_parameters_for_chi_calculations">E.3.5. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 41. Parameters for chi calculations</caption>
 <colgroup>
@@ -15465,7 +16067,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</h4>
+<h4 id="_parameters_for_polyfit_and_slope_calculations">E.3.6. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 42. Parameters for polyfit and slope calculations</caption>
 <colgroup>
@@ -15499,7 +16101,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</h4>
+<h4 id="_parameters_for_drainage_area_extraction">E.3.7. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 43. Parameters for drainage area extraction</caption>
 <colgroup>
@@ -15527,7 +16129,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</h4>
+<h4 id="_parameters_for_single_thread_channel_extraction">E.3.8. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 44. Parameters for extra cting single thread channels</caption>
 <colgroup>
@@ -15567,7 +16169,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</h4>
+<h4 id="_parameters_for_area_threshold_channel_extraction">E.3.9. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 45. Parameters for area threshold channel extraction</caption>
 <colgroup>
@@ -15595,7 +16197,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</h4>
+<h4 id="_parameters_for_hydrology_and_slope_stability">E.3.10. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 46. Parameters for chi calculations</caption>
 <colgroup>
@@ -15650,7 +16252,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tools_for_viewing_data">Appendix G: Tools for viewing data</h2>
+<h2 id="_tools_for_viewing_data">Appendix F: Tools for viewing data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The many analyses provided by LSDTopoTools produce geographic data
@@ -15660,20 +16262,20 @@ data, using either Geographic Information Sysems (GISs) or
 using our own visualisation scripts, which are written in python.</p>
 </div>
 <div class="sect2">
-<h3 id="_arcmap">G.1. ArcMap</h3>
+<h3 id="_arcmap">F.1. ArcMap</h3>
 <div class="paragraph">
 <p>ArcMap is commercial software written by ESRI.
 Many companies, goverment agencies and universities have liscences to this sofotware.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis_3">G.2. QGIS</h3>
+<h3 id="_qgis_3">F.2. QGIS</h3>
 <div class="paragraph">
 <p>QGIS is an open source GIS that has functionality similar to ArcMap.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lsdtopotools_python_mapping_functions">G.3. LSDTopoTools python mapping functions</h3>
+<h3 id="_lsdtopotools_python_mapping_functions">F.3. LSDTopoTools python mapping functions</h3>
 <div class="paragraph">
 <p>We have written a series of lightweight mapping tools in python for
 visualising data.
@@ -15686,7 +16288,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_13">G.4. Summary</h3>
+<h3 id="_summary_15">F.4. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to perform basic operations such as loading and exploring data in QGIS, ArcMap or our own python tools.</p>
 </div>
@@ -15694,13 +16296,13 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix H: Automation and Supercomputing for LSDTopoTools</h2>
+<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix G: Automation and Supercomputing for LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Perhaps you have a lot of basins that you want to perform some analysis on, or you want to re-run a previous analysis with slightly different paramters, different m/n values, and so on. This section will explain some of the scripting tools, supercomputer applications, and other utilities to help speed up this process.</p>
 </div>
 <div class="sect2">
-<h3 id="_embarassingly_parallel_topographic_analysis">H.1. Embarassingly Parallel Topographic Analysis</h3>
+<h3 id="_embarassingly_parallel_topographic_analysis">G.1. Embarassingly Parallel Topographic Analysis</h3>
 <div class="paragraph">
 <p>The LSD software is written to run completely in serial. (i.e. there is no built in parallelisation). However, if you are running the same analyses on a large number of basins, the problem becomes easy to set up in a parallel-like fashion, if you have access to some form of multiple cpu computing facility. (This is termed <strong>embarassingly/trivially parallel</strong>, since it isn&#8217;t really written in parallel code).</p>
 </div>
@@ -15708,7 +16310,7 @@ installed on your system.</p>
 <p>This doesn&#8217;t necessarily require a supercomputing cluster; most laptops are at least dual core (as of 2014), and some will have as many as 8 seperate cpu threads to run tasks on. That means you could be running analysis on 8 basins at a time, rather than waiting for each one to finish separately, in serial.</p>
 </div>
 <div class="sect3">
-<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">H.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
+<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">G.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">You can find out how many cpus/cores/threads you have to play with by typing</dt>
@@ -15747,7 +16349,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_topographic_analysis_on_a_supercomputer">H.2. Topographic Analysis on a Supercomputer</h3>
+<h3 id="_topographic_analysis_on_a_supercomputer">G.2. Topographic Analysis on a Supercomputer</h3>
 <div class="paragraph">
 <p>If you have access to a suitable cluster computer or other supercomputer (HPC - high performance computing) service (ARCHER, HECToR, Eddie, or your local department&#8217;s cluster) it will probably have some type of job submission service. SGE and PBS are two of the most commonly used ones. You use the job scheduler to submit your by providing a simple script that requests cpu and memory resources from the supercomputer. By running the script, the job(s) are then placed in a queue to be distributed across the nodes and cpus.</p>
 </div>
@@ -15813,7 +16415,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_launching_jobs_with_the_batch_system">H.2.1. Launching jobs with the batch system</h4>
+<h4 id="_launching_jobs_with_the_batch_system">G.2.1. Launching jobs with the batch system</h4>
 <div class="sect4">
 <h5 id="_pbs_example">PBS Example</h5>
 <div class="paragraph">
@@ -15909,7 +16511,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect3">
-<h4 id="_checking_your_jobs">H.2.2. Checking your jobs</h4>
+<h4 id="_checking_your_jobs">G.2.2. Checking your jobs</h4>
 <div class="paragraph">
 <p><code>qstat</code> on its own should display a list of all your running jobs by default. To delete a job, use:</p>
 </div>
@@ -15945,7 +16547,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module_issues">H.3. Module issues</h3>
+<h3 id="_module_issues">G.3. Module issues</h3>
 <div class="paragraph">
 <p>On certain HPC services, different modules or libraries need to be loaded or switched to create the right environment to run your software. Normally this is not an issue and nothing needs to be changed. By convention, the LSD Topo Tools software is compiled using the gcc compilers. (A set of free compilers released under the GNU licence). Some supercomputer clusters will come with a range of compilers such as Intel, Cray, etc&#8230;&#8203; One of them will be loaded by default. If gcc is not the default, you may wish to swap it before compiling.:</p>
 </div>
@@ -16008,7 +16610,7 @@ The compiler suite you use has nothing to do with the type of CPU or supercomput
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation_and_library_issues">H.4. Compilation and library issues</h3>
+<h3 id="_compilation_and_library_issues">G.4. Compilation and library issues</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -16071,7 +16673,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-26 09:45:22 GMT Daylight Time
+Last updated 2016-10-17 10:25:34 BST
 </div>
 </div>
 </body>
