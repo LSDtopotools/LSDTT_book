@@ -510,6 +510,7 @@ MathJax.Hub.Config({
 <li><a href="#finding-out-what-sort-of-data-youve-got">3.5.1. Finding out what sort of data you&#8217;ve got</a></li>
 <li><a href="#translating-your-raster-into-something-that-can-be-used-by-lsdtopotoolbox">3.5.2. Translating your raster into something that can be used by LSDTopoToolbox</a></li>
 <li><a href="#clipping-rasters-with-gdal">3.5.3. Clipping rasters with gdal</a></li>
+<li><a href="#_merging_large_numbers_of_rasters">3.5.4. Merging large numbers of rasters</a></li>
 </ul>
 </li>
 <li><a href="#_looking_at_your_data_before_you_do_anything_with_it">3.6. Looking at your data (before you do anything with it).</a>
@@ -881,144 +882,162 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_setting_up_on_windows">Appendix B: Setting up on Windows</a>
+<li><a href="#_using_the_lsdtopotoolssetup_py_script">Appendix B: Using the LSDTopoToolsSetup.py script</a>
 <ul class="sectlevel2">
-<li><a href="#_working_with_the_powershell">B.1. Working with the powershell</a>
+<li><a href="#_getting_the_lsdtopotools_setup_script">B.1. Getting the LSDTopoTools setup script</a>
 <ul class="sectlevel3">
-<li><a href="#_starting_a_powershell_session">B.1.1. Starting a powershell session</a></li>
+<li><a href="#_alternatives_to_wget">B.1.1. Alternatives to wget</a></li>
 </ul>
 </li>
-<li><a href="#_windows_installation_programs">B.2. Windows installation programs</a>
+<li><a href="#_running_the_lsdtopotools_setup_script">B.2. Running the LSDTopoTools setup script</a>
 <ul class="sectlevel3">
-<li><a href="#_a_text_editor">B.2.1. A text editor</a></li>
-<li><a href="#_git_3">B.2.2. Git</a></li>
-<li><a href="#_python_on_windows_with_miniconda">B.2.3. Python on Windows with miniconda</a></li>
-<li><a href="#_qgis">B.2.4. QGIS</a></li>
-<li><a href="#_inkscape">B.2.5. Inkscape</a></li>
+<li><a href="#_looking_at_all_the_lsdtopotoolssetup_options">B.2.1. Looking at all the LSDTopoToolsSetup options</a></li>
+<li><a href="#_a_default_setup">B.2.2. A default setup</a></li>
+<li><a href="#_other_setup_options">B.2.3. Other setup options</a></li>
+<li><a href="#_if_you_are_running_on_native_linux">B.2.4. If you are running on native Linux</a></li>
 </ul>
 </li>
-<li><a href="#_tools_for_c">B.3. Tools for C++</a>
-<ul class="sectlevel3">
-<li><a href="#_c_developer_toolkit">B.3.1. C++ developer toolkit</a></li>
-<li><a href="#_cygwin">B.3.2. Cygwin</a></li>
-<li><a href="#_c_libraries">B.3.3. C++ libraries</a></li>
+<li><a href="#_table_of_lsdtopotoolssetup_py_options">B.3. Table of LSDTopoToolsSetup.py options</a></li>
 </ul>
 </li>
-<li><a href="#_gdal_windows_installation">B.4. GDAL windows installation</a></li>
-<li><a href="#_ruby_2">B.5. Ruby</a>
-<ul class="sectlevel3">
-<li><a href="#_install_ruby">B.5.1. Install Ruby</a></li>
-<li><a href="#_fix_rubygems_on_windows">B.5.2. Fix rubygems on Windows</a></li>
-<li><a href="#_fix_rubydevkit_on_windows">B.5.3. Fix RubyDevKit on Windows</a></li>
-<li><a href="#_install_some_gems">B.5.4. Install some gems</a></li>
-<li><a href="#_if_you_use_ruby_with_java_you_will_probably_strong_not_strong_need_this">B.5.5. If you use Ruby with Java (you will probably <strong>NOT</strong> need this)</a></li>
-</ul>
-</li>
-<li><a href="#_windows_installation_summary">B.6. Windows installation summary</a></li>
-<li><a href="#_turning_your_windows_machine_into_a_linux_machine">B.7. Turning your windows machine into a Linux machine</a></li>
-<li><a href="#_summary_13">B.8. Summary</a></li>
-</ul>
-</li>
-<li><a href="#_setting_up_on_linux">Appendix C: Setting up on Linux</a>
+<li><a href="#_setting_up_on_windows">Appendix C: Setting up on Windows</a>
 <ul class="sectlevel2">
-<li><a href="#_a_text_editor_2">C.1. A text editor</a></li>
-<li><a href="#_git_4">C.2. Git</a></li>
-<li><a href="#_c_tools_2">C.3. C++ tools</a>
+<li><a href="#_working_with_the_powershell">C.1. Working with the powershell</a>
 <ul class="sectlevel3">
-<li><a href="#_c_libraries_2">C.3.1. C++ libraries</a></li>
+<li><a href="#_starting_a_powershell_session">C.1.1. Starting a powershell session</a></li>
 </ul>
 </li>
-<li><a href="#_the_swath_and_point_cloud_tools">C.4. The Swath and Point Cloud tools</a>
+<li><a href="#_windows_installation_programs">C.2. Windows installation programs</a>
 <ul class="sectlevel3">
-<li><a href="#_pcl">C.4.1. PCL</a></li>
-<li><a href="#_liblas">C.4.2. libLAS</a></li>
+<li><a href="#_a_text_editor">C.2.1. A text editor</a></li>
+<li><a href="#_git_3">C.2.2. Git</a></li>
+<li><a href="#_python_on_windows_with_miniconda">C.2.3. Python on Windows with miniconda</a></li>
+<li><a href="#_qgis">C.2.4. QGIS</a></li>
+<li><a href="#_inkscape">C.2.5. Inkscape</a></li>
 </ul>
 </li>
-<li><a href="#_python_3">C.5. Python</a>
+<li><a href="#_tools_for_c">C.3. Tools for C++</a>
 <ul class="sectlevel3">
-<li><a href="#_installing_python">C.5.1. Installing python</a></li>
-<li><a href="#_installing_python_packages">C.5.2. Installing python packages</a></li>
-<li><a href="#_installing_python_with_miniconda">C.5.3. Installing python with miniconda</a></li>
+<li><a href="#_c_developer_toolkit">C.3.1. C++ developer toolkit</a></li>
+<li><a href="#_cygwin">C.3.2. Cygwin</a></li>
+<li><a href="#_c_libraries">C.3.3. C++ libraries</a></li>
 </ul>
 </li>
-<li><a href="#_qgis_2">C.6. QGIS</a></li>
-<li><a href="#_inkscape_2">C.7. Inkscape</a></li>
-<li><a href="#_ruby_3">C.8. Ruby</a>
+<li><a href="#_gdal_windows_installation">C.4. GDAL windows installation</a></li>
+<li><a href="#_ruby_2">C.5. Ruby</a>
 <ul class="sectlevel3">
-<li><a href="#_installing_the_asciidoctor_documentation_software">C.8.1. Installing the asciidoctor documentation software</a></li>
+<li><a href="#_install_ruby">C.5.1. Install Ruby</a></li>
+<li><a href="#_fix_rubygems_on_windows">C.5.2. Fix rubygems on Windows</a></li>
+<li><a href="#_fix_rubydevkit_on_windows">C.5.3. Fix RubyDevKit on Windows</a></li>
+<li><a href="#_install_some_gems">C.5.4. Install some gems</a></li>
+<li><a href="#_if_you_use_ruby_with_java_you_will_probably_strong_not_strong_need_this">C.5.5. If you use Ruby with Java (you will probably <strong>NOT</strong> need this)</a></li>
 </ul>
 </li>
-<li><a href="#_cloning_or_forking_the_documentation">C.9. Cloning or forking the documentation</a></li>
-<li><a href="#_summary_14">C.10. Summary</a></li>
+<li><a href="#_windows_installation_summary">C.6. Windows installation summary</a></li>
+<li><a href="#_turning_your_windows_machine_into_a_linux_machine">C.7. Turning your windows machine into a Linux machine</a></li>
+<li><a href="#_summary_13">C.8. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_setting_up_on_macos">Appendix D: Setting up on MacOS</a>
+<li><a href="#_setting_up_on_linux">Appendix D: Setting up on Linux</a>
 <ul class="sectlevel2">
-<li><a href="#_looking_at_the_data">D.1. Looking at the data</a></li>
-</ul>
-</li>
-<li><a href="#_code_structure">Appendix E: Code Structure</a>
-<ul class="sectlevel2">
-<li><a href="#_source_files_drivers_headers_and_implementaions">E.1. Source Files: Drivers, Headers, and Implementaions.</a></li>
-<li><a href="#_a_closer_look_at_the_source_files">E.2. A closer look at the source files</a>
+<li><a href="#_a_text_editor_2">D.1. A text editor</a></li>
+<li><a href="#_git_4">D.2. Git</a></li>
+<li><a href="#_c_tools_2">D.3. C++ tools</a>
 <ul class="sectlevel3">
-<li><a href="#_lsdraster">E.2.1. LSDRaster</a></li>
-<li><a href="#_lsdindexraster">E.2.2. LSDIndexRaster</a></li>
-<li><a href="#_lsdflowinfo">E.2.3. LSDFlowInfo</a></li>
-<li><a href="#_lsdindexchannel">E.2.4. LSDIndexChannel</a></li>
-<li><a href="#_lsdchannel">E.2.5. LSDChannel</a></li>
-<li><a href="#_lsdjunctionnetwork">E.2.6. LSDJunctionNetwork</a></li>
-<li><a href="#_lsdindexchanneltree">E.2.7. LSDIndexChannelTree</a></li>
-<li><a href="#_lsdchinetwork">E.2.8. LSDChiNetwork</a></li>
-<li><a href="#_lsdmostlikelypartitionsfinder">E.2.9. LSDMostLikelyPartitionsFinder</a></li>
-<li><a href="#_lsdstatstools">E.2.10. LSDStatsTools</a></li>
+<li><a href="#_c_libraries_2">D.3.1. C++ libraries</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_analysis_driver_options">Appendix F: Analysis Driver Options</a>
-<ul class="sectlevel2">
-<li><a href="#_analysisdriver_file_input_and_output_options">F.1. AnalysisDriver file input and output options</a></li>
-<li><a href="#_analysisdriver_files_to_write">F.2. AnalysisDriver files to write</a></li>
-<li><a href="#_analysisdriver_parameter_values">F.3. AnalysisDriver parameter values</a>
+<li><a href="#_the_swath_and_point_cloud_tools">D.4. The Swath and Point Cloud tools</a>
 <ul class="sectlevel3">
-<li><a href="#_parameters_for_the_fill_function">F.3.1. Parameters for the fill function</a></li>
-<li><a href="#_parameters_for_hillshading">F.3.2. Parameters for hillshading</a></li>
-<li><a href="#_parameters_for_flow_info_calculations">F.3.3. Parameters for flow info calculations</a></li>
-<li><a href="#_parameters_for_masking">F.3.4. Parameters for masking</a></li>
-<li><a href="#_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</a></li>
-<li><a href="#_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</a></li>
-<li><a href="#_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</a></li>
-<li><a href="#_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</a></li>
-<li><a href="#_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</a></li>
-<li><a href="#_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</a></li>
+<li><a href="#_pcl">D.4.1. PCL</a></li>
+<li><a href="#_liblas">D.4.2. libLAS</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_tools_for_viewing_data">Appendix G: Tools for viewing data</a>
-<ul class="sectlevel2">
-<li><a href="#_arcmap">G.1. ArcMap</a></li>
-<li><a href="#_qgis_3">G.2. QGIS</a></li>
-<li><a href="#_lsdtopotools_python_mapping_functions">G.3. LSDTopoTools python mapping functions</a></li>
-<li><a href="#_summary_15">G.4. Summary</a></li>
-</ul>
-</li>
-<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix H: Automation and Supercomputing for LSDTopoTools</a>
-<ul class="sectlevel2">
-<li><a href="#_embarassingly_parallel_topographic_analysis">H.1. Embarassingly Parallel Topographic Analysis</a>
+<li><a href="#_python_3">D.5. Python</a>
 <ul class="sectlevel3">
-<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">H.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+<li><a href="#_installing_python">D.5.1. Installing python</a></li>
+<li><a href="#_installing_python_packages">D.5.2. Installing python packages</a></li>
+<li><a href="#_installing_python_with_miniconda">D.5.3. Installing python with miniconda</a></li>
 </ul>
 </li>
-<li><a href="#_topographic_analysis_on_a_supercomputer">H.2. Topographic Analysis on a Supercomputer</a>
+<li><a href="#_qgis_2">D.6. QGIS</a></li>
+<li><a href="#_inkscape_2">D.7. Inkscape</a></li>
+<li><a href="#_ruby_3">D.8. Ruby</a>
 <ul class="sectlevel3">
-<li><a href="#_launching_jobs_with_the_batch_system">H.2.1. Launching jobs with the batch system</a></li>
-<li><a href="#_checking_your_jobs">H.2.2. Checking your jobs</a></li>
+<li><a href="#_installing_the_asciidoctor_documentation_software">D.8.1. Installing the asciidoctor documentation software</a></li>
 </ul>
 </li>
-<li><a href="#_module_issues">H.3. Module issues</a></li>
-<li><a href="#_compilation_and_library_issues">H.4. Compilation and library issues</a></li>
+<li><a href="#_cloning_or_forking_the_documentation">D.9. Cloning or forking the documentation</a></li>
+<li><a href="#_summary_14">D.10. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_setting_up_on_macos">Appendix E: Setting up on MacOS</a>
+<ul class="sectlevel2">
+<li><a href="#_looking_at_the_data">E.1. Looking at the data</a></li>
+</ul>
+</li>
+<li><a href="#_code_structure">Appendix F: Code Structure</a>
+<ul class="sectlevel2">
+<li><a href="#_source_files_drivers_headers_and_implementaions">F.1. Source Files: Drivers, Headers, and Implementaions.</a></li>
+<li><a href="#_a_closer_look_at_the_source_files">F.2. A closer look at the source files</a>
+<ul class="sectlevel3">
+<li><a href="#_lsdraster">F.2.1. LSDRaster</a></li>
+<li><a href="#_lsdindexraster">F.2.2. LSDIndexRaster</a></li>
+<li><a href="#_lsdflowinfo">F.2.3. LSDFlowInfo</a></li>
+<li><a href="#_lsdindexchannel">F.2.4. LSDIndexChannel</a></li>
+<li><a href="#_lsdchannel">F.2.5. LSDChannel</a></li>
+<li><a href="#_lsdjunctionnetwork">F.2.6. LSDJunctionNetwork</a></li>
+<li><a href="#_lsdindexchanneltree">F.2.7. LSDIndexChannelTree</a></li>
+<li><a href="#_lsdchinetwork">F.2.8. LSDChiNetwork</a></li>
+<li><a href="#_lsdmostlikelypartitionsfinder">F.2.9. LSDMostLikelyPartitionsFinder</a></li>
+<li><a href="#_lsdstatstools">F.2.10. LSDStatsTools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_analysis_driver_options">Appendix G: Analysis Driver Options</a>
+<ul class="sectlevel2">
+<li><a href="#_analysisdriver_file_input_and_output_options">G.1. AnalysisDriver file input and output options</a></li>
+<li><a href="#_analysisdriver_files_to_write">G.2. AnalysisDriver files to write</a></li>
+<li><a href="#_analysisdriver_parameter_values">G.3. AnalysisDriver parameter values</a>
+<ul class="sectlevel3">
+<li><a href="#_parameters_for_the_fill_function">G.3.1. Parameters for the fill function</a></li>
+<li><a href="#_parameters_for_hillshading">G.3.2. Parameters for hillshading</a></li>
+<li><a href="#_parameters_for_flow_info_calculations">G.3.3. Parameters for flow info calculations</a></li>
+<li><a href="#_parameters_for_masking">G.3.4. Parameters for masking</a></li>
+<li><a href="#_parameters_for_chi_calculations">G.3.5. Parameters for chi calculations</a></li>
+<li><a href="#_parameters_for_polyfit_and_slope_calculations">G.3.6. Parameters for polyfit and slope calculations</a></li>
+<li><a href="#_parameters_for_drainage_area_extraction">G.3.7. Parameters for drainage area extraction</a></li>
+<li><a href="#_parameters_for_single_thread_channel_extraction">G.3.8. Parameters for single thread channel extraction</a></li>
+<li><a href="#_parameters_for_area_threshold_channel_extraction">G.3.9. Parameters for area threshold channel extraction</a></li>
+<li><a href="#_parameters_for_hydrology_and_slope_stability">G.3.10. Parameters for hydrology and slope stability</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_tools_for_viewing_data">Appendix H: Tools for viewing data</a>
+<ul class="sectlevel2">
+<li><a href="#_arcmap">H.1. ArcMap</a></li>
+<li><a href="#_qgis_3">H.2. QGIS</a></li>
+<li><a href="#_lsdtopotools_python_mapping_functions">H.3. LSDTopoTools python mapping functions</a></li>
+<li><a href="#_summary_15">H.4. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix I: Automation and Supercomputing for LSDTopoTools</a>
+<ul class="sectlevel2">
+<li><a href="#_embarassingly_parallel_topographic_analysis">I.1. Embarassingly Parallel Topographic Analysis</a>
+<ul class="sectlevel3">
+<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">I.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+</ul>
+</li>
+<li><a href="#_topographic_analysis_on_a_supercomputer">I.2. Topographic Analysis on a Supercomputer</a>
+<ul class="sectlevel3">
+<li><a href="#_launching_jobs_with_the_batch_system">I.2.1. Launching jobs with the batch system</a></li>
+<li><a href="#_checking_your_jobs">I.2.2. Checking your jobs</a></li>
+</ul>
+</li>
+<li><a href="#_module_issues">I.3. Module issues</a></li>
+<li><a href="#_compilation_and_library_issues">I.4. Compilation and library issues</a></li>
 </ul>
 </li>
 </ul>
@@ -3379,6 +3398,50 @@ whistles to this, such as:</p>
 <p>The main thing to note about the <code>-te</code> operation is that the clip will
 be in the coordinates of the source raster (<code>input.tif</code>). You can look
 at the extent of the raster using <code>gdalinfo</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_merging_large_numbers_of_rasters">3.5.4. Merging large numbers of rasters</h4>
+<div class="paragraph">
+<p>Often websites serving topographic data will supply it to you in tiles. Merging these rasters can be a bit of an annoyance if you use a GIS, but is a breeze with GDAL. The <code>gdal_merge.py</code> program allows you to feed in a file with the names of the rasters you want to merge, so you can use a <a href="http://www.linfo.org/pipes.html">Linux pipe</a> to merge all of the rasters of a certain format using just two commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls *.asc &gt; DEMs.txt
+$ gdal_merge.py -of ENVI -o merged_dem.bil --optfile DEMs.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above command works for ascii files but <code>tif</code> or other file formats would work as well.</p>
+</div>
+<div class="paragraph">
+<p>The exception to this is ESRI files, which have a somewhat bizarre structure which requires a bit of extra work to get the file list. Here is an example python script to process tiles that have a common directory name:</p>
+</div>
+<div class="listingblock">
+<div class="title">Script for creating a list of ESRI rasters for use in gdal_merge.py</div>
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">def GetESRIFileNamesNextMap():
+
+    file_list = []
+
+    for DirName in glob("*/"):
+        #print DirName
+
+        directory_without_slash = DirName[:-1]
+
+        this_filename = "./"+DirName+directory_without_slash+"dtme/hdr.adf\n"
+
+        print this_filename
+        file_list.append(this_filename)
+
+    # write the new version of the file
+    file_for_output = open("DEM_list.txt",'w')
+    file_for_output.writelines(file_list)
+    file_for_output.close()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use this you will need to modify the directory structure to reflect your own files.</p>
 </div>
 </div>
 </div>
@@ -14345,7 +14408,199 @@ so if you fancy contributing to the documentation of getting the latest version,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setting_up_on_windows">Appendix B: Setting up on Windows</h2>
+<h2 id="_using_the_lsdtopotoolssetup_py_script">Appendix B: Using the LSDTopoToolsSetup.py script</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To help you set up <strong>LSDTopoTools</strong>, we have written a series of modules in <a href="https://www.python.org/">python</a> that automate the creation of our standard directory structure, downloading of the source code and compiling the source code into programs. The script is called <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_the_lsdtopotools_setup_script">B.1. Getting the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>LSDTopoTools works in all popular operating systems (Windows, MacOS, Linux) by using <a href="https://www.vagrantup.com/">Vagrant</a> to create a Linux server within your host operating system: if you are not in a native Linux environment you should start a Vagrant server by <a href="http://lsdtopotools.github.io/LSDTT_book/#_installing_lsdtopotools_using_virtualbox_and_vagrant">following these directions</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have done that, you should be able to <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> into a Linux session using <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> on Windows or the <code>vagrant ssh</code> command in MacOS and Linux.</p>
+</div>
+<div class="paragraph">
+<p>Once you are in a Linux operating system, the easiest way to get the script is to use the utility <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatives_to_wget">B.1.1. Alternatives to wget</h4>
+<div class="paragraph">
+<p>You can also get the script by cloning the LSDAutomation repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDAutomation.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can got to the <a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py">raw text of the file</a>, then copy the text and paste into your favourite text editor (i.e. <a href="http://brackets.io/">Brackets</a>). You should save the file as <code>LSDTopoToolsSetup.py</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_lsdtopotools_setup_script">B.2. Running the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>The setup script is a python script so you need python to run it. It should be run <strong>in Linux</strong>, so if you do not have a native Linux operating system the script should be run in your Vagrant server. Almost all flavours of Linux come with python installed as default (the Ubuntu system installed by our vagrantfiles is one example) so we will assume you have python.</p>
+</div>
+<div class="paragraph">
+<p>The script requires parameters; if you run the script with no parameters, it will give you a message telling you what to do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py
+
+=======================================================================
+Hello there, I am the going to help you set up LSDTopoTools!
+You will need to tell me what to do.
+If you are in vagrant, LSDTopoTools will always be installed in the root directory (\).
+If you are not in vagrant,
+LSDTopoTools will be installed in your home directory if you run this with:
+   python LSDTopoToolsSetup.py -id 0
+
+Or your current directory.
+(i.e., the directory from which you called this program)
+
+if you run with this:
+   python LSDTopoToolsSetup.py -id 1
+
+For help type:
+   python LSDTopoToolsSetup.py -h
+
+=======================================================================</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_all_the_lsdtopotoolssetup_options">B.2.1. Looking at all the LSDTopoToolsSetup options</h4>
+<div class="paragraph">
+<p>You can call help for the <code>LSDTopoToolsSetup.py</code> script with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_default_setup">B.2.2. A default setup</h4>
+<div class="paragraph">
+<p>In fact, there is no default setup, since you have to tell the tool where to install <strong>LSDTopoTools</strong>. You do this by using the <code>-id</code> flag.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you select 0, LSDTopoTools will be installed in your home directory, which you can get to with the command <code>cd ~</code>.</p>
+</li>
+<li>
+<p>If you select 1, LSDTopoTools will be installed in the current directory (i.e. the directory where the script is located).</p>
+</li>
+<li>
+<p>If you are running a vagrant machine, these instructions will be ignored and LSDTopoTools will be installed in the root directory (you can get there with the command <code>cd \</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will install a directory <code>LSDTopoTools</code> with subdirectories <code>Git_projects</code> and <code>Topographic_projects</code>. Each of these folders will clone subfolders from our github pages, and will compile the <strong>Analysis_driver</strong> as well as the <strong>chi_tool</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The directories will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_other_setup_options">B.2.3. Other setup options</h4>
+<div class="paragraph">
+<p>There are a number of other options on <code>LSDTopoToolsSetup.py</code>, which we will list here, as well as in the <a href="#_table_of_lsdtopotoolssetup_py_options">table below</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-CE True</code> Clone and compile the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p>
+</li>
+<li>
+<p><code>-MChi True</code> Clone and compile the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p>
+</li>
+<li>
+<p><code>-CRN True</code> Clone and compile the tools for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p>
+</li>
+<li>
+<p><code>-cp True</code> Check the path names in all the subfolders in <code>Topographic_projects</code> to reflect your own directory structure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_if_you_are_running_on_native_linux">B.2.4. If you are running on native Linux</h4>
+<div class="paragraph">
+<p>If your native operating system is Linux, you should be able to get <strong>LSDTopoTools</strong> working very quickly using <code>LSDTopoToolsSetup.py</code> without having to use vagrant. However, you do need to ensure that you have the utilities <code>make</code>, the gnu Pass:[C++] compiler installed, and also you need <a href="http://www.fftw.org/">FFTW</a> installed. If you are in Ubuntu installing FFTW is as easy as: <code>sudo apt-get install -y libfftw3-dev</code>. If you are in another flavour of Linux you will need to follow the full setup, which is described on the <a href="http://www.fftw.org/">FFTW website</a>. Once you have that stuff working, you can use <code>LSDTopoToolsSetup.py</code> to get everything working in a jiffy.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_of_lsdtopotoolssetup_py_options">B.3. Table of LSDTopoToolsSetup.py options</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 35. Installation directory options</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer, either 0 or 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 == home directory, 1 == current directory. If you are in vagrant it will ignore this option and install in the root directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CRN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the CAIRN CRN package for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-MChi</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-cp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True,  checks the pathnames of the parameter files <code>.driver</code> and <code>.LSDTT_driver</code> in all the subfolders of <code>Topographic_projects</code> and corrects them so they reflect the user&#8217;s directory structure.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_on_windows">Appendix C: Setting up on Windows</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -14372,7 +14627,7 @@ However, you can get Windows to behave a bit like Linux which will make your lif
 I strongly encourage you to <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">use our Vagrant setup</a>.</strong></p>
 </div>
 <div class="sect2">
-<h3 id="_working_with_the_powershell">B.1. Working with the powershell</h3>
+<h3 id="_working_with_the_powershell">C.1. Working with the powershell</h3>
 <div class="paragraph">
 <p>Much of what we do will be through a powershell window.
 This is a text-based interface into your windows system that allows you to install software and run scripts and code.
@@ -14383,7 +14638,7 @@ It functions like a linux terminal.</p>
 You should be able to find a way to get a powershell on your version of windows through the power of the internet.</p>
 </div>
 <div class="sect3">
-<h4 id="_starting_a_powershell_session">B.1.1. Starting a powershell session</h4>
+<h4 id="_starting_a_powershell_session">C.1.1. Starting a powershell session</h4>
 <div class="paragraph">
 <p>First, you will need to open an administrator powershell.
 In your powershell window, type</p>
@@ -14422,7 +14677,7 @@ or you can ask them to install a linux virtual machine, which is described in th
 </div>
 </div>
 <div class="sect2">
-<h3 id="_windows_installation_programs">B.2. Windows installation programs</h3>
+<h3 id="_windows_installation_programs">C.2. Windows installation programs</h3>
 <div class="paragraph">
 <p>Take a deep breath. I am afraid this is going to take a while.
 You might consider following our instructions for <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> instead of trying to get the software installed within a Windows environment.</p>
@@ -14440,13 +14695,13 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 </table>
 </div>
 <div class="sect3">
-<h4 id="_a_text_editor">B.2.1. A text editor</h4>
+<h4 id="_a_text_editor">C.2.1. A text editor</h4>
 <div class="paragraph">
 <p>In <a href="#_software">Software</a> you can read about the various options for text editors, and why we recommend <a href="http://brackets.io/">Brackets</a>. Go to its website for the download.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_git_3">B.2.2. Git</h4>
+<h4 id="_git_3">C.2.2. Git</h4>
 <div class="paragraph">
 <p>Download and install <a href="https://git-for-windows.github.io/">git for windows</a>.</p>
 </div>
@@ -14458,7 +14713,7 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 </div>
 </div>
 <div class="sect3">
-<h4 id="_python_on_windows_with_miniconda">B.2.3. Python on Windows with miniconda</h4>
+<h4 id="_python_on_windows_with_miniconda">C.2.3. Python on Windows with miniconda</h4>
 <div class="paragraph">
 <p>The best way to install python is <a href="http://conda.pydata.org/miniconda.html">miniconda</a>. We will use <strong>Python 2.7</strong>, so use the Python 2.7 installer.</p>
 </div>
@@ -14508,13 +14763,13 @@ It seems to be able to handle updates better than Python(x,y) through its <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_qgis">B.2.4. QGIS</h4>
+<h4 id="_qgis">C.2.4. QGIS</h4>
 <div class="paragraph">
 <p>You might want to look at your data in a GIS, and [<a href="http://www.qgis.org/en/site/" class="bare">http://www.qgis.org/en/site/</a>]QGIS is a nice open-source option. Here are the <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS Windows downloads</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_inkscape">B.2.5. Inkscape</h4>
+<h4 id="_inkscape">C.2.5. Inkscape</h4>
 <div class="paragraph">
 <p>Many of our python <a href="https://github.com/LSDtopotools/LSDPlotting">plotting</a> <a href="https://github.com/LSDtopotools/LSDMappingTools">scripts</a> can output figures in <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">svg format</a>, which you can then edit in <a href="https://inkscape.org/en/">Inkscape</a>, an open source editor that is similar to Illustrator. Inkscape also is happy with <code>.ai</code>, <code>.pdf</code> and <code>.eps</code> files.</p>
 </div>
@@ -14524,14 +14779,14 @@ It seems to be able to handle updates better than Python(x,y) through its <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tools_for_c">B.3. Tools for C++</h3>
+<h3 id="_tools_for_c">C.3. Tools for C++</h3>
 <div class="paragraph">
 <p>There are several options for installing C++ and fortran compilers on your Windows machine.
 Two popular options, <a href="http://www.mingw.org/">Mingw</a> and <a href="https://www.cygwin.com/Cygwin" class="bare">https://www.cygwin.com/Cygwin</a>] install something that behaves a bit like a Linux operating system
 (<a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">but you really should follow our Vagrant instructions instead.</a>).</p>
 </div>
 <div class="sect3">
-<h4 id="_c_developer_toolkit">B.3.1. C++ developer toolkit</h4>
+<h4 id="_c_developer_toolkit">C.3.1. C++ developer toolkit</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -14558,7 +14813,7 @@ You can install the 2013 version using chocolatey:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cygwin">B.3.2. Cygwin</h4>
+<h4 id="_cygwin">C.3.2. Cygwin</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -14609,7 +14864,7 @@ If this is your first time installing cygwin go and get a drink or have lunch si
 </div>
 </div>
 <div class="sect3">
-<h4 id="_c_libraries">B.3.3. C++ libraries</h4>
+<h4 id="_c_libraries">C.3.3. C++ libraries</h4>
 <div class="paragraph">
 <p>Some of our more specialized components require libraries.
 These are very difficult to install on Windows, and you will possibly self harm if you attempt to do so. Many of them are installed automatically using our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>.
@@ -14618,7 +14873,7 @@ Why don&#8217;t you <a href="#_installing_lsdtopotools_using_virtualbox_and_vagr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gdal_windows_installation">B.4. GDAL windows installation</h3>
+<h3 id="_gdal_windows_installation">C.4. GDAL windows installation</h3>
 <div class="paragraph">
 <p>The &lt;&lt;<a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">LSDTopoTools vagrant setup</a> installs GDAL for you on your Linux server. You also have GDAL python bindings if you follow our <a href="#_python_on_windows_with_miniconda">python instructions</a>.</p>
 </div>
@@ -14628,7 +14883,7 @@ If you are on Windows, however, you might want to just use the GDAL bindings</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ruby_2">B.5. Ruby</h3>
+<h3 id="_ruby_2">C.5. Ruby</h3>
 <div class="paragraph">
 <p>Installing Ruby is only necessary if you want to play with our documentation, an perhaps add to it.</p>
 </div>
@@ -14649,7 +14904,7 @@ If you are on Windows, however, you might want to just use the GDAL bindings</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_ruby">B.5.1. Install Ruby</h4>
+<h4 id="_install_ruby">C.5.1. Install Ruby</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -14679,7 +14934,7 @@ PS&gt; \folder\with\DevKit\&gt; ruby dk.rb install</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubygems_on_windows">B.5.2. Fix rubygems on Windows</h4>
+<h4 id="_fix_rubygems_on_windows">C.5.2. Fix rubygems on Windows</h4>
 <div class="paragraph">
 <p>At the time of this writing, rubygems is "broken" on Windows:
 if you try to install a gem file you will get an error that says you cannot make an SSL connection.
@@ -14729,7 +14984,7 @@ Copy the <code>.pem</code> file into this folder. Rubygems should now work.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fix_rubydevkit_on_windows">B.5.3. Fix RubyDevKit on Windows</h4>
+<h4 id="_fix_rubydevkit_on_windows">C.5.3. Fix RubyDevKit on Windows</h4>
 <div class="paragraph">
 <p>The devkit sometimes does not work the first time around.
 If you get error messages about the devkit, you should go to the devkit folder (you need to find it on your system)
@@ -14766,7 +15021,7 @@ For example, if your Ruby instalation is sitting in C:/Ruby21/, then you should 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_install_some_gems">B.5.4. Install some gems</h4>
+<h4 id="_install_some_gems">C.5.4. Install some gems</h4>
 <div class="paragraph">
 <p>From here we can install some useful ruby gems.
 <a href="http://asciidoctor.org/">Asciidoctor</a> is really great for writing documentation.
@@ -14780,7 +15035,7 @@ PS&gt; gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_if_you_use_ruby_with_java_you_will_probably_strong_not_strong_need_this">B.5.5. If you use Ruby with Java (you will probably <strong>NOT</strong> need this)</h4>
+<h4 id="_if_you_use_ruby_with_java_you_will_probably_strong_not_strong_need_this">C.5.5. If you use Ruby with Java (you will probably <strong>NOT</strong> need this)</h4>
 <div class="paragraph">
 <p>This is for users who are trying to get a Ruby extension that uses Java installed.
 If you use an extension that need a java link, you will need the gem</p>
@@ -14820,14 +15075,14 @@ define an environemnt variable $JAVA_HOME to point to this directory.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_windows_installation_summary">B.6. Windows installation summary</h3>
+<h3 id="_windows_installation_summary">C.6. Windows installation summary</h3>
 <div class="paragraph">
 <p>If you actually managed to install things on Windows without permanent emotional scarring, I offer my sincerest congratulations.
 However, if you are just skipping ahead, why don&#8217;t you make your life easier and &lt;&lt;<a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>,use our (relatively) painless Vagrant setup&gt;&gt;? You should still <a href="#_python_on_windows_with_miniconda">install python</a>, however.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_turning_your_windows_machine_into_a_linux_machine">B.7. Turning your windows machine into a Linux machine</h3>
+<h3 id="_turning_your_windows_machine_into_a_linux_machine">C.7. Turning your windows machine into a Linux machine</h3>
 <div class="paragraph">
 <p>The header of this section is a bit misleading,
 what you are really going to do is use software to create a <a href="https://en.wikipedia.org/wiki/Virtual_machine">virtual</a> version of Linux within your Windows computer.</p>
@@ -15009,7 +15264,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_13">B.8. Summary</h3>
+<h3 id="_summary_13">C.8. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to pull up a powershell and call the essential programs we will be working with in this course.</p>
 </div>
@@ -15017,7 +15272,7 @@ My chicken shawarma wrap was delicious, thank you for asking.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setting_up_on_linux">Appendix C: Setting up on Linux</h2>
+<h2 id="_setting_up_on_linux">Appendix D: Setting up on Linux</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -15064,7 +15319,7 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 </table>
 </div>
 <div class="sect2">
-<h3 id="_a_text_editor_2">C.1. A text editor</h3>
+<h3 id="_a_text_editor_2">D.1. A text editor</h3>
 <div class="paragraph">
 <p>We recommend <a href="http://brackets.io/">Brackets</a>:</p>
 </div>
@@ -15078,7 +15333,7 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 </div>
 </div>
 <div class="sect2">
-<h3 id="_git_4">C.2. Git</h3>
+<h3 id="_git_4">D.2. Git</h3>
 <div class="paragraph">
 <p>To check if git is working, type</p>
 </div>
@@ -15097,7 +15352,7 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 </div>
 </div>
 <div class="sect2">
-<h3 id="_c_tools_2">C.3. C++ tools</h3>
+<h3 id="_c_tools_2">D.3. C++ tools</h3>
 <div class="paragraph">
 <p>You can check if these are working by typing (this assumes you are using the <a href="https://gcc.gnu.org/">GNU compilers</a>)</p>
 </div>
@@ -15118,7 +15373,7 @@ It is <strong>MUCH</strong> easier to run <strong>LSDTopoTools</strong> software
 <p>These seem to install <code>gdb</code> and <code>make</code>, which is convenient.</p>
 </div>
 <div class="sect3">
-<h4 id="_c_libraries_2">C.3.1. C++ libraries</h4>
+<h4 id="_c_libraries_2">D.3.1. C++ libraries</h4>
 <div class="paragraph">
 <p>For more specialized versions of the code, you will need some libraries. Installing these can sometimes be tedious,
 sou you might want to wait until you actually need them before you install.</p>
@@ -15179,7 +15434,7 @@ this does some heavy duty computation on sparse matrices that is required for th
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_swath_and_point_cloud_tools">C.4. The Swath and Point Cloud tools</h3>
+<h3 id="_the_swath_and_point_cloud_tools">D.4. The Swath and Point Cloud tools</h3>
 <div class="paragraph">
 <p>As mentioned in previous sections, these tools require the use of the following libraries and tools, which themselves come with further dependencies.</p>
 </div>
@@ -15198,7 +15453,7 @@ since it is required by something called the <a href="http://pointclouds.org/">p
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_pcl">C.4.1. PCL</h4>
+<h4 id="_pcl">D.4.1. PCL</h4>
 <div class="paragraph">
 <p>Before you can install PCL however, it itself is dependent on some other things&#8230;&#8203;</p>
 </div>
@@ -15258,7 +15513,7 @@ since it is required by something called the <a href="http://pointclouds.org/">p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_liblas">C.4.2. libLAS</h4>
+<h4 id="_liblas">D.4.2. libLAS</h4>
 <div class="paragraph">
 <p><a href="http://www.liblas.org/" class="bare">http://www.liblas.org/</a></p>
 </div>
@@ -15329,7 +15584,7 @@ sudo make install</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_python_3">C.5. Python</h3>
+<h3 id="_python_3">D.5. Python</h3>
 <div class="paragraph">
 <p>To check if it is working, just type</p>
 </div>
@@ -15350,7 +15605,7 @@ sudo make install</code></pre>
 <p>You should have version <strong>2.7</strong> or above. Our python <a href="https://github.com/LSDtopotools/LSDPlotting">plotting</a> <a href="https://github.com/LSDtopotools/LSDMappingTools">scripts</a> are based on python <strong>2.7</strong> so you should probably have a version of that installed.</p>
 </div>
 <div class="sect3">
-<h4 id="_installing_python">C.5.1. Installing python</h4>
+<h4 id="_installing_python">D.5.1. Installing python</h4>
 <div class="paragraph">
 <p>If you don&#8217;t have python, you should install both <strong>python</strong> and <strong>pip</strong>, which manages python packages.
 To do that type:</p>
@@ -15363,7 +15618,7 @@ $ sudo apt-get install python-pip</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_installing_python_packages">C.5.2. Installing python packages</h4>
+<h4 id="_installing_python_packages">D.5.2. Installing python packages</h4>
 <div class="paragraph">
 <p>To check if python packages are there, just try to import them. First start a python session:</p>
 </div>
@@ -15408,7 +15663,7 @@ ImportError: No module named matplotlib</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_installing_python_with_miniconda">C.5.3. Installing python with miniconda</h4>
+<h4 id="_installing_python_with_miniconda">D.5.3. Installing python with miniconda</h4>
 <div class="paragraph">
 <p>Native Linux users will probably want to do things using <strong>pip</strong> (see below) but you can also use <a href="http://conda.pydata.org/miniconda.html">miniconda</a>. First install miniconda using <a href="http://conda.pydata.org/docs/install/quick.html#linux-miniconda-install">instructions here</a>. We will use <strong>Python 2.7</strong>, so use the Python 2.7 installer. Then use the <code>conda</code> command to install stuff:</p>
 </div>
@@ -15433,13 +15688,13 @@ ImportError: No module named matplotlib</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis_2">C.6. QGIS</h3>
+<h3 id="_qgis_2">D.6. QGIS</h3>
 <div class="paragraph">
 <p>You might want to look at your data in a GIS, and [<a href="http://www.qgis.org/en/site/" class="bare">http://www.qgis.org/en/site/</a>]QGIS is a nice open-source option. Linux installers are on the <a href="https://www.qgis.org/en/site/forusers/download.html">QGIS downloads page</a>. You will need a windowing system for this (i.e., you can&#8217;t do it on a server-only version of Linux).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inkscape_2">C.7. Inkscape</h3>
+<h3 id="_inkscape_2">D.7. Inkscape</h3>
 <div class="paragraph">
 <p>Many of our python <a href="https://github.com/LSDtopotools/LSDPlotting">plotting</a> <a href="https://github.com/LSDtopotools/LSDMappingTools">scripts</a> can output figures in <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">svg format</a>, which you can then edit in <a href="https://inkscape.org/en/">Inkscape</a>, an open source editor that is similar to Illustrator. Inkscape also is happy with <code>.ai</code>, <code>.pdf</code> and <code>.eps</code> files.</p>
 </div>
@@ -15458,7 +15713,7 @@ ImportError: No module named matplotlib</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ruby_3">C.8. Ruby</h3>
+<h3 id="_ruby_3">D.8. Ruby</h3>
 <div class="paragraph">
 <p>As mentioned in the main section of the book, the ruby programming language is used to build the documentation of our software. You can skip this part if you are viewing the documentation from the pdf or webpages and aren&#8217;t planning on contributing to the documentation. (Though you if you are contributing new features to the software you are encouraged to!)</p>
 </div>
@@ -15491,7 +15746,7 @@ $ sudo apt-get install rubygems</code></pre>
 <p>Note that in newer versions of Ruby, rubygems seems to install with ruby-full.</p>
 </div>
 <div class="sect3">
-<h4 id="_installing_the_asciidoctor_documentation_software">C.8.1. Installing the asciidoctor documentation software</h4>
+<h4 id="_installing_the_asciidoctor_documentation_software">D.8.1. Installing the asciidoctor documentation software</h4>
 <div class="paragraph">
 <p>After you have installed ruby, ruby-devel, and rubygems you can now proceed to getting the actual ruby packages that make the documentation:</p>
 </div>
@@ -15515,7 +15770,7 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cloning_or_forking_the_documentation">C.9. Cloning or forking the documentation</h3>
+<h3 id="_cloning_or_forking_the_documentation">D.9. Cloning or forking the documentation</h3>
 <div class="paragraph">
 <p>The documentation is under version control on github, just like the actual software source code. If you&#8217;re a developer, you can clone it direct from the original repository, otherwise you will need to fork it first into your own repo, and then clone from there to your local machine. You do this by visiting <a href="http://github.com/LSDtopotools/LSDTT_book" class="bare">http://github.com/LSDtopotools/LSDTT_book</a> and clicking 'fork' (assuming you have a github account of course). Then, on your local machine, you can do:</p>
 </div>
@@ -15556,7 +15811,7 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_14">C.10. Summary</h3>
+<h3 id="_summary_14">D.10. Summary</h3>
 <div class="paragraph">
 <p>Well, you have probably spent some time installing all of these software packages so relax for a bit and enjoy the beverage of your choice!</p>
 </div>
@@ -15564,13 +15819,13 @@ $ sudo gem install bundler</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setting_up_on_macos">Appendix D: Setting up on MacOS</h2>
+<h2 id="_setting_up_on_macos">Appendix E: Setting up on MacOS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to run <strong>LSDTopoTools</strong> natively on MacOS, because they run on Linux and MacOS is built on top of Linux. However, we are not even going to tell you how to do that since it is 1000x easier just to set up a Linux server in your MacOS machine using <a href="https://www.vagrantup.com/">Vagrant</a>. Instructions can be found here: <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_looking_at_the_data">D.1. Looking at the data</h3>
+<h3 id="_looking_at_the_data">E.1. Looking at the data</h3>
 <div class="paragraph">
 <p>If you have used our <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">instructions on setting up using Vagrant</a>, then your MacOS machine will be able to see files (rasters, point data, paramfiles) generated by you Linux server. To look at these you should have:</p>
 </div>
@@ -15616,13 +15871,13 @@ Even though QGIS and python both have Linux installers, don&#8217;t install them
 </div>
 </div>
 <div class="sect1">
-<h2 id="_code_structure">Appendix E: Code Structure</h2>
+<h2 id="_code_structure">Appendix F: Code Structure</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can happily use LSDTopoTools oblivious to the inner-workings of the code and how it all connects together to produce a suite of topographic analyses at your disposal. Ignorance is, as they say, bliss. No knowledge of Classes, Drivers, Objects, and so on, is needed to run the basic analyses supplied in the distribution of this software. However, you might wish to write your own driver functions, and may even be considering contributing to the core parts of the code. This way you can make your topographic techniques and algorithmic awesomeness available to like-minded geoscientists. Earlier, we mentioned breifly how the code is structured in the main body of this documentation. For those intrepid interrogators of empirical inquisition who have made it four levels down into the Appendix section, first of all, we salute you, and we reward you with a deeper look into how the code is structured, should you wish to contribute your own additions to the repository.</p>
 </div>
 <div class="sect2">
-<h3 id="_source_files_drivers_headers_and_implementaions">E.1. Source Files: Drivers, Headers, and Implementaions.</h3>
+<h3 id="_source_files_drivers_headers_and_implementaions">F.1. Source Files: Drivers, Headers, and Implementaions.</h3>
 <div class="paragraph">
 <p>There are two main parts of the LSDTopoTools source code: the driver functions and the core component source files. The core files contain the implementations of topographic analyses, and many other functions for creating rasters, sorting data, performin file operations, writing output, and so on.  All the core source files are name like <code>LSDSomeFile. pp</code>. They also come in pairs: a <code>LSDSomeClass.cpp</code> source file comes with a <code>LSDSomeClass.hpp</code> header file. The header file describes the interface to a parituclar source file. In other words, <code>LSDSomeClass.hpp</code> tells us what all the methods and data structures of a particular source file (<code>LSD.cpp</code>) are. For functions (or class methods to be precise&#8230;&#8203;) the header file tells us what type of parameters the functions take as arguments, and what data types (if any) these functions return. They also describe how data structures are stored. For example, we could look in <code>LSDRaster.hpp</code> to see how the data members of a Raster are defined. We would see that an <code>LSDRaster</code> object has some meta-data telling us about the extent and coordinates of the the raster data, and an array that stores each pixel value in the raster. It would also tell us which functions (methods) would return information about the <code>LSDRaster</code> object. If we wanted to know the number of rows in a raster object we would see in the header file there is a <code>getNRows()</code> function, and so on. The <code>.cpp</code> files tell us <em>how</em> these functions are implemented, e.g. what exactly each function does when parameters are passed to it, and how it maniplulates the data stored with the object.</p>
 </div>
@@ -15649,33 +15904,33 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_a_closer_look_at_the_source_files">E.2. A closer look at the source files</h3>
+<h3 id="_a_closer_look_at_the_source_files">F.2. A closer look at the source files</h3>
 <div class="sect3">
-<h4 id="_lsdraster">E.2.1. LSDRaster</h4>
+<h4 id="_lsdraster">F.2.1. LSDRaster</h4>
 <div class="paragraph">
 <p>LSDRaster is the class that contains methods for mainipulating arrays of raster data loaded from a DEM file. There are also data members that store metadata about the raster, such as the typical header data you would find in a DEM file. It can perform typical analyses such as creating a hillshade raster, calculating curvature of ridgetops, calculating the location of channel heads in a landscape, filling sinks and pits in a DEM and so on&#8201;&#8212;&#8201;mainly analyses that are performed on the entire raster dataset. It also does the basic reading and writing to DEM files.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexraster">E.2.2. LSDIndexRaster</h4>
+<h4 id="_lsdindexraster">F.2.2. LSDIndexRaster</h4>
 <div class="paragraph">
 <p>A simple and fairly short class that stores rasters data as integers, used for indexing of raster data, calculating bounding boxes for rasters with lots of <code>NoData</code> values around the edge (or surounding basins). Very similar to LSDRaster class except is only used for when an index or mask of a given raster is needed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdflowinfo">E.2.3. LSDFlowInfo</h4>
+<h4 id="_lsdflowinfo">F.2.3. LSDFlowInfo</h4>
 <div class="paragraph">
 <p>This class performs operations such as calculating flow direction, calculating upstream contributing pixels in a raster, calculating sources based on threshold pixel methods, and other flow related information (based on <strong>topographic</strong> analysis&#8201;&#8212;&#8201;not based on any particular hydrological fluid flow calculations). Note how this object has include statements for LSDRaster and LSDIndexRaster&#8201;&#8212;&#8201;it returns these type of objects from many of its methods. It uses the FastScape algorithm of Braun and Willet (2014).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexchannel">E.2.4. LSDIndexChannel</h4>
+<h4 id="_lsdindexchannel">F.2.4. LSDIndexChannel</h4>
 <div class="paragraph">
 <p>This object contains the node indexes as well as the row and col indices for individual channel segments.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdchannel">E.2.5. LSDChannel</h4>
+<h4 id="_lsdchannel">F.2.5. LSDChannel</h4>
 <div class="paragraph">
 <p>LSDChannel is our first class that inherits the public methods and data members of another, namely LSDIndexChannel. This means we have direct access to the public members of that class. Note, in the source code:</p>
 </div>
@@ -15692,31 +15947,31 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdjunctionnetwork">E.2.6. LSDJunctionNetwork</h4>
+<h4 id="_lsdjunctionnetwork">F.2.6. LSDJunctionNetwork</h4>
 <div class="paragraph">
 <p>JunctionNetwork contains the main parts of the implemented FastScape algorithm for creating channel junction networks that can be searched for network connectivity. The main inputs are a FlowInfo object and list of source nodes. It also contains functions for returning IndexChannel objects after calculating the layout of channel networks.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdindexchanneltree">E.2.7. LSDIndexChannelTree</h4>
+<h4 id="_lsdindexchanneltree">F.2.7. LSDIndexChannelTree</h4>
 <div class="paragraph">
 <p>This object spawns vectors of LSDIndexChannels. They can be indexed by the LSDChannel network, but can also be independent of the channel network, storing longest channels from sources, for example. The class is designed to be flexible, it can be used either with the LSDFlowInfo or LSDJunctionNetwork classes.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdchinetwork">E.2.8. LSDChiNetwork</h4>
+<h4 id="_lsdchinetwork">F.2.8. LSDChiNetwork</h4>
 <div class="paragraph">
 <p>This is used to perform chi-related analyses on channels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdmostlikelypartitionsfinder">E.2.9. LSDMostLikelyPartitionsFinder</h4>
+<h4 id="_lsdmostlikelypartitionsfinder">F.2.9. LSDMostLikelyPartitionsFinder</h4>
 <div class="paragraph">
 <p>This object is principally used to identify segments of differing channel steepness in chi-zeta space. It contains the implementation of the segment fitting algorithm, including the statistical model that determines the most likely partitionining combination of channels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lsdstatstools">E.2.10. LSDStatsTools</h4>
+<h4 id="_lsdstatstools">F.2.10. LSDStatsTools</h4>
 <div class="paragraph">
 <p>The StatsTools files contain a number of classes and standalone functions that perform statistical analyses. A number of other utility functions are implemented here, such as file name parsing and formatting.</p>
 </div>
@@ -15725,7 +15980,7 @@ Another way to think of drivers, if you are familiar with C or C++ programming, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_analysis_driver_options">Appendix F: Analysis Driver Options</h2>
+<h2 id="_analysis_driver_options">Appendix G: Analysis Driver Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>LSDTopoTools is composed of a number of objects (e.g., LSDRaster, LSDChannel, LSDFlowInfo, etc.) which are then called from programs we call driver functions.
@@ -15747,9 +16002,9 @@ The order of the keywords does not matter.
 Comments can be inserted into the parameter file using the hash symbol (<code>#</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_file_input_and_output_options">F.1. AnalysisDriver file input and output options</h3>
+<h3 id="_analysisdriver_file_input_and_output_options">G.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. File input and output options</caption>
+<caption class="title">Table 36. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -15798,7 +16053,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_files_to_write">F.2. AnalysisDriver files to write</h3>
+<h3 id="_analysisdriver_files_to_write">G.2. AnalysisDriver files to write</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -15814,7 +16069,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 37. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -15924,11 +16179,11 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 </table>
 </div>
 <div class="sect2">
-<h3 id="_analysisdriver_parameter_values">F.3. AnalysisDriver parameter values</h3>
+<h3 id="_analysisdriver_parameter_values">G.3. AnalysisDriver parameter values</h3>
 <div class="sect3">
-<h4 id="_parameters_for_the_fill_function">F.3.1. Parameters for the fill function</h4>
+<h4 id="_parameters_for_the_fill_function">G.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Parameters for the fill function</caption>
+<caption class="title">Table 38. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -15963,9 +16218,9 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_hillshading">F.3.2. Parameters for hillshading</h4>
+<h4 id="_parameters_for_hillshading">G.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for hillshading</caption>
+<caption class="title">Table 39. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16003,9 +16258,9 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_flow_info_calculations">F.3.3. Parameters for flow info calculations</h4>
+<h4 id="_parameters_for_flow_info_calculations">G.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Parameters for flow info calculations</caption>
+<caption class="title">Table 40. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16033,9 +16288,9 @@ These are NOT case sensitive.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_masking">F.3.4. Parameters for masking</h4>
+<h4 id="_parameters_for_masking">G.3.4. Parameters for masking</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for masking operations</caption>
+<caption class="title">Table 41. Parameters for masking operations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16079,9 +16334,9 @@ These are NOT case sensitive.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_chi_calculations">F.3.5. Parameters for chi calculations</h4>
+<h4 id="_parameters_for_chi_calculations">G.3.5. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for chi calculations</caption>
+<caption class="title">Table 42. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16121,9 +16376,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_polyfit_and_slope_calculations">F.3.6. Parameters for polyfit and slope calculations</h4>
+<h4 id="_parameters_for_polyfit_and_slope_calculations">G.3.6. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 43. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16155,9 +16410,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_drainage_area_extraction">F.3.7. Parameters for drainage area extraction</h4>
+<h4 id="_parameters_for_drainage_area_extraction">G.3.7. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Parameters for drainage area extraction</caption>
+<caption class="title">Table 44. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16183,9 +16438,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_single_thread_channel_extraction">F.3.8. Parameters for single thread channel extraction</h4>
+<h4 id="_parameters_for_single_thread_channel_extraction">G.3.8. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 44. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 45. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16223,9 +16478,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_area_threshold_channel_extraction">F.3.9. Parameters for area threshold channel extraction</h4>
+<h4 id="_parameters_for_area_threshold_channel_extraction">G.3.9. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 45. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 46. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16251,9 +16506,9 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameters_for_hydrology_and_slope_stability">F.3.10. Parameters for hydrology and slope stability</h4>
+<h4 id="_parameters_for_hydrology_and_slope_stability">G.3.10. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 46. Parameters for chi calculations</caption>
+<caption class="title">Table 47. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16306,7 +16561,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tools_for_viewing_data">Appendix G: Tools for viewing data</h2>
+<h2 id="_tools_for_viewing_data">Appendix H: Tools for viewing data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The many analyses provided by LSDTopoTools produce geographic data
@@ -16316,20 +16571,20 @@ data, using either Geographic Information Sysems (GISs) or
 using our own visualisation scripts, which are written in python.</p>
 </div>
 <div class="sect2">
-<h3 id="_arcmap">G.1. ArcMap</h3>
+<h3 id="_arcmap">H.1. ArcMap</h3>
 <div class="paragraph">
 <p>ArcMap is commercial software written by ESRI.
 Many companies, goverment agencies and universities have liscences to this sofotware.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis_3">G.2. QGIS</h3>
+<h3 id="_qgis_3">H.2. QGIS</h3>
 <div class="paragraph">
 <p>QGIS is an open source GIS that has functionality similar to ArcMap.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lsdtopotools_python_mapping_functions">G.3. LSDTopoTools python mapping functions</h3>
+<h3 id="_lsdtopotools_python_mapping_functions">H.3. LSDTopoTools python mapping functions</h3>
 <div class="paragraph">
 <p>We have written a series of lightweight mapping tools in python for
 visualising data.
@@ -16342,7 +16597,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_15">G.4. Summary</h3>
+<h3 id="_summary_15">H.4. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to perform basic operations such as loading and exploring data in QGIS, ArcMap or our own python tools.</p>
 </div>
@@ -16350,13 +16605,13 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix H: Automation and Supercomputing for LSDTopoTools</h2>
+<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix I: Automation and Supercomputing for LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Perhaps you have a lot of basins that you want to perform some analysis on, or you want to re-run a previous analysis with slightly different paramters, different m/n values, and so on. This section will explain some of the scripting tools, supercomputer applications, and other utilities to help speed up this process.</p>
 </div>
 <div class="sect2">
-<h3 id="_embarassingly_parallel_topographic_analysis">H.1. Embarassingly Parallel Topographic Analysis</h3>
+<h3 id="_embarassingly_parallel_topographic_analysis">I.1. Embarassingly Parallel Topographic Analysis</h3>
 <div class="paragraph">
 <p>The LSD software is written to run completely in serial. (i.e. there is no built in parallelisation). However, if you are running the same analyses on a large number of basins, the problem becomes easy to set up in a parallel-like fashion, if you have access to some form of multiple cpu computing facility. (This is termed <strong>embarassingly/trivially parallel</strong>, since it isn&#8217;t really written in parallel code).</p>
 </div>
@@ -16364,7 +16619,7 @@ installed on your system.</p>
 <p>This doesn&#8217;t necessarily require a supercomputing cluster; most laptops are at least dual core (as of 2014), and some will have as many as 8 seperate cpu threads to run tasks on. That means you could be running analysis on 8 basins at a time, rather than waiting for each one to finish separately, in serial.</p>
 </div>
 <div class="sect3">
-<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">H.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
+<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">I.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">You can find out how many cpus/cores/threads you have to play with by typing</dt>
@@ -16403,7 +16658,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_topographic_analysis_on_a_supercomputer">H.2. Topographic Analysis on a Supercomputer</h3>
+<h3 id="_topographic_analysis_on_a_supercomputer">I.2. Topographic Analysis on a Supercomputer</h3>
 <div class="paragraph">
 <p>If you have access to a suitable cluster computer or other supercomputer (HPC - high performance computing) service (ARCHER, HECToR, Eddie, or your local department&#8217;s cluster) it will probably have some type of job submission service. SGE and PBS are two of the most commonly used ones. You use the job scheduler to submit your by providing a simple script that requests cpu and memory resources from the supercomputer. By running the script, the job(s) are then placed in a queue to be distributed across the nodes and cpus.</p>
 </div>
@@ -16427,7 +16682,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 47. Example basin list for scripting purposes</caption>
+<caption class="title">Table 48. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -16469,7 +16724,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_launching_jobs_with_the_batch_system">H.2.1. Launching jobs with the batch system</h4>
+<h4 id="_launching_jobs_with_the_batch_system">I.2.1. Launching jobs with the batch system</h4>
 <div class="sect4">
 <h5 id="_pbs_example">PBS Example</h5>
 <div class="paragraph">
@@ -16565,7 +16820,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect3">
-<h4 id="_checking_your_jobs">H.2.2. Checking your jobs</h4>
+<h4 id="_checking_your_jobs">I.2.2. Checking your jobs</h4>
 <div class="paragraph">
 <p><code>qstat</code> on its own should display a list of all your running jobs by default. To delete a job, use:</p>
 </div>
@@ -16601,7 +16856,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module_issues">H.3. Module issues</h3>
+<h3 id="_module_issues">I.3. Module issues</h3>
 <div class="paragraph">
 <p>On certain HPC services, different modules or libraries need to be loaded or switched to create the right environment to run your software. Normally this is not an issue and nothing needs to be changed. By convention, the LSD Topo Tools software is compiled using the gcc compilers. (A set of free compilers released under the GNU licence). Some supercomputer clusters will come with a range of compilers such as Intel, Cray, etc&#8230;&#8203; One of them will be loaded by default. If gcc is not the default, you may wish to swap it before compiling.:</p>
 </div>
@@ -16664,7 +16919,7 @@ The compiler suite you use has nothing to do with the type of CPU or supercomput
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation_and_library_issues">H.4. Compilation and library issues</h3>
+<h3 id="_compilation_and_library_issues">I.4. Compilation and library issues</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -16727,7 +16982,7 @@ yum install glib-static</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-17 10:45:37 GMT Daylight Time
+Last updated 2016-10-31 12:05:22 GMT Standard Time
 </div>
 </div>
 </body>
