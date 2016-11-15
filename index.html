@@ -1040,6 +1040,18 @@ MathJax.Hub.Config({
 <li><a href="#_compilation_and_library_issues">I.4. Compilation and library issues</a></li>
 </ul>
 </li>
+<li><a href="#_troubleshooting">Appendix J: Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#_segmentation_faults_and_core_dumps">J.1. Segmentation faults and core dumps</a>
+<ul class="sectlevel3">
+<li><a href="#_the_missing_file_problem">J.1.1. The missing file problem</a></li>
+<li><a href="#_the_naughty_developer_problem">J.1.2. The naughty developer problem</a></li>
+<li><a href="#_the_strong_lsdtopotools_strong_memory_problem">J.1.3. The <strong>LSDTopoTools</strong> memory problem</a></li>
+</ul>
+</li>
+<li><a href="#_summary_16">J.2. Summary</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -16979,10 +16991,142 @@ yum install glib-static</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_troubleshooting">Appendix J: Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>LSDTopoTools</strong> is research software, and unfortunately it can misbehave. In this appendix we list common problems associated with running of the code.</p>
+</div>
+<div class="sect2">
+<h3 id="_segmentation_faults_and_core_dumps">J.1. Segmentation faults and core dumps</h3>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Segmentation_fault">Segmentation faults</a> are caused when <strong>LSDTopoTools</strong> attempts to access some data in your computer&#8217;s <a href="https://en.wikipedia.org/wiki/Computer_memory">memory</a> (think of it as the computer&#8217;s brain) that is not there. Sometimes when this happens you might also get a <a href="https://en.wikipedia.org/wiki/Core_dump">core dump</a>. These sorts of faults are the bane of our existence.</p>
+</div>
+<div class="paragraph">
+<p>There are three typical reasons for these faults, which always crash the program, to occur:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>LSDTopoTools</strong> is looking for a file that is not there. You solve this by checking filenames.</p>
+</li>
+<li>
+<p><strong>LSDTopoTools</strong> developers have got a bug in the code that wasn&#8217;t uncovered in testing.</p>
+</li>
+<li>
+<p><strong>LSDTopoTools</strong> runs out of memory.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The most persistent and common problem is the memory problem. There is not much we can do about this without totally rewriting the code (which is several hundred thousand lines long at this point). If you get a <strong>segmentation fault</strong> or a <strong>core dump</strong> there is a high probability that this is the problem.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_the_missing_file_problem">J.1.1. The missing file problem</h4>
+<div class="paragraph">
+<p>In recent years we have added error checking capabilities so that if <strong>LSDTopoTools</strong> looks for a file and doesn&#8217;t find it, it will tell you before exiting. However we have not comprehensively done this with every single component of the code so it still can happen that if you use the wrong path or filename in one of your parameter files <strong>LSDTopoTools</strong> will crash. To fix this you need to check all your file names and directory paths.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_naughty_developer_problem">J.1.2. The naughty developer problem</h4>
+<div class="paragraph">
+<p>Sometimes the <strong>LSDTopoTools</strong> developers release code that has a bug. Bad developers, bad!! To fix this you need to tell us the problem and we will try to find the problem. Unless you are a proficient C++ hacker there is not much you can do about this other than to wait for us to address the problem. However, in most cases the crashing software is caused by the memory problem rather than a bug.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_strong_lsdtopotools_strong_memory_problem">J.1.3. The <strong>LSDTopoTools</strong> memory problem</h4>
+<div class="paragraph">
+<p>Let me start by saying that the developers of <strong>LSDTopoTools</strong> are geoscientists and not professional software developers. When we built <strong>LSDTopoTools</strong> we were aiming for speed and we don&#8217;t know how to do data streaming, so the way <strong>LSDTopoTools</strong> works is to dump everything into your computer&#8217;s <a href="https://en.wikipedia.org/wiki/Computer_memory">memory</a> and work with the data there. This was not a problem for us because we use Linux servers that have may hundreds of gigabytes of memory.</p>
+</div>
+<div class="paragraph">
+<p>However, topographic datasets are getting bigger and bigger, and we have also tried to distribute <strong>LSDTopoTools</strong> to people who don&#8217;t have a fancy and fast rack workstation, so memory has become an issue.</p>
+</div>
+<div class="paragraph">
+<p>For most of our applications the following things happen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The DEM is loaded.</p>
+</li>
+<li>
+<p>A filled raster is created.</p>
+</li>
+<li>
+<p>An object containing all the information about the flow network (how all the pixels are connected) is created. This is called the <strong>Flow Info</strong> object.</p>
+</li>
+<li>
+<p>An object containing how all the river networks and junctions are connected is created.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to these quite standard operations, any additional computation is done in yet more data structures that are in your computer&#8217;s memory. The <strong>Flow Info</strong> object alone is <strong>very</strong> memory intensive. It takes up 10-20 times the memory of your DEM. What does this mean? Everything together means that you will need something like 30 times the amount of memory as the size of your DEM to do operations involving any sort of flow routing or channel networks.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Memory rule of thumb</div>
+<div class="paragraph">
+<p>If you do anything that requires knowing something about how pixels are connected, for example any drainage or river network calculations, you will need between <strong>20-30x</strong> the amount of memory as the size of the DEM.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_memory_problem_and_vagrant_machines">The memory problem and vagrant machines</h5>
+<div class="paragraph">
+<p>For people without a Linux workstation, we recommend our <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Vagrant setup</a>. <strong>This setup gives you limited memory</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>default</strong> <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfile</a> setting is to give your server 3GB of memory. This is the line of the vagrant file where it does that:</p>
+</div>
+<div class="listingblock">
+<div class="title">Location of the memory setting in our vagrantfiles</div>
+<div class="content">
+<pre class="highlight"><code class="language-vagrantfile" data-lang="vagrantfile">    # Customize the amount of memory on the VM:
+    # You should adjust this based on your computer's memory
+    # 32 bit machines generally cannot exceed 3GB of memory
+    vb.memory = "3000"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>With this amount of memory you are limited to operations that involve channel networks on DEM of ~100MB.</strong> We have not done extensive testing of this but our anecdotal evidence suggests this is the limit with 3GB of memory. If you want to process a 1 GB DEM then you will probably need around 30GB of memory.</p>
+</div>
+<div class="paragraph">
+<p>If you want to process bigger DEMs you need to give your machine more memory by changing the <code>vb.memory</code> setting in your vagrantfile.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_memory_problem_and_32_bit_vagrant_machines">The memory problem and 32-bit vagrant machines</h5>
+<div class="paragraph">
+<p>There is one more wrinkle to this. Most Windows machines have a default setting that they cannot have 64-bit guest operating systems. If you try to start up a 64-bit vagrant machine on a windows computer it usually simply will not work. Our testing on MacOS suggests that most of these systems will allow a 64-bit operating system.</p>
+</div>
+<div class="paragraph">
+<p>There is a limit to the amount of memory a 32-bit system can have; <a href="https://en.wikipedia.org/wiki/3_GB_barrier">it is around 3GB</a>. So unless you <a href="https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=62339">are willing to change your Windows computer&#8217;s default settings</a>, you are limited to "small" DEMs. Sorry about that.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_16">J.2. Summary</h3>
+<div class="paragraph">
+<p>This is a growing list of common problems, if your problem isn&#8217;t here contact the <a href="http://www.geos.ed.ac.uk/homes/smudd">lead developer</a> of <strong>LSDTopoTools</strong>.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-31 12:05:22 GMT Standard Time
+Last updated 2016-11-15 16:02:28 GMT Standard Time
 </div>
 </div>
 </body>
