@@ -518,7 +518,8 @@ MathJax.Hub.Config({
 <li><a href="#_our_lightweight_python_mapping_tools">3.6.1. Our lightweight python mapping tools</a></li>
 </ul>
 </li>
-<li><a href="#_summary_2">3.7. Summary</a></li>
+<li><a href="#_nodata_problems">3.7. NoData problems</a></li>
+<li><a href="#_summary_2">3.8. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_getting_lsdtopotools">4. Getting LSDTopoTools</a>
@@ -566,7 +567,13 @@ MathJax.Hub.Config({
 <li><a href="#_look_at_the_output">5.3.6. Look at the output</a></li>
 </ul>
 </li>
-<li><a href="#_summary_4">5.4. Summary</a></li>
+<li><a href="#_fixing_a_dem_with_nodata_problems">5.4. Fixing a DEM with nodata problems</a>
+<ul class="sectlevel3">
+<li><a href="#_make_the_program">5.4.1. Make the program.</a></li>
+<li><a href="#_run_the_preprocessing_program">5.4.2. Run the preprocessing program</a></li>
+</ul>
+</li>
+<li><a href="#_summary_4">5.5. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_simple_surface_metrics_slope_curvature_aspect_etc">6. Simple surface metrics (slope, curvature, aspect, etc)</a>
@@ -580,33 +587,40 @@ MathJax.Hub.Config({
 <ul class="sectlevel2">
 <li><a href="#_get_the_code_for_channel_extraction">7.1. Get the code for channel extraction</a>
 <ul class="sectlevel3">
-<li><a href="#_clone_the_github_repository">7.1.1. Clone the GitHub repository</a></li>
-<li><a href="#_alternatively_get_the_zipped_code">7.1.2. Alternatively, get the zipped code</a></li>
-<li><a href="#_get_the_example_datasets">7.1.3. Get the example datasets</a></li>
-<li><a href="#_get_the_example_parameter_files">7.1.4. Get the example parameter files</a></li>
+<li><a href="#_compile_channel_extraction_using_lsdtopotoolssetup_py">7.1.1. Compile channel extraction using LSDTopoToolsSetup.py</a></li>
+<li><a href="#_clone_the_github_repository_not_needed_if_you_used_lsdtopotoolssetup_py">7.1.2. Clone the GitHub repository (not needed if you used LSDTopoToolsSetup.py)</a></li>
+<li><a href="#_alternatively_get_the_zipped_code_not_needed_if_you_used_lsdtopotoolssetup_py">7.1.3. Alternatively, get the zipped code (not needed if you used LSDTopoToolsSetup.py)</a></li>
+<li><a href="#_example_datasets">7.1.4. Example datasets</a></li>
 </ul>
 </li>
-<li><a href="#_basic_channel_extraction_using_thresholds">7.2. Basic channel extraction using thresholds</a>
+<li><a href="#_the_channel_extraction_tool">7.2. The Channel Extraction tool</a></li>
+<li><a href="#_running_channel_extraction_with_a_parameterfile">7.3. Running channel extraction with a parameterfile</a>
 <ul class="sectlevel3">
-<li><a href="#_compile_the_code_2">7.2.1. Compile the code</a></li>
-<li><a href="#_run_the_analysis">7.2.2. Run the analysis</a></li>
+<li><a href="#_channel_extraction_options">7.3.1. Channel extraction options</a></li>
+<li><a href="#_example_channel_extraction_parameter_file">7.3.2. Example channel extraction parameter file</a></li>
 </ul>
 </li>
-<li><a href="#_geometric_channel_extraction_methods">7.3. Geometric channel extraction methods</a>
+<li><a href="#_basic_channel_extraction_using_thresholds_the_old_way">7.4. Basic channel extraction using thresholds (the old way)</a>
 <ul class="sectlevel3">
-<li><a href="#_geonet_external_software">7.3.1. Geonet (external software)</a></li>
-<li><a href="#_pelletier">7.3.2. Pelletier</a></li>
-<li><a href="#_the_lsdtopotools_geometric_method">7.3.3. The LSDTopoTools geometric method</a></li>
+<li><a href="#_compile_the_code_2">7.4.1. Compile the code</a></li>
+<li><a href="#_run_the_analysis">7.4.2. Run the analysis</a></li>
 </ul>
 </li>
-<li><a href="#_channel_extraction_using_the_dreich_method">7.4. Channel extraction using the Dreich method</a>
+<li><a href="#_geometric_channel_extraction_methods_the_old_way">7.5. Geometric channel extraction methods (the old way)</a>
 <ul class="sectlevel3">
-<li><a href="#_run_the_chi_analysis">7.4.1. Run the chi analysis</a></li>
-<li><a href="#_compile_the_code_5">7.4.2. Compile the code</a></li>
-<li><a href="#_run_the_analysis_4">7.4.3. Run the analysis</a></li>
+<li><a href="#_geonet_external_software">7.5.1. Geonet (external software)</a></li>
+<li><a href="#_pelletier">7.5.2. Pelletier</a></li>
+<li><a href="#_the_lsdtopotools_geometric_method">7.5.3. The LSDTopoTools geometric method</a></li>
 </ul>
 </li>
-<li><a href="#_summary_6">7.5. Summary</a></li>
+<li><a href="#_channel_extraction_using_the_dreich_method_the_old_way">7.6. Channel extraction using the Dreich method (the old way)</a>
+<ul class="sectlevel3">
+<li><a href="#_run_the_chi_analysis">7.6.1. Run the chi analysis</a></li>
+<li><a href="#_compile_the_code_5">7.6.2. Compile the code</a></li>
+<li><a href="#_run_the_analysis_4">7.6.3. Run the analysis</a></li>
+</ul>
+</li>
+<li><a href="#_summary_6">7.7. Summary</a></li>
 </ul>
 </li>
 <li><a href="#_selecting_a_window_size">8. Selecting A Window Size</a>
@@ -647,11 +661,11 @@ MathJax.Hub.Config({
 <ul class="sectlevel2">
 <li><a href="#_get_the_code_for_dimensionless_erosion_and_relief_analysis">10.1. Get the code for dimensionless erosion and relief analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_clone_the_github_repository_2">10.1.1. Clone the GitHub repository</a></li>
-<li><a href="#_alternatively_get_the_zipped_code_2">10.1.2. Alternatively, get the zipped code</a></li>
+<li><a href="#_clone_the_github_repository">10.1.1. Clone the GitHub repository</a></li>
+<li><a href="#_alternatively_get_the_zipped_code">10.1.2. Alternatively, get the zipped code</a></li>
 <li><a href="#_get_the_python_code">10.1.3. Get the Python code</a></li>
 <li><a href="#_checking_your_python_package_versions">10.1.4. Checking your Python package versions</a></li>
-<li><a href="#_get_the_example_datasets_2">10.1.5. Get the example datasets</a></li>
+<li><a href="#_get_the_example_datasets">10.1.5. Get the example datasets</a></li>
 </ul>
 </li>
 <li><a href="#_processing_high_resolution_topography">10.2. Processing High Resolution Topography</a></li>
@@ -773,10 +787,10 @@ MathJax.Hub.Config({
 <ul class="sectlevel2">
 <li><a href="#_get_the_code_for_floodplain_extraction">14.1. Get the code for floodplain extraction</a>
 <ul class="sectlevel3">
-<li><a href="#_clone_the_github_repository_3">14.1.1. Clone the GitHub repository</a></li>
-<li><a href="#_alternatively_get_the_zipped_code_5">14.1.2. Alternatively, get the zipped code</a></li>
-<li><a href="#_get_the_example_datasets_3">14.1.3. Get the example datasets</a></li>
-<li><a href="#_get_the_example_parameter_files_2">14.1.4. Get the example parameter files</a></li>
+<li><a href="#_clone_the_github_repository_2">14.1.1. Clone the GitHub repository</a></li>
+<li><a href="#_alternatively_get_the_zipped_code_4">14.1.2. Alternatively, get the zipped code</a></li>
+<li><a href="#_get_the_example_datasets_2">14.1.3. Get the example datasets</a></li>
+<li><a href="#_get_the_example_parameter_files">14.1.4. Get the example parameter files</a></li>
 </ul>
 </li>
 <li><a href="#_preliminary_steps">14.2. Preliminary steps</a>
@@ -797,10 +811,10 @@ MathJax.Hub.Config({
 <ul class="sectlevel2">
 <li><a href="#_get_the_code_for_drainage_density_analysis">15.1. Get the code for drainage density analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_clone_the_github_repository_4">15.1.1. Clone the GitHub repository</a></li>
-<li><a href="#_alternatively_get_the_zipped_code_6">15.1.2. Alternatively, get the zipped code</a></li>
-<li><a href="#_get_the_example_datasets_4">15.1.3. Get the example datasets</a></li>
-<li><a href="#_get_the_example_parameter_files_3">15.1.4. Get the example parameter files</a></li>
+<li><a href="#_clone_the_github_repository_3">15.1.1. Clone the GitHub repository</a></li>
+<li><a href="#_alternatively_get_the_zipped_code_5">15.1.2. Alternatively, get the zipped code</a></li>
+<li><a href="#_get_the_example_datasets_3">15.1.3. Get the example datasets</a></li>
+<li><a href="#_get_the_example_parameter_files_2">15.1.4. Get the example parameter files</a></li>
 <li><a href="#_python_scripts">15.1.5. Python scripts</a></li>
 </ul>
 </li>
@@ -1015,41 +1029,49 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li><a href="#_tools_for_viewing_data">Appendix H: Tools for viewing data</a>
+<li><a href="#_dem_preprocessing_options">Appendix H: DEM preprocessing Options</a>
 <ul class="sectlevel2">
-<li><a href="#_arcmap">H.1. ArcMap</a></li>
-<li><a href="#_qgis_3">H.2. QGIS</a></li>
-<li><a href="#_lsdtopotools_python_mapping_functions">H.3. LSDTopoTools python mapping functions</a></li>
-<li><a href="#_summary_15">H.4. Summary</a></li>
+<li><a href="#_analysisdriver_file_input_and_output_options_2">H.1. AnalysisDriver file input and output options</a></li>
+<li><a href="#_dem_preprocessing_routines_to_run">H.2. DEM preprocessing routines to run</a></li>
+<li><a href="#_parameters_for_removing_high_and_low_values_including_weird_nodata">H.3. Parameters for removing high and low values (including weird nodata)</a></li>
+<li><a href="#_parameters_for_masking_parts_of_the_dem">H.4. Parameters for masking parts of the DEM</a></li>
 </ul>
 </li>
-<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix I: Automation and Supercomputing for LSDTopoTools</a>
+<li><a href="#_tools_for_viewing_data">Appendix I: Tools for viewing data</a>
 <ul class="sectlevel2">
-<li><a href="#_embarassingly_parallel_topographic_analysis">I.1. Embarassingly Parallel Topographic Analysis</a>
-<ul class="sectlevel3">
-<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">I.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
+<li><a href="#_arcmap">I.1. ArcMap</a></li>
+<li><a href="#_qgis_3">I.2. QGIS</a></li>
+<li><a href="#_lsdtopotools_python_mapping_functions">I.3. LSDTopoTools python mapping functions</a></li>
+<li><a href="#_summary_15">I.4. Summary</a></li>
 </ul>
 </li>
-<li><a href="#_topographic_analysis_on_a_supercomputer">I.2. Topographic Analysis on a Supercomputer</a>
-<ul class="sectlevel3">
-<li><a href="#_launching_jobs_with_the_batch_system">I.2.1. Launching jobs with the batch system</a></li>
-<li><a href="#_checking_your_jobs">I.2.2. Checking your jobs</a></li>
-</ul>
-</li>
-<li><a href="#_module_issues">I.3. Module issues</a></li>
-<li><a href="#_compilation_and_library_issues">I.4. Compilation and library issues</a></li>
-</ul>
-</li>
-<li><a href="#_troubleshooting">Appendix J: Troubleshooting</a>
+<li><a href="#_automation_and_supercomputing_for_lsdtopotools">Appendix J: Automation and Supercomputing for LSDTopoTools</a>
 <ul class="sectlevel2">
-<li><a href="#_segmentation_faults_and_core_dumps">J.1. Segmentation faults and core dumps</a>
+<li><a href="#_embarassingly_parallel_topographic_analysis">J.1. Embarassingly Parallel Topographic Analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_the_missing_file_problem">J.1.1. The missing file problem</a></li>
-<li><a href="#_the_naughty_developer_problem">J.1.2. The naughty developer problem</a></li>
-<li><a href="#_the_strong_lsdtopotools_strong_memory_problem">J.1.3. The <strong>LSDTopoTools</strong> memory problem</a></li>
+<li><a href="#_the_simple_case_a_single_cpu_multi_core_laptop">J.1.1. The Simple Case - A single cpu, multi-core laptop</a></li>
 </ul>
 </li>
-<li><a href="#_summary_16">J.2. Summary</a></li>
+<li><a href="#_topographic_analysis_on_a_supercomputer">J.2. Topographic Analysis on a Supercomputer</a>
+<ul class="sectlevel3">
+<li><a href="#_launching_jobs_with_the_batch_system">J.2.1. Launching jobs with the batch system</a></li>
+<li><a href="#_checking_your_jobs">J.2.2. Checking your jobs</a></li>
+</ul>
+</li>
+<li><a href="#_module_issues">J.3. Module issues</a></li>
+<li><a href="#_compilation_and_library_issues">J.4. Compilation and library issues</a></li>
+</ul>
+</li>
+<li><a href="#_troubleshooting">Appendix K: Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#_segmentation_faults_and_core_dumps">K.1. Segmentation faults and core dumps</a>
+<ul class="sectlevel3">
+<li><a href="#_the_missing_file_problem">K.1.1. The missing file problem</a></li>
+<li><a href="#_the_naughty_developer_problem">K.1.2. The naughty developer problem</a></li>
+<li><a href="#_the_strong_lsdtopotools_strong_memory_problem">K.1.3. The <strong>LSDTopoTools</strong> memory problem</a></li>
+</ul>
+</li>
+<li><a href="#_summary_16">K.2. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -3120,6 +3142,35 @@ you should use the <code>+south</code> flag:</p>
 <pre class="highlight"><code class="language-consol" data-lang="consol">$ gdalwarp -t_srs '+proj=utm +zone=19 +south +datum=WGS84' 20131228_tsx_20131228_tdx.height.gc.tif Chile_small.tif</code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">ESPG code for UTM</div>
+<div class="paragraph">
+<p>You can alternatively use the <a href="http://spatialreference.org/ref/epsg/">EPSG</a> codes for UTM coordinates.</p>
+</div>
+<div class="paragraph">
+<p>These are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UTM North zones have EPSG:326XX where XX is the zone.</p>
+</li>
+<li>
+<p>UTM South zones have EPSG:327XX where XX is the zone.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So example call would be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-consol" data-lang="consol">$ gdalwarp -t_srs EPSG:32719 20131228_tsx_20131228_tdx.height.gc.tif Chile_small.tif</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>There are several other flags that could be quite handy (for a complete
 list see <a href="http://www.gdal.org/gdalwarp.html">the GDAL website</a>).</p>
@@ -3489,7 +3540,13 @@ but if you have python working properly you can plot something in a minute or tw
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_2">3.7. Summary</h3>
+<h3 id="_nodata_problems">3.7. NoData problems</h3>
+<div class="paragraph">
+<p>Often digitla elevation models have problems with nodata. The nodata values don&#8217;t register properly, or there are holes in your DEM, or the oceans and seas are all at zero elevation which messes up any analyses. This happens frequently enough that we wrote a program for that. Instructions are &lt;&lt;,here&gt;&gt;</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_2">3.8. Summary</h3>
 <div class="paragraph">
 <p>You should now have some idea as to how to get your hands on some topographic data,
 and how to use GDAL to transform it into something that LSDTopoTools can use.</p>
@@ -4831,7 +4888,78 @@ You really should be using Vagrant because your analysis, which ran in Linux, ca
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_4">5.4. Summary</h3>
+<h3 id="_fixing_a_dem_with_nodata_problems">5.4. Fixing a DEM with nodata problems</h3>
+<div class="paragraph">
+<p>The topographic data we have supplied as default with <strong>LSDTopoTools</strong> is well behaved (we have checked) but data from other sources can have all kinds of problems. Some problems are so common that we have written a program just to fix these problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The nodata values have not registered properly.</p>
+</li>
+<li>
+<p>There are nodata holes in the middle of your data.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To fix this there is a program called <code>DEM_preprocessing.cpp</code> that comes in the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver"><code>LSDTopoTool_AnalysisDriver</code> repository</a>.</p>
+</div>
+<div class="paragraph">
+<p>These instructions assume you have used our <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">vagrant setup</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_make_the_program">5.4.1. Make the program.</h4>
+<div class="paragraph">
+<p>Go into the driver function folder, and make the program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver
+$ make -f DEM_preprocessing.make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will compile into a prgram called <strong>DEM_preprocessing.exe</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_run_the_preprocessing_program">5.4.2. Run the preprocessing program</h4>
+<div class="paragraph">
+<p>You give <strong>DEM_preprocessing.exe</strong> a text file with information about what you want it to do. You need to tell the program where this file is and its name. If the file name is <code>DEMPP.driver</code> and it is sitting with your data files in the directory <code>/LSDTopoTools/Topographic_projects/Test_data</code> then you would call the program with</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./DEM_preprocessing.exe /LSDTopoTools/Topographic_projects/Test_data/ DEMPP.driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>.driver</code> file looks a bit like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for pre-rpocessing DEMs
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopTools/Topographic_projects/Test_data
+write path: /LSDTopTools/Topographic_projects/Test_data
+read fname: CrapDEM
+write fname: CrapDEM</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The components of this file are hopfully self explanitory: you will need to update the read and write paths and the read and write fnames (these are the prfixes of your DEM) to reflect your own messed up DEM.</p>
+</div>
+<div class="paragraph">
+<p>To see all the options you should refer to our appendix on <a href="#_dem_preprocessing_options">DEM preprocessing Options</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_4">5.5. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to clone one of our programs from Github, compile it, and run it on your computer.
 Now we can move on to more complex topographic analyses.</p>
@@ -5166,7 +5294,7 @@ and valleys have positive curvature. This is reversed in <code>ArcMap</code>. Ou
 <p>Landscapes are almost always dissected by a network of channels,
 and extracting channel networks from topographic data is a common yet frequently challenging task in topographic analysis.  We have a variety of different channel network extraction algorithms that can be used depending on the characteristics of the landscape to be studied (such as the relief and presence of artificial features), or the resolution of the available digital elevation models (DEMs).
 In this chapter we go through the many methods of channel extraction available within <a href="https://lsdtopotools.github.io/">LSDTopoTools</a>,
-ranging from rudimentary methods (e.g., <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>)
+ranging from rudimentary methods (e.g., <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>)
 to methods that aim to precisely locate channel heads from high resolution data.</p>
 </div>
 <div class="sidebarblock">
@@ -5223,7 +5351,26 @@ You can find the repository in the directory <code>/LSDTopoTools/Git_projects/LS
 </div>
 </div>
 <div class="sect3">
-<h4 id="_clone_the_github_repository">7.1.1. Clone the GitHub repository</h4>
+<h4 id="_compile_channel_extraction_using_lsdtopotoolssetup_py">7.1.1. Compile channel extraction using LSDTopoToolsSetup.py</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a> is a script that we use to automate compilation of our tools. It is downloaded automatically by the vagrant machine into the <code>/LSDTopoTools/</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>To compile the channel extraction tool run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/
+$ python LSDTopoToolsSetup.py -id 1 -CE True</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clone_the_github_repository_not_needed_if_you_used_lsdtopotoolssetup_py">7.1.2. Clone the GitHub repository (not needed if you used LSDTopoToolsSetup.py)</h4>
 <div class="paragraph">
 <p>If you haven&#8217;t run our vagrant setup, you need to clone the repository. First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/LSDTopoTools/Git_projects/</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
 </div>
@@ -5252,7 +5399,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git</
 </div>
 </div>
 <div class="sect3">
-<h4 id="_alternatively_get_the_zipped_code">7.1.2. Alternatively, get the zipped code</h4>
+<h4 id="_alternatively_get_the_zipped_code_not_needed_if_you_used_lsdtopotoolssetup_py">7.1.3. Alternatively, get the zipped code (not needed if you used LSDTopoToolsSetup.py)</h4>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -5279,9 +5426,9 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_datasets">7.1.3. Get the example datasets</h4>
+<h4 id="_example_datasets">7.1.4. Example datasets</h4>
 <div class="paragraph">
-<p>We have provided some example datasets which you can use in order to test the channel extraction algorithms. In this tutorial we will work using a lidar dataset from Indian Creek, Ohio. It is a bit large so we don&#8217;t include it with the standard test datasets. If you are using our vagrant server, you should go into the test data folder and download it using wget:</p>
+<p>We have provided some example datasets which you can use in order to test the channel extraction algorithms. In this tutorial we will work using a lidar dataset from Indian Creek, Ohio.</p>
 </div>
 <div class="listingblock">
 <div class="title">If you are using a Vagrant server</div>
@@ -5290,13 +5437,7 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="paragraph">
-<p>Then you can download the data from our <a href="https://github.com/LSDtopotools/ExampleTopoDatasets">ExampleTopoDatasets repository</a> using <code>wget</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/indian_creek.bil
-$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/indian_creek.hdr</code></pre>
-</div>
+<p>The DEM is called <code>indian_creek.bil</code> and <code>indian_creek.hdr</code>, and the relevant parameter file is <code>Vagrant_ChannelExtraction.driver</code>.</p>
 </div>
 <div class="paragraph">
 <p>This dataset is already in the preferred format for use with LSDTopoTools (the ENVI <code>bil</code> format). The figure below shows a shaded relief map of part of the Indian Creek DEM which will be used in these examples.</p>
@@ -5320,31 +5461,372 @@ You can also work with the DEM <code>gabilan.bil</code> that is included by defa
 </table>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_the_channel_extraction_tool">7.2. The Channel Extraction tool</h3>
+<div class="paragraph">
+<p>Our channel extraction tool bundles four methods of channel extraction. These are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A rudimentary extraction using a drainage area threshold.</p>
+</li>
+<li>
+<p>The <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Dreich method (Clubb et al., 2014)</a>.</p>
+</li>
+<li>
+<p>The <a href="http://onlinelibrary.wiley.com/doi/10.1029/2012WR012452/abstract">Pelletier (2013) method</a>.</p>
+</li>
+<li>
+<p>A geometric method combining elements of <a href="https://sites.google.com/site/geonethome/home">the Geonet website[Geonet (Passalacqua et al., 2010)</a> and <a href="http://onlinelibrary.wiley.com/doi/10.1029/2012WR012452/abstract">Pelletier (2013)</a> methods that we developed for <a href="http://www.earth-surf-dynam.net/4/627/2016/esurf-4-627-2016.html">Grieve et al. (2016)</a> and <a href="http://onlinelibrary.wiley.com/doi/10.1002/2015JF003747/full">Clubb et al. (2016)</a> We call this the "Wiener" method (after the <a href="https://en.wikipedia.org/wiki/Wiener_filter">wiener filter</a> used to preprocess the data).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These methods are run based on a common interface via the program <code>channel_extraction_tool.exe</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_channel_extraction_with_a_parameterfile">7.3. Running channel extraction with a parameterfile</h3>
+<div class="paragraph">
+<p>We assume you have compiled the channel extraction tool (if not, go back <a href="#_get_the_code_for_channel_extraction">here</a>).</p>
+</div>
+<div class="paragraph">
+<p>Like most of <strong>LSDTopoTools</strong>, you run this program by directing it to a parameter file. The parameter file has a series of keywords. Our convention is to place the parameter file in the same directory as your data.</p>
+</div>
 <div class="sect3">
-<h4 id="_get_the_example_parameter_files">7.1.4. Get the example parameter files</h4>
+<h4 id="_channel_extraction_options">7.3.1. Channel extraction options</h4>
 <div class="paragraph">
-<p>We have also provided some examples parameter files that are used to run each method of channel extraction.  You can check out the entire folder of example parameter files using subversion by typing the following in the command line:</p>
+<p>The parameter file has keywords followed by a value. The format of this file is similar to the files used in the <code>LSDTT_analysis_from_paramfile</code> program, which you can read about in the section <a href="#_running_your_first_analysis">Running your first analysis</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The parameter file has a specific format, but the filename can be anything you want. We tend to use the extensions <code>.param</code> and <code>.driver</code> for these files, but you could use the extension <code>.MyDogSpot</code> if that tickled your fancy.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The parameter file has keywords followed by the <code>:</code> character. After that there is a space and the value.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Channel extraction parameter file format</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Lines beginning with <code>#</code> are comments.</p>
+</li>
+<li>
+<p>Keywords or phrases are followed by a colon (<code>:</code>).</p>
+</li>
+<li>
+<p>The order of the keywords do not matter.</p>
+</li>
+<li>
+<p>Keywords are not sensitive, but must match expected keywords.</p>
+</li>
+<li>
+<p>If a keyword is not found, a default value is assigned.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Below are options for the parameter files. Note that all DEMs must be in ENVI <code>bil</code> format (<strong>DO NOT</strong> use ArcMap&#8217;s bil format: these are two different things. See the section <a href="#_what_data_does_lsdtopotoolbox_take">What data does LSDTopoToolbox take?</a> if you want more details).
+The reason we use <code>bil</code> format is because it retains georeferencing which is essential to our file output since many of the files output to <code>csv</code> format with latitude and longitude as coordinates.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 6. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to which data is written. <strong>The code will NOT create a path: you need to make the write path before you start running the program.</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path from which data is read.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of rasters to be written <strong>without extension</strong>.
+For example if this is <code>Test</code> and you have selected <code>bil</code> format then a fill operation will result in a file called <code>Test_Fill.bil</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of the raster to be read without extension. For example if the raster is <code>MyRaster.bil</code>, read fname will be <code>MyRaster</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">channel heads fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of a channel heads file. You can import channel heads. If this is set to <code>NULL</code> then the channels will be calculated using a pixel threshold.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. Options for what analysis to do.</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_area_threshold_channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculate channels based on an area threshold.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_dreich_channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculate channels based on the dreich algorithm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_pelletier_channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculate channels based on the pelletier algorithm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_wiener_channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculate channels based on our wiener algorithm.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 8. Options for what files to output</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 16%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_stream_order_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints a raster with channels indicated by their strahler order and nodata elsewhere. File includes "_SO" in the filename.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_channels_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints a csv file with the channels, their channel pixel locations indicated with latitude and longitude in WGS84.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_sources_to_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints a raster with source pixels indicated.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_sources_to_csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints a csv file with the sources, their locations indicated with latitude and longitude in WGS84.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_fill_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints the fill raster</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write hillshade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints the hillshade raster to file (with "_hs" in the filename).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_wiener_filtered_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints the raster after being filter5ed by the wiener filter to file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print_curvature_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prints two rasters of tangential curvature. One is short and one long wave (has "_LW" in name) curvature.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 9. Parameters for extracting the channel network</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min_slope_for_fill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum slope between pixels used by the filling algorithm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">surface_fitting_radius</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radius of the polyfit window over which to calculate slope and curvature.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">curvature_threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threshold curvature for channel extraction. Used by Pelletier (2013) algorithm.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimum_drainage_area</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used by Pelletier (2013) algorithm as the minimum drainage area to define a channel. In m<sup>2</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pruning_drainage_area</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used by the wiener and driech methods to prune the drainage network. In m<sup>2</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold_contributing_pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to establish an initial test network, and also used to create final network by the area threshold method.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connected_components_threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum number of connected pixels to create a channel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A_0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>A<sub>0</sub></strong> parameter (which nondimensionalises area) for chi analysis. This is in m<sup>2</sup>. Used by Dreich.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m_over_n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>m/n</strong> paramater (sometimes known as the concavity index) for calculating chi. Used only by Dreich.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number_of_junctions_dreich</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of tributary junctions downstream of valley head on which to run DrEICH algorithm.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_example_channel_extraction_parameter_file">7.3.2. Example channel extraction parameter file</h4>
+<div class="paragraph">
+<p>Below is an exaple parameter file. This file is included in the repository along with the driver functions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ svn checkout https://github.com/LSDtopotools/ExampleTopoDatasets/trunk/example_parameter_files/ExampleFiles_ChannelExtraction</code></pre>
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for channel extraction
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+# TBA
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/test_data
+write path: /LSDTopoTools/Topographic_projects/test_data
+read fname: gabilan
+write fname: gabilan
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+
+# threshold_contributing_pixels: 2500
+print_area_threshold_channels: false
+print_wiener_channels: false
+print_pelletier_channels: false
+print_dreich_channels: true
+
+# write hillshade: true
+print_stream_order_raster: true</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>If you don&#8217;t have subversion you can use wget to get the individual files (this must be done separately for each file) e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://github.com/LSDtopotools/ExampleTopoDatasets/tree/master/example_parameter_files/ExampleFiles_ChannelExtraction/indian_creek_dreich.driver</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once you have downloaded the example files then put them in the repository folder <code>LSDTopoTools_ChannelExtraction</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_basic_channel_extraction_using_thresholds">7.2. Basic channel extraction using thresholds</h3>
+<h3 id="_basic_channel_extraction_using_thresholds_the_old_way">7.4. Basic channel extraction using thresholds (the old way)</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>One of the simplest ways of extracting channel networks from DEMs uses a contributing area threshold.  This method is useful for coarse resolution (e.g. &gt;10m) DEMs, where topographic features of the channel heads themselves cannot be reliably identified from the DEM. The user has to specify the threshold area, which represents the upstream area that must drain to a pixel before it is considered as part of the channel.</p>
 </div>
@@ -5364,7 +5846,7 @@ The area threshold chosen will affect the density of the channel network.  This 
 <p>We will work through an example using the Indian Creek example dataset that you downloaded.</p>
 </div>
 <div class="sect3">
-<h4 id="_compile_the_code_2">7.2.1. Compile the code</h4>
+<h4 id="_compile_the_code_2">7.4.1. Compile the code</h4>
 <div class="paragraph">
 <p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_area_threshold.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.</p>
 </div>
@@ -5386,7 +5868,7 @@ The area threshold chosen will affect the density of the channel network.  This 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_run_the_analysis">7.2.2. Run the analysis</h4>
+<h4 id="_run_the_analysis">7.4.2. Run the analysis</h4>
 <div class="paragraph">
 <p>To run the analysis you first need to create a parameter file, with which we will set the key user-defined parameters.  To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
@@ -5451,18 +5933,30 @@ Threshold area for channel extraction</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_geometric_channel_extraction_methods">7.3. Geometric channel extraction methods</h3>
+<h3 id="_geometric_channel_extraction_methods_the_old_way">7.5. Geometric channel extraction methods (the old way)</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detect channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in <strong>LSDTopoTools</strong>, and a similar geometric method available within <strong>LSDTopoTools</strong>.</p>
 </div>
 <div class="sect3">
-<h4 id="_geonet_external_software">7.3.1. Geonet (external software)</h4>
+<h4 id="_geonet_external_software">7.5.1. Geonet (external software)</h4>
 <div class="paragraph">
 <p>The Geonet algorithm filters the DEM using a Perona-Malik filter, then uses a planform curvature threshold which is statistically derived from the landscape to detect channel heads. For full information on how Geonet works please see Passalcqua et al. (2010a, b, 2012). It then uses a contributing area threshold to thin the skeleton and create the final channel network.  The Geonet algorithm is available free to download from <a href="https://sites.google.com/site/geonethome/home">the Geonet website</a>. This site also contains the code documentation and user guides on how to get started with Geonet. It is a cross platform MATLAB package (you will need a MATLAB licence to run in its present form).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_pelletier">7.3.2. Pelletier</h4>
+<h4 id="_pelletier">7.5.2. Pelletier</h4>
 <div class="paragraph">
 <p><a href="http://onlinelibrary.wiley.com/doi/10.1029/2012WR012452/abstract">Pelletier (2013)</a> developed an algorithm that is similar to Geonet in that it identifies channel heads based on a planform curvature threshold.  The main differences between this algorithm and Geonet are:</p>
 </div>
@@ -5511,7 +6005,7 @@ To run the Pelletier algorithm you need to have the Fast Fourier Transform Libra
 <div class="sect4">
 <h5 id="_run_the_analysis_2">Run the analysis</h5>
 <div class="paragraph">
-<p>We first need to create a parameter file similar to that for the <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
+<p>We first need to create a parameter file similar to that for the <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5578,7 +6072,7 @@ Minimum catchment area (suggested to be 400)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_lsdtopotools_geometric_method">7.3.3. The LSDTopoTools geometric method</h4>
+<h4 id="_the_lsdtopotools_geometric_method">7.5.3. The LSDTopoTools geometric method</h4>
 <div class="paragraph">
 <p>Within LSDTopoTools we have also developed a method for extracting channel heads via planform curvature.  We first of all filter the DEM using an Optimal Wiener filter, then use a quantile-quantile threshold to statistically determine the planform curvature threshold from the landscape. It then uses a <a href="http://www.ncbi.nlm.nih.gov/pubmed/18390379">connected components threshold</a> to extract the channel network.</p>
 </div>
@@ -5611,7 +6105,7 @@ To run the LSDTopoTools algorithm you need to have the Fast Fourier Transform Li
 <div class="sect4">
 <h5 id="_run_the_analysis_3">Run the analysis</h5>
 <div class="paragraph">
-<p>We first need to create a parameter file similar to that for the <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
+<p>We first need to create a parameter file similar to that for the <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5681,7 +6175,19 @@ connected_components_threshold 100</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_channel_extraction_using_the_dreich_method">7.4. Channel extraction using the Dreich method</h3>
+<h3 id="_channel_extraction_using_the_dreich_method_the_old_way">7.6. Channel extraction using the Dreich method (the old way)</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Dreich method</a>
 of channel head extraction aims to find channel heads by looking at the break in the properties of topographic profiles
@@ -5703,13 +6209,13 @@ To run the Dreich algorithm you need to have the Fast Fourier Transform Library 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_run_the_chi_analysis">7.4.1. Run the chi analysis</h4>
+<h4 id="_run_the_chi_analysis">7.6.1. Run the chi analysis</h4>
 <div class="paragraph">
 <p>Before the Dreich algorithm can be run the <em>m/n</em> value for the landscape must be determined.  This can be done using the <a href="#_chi_analysis">Chi analysis</a> in LSDTopoTools.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_compile_the_code_5">7.4.2. Compile the code</h4>
+<h4 id="_compile_the_code_5">7.6.2. Compile the code</h4>
 <div class="paragraph">
 <p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_dreich.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.  When in this folder type the following to compile the driver:</p>
 </div>
@@ -5723,9 +6229,9 @@ To run the Dreich algorithm you need to have the Fast Fourier Transform Library 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_run_the_analysis_4">7.4.3. Run the analysis</h4>
+<h4 id="_run_the_analysis_4">7.6.3. Run the analysis</h4>
 <div class="paragraph">
-<p>We first need to create a parameter file similar to that for the <a href="#_basic_channel_extraction_using_thresholds">Basic channel extraction using thresholds</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
+<p>We first need to create a parameter file similar to that for the <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5801,7 +6307,7 @@ number_of_junctions_dreich 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_6">7.5. Summary</h3>
+<h3 id="_summary_6">7.7. Summary</h3>
 <div class="paragraph">
 <p>By now you should be able to extract channel networks using a variety of methods. For coarse-resolution DEMs you can extract the channel network using a simple area threshold, although the choice of threshold must be carefully considered. For higher-resolution DEMs you can use either a geometric method (if you are interested in extracting the valley network), or a process-based method such as the DrEICH algorithm (if you are interested in the fluvial domain).  These methods all require a certain number of user-defined parameters, so the user should take care to select these carefully as their value may impact the resulting channel network.</p>
 </div>
@@ -6119,7 +6625,7 @@ These can be enabled by setting a flag inside the driver on line 141.</p>
 <p>This driver takes the following input data:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. Input data for the hillslope length code</caption>
+<caption class="title">Table 10. Input data for the hillslope length code</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -6549,7 +7055,7 @@ vector&lt;int&gt; Target_Basin_Vector;</code></pre>
 <p>These control the path file printing and give several options to limit the scope of the path printing to ensure a manageable number of files are generated. The possible values for each parameter are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. Path file printing parameters</caption>
+<caption class="title">Table 11. Path file printing parameters</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -6879,7 +7385,7 @@ location = 'Gabilan Mesa'
 <p>Our code for E*R* analysis can be found in our GitHub repository.  This repository contains code for extracting channel networks, generating hillslope length data and processing this topographic data into a form which can be used to generate E* R* relationships.</p>
 </div>
 <div class="sect3">
-<h4 id="_clone_the_github_repository_2">10.1.1. Clone the GitHub repository</h4>
+<h4 id="_clone_the_github_repository">10.1.1. Clone the GitHub repository</h4>
 <div class="paragraph">
 <p>First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/home/LSDTT_repositories</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
 </div>
@@ -6908,7 +7414,7 @@ $ git clone https://github.com/LSDtopotools/LSDTT_Hillslope_Analysis.git</code><
 </div>
 </div>
 <div class="sect3">
-<h4 id="_alternatively_get_the_zipped_code_2">10.1.2. Alternatively, get the zipped code</h4>
+<h4 id="_alternatively_get_the_zipped_code">10.1.2. Alternatively, get the zipped code</h4>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -7036,7 +7542,7 @@ $ sudo pip install --upgrade &lt;package name&gt;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_datasets_2">10.1.5. Get the example datasets</h4>
+<h4 id="_get_the_example_datasets">10.1.5. Get the example datasets</h4>
 <div class="paragraph">
 <p>We have provided some example datasets which you can use in order to test this algorithm. In this tutorial we will work using a LiDAR dataset and accompanying channel heads from Gabilan Mesa, California. You can get it from our ExampleTopoDatasets repository using <code>wget</code> and we will store the files in a folder called <code>data</code>:</p>
 </div>
@@ -7097,7 +7603,7 @@ When running the hillslope length driver, ensure that the switch to write the ra
 <p>This driver takes the following input data:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. Input data for the <code>E_STAR_R_STAR.cpp</code> driver.</caption>
+<caption class="title">Table 12. Input data for the <code>E_STAR_R_STAR.cpp</code> driver.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -7264,7 +7770,7 @@ bin_data.py  Plot_ER_Data.py  Settings.py</code></pre>
 <p><code>Settings.py</code> is a large parameter file which must be modified to reflect our input data and the nature of the plots we want to generate. Each parameter is described within the file, but these descriptions are also produced here for clarity. It should be noted that a useful method for managing large sets of data and plotting permutations is to generate several <code>Settings.py</code> files and swapping between them as needed. The following tables outline all of the parameters which can be used to configure the E* R* plots.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. Paramter information to load data.</caption>
+<caption class="title">Table 13. Paramter information to load data.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -7296,7 +7802,7 @@ bin_data.py  Plot_ER_Data.py  Settings.py</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 10. Options to select data to be plotted</caption>
+<caption class="title">Table 14. Options to select data to be plotted</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -7353,7 +7859,7 @@ bin_data.py  Plot_ER_Data.py  Settings.py</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 11. Options controlling the fitting of the critical gradient</caption>
+<caption class="title">Table 15. Options controlling the fitting of the critical gradient</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -7380,7 +7886,7 @@ bin_data.py  Plot_ER_Data.py  Settings.py</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 12. Options controlling the plot style</caption>
+<caption class="title">Table 16. Options controlling the plot style</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -7746,7 +8252,7 @@ $ git pull origin master</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_alternatively_get_the_zipped_code_3">Alternatively, get the zipped code</h5>
+<h5 id="_alternatively_get_the_zipped_code_2">Alternatively, get the zipped code</h5>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -7998,7 +8504,7 @@ Here are the first 3 lines of the file:</p>
 <li>
 <p>Okay, if you have been following along, you should have two terminal windows open. One should be open in the folder containing your data, and the other should be open in the folder with the source code driver functions.</p>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 13. The two terminal windows</caption>
+<caption class="title">Table 17. The two terminal windows</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -8115,7 +8621,7 @@ that has the details of the parameter values.</p>
 If you have used incorrect filenames the code should tell you.
 The end result will be a large number of new files: The code prints</p>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 14. Files generated by chi1_write_junctions.exe.</caption>
+<caption class="title">Table 18. Files generated by chi1_write_junctions.exe.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -8284,7 +8790,7 @@ In Linux the program should be proceeded with <code>./</code>. Here is an exampl
 <li>
 <p>This will generate several files. Note that for <code>flt</code> and <code>bil</code> formats each dataset will consist of a <code>bil</code> and a <code>hdr</code> file.</p>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 15. Files generated by chi2_write_channel_file.exe.</caption>
+<caption class="title">Table 19. Files generated by chi2_write_channel_file.exe.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -8363,7 +8869,7 @@ f the channel is not generated from a DEM these six rows can contain placeholder
 The six rows are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 16. First six rows of the .chan file.</caption>
+<caption class="title">Table 20. First six rows of the .chan file.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -8410,7 +8916,7 @@ scripts can be written to merge data from the channel files with DEM data.</p>
 <p>The rest of the channel file consists of rows with 9 columns.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 17. Chan file contents, the first 6 rows are listed in the table above.</caption>
+<caption class="title">Table 21. Chan file contents, the first 6 rows are listed in the table above.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -8643,7 +9149,7 @@ The parameters must be listed in the correct order and there cannot be any extra
 (e.g., a string describing them). The parameters are:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 18. Cheat sheet for driver file</caption>
+<caption class="title">Table 22. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -8772,7 +9278,7 @@ If the DEM is 90m resolution, for example, the resolution the algorithm will wor
 <p>And here is the cheat sheet (also included in <code>driver_cheat_sheet.txt</code>, which you can look at in the directory <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code> if you used our vagrant distribution):</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 19. Cheat sheet for driver file</caption>
+<caption class="title">Table 23. Cheat sheet for driver file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -8931,7 +9437,7 @@ For example, the filename:</p>
 <p>The format of the file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 20. The format of the .movern file</caption>
+<caption class="title">Table 24. The format of the .movern file</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -9590,7 +10096,7 @@ The parameter file has a specific format, but the filename can be anything you w
 The reason we use <code>bil</code> format is because it retains georeferencing which is essential to our file output since many of the files output to <code>csv</code> format with latitude and longitude as coordinates.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 21. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
+<caption class="title">Table 25. File input and output options. <strong>These do not have defaults and MUST be declared</strong>.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -9633,7 +10139,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 22. Options for determining which channels and basins to analyse, including settings for the fill function.</caption>
+<caption class="title">Table 26. Options for determining which channels and basins to analyse, including settings for the fill function.</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -9676,13 +10182,13 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">only_take_largest_basin</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bool (true or 1 will work)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If this is true, a chi map is created based only upon the largest basin in the raster.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 23. Parameters for calculating the chi coordinate.</caption>
+<caption class="title">Table 27. Parameters for calculating the chi coordinate.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -9719,7 +10225,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 24. Parameters for calculating the segments of similar chi slope (\(M_{\chi}\)). More details on the use fo these parameters can be found in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES 2014</a>.</caption>
+<caption class="title">Table 28. Parameters for calculating the segments of similar chi slope (\(M_{\chi}\)). More details on the use fo these parameters can be found in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES 2014</a>.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -9774,7 +10280,7 @@ For example if this is <code>Test</code> and you have selected <code>bil</code> 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 25. Keywords for setting which analyses to be preformed and which files to print. <strong>These are all booleans!</strong> **Defaults are all false so these parameters must be set to true to perform analyses and print to file.</caption>
+<caption class="title">Table 29. Keywords for setting which analyses to be preformed and which files to print. <strong>These are all booleans!</strong> **Defaults are all false so these parameters must be set to true to perform analyses and print to file.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -10158,7 +10664,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide.git</code>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_alternatively_get_the_zipped_code_4">Alternatively, get the zipped code</h6>
+<h6 id="_alternatively_get_the_zipped_code_3">Alternatively, get the zipped code</h6>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -10378,7 +10884,7 @@ The parameter names are not case sensitive. The parameter values are case sensit
 These parameters are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 26. File input and output options</caption>
+<caption class="title">Table 30. File input and output options</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -10608,7 +11114,7 @@ LC07_11,-31.122417,-71.576194,Be10,120502,2500,07KNSTD,0.987</code></pre>
 then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.csv</code> in your data folder.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 27. CRNData.csv format (the first row contains a header)</caption>
+<caption class="title">Table 31. CRNData.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 16%;">
@@ -10676,7 +11182,7 @@ then you will have a <code>CRNdata.csv</code> file called <code>Binnie_CRNData.c
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 28. Nuclide standardisation options</caption>
+<caption class="title">Table 32. Nuclide standardisation options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -10776,7 +11282,7 @@ topographic shielding is the most computationally demanding step in the cosmo an
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 29. CRNRasters.csv format (the first row contains a header)</caption>
+<caption class="title">Table 33. CRNRasters.csv format (the first row contains a header)</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 37%;">
@@ -11641,7 +12147,7 @@ In the example this prefix is <code>SanBern</code> (or <code>SanBern_Spawned</co
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 30. Method flag options</caption>
+<caption class="title">Table 34. Method flag options</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -11732,7 +12238,7 @@ A new version of the CRONUS caluclator should be available late 2016 but should 
 It contains the following data in comma separated columns:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 31. Columns in the <code>_CRNResults.csv</code> file</caption>
+<caption class="title">Table 35. Columns in the <code>_CRNResults.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -12088,7 +12594,7 @@ if __name__ == "__main__":
 The format of this file is:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 32. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
+<caption class="title">Table 36. Columns in the <code>_CRNSoilInfo.csv</code> file</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 9%;">
@@ -12638,7 +13144,7 @@ This method is in development, and the code will be released on our GitHub when 
 <p>The code for floodplain delineation can be found in our GitHub repository.  This repository contains code for identifying flood-prone areas using channel relief and slope thresholds.</p>
 </div>
 <div class="sect3">
-<h4 id="_clone_the_github_repository_3">14.1.1. Clone the GitHub repository</h4>
+<h4 id="_clone_the_github_repository_2">14.1.1. Clone the GitHub repository</h4>
 <div class="paragraph">
 <p>First navigate to the folder where you will keep the GitHub repository.  In this example it is called <code>/home/LSDTT_repositories</code>.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
 </div>
@@ -12667,7 +13173,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_FloodplainDelineation.g
 </div>
 </div>
 <div class="sect3">
-<h4 id="_alternatively_get_the_zipped_code_5">14.1.2. Alternatively, get the zipped code</h4>
+<h4 id="_alternatively_get_the_zipped_code_4">14.1.2. Alternatively, get the zipped code</h4>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -12694,7 +13200,7 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_datasets_3">14.1.3. Get the example datasets</h4>
+<h4 id="_get_the_example_datasets_2">14.1.3. Get the example datasets</h4>
 <div class="paragraph">
 <p>We have provided some example datasets which you can use in order to test the floodplain delineation algorithm. In this tutorial we will work using a LiDAR dataset from Mid Bailey Run, Ohio. You can get it from our ExampleTopoDatasets repository using <code>wget</code>:</p>
 </div>
@@ -12715,7 +13221,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_parameter_files_2">14.1.4. Get the example parameter files</h4>
+<h4 id="_get_the_example_parameter_files">14.1.4. Get the example parameter files</h4>
 <div class="paragraph">
 <p>We have also provided some examples parameter files that are used to run the floodplain delineation. You can get the example floodplain driver using <code>wget</code>:</p>
 </div>
@@ -12762,7 +13268,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Bailey_DEM
 <p>In order to run the floodplain extraction code you must first create a parameter file for your DEM.  This should be placed in the same folder as your DEM and the channel heads <code>csv</code> file.  The file should have an identifying string, followed by a space, then the information for your DEM. The paramter file should be a named with the extension <code>.driver</code> with the following structure:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 33. Structure of the parameter file. The rows <strong>MUST</strong> be in this order.</caption>
+<caption class="title">Table 37. Structure of the parameter file. The rows <strong>MUST</strong> be in this order.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -12997,7 +13503,7 @@ UpperPercentile 75</code></pre>
 <p>The code for the drainage density analysis can be found in our GitHub repository.  This repository contains code for extracting the drainage density for a series of basins defined by points from cosmogenic radionuclide samples, as well as the drainage density and mean hilltop curvature for basins of a specified order.</p>
 </div>
 <div class="sect3">
-<h4 id="_clone_the_github_repository_4">15.1.1. Clone the GitHub repository</h4>
+<h4 id="_clone_the_github_repository_3">15.1.1. Clone the GitHub repository</h4>
 <div class="paragraph">
 <p>First navigate to the folder where you will keep the GitHub repository.  If you have downloaded LSDTopoTools using vagrant, then this should be in the folder <code>Git_projects</code>.  Please refer to the chapter on <a href="#_installing_lsdtopotools_using_virtualbox_and_vagrant">Installing LSDTopoTools using VirtualBox and Vagrant</a> for more information on this.  To navigate to this folder in a UNIX terminal use the <code>cd</code> command:</p>
 </div>
@@ -13027,7 +13533,7 @@ vagrant@vagrant-ubuntu-precise-32:/LSDTopoTools/Git_projects$ git clone https://
 </div>
 </div>
 <div class="sect3">
-<h4 id="_alternatively_get_the_zipped_code_6">15.1.2. Alternatively, get the zipped code</h4>
+<h4 id="_alternatively_get_the_zipped_code_5">15.1.2. Alternatively, get the zipped code</h4>
 <div class="paragraph">
 <p>If you don&#8217;t want to use <em>git</em>, you can download a zipped version of the code:</p>
 </div>
@@ -13054,7 +13560,7 @@ so if you previously downloaded a zipper repository this will overwrite it.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_datasets_4">15.1.3. Get the example datasets</h4>
+<h4 id="_get_the_example_datasets_3">15.1.3. Get the example datasets</h4>
 <div class="paragraph">
 <p>We have provided some example datasets which you can use in order to test the drainage density analysis. In this tutorial we will work using a LiDAR dataset from the Guadalupe Mountains, New Mexico.  This is a clip of the original dataset, which we have resampled to 2 m resolution. The full dataset is available from <a href="http://www.opentopography.org/">OpenTopography.</a>. If you are using the vagrant distribution, create a new folder within the <code>Topographic_projects</code> folder, and then navigate to this folder:</p>
 </div>
@@ -13084,7 +13590,7 @@ $ wget https://github.com/LSDtopotools/ExampleTopoDatasets/raw/master/Guadalupe_
 </div>
 </div>
 <div class="sect3">
-<h4 id="_get_the_example_parameter_files_3">15.1.4. Get the example parameter files</h4>
+<h4 id="_get_the_example_parameter_files_2">15.1.4. Get the example parameter files</h4>
 <div class="paragraph">
 <p>We have also provided some examples parameter files that are used to run the drainage density analysis.  These should be placed in the same folder as your DEM (e.g. in the folder <code>/LSDTopoTools/Topographic_projects/Guadalupe_NM/</code>. You can get the example parameter file using <code>wget</code>:</p>
 </div>
@@ -13778,7 +14284,7 @@ If using the OpenMP makefile, you can get this down to around 11 minutes using a
 <p>The order of the parameters in the parameter file is not strict, but we stick to the convention used in the sample file for reference here. The parameter names must not be changed, and must be lowercase.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 34. Guide to the parameter file. Row/parameters can be in any order.</caption>
+<caption class="title">Table 38. Guide to the parameter file. Row/parameters can be in any order.</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -14570,7 +15076,7 @@ For help type:
 <div class="sect2">
 <h3 id="_table_of_lsdtopotoolssetup_py_options">B.3. Table of LSDTopoToolsSetup.py options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 35. Installation directory options</caption>
+<caption class="title">Table 39. Installation directory options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -16019,7 +16525,7 @@ Comments can be inserted into the parameter file using the hash symbol (<code>#<
 <div class="sect2">
 <h3 id="_analysisdriver_file_input_and_output_options">G.1. AnalysisDriver file input and output options</h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 36. File input and output options</caption>
+<caption class="title">Table 40. File input and output options</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -16084,7 +16590,7 @@ but in in the <strong>AnalysisDriver</strong> parameter file booleans must be <s
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 37. Options of files to write or analyses to perform</caption>
+<caption class="title">Table 41. Options of files to write or analyses to perform</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -16198,7 +16704,7 @@ or <a href="http://calm.geo.berkeley.edu/geomorph//shalstab/theory.htm">Shalstab
 <div class="sect3">
 <h4 id="_parameters_for_the_fill_function">G.3.1. Parameters for the fill function</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 38. Parameters for the fill function</caption>
+<caption class="title">Table 42. Parameters for the fill function</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16235,7 +16741,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_hillshading">G.3.2. Parameters for hillshading</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 39. Parameters for hillshading</caption>
+<caption class="title">Table 43. Parameters for hillshading</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16275,7 +16781,7 @@ It is <strong>MUCH</strong> slower than <code>new_fill</code>.
 <div class="sect3">
 <h4 id="_parameters_for_flow_info_calculations">G.3.3. Parameters for flow info calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 40. Parameters for flow info calculations</caption>
+<caption class="title">Table 44. Parameters for flow info calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16305,7 +16811,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_masking">G.3.4. Parameters for masking</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 41. Parameters for masking operations</caption>
+<caption class="title">Table 45. Parameters for masking operations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16351,7 +16857,7 @@ These are NOT case sensitive.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_chi_calculations">G.3.5. Parameters for chi calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 42. Parameters for chi calculations</caption>
+<caption class="title">Table 46. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16393,7 +16899,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_polyfit_and_slope_calculations">G.3.6. Parameters for polyfit and slope calculations</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 43. Parameters for polyfit and slope calculations</caption>
+<caption class="title">Table 47. Parameters for polyfit and slope calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16427,7 +16933,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_drainage_area_extraction">G.3.7. Parameters for drainage area extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 44. Parameters for drainage area extraction</caption>
+<caption class="title">Table 48. Parameters for drainage area extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16455,7 +16961,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_single_thread_channel_extraction">G.3.8. Parameters for single thread channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 45. Parameters for extra cting single thread channels</caption>
+<caption class="title">Table 49. Parameters for extra cting single thread channels</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16495,7 +17001,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_area_threshold_channel_extraction">G.3.9. Parameters for area threshold channel extraction</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 46. Parameters for area threshold channel extraction</caption>
+<caption class="title">Table 50. Parameters for area threshold channel extraction</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16523,7 +17029,7 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 <div class="sect3">
 <h4 id="_parameters_for_hydrology_and_slope_stability">G.3.10. Parameters for hydrology and slope stability</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 47. Parameters for chi calculations</caption>
+<caption class="title">Table 51. Parameters for chi calculations</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -16576,7 +17082,199 @@ Pixels with area lower than this threshold will be assigned nodata.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tools_for_viewing_data">Appendix H: Tools for viewing data</h2>
+<h2 id="_dem_preprocessing_options">Appendix H: DEM preprocessing Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>DEM preprocessing</strong> program is distributed with the <strong>AnalysisDriver</strong> and can be found here:
+<a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver" class="bare">https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver</a>.</p>
+</div>
+<div class="paragraph">
+<p>Like the analysis driver, the DEM proprocessing program runs from parameter files.
+In this appendix we document the options for running the DEM preprocessing program from a parameter file.</p>
+</div>
+<div class="sect2">
+<h3 id="_analysisdriver_file_input_and_output_options_2">H.1. AnalysisDriver file input and output options</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 52. File input and output options</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dem read extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dem write extension</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of data format used in reading rasters. Options are <code>bil</code>, <code>asc</code> and <code>flt</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to which data is written.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path from which data is read.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix of rasters to be written <strong>without extension</strong>.
+For example if this is <code>Test</code> and you have selected <code>bil</code> format then a fill operation will result in a file called <code>Test_Fill.bil</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read fname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The filename of the raster to be read without extension. For example if the raster is <code>MyRaster.bil</code>, read fname will be <code>MyRaster</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_dem_preprocessing_routines_to_run">H.2. DEM preprocessing routines to run</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+These require booleans,
+but in the parameter file booleans must be <strong>true</strong>--anything else is considered false.
+<code>true</code> is case sensitive, so <strong>DO NOT</strong> write <code>True</code>: it will be interpreted as false!!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 53. Options of files to write or analyses to perform</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fill_nodata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fills holes of nodata in a DEM</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove_low_relief</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finds low relief areas (defined by parameters below) and sets to nodata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write_relief_raster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Writes a relief raster.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_parameters_for_removing_high_and_low_values_including_weird_nodata">H.3. Parameters for removing high and low values (including weird nodata)</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 54. Removing seas or weird nodata values</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimum_elevation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum elevation of the DEM. Anything below this is set to nodata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maximum_elevation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum elevation of the DEM. Anything above this is set to nodata. It is set to 30000 to account for yanks, who bizarrely insist on using idiotic Imperial units, even though everyone else in the world realised decades ago that they are crap.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_parameters_for_masking_parts_of_the_dem">H.4. Parameters for masking parts of the DEM</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 55. Masking parameters</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Keyword</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filling_window_radius</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radius of the window that is used to search for nodata islands. If there is a non nodata point withing this radius of a nodata point it is filled.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relief_radius</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Radius of the window over which relief is calculated.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relief_threshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any relief less than this will be turned to nodata.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools_for_viewing_data">Appendix I: Tools for viewing data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The many analyses provided by LSDTopoTools produce geographic data
@@ -16586,20 +17284,20 @@ data, using either Geographic Information Sysems (GISs) or
 using our own visualisation scripts, which are written in python.</p>
 </div>
 <div class="sect2">
-<h3 id="_arcmap">H.1. ArcMap</h3>
+<h3 id="_arcmap">I.1. ArcMap</h3>
 <div class="paragraph">
 <p>ArcMap is commercial software written by ESRI.
 Many companies, goverment agencies and universities have liscences to this sofotware.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qgis_3">H.2. QGIS</h3>
+<h3 id="_qgis_3">I.2. QGIS</h3>
 <div class="paragraph">
 <p>QGIS is an open source GIS that has functionality similar to ArcMap.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lsdtopotools_python_mapping_functions">H.3. LSDTopoTools python mapping functions</h3>
+<h3 id="_lsdtopotools_python_mapping_functions">I.3. LSDTopoTools python mapping functions</h3>
 <div class="paragraph">
 <p>We have written a series of lightweight mapping tools in python for
 visualising data.
@@ -16612,7 +17310,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_15">H.4. Summary</h3>
+<h3 id="_summary_15">I.4. Summary</h3>
 <div class="paragraph">
 <p>You should now be able to perform basic operations such as loading and exploring data in QGIS, ArcMap or our own python tools.</p>
 </div>
@@ -16620,13 +17318,13 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix I: Automation and Supercomputing for LSDTopoTools</h2>
+<h2 id="_automation_and_supercomputing_for_lsdtopotools">Appendix J: Automation and Supercomputing for LSDTopoTools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Perhaps you have a lot of basins that you want to perform some analysis on, or you want to re-run a previous analysis with slightly different paramters, different m/n values, and so on. This section will explain some of the scripting tools, supercomputer applications, and other utilities to help speed up this process.</p>
 </div>
 <div class="sect2">
-<h3 id="_embarassingly_parallel_topographic_analysis">I.1. Embarassingly Parallel Topographic Analysis</h3>
+<h3 id="_embarassingly_parallel_topographic_analysis">J.1. Embarassingly Parallel Topographic Analysis</h3>
 <div class="paragraph">
 <p>The LSD software is written to run completely in serial. (i.e. there is no built in parallelisation). However, if you are running the same analyses on a large number of basins, the problem becomes easy to set up in a parallel-like fashion, if you have access to some form of multiple cpu computing facility. (This is termed <strong>embarassingly/trivially parallel</strong>, since it isn&#8217;t really written in parallel code).</p>
 </div>
@@ -16634,7 +17332,7 @@ installed on your system.</p>
 <p>This doesn&#8217;t necessarily require a supercomputing cluster; most laptops are at least dual core (as of 2014), and some will have as many as 8 seperate cpu threads to run tasks on. That means you could be running analysis on 8 basins at a time, rather than waiting for each one to finish separately, in serial.</p>
 </div>
 <div class="sect3">
-<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">I.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
+<h4 id="_the_simple_case_a_single_cpu_multi_core_laptop">J.1.1. The Simple Case - A single cpu, multi-core laptop</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">You can find out how many cpus/cores/threads you have to play with by typing</dt>
@@ -16673,7 +17371,7 @@ installed on your system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_topographic_analysis_on_a_supercomputer">I.2. Topographic Analysis on a Supercomputer</h3>
+<h3 id="_topographic_analysis_on_a_supercomputer">J.2. Topographic Analysis on a Supercomputer</h3>
 <div class="paragraph">
 <p>If you have access to a suitable cluster computer or other supercomputer (HPC - high performance computing) service (ARCHER, HECToR, Eddie, or your local department&#8217;s cluster) it will probably have some type of job submission service. SGE and PBS are two of the most commonly used ones. You use the job scheduler to submit your by providing a simple script that requests cpu and memory resources from the supercomputer. By running the script, the job(s) are then placed in a queue to be distributed across the nodes and cpus.</p>
 </div>
@@ -16697,7 +17395,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 <p>You will need a text file containing a list of your basins with their junction index numbers (JI). The text file can take the following format: (note, the header is not actually included in the file.)</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 48. Example basin list for scripting purposes</caption>
+<caption class="title">Table 56. Example basin list for scripting purposes</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -16739,7 +17437,7 @@ chi_multidriver_gen_qsub_ver.py</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_launching_jobs_with_the_batch_system">I.2.1. Launching jobs with the batch system</h4>
+<h4 id="_launching_jobs_with_the_batch_system">J.2.1. Launching jobs with the batch system</h4>
 <div class="sect4">
 <h5 id="_pbs_example">PBS Example</h5>
 <div class="paragraph">
@@ -16835,7 +17533,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect3">
-<h4 id="_checking_your_jobs">I.2.2. Checking your jobs</h4>
+<h4 id="_checking_your_jobs">J.2.2. Checking your jobs</h4>
 <div class="paragraph">
 <p><code>qstat</code> on its own should display a list of all your running jobs by default. To delete a job, use:</p>
 </div>
@@ -16871,7 +17569,7 @@ inputfile.3.parameters
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module_issues">I.3. Module issues</h3>
+<h3 id="_module_issues">J.3. Module issues</h3>
 <div class="paragraph">
 <p>On certain HPC services, different modules or libraries need to be loaded or switched to create the right environment to run your software. Normally this is not an issue and nothing needs to be changed. By convention, the LSD Topo Tools software is compiled using the gcc compilers. (A set of free compilers released under the GNU licence). Some supercomputer clusters will come with a range of compilers such as Intel, Cray, etc&#8230;&#8203; One of them will be loaded by default. If gcc is not the default, you may wish to swap it before compiling.:</p>
 </div>
@@ -16934,7 +17632,7 @@ The compiler suite you use has nothing to do with the type of CPU or supercomput
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compilation_and_library_issues">I.4. Compilation and library issues</h3>
+<h3 id="_compilation_and_library_issues">J.4. Compilation and library issues</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -16995,18 +17693,18 @@ yum install glib-static</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_troubleshooting">Appendix J: Troubleshooting</h2>
+<h2 id="_troubleshooting">Appendix K: Troubleshooting</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>LSDTopoTools</strong> is research software, and unfortunately it can misbehave. In this appendix we list common problems associated with running of the code.</p>
 </div>
 <div class="sect2">
-<h3 id="_segmentation_faults_and_core_dumps">J.1. Segmentation faults and core dumps</h3>
+<h3 id="_segmentation_faults_and_core_dumps">K.1. Segmentation faults and core dumps</h3>
 <div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Segmentation_fault">Segmentation faults</a> are caused when <strong>LSDTopoTools</strong> attempts to access some data in your computer&#8217;s <a href="https://en.wikipedia.org/wiki/Computer_memory">memory</a> (think of it as the computer&#8217;s brain) that is not there. Sometimes when this happens you might also get a <a href="https://en.wikipedia.org/wiki/Core_dump">core dump</a>. These sorts of faults are the bane of our existence.</p>
+<p><a href="https://en.wikipedia.org/wiki/Segmentation_fault">Segmentation faults</a> are caused when <strong>LSDTopoTools</strong> attempts to access some data in your computer&#8217;s <a href="https://en.wikipedia.org/wiki/Computer_memory">memory</a> (think of it as the computer&#8217;s brain) that is not there. Sometimes when this happens you might also get a <a href="https://en.wikipedia.org/wiki/Core_dump">core dump</a>. These sorts of faults are vexing because the program will not tell you where the problem is when it crashes.</p>
 </div>
 <div class="paragraph">
-<p>There are three typical reasons for these faults, which always crash the program, to occur:</p>
+<p>Most of these faults are due to the following three reasons:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -17014,7 +17712,7 @@ yum install glib-static</code></pre>
 <p><strong>LSDTopoTools</strong> is looking for a file that is not there. You solve this by checking filenames.</p>
 </li>
 <li>
-<p><strong>LSDTopoTools</strong> developers have got a bug in the code that wasn&#8217;t uncovered in testing.</p>
+<p>There is a bug in the <strong>LSDTopoTools</strong> source code that wasn&#8217;t uncovered in testing.</p>
 </li>
 <li>
 <p><strong>LSDTopoTools</strong> runs out of memory.</p>
@@ -17028,25 +17726,25 @@ yum install glib-static</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The most persistent and common problem is the memory problem. There is not much we can do about this without totally rewriting the code (which is several hundred thousand lines long at this point). If you get a <strong>segmentation fault</strong> or a <strong>core dump</strong> there is a high probability that this is the problem.
+The most persistent and common problem for our users is when LSDTopoTools runs out of memory. There is not much we can do about this without totally rewriting the code (which is several hundred thousand lines long at this point). If you get a <strong>segmentation fault</strong> or a <strong>core dump</strong> there is a high probability that you have run out of memory. See details below, but to fix this you either need to use a smaller DEM or give more memory to your system.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_the_missing_file_problem">J.1.1. The missing file problem</h4>
+<h4 id="_the_missing_file_problem">K.1.1. The missing file problem</h4>
 <div class="paragraph">
-<p>In recent years we have added error checking capabilities so that if <strong>LSDTopoTools</strong> looks for a file and doesn&#8217;t find it, it will tell you before exiting. However we have not comprehensively done this with every single component of the code so it still can happen that if you use the wrong path or filename in one of your parameter files <strong>LSDTopoTools</strong> will crash. To fix this you need to check all your file names and directory paths.</p>
+<p>In recent years we have added error checking capabilities so that if <strong>LSDTopoTools</strong> will tell you if it can&#8217;t find a file. However we have not done this with every single component of the code so occasionally <strong>LSDTopoTools</strong> will crash because it can&#8217;t find a file. To fix this you need to check all your file names and directory paths.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_naughty_developer_problem">J.1.2. The naughty developer problem</h4>
+<h4 id="_the_naughty_developer_problem">K.1.2. The naughty developer problem</h4>
 <div class="paragraph">
-<p>Sometimes the <strong>LSDTopoTools</strong> developers release code that has a bug. Bad developers, bad!! To fix this you need to tell us the problem and we will try to find the problem. Unless you are a proficient C++ hacker there is not much you can do about this other than to wait for us to address the problem. However, in most cases the crashing software is caused by the memory problem rather than a bug.</p>
+<p>Sometimes the <strong>LSDTopoTools</strong> developers release code that has a bug. Bad developers, bad!! To fix this you need to tell us about it and we will try to find the problem. Unless you are a proficient C++ hacker there is not much you can do about this other than to wait for us to address the problem. However, in most cases the crashing software is caused by the memory problem rather than a bug.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_strong_lsdtopotools_strong_memory_problem">J.1.3. The <strong>LSDTopoTools</strong> memory problem</h4>
+<h4 id="_the_strong_lsdtopotools_strong_memory_problem">K.1.3. The <strong>LSDTopoTools</strong> memory problem</h4>
 <div class="paragraph">
 <p>Let me start by saying that the developers of <strong>LSDTopoTools</strong> are geoscientists and not professional software developers. When we built <strong>LSDTopoTools</strong> we were aiming for speed and we don&#8217;t know how to do data streaming, so the way <strong>LSDTopoTools</strong> works is to dump everything into your computer&#8217;s <a href="https://en.wikipedia.org/wiki/Computer_memory">memory</a> and work with the data there. This was not a problem for us because we use Linux servers that have may hundreds of gigabytes of memory.</p>
 </div>
@@ -17119,9 +17817,9 @@ The most persistent and common problem is the memory problem. There is not much 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_16">J.2. Summary</h3>
+<h3 id="_summary_16">K.2. Summary</h3>
 <div class="paragraph">
-<p>This is a growing list of common problems, if your problem isn&#8217;t here contact the <a href="http://www.geos.ed.ac.uk/homes/smudd">lead developer</a> of <strong>LSDTopoTools</strong>.</p>
+<p>If you have a problem that is not listed here, please contact the <a href="http://www.geos.ed.ac.uk/homes/smudd">lead developer</a> of <strong>LSDTopoTools</strong>, and the team will try to find a solution and post it in this appendix.</p>
 </div>
 </div>
 </div>
@@ -17129,7 +17827,7 @@ The most persistent and common problem is the memory problem. There is not much 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-11-16 07:09:10 GMT Standard Time
+Last updated 2017-02-10 09:51:49 GMT Standard Time
 </div>
 </div>
 </body>
