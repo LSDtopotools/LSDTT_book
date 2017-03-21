@@ -13782,9 +13782,9 @@ You must make sure the description of the parameter in your file matches EXACTLY
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of your DEM <strong>without extension</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chan heads file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">channel heads fname</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the channel heads csv file (must end in .csv)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the channel heads csv file <strong>without extension</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">coords_csv_file</p></td>
@@ -13820,6 +13820,11 @@ You must make sure the description of the parameter in your file matches EXACTLY
 <td class="tableblock halign-left valign-top"><p class="tableblock">Threshold_SO</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Threshold Strahler stream order for the baseline channel.  A value of 3 should work in most landscapes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NormaliseToBaseline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch to normalise the elevations to the nearest channel. For terrace extraction this should always be set to 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QQ threshold</p></td>
