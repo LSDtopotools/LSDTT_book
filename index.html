@@ -13096,7 +13096,7 @@ These tools have extra dependencies in addition to a standard installation of LS
 </table>
 </div>
 <div class="paragraph">
-<p>This chapter outlines a method of extracting floodplains and terraces across the landscape based on thresholds of local gradient and elevation compared to the nearest channel.  These thresholds are calculated statistically from the DEM using quantile-quantile plots, and do not need to be set manually by the user for the lansdcape in question.  For more details on the methodology please refer to Clubb et al. (in prep).</p>
+<p>This chapter outlines a method of extracting floodplains and terraces across the landscape based on thresholds of local gradient and elevation compared to the nearest channel.  These thresholds are calculated statistically from the DEM using quantile-quantile plots, and do not need to be set manually by the user for the lansdcape in question.  For more details on the methodology please refer to <a href="http://www.earth-surf-dynam-discuss.net/esurf-2017-21/">Clubb et al. (2017)</a>.</p>
 </div>
 <div class="paragraph">
 <p>Floodplains are extracted across the whole DEM using thresholds of local gradient and relief relative to the nearest identified channel pixel. Terraces are extracted along a channel swath profile using an algorithm developed by <a href="http://www.earth-surf-dynam-discuss.net/1/387/2013/esurfd-1-387-2013.html">Hergarten et al. (2014)</a>.  The user needs to provide a CSV file with a pair of latitude and longitude coordinates.  The code will extract the channel network between these coordinates and identify all terraces along this baseline channel.</p>
@@ -13659,8 +13659,7 @@ Relief lower percentile: 25
 Relief upper percentile: 75
 Slope lower percentile: 25
 Slope upper percentile: 75
-Min patch size: 1000
-Min terrace height: 5</code></pre>
+Min patch size: 1000</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13790,11 +13789,6 @@ You must make sure the description of the parameter in your file matches EXACTLY
 <td class="tableblock halign-left valign-top"><p class="tableblock">Min patch size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Minimum number of pixels for each terrace, can use to remove very small patches which may be due to noise.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Min terrace height</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum height of terraces above the channel. Used to remove modern floodplains.</p></td>
 </tr>
 </tbody>
 </table>
