@@ -600,24 +600,22 @@ MathJax.Hub.Config({
 <li><a href="#_example_channel_extraction_parameter_file">7.3.2. Example channel extraction parameter file</a></li>
 </ul>
 </li>
-<li><a href="#_basic_channel_extraction_using_thresholds_the_old_way">7.4. Basic channel extraction using thresholds (the old way)</a>
+<li><a href="#_channel_extraction_using_thresholds">7.4. Channel extraction using thresholds</a>
 <ul class="sectlevel3">
-<li><a href="#_compile_the_code_2">7.4.1. Compile the code</a></li>
-<li><a href="#_run_the_analysis">7.4.2. Run the analysis</a></li>
+<li><a href="#_extracting_the_network_with_an_area_threshold_using_the_strong_channel_extraction_tool_strong">7.4.1. Extracting the network with an area threshold using the <strong>Channel extraction tool</strong></a></li>
+<li><a href="#_basic_channel_extraction_using_thresholds_the_old_way">7.4.2. Basic channel extraction using thresholds (the old way)</a></li>
 </ul>
 </li>
-<li><a href="#_geometric_channel_extraction_methods_the_old_way">7.5. Geometric channel extraction methods (the old way)</a>
+<li><a href="#_geometric_channel_extraction_method">7.5. Geometric channel extraction method</a>
 <ul class="sectlevel3">
-<li><a href="#_geonet_external_software">7.5.1. Geonet (external software)</a></li>
-<li><a href="#_pelletier">7.5.2. Pelletier</a></li>
-<li><a href="#_the_lsdtopotools_geometric_method">7.5.3. The LSDTopoTools geometric method</a></li>
+<li><a href="#_extracting_the_network_with_geometric_methods_using_the_strong_channel_extraction_tool_strong">7.5.1. Extracting the network with geometric methods using the <strong>Channel extraction tool</strong></a></li>
+<li><a href="#_geometric_channel_extraction_methods_the_old_way">7.5.2. Geometric channel extraction methods (the old way)</a></li>
 </ul>
 </li>
-<li><a href="#_channel_extraction_using_the_dreich_method_the_old_way">7.6. Channel extraction using the Dreich method (the old way)</a>
+<li><a href="#_channel_extraction_using_the_driech_method">7.6. Channel extraction using the Driech method</a>
 <ul class="sectlevel3">
-<li><a href="#_run_the_chi_analysis">7.6.1. Run the chi analysis</a></li>
-<li><a href="#_compile_the_code_5">7.6.2. Compile the code</a></li>
-<li><a href="#_run_the_analysis_4">7.6.3. Run the analysis</a></li>
+<li><a href="#_extracting_the_network_with_the_driech_method_using_the_strong_channel_extraction_tool_strong">7.6.1. Extracting the network with the Driech method using the <strong>Channel extraction tool</strong></a></li>
+<li><a href="#_channel_extraction_using_the_dreich_method_the_old_way">7.6.2. Channel extraction using the Dreich method (the old way)</a></li>
 </ul>
 </li>
 <li><a href="#_summary_6">7.7. Summary</a></li>
@@ -5827,7 +5825,10 @@ print_stream_order_raster: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_basic_channel_extraction_using_thresholds_the_old_way">7.4. Basic channel extraction using thresholds (the old way)</h3>
+<h3 id="_channel_extraction_using_thresholds">7.4. Channel extraction using thresholds</h3>
+<div class="paragraph">
+<p>One of the simplest ways of extracting channel networks from DEMs uses a contributing area threshold.  This method is useful for coarse resolution (e.g. &gt;10m) DEMs, where topographic features of the channel heads themselves cannot be reliably identified from the DEM. The user has to specify the threshold area, which represents the upstream area that must drain to a pixel before it is considered as part of the channel.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5835,10 +5836,76 @@ print_stream_order_raster: true</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
+The area threshold chosen will affect the density of the channel network.  This should be considered carefully, and compared against field-mapped channel head data if these are available.
 </td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_extracting_the_network_with_an_area_threshold_using_the_strong_channel_extraction_tool_strong">7.4.1. Extracting the network with an area threshold using the <strong>Channel extraction tool</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To extract a network using a threshold area, you need to switch on the <code>print_area_threshold_channels</code> option.</p>
+</li>
+<li>
+<p>The parameter file will look something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for channel extraction
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+# TBA
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/test_data
+write path: /LSDTopoTools/Topographic_projects/test_data
+read fname: gabilan
+write fname: gabilan
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+threshold_contributing_pixels: 2500
+print_area_threshold_channels: true
+
+# Printing of the data
+write hillshade: true
+print_stream_order_raster: true
+print_channels_to_csv: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save this parameter file in the directory with the data (i.e., in <code>/LSDTopoTools/Topographic_projects/test_data</code>). Call it something sensible.</p>
+</li>
+<li>
+<p>Now got into the directory with the <strong>chi mapping tool</strong> (i.e., <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/driver_functions_ChannelExtraction</code>) and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /LSDTopoTools/Topographic_projects/test_data NAME_OF_PARAMFILE.driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This should print out both a raster of stream orders and a hillshade raster, and in addition a <code>csv</code> file with channel nodes. If you import this <code>csv</code> into a GIS you should select the coordinate system <a href="http://spatialreference.org/ref/epsg/wgs-84/">WGS84</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_basic_channel_extraction_using_thresholds_the_old_way">7.4.2. Basic channel extraction using thresholds (the old way)</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title"><strong>Important Warning</strong></div>
+<div class="paragraph">
+<p>This describes our original way of doig things, but now you should use the <strong>channel extraction tool</strong>
+Read about that here: <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>One of the simplest ways of extracting channel networks from DEMs uses a contributing area threshold.  This method is useful for coarse resolution (e.g. &gt;10m) DEMs, where topographic features of the channel heads themselves cannot be reliably identified from the DEM. The user has to specify the threshold area, which represents the upstream area that must drain to a pixel before it is considered as part of the channel.</p>
@@ -5858,8 +5925,8 @@ The area threshold chosen will affect the density of the channel network.  This 
 <div class="paragraph">
 <p>We will work through an example using the Indian Creek example dataset that you downloaded.</p>
 </div>
-<div class="sect3">
-<h4 id="_compile_the_code_2">7.4.1. Compile the code</h4>
+<div class="sect4">
+<h5 id="_compile_the_code_2">Compile the code</h5>
 <div class="paragraph">
 <p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_area_threshold.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.</p>
 </div>
@@ -5880,8 +5947,8 @@ The area threshold chosen will affect the density of the channel network.  This 
 <p>This will create a program called <code>channel_extraction_area_threshold.out</code></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_run_the_analysis">7.4.2. Run the analysis</h4>
+<div class="sect4">
+<h5 id="_run_the_analysis">Run the analysis</h5>
 <div class="paragraph">
 <p>To run the analysis you first need to create a parameter file, with which we will set the key user-defined parameters.  To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
@@ -5945,8 +6012,12 @@ Threshold area for channel extraction</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_geometric_channel_extraction_methods_the_old_way">7.5. Geometric channel extraction methods (the old way)</h3>
+<h3 id="_geometric_channel_extraction_method">7.5. Geometric channel extraction method</h3>
+<div class="paragraph">
+<p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detect channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in <strong>LSDTopoTools</strong>, and a similar geometric method available within <strong>LSDTopoTools</strong>.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5954,22 +6025,100 @@ Threshold area for channel extraction</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
+To run the Dreich algorithm you need to have the Fast Fourier Transform Library downloaded into your folder <code>LSDTopoTools_ChannelExtraction</code>. You can download it at <a href="http://www.fftw.org/download.html" class="bare">http://www.fftw.org/download.html</a>. If you are using <strong>vagrant</strong> this will already be installed, so you can ignore this message.
 </td>
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_extracting_the_network_with_geometric_methods_using_the_strong_channel_extraction_tool_strong">7.5.1. Extracting the network with geometric methods using the <strong>Channel extraction tool</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <strong>Channel extraction tool</strong> has two "geometric" channel extraction options.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To extract a network using the Pelletier methods, you need to switch on the <code>print_pelletier_channels</code> option.</p>
+</li>
+<li>
+<p>To extract a network using the <strong>LSDTopoTools Wiener filter</strong> method, you need to switch on the <code>print_wiener_channels</code> option. This method was used by <a href="http://www.earth-surf-dynam.net/4/627/2016/">Grieve et al., ESURF, 2016</a> in an attempt to balance what we feel are the strongest components of the <a href="http://onlinelibrary.wiley.com/doi/10.1029/2012WR012452/abstract">Pelletier (2013)</a> and <a href="https://sites.google.com/site/geonethome/home">Geonet</a> (by Passalacqua et al) methods.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The parameter file will look something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for channel extraction
+# Comments are preceeded by the hash symbol
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/test_data
+write path: /LSDTopoTools/Topographic_projects/test_data
+read fname: gabilan
+write fname: gabilan
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+threshold_contributing_pixels: 1000
+print_pelletier_channels: true
+print_wiener_channels: true
+
+# Printing of the data
+write hillshade: true
+print_stream_order_raster: true
+print_channels_to_csv: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the above parameter file, I&#8217;ve used mostly defaults, with the exception of <code>print_dreich_channels: true</code>.</p>
+</li>
+<li>
+<p>Save this parameter file in the directory with the data (i.e., in <code>/LSDTopoTools/Topographic_projects/test_data</code>). Call it something sensible.</p>
+</li>
+<li>
+<p>Now got into the directory with the <strong>chi mapping tool</strong> (i.e., <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/driver_functions_ChannelExtraction</code>) and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /LSDTopoTools/Topographic_projects/test_data NAME_OF_PARAMFILE.driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This should print out both a raster of stream orders and a hillshade raster, and in addition a <code>csv</code> file with channel nodes. If you import this <code>csv</code> into a GIS you should select the coordinate system <a href="http://spatialreference.org/ref/epsg/wgs-84/">WGS84</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_geometric_channel_extraction_methods_the_old_way">7.5.2. Geometric channel extraction methods (the old way)</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title"><strong>Important Warning</strong></div>
+<div class="paragraph">
+<p>This describes our original way of doig things, but now you should use the <strong>channel extraction tool</strong>
+Read about that here: <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>For higher-resolution DEMs a number of different methods have been developed to extract channel networks more accurately.  This section details how to extract channels using methods relying on geometric signatures of channel incision, primarily how it affects planform curvature. Although many methods have been developed that use a variety of planform curvature to detect channel heads, we will discuss three methods: the Geonet method the Geonet method (developed by Passalacqua et al. 2010a, b, 2012), a method developed by Pelletier (2013) and implemented in <strong>LSDTopoTools</strong>, and a similar geometric method available within <strong>LSDTopoTools</strong>.</p>
 </div>
-<div class="sect3">
-<h4 id="_geonet_external_software">7.5.1. Geonet (external software)</h4>
+<div class="sect4">
+<h5 id="_geonet_external_software">Geonet (external software)</h5>
 <div class="paragraph">
 <p>The Geonet algorithm filters the DEM using a Perona-Malik filter, then uses a planform curvature threshold which is statistically derived from the landscape to detect channel heads. For full information on how Geonet works please see Passalcqua et al. (2010a, b, 2012). It then uses a contributing area threshold to thin the skeleton and create the final channel network.  The Geonet algorithm is available free to download from <a href="https://sites.google.com/site/geonethome/home">the Geonet website</a>. This site also contains the code documentation and user guides on how to get started with Geonet. It is a cross platform MATLAB package (you will need a MATLAB licence to run in its present form).</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_pelletier">7.5.2. Pelletier</h4>
+<div class="sect4">
+<h5 id="_pelletier">Pelletier</h5>
 <div class="paragraph">
 <p><a href="http://onlinelibrary.wiley.com/doi/10.1029/2012WR012452/abstract">Pelletier (2013)</a> developed an algorithm that is similar to Geonet in that it identifies channel heads based on a planform curvature threshold.  The main differences between this algorithm and Geonet are:</p>
 </div>
@@ -6001,8 +6150,8 @@ To run the Pelletier algorithm you need to have the Fast Fourier Transform Libra
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_compile_the_code_3">Compile the code</h5>
+<div class="sect5">
+<h6 id="_compile_the_code_3">Compile the code</h6>
 <div class="paragraph">
 <p>To compile the code navigate to the folder driver_functions_ChannelExtraction.  In a terminal window type the following to compile the driver:</p>
 </div>
@@ -6015,8 +6164,8 @@ To run the Pelletier algorithm you need to have the Fast Fourier Transform Libra
 <p>This will create a program called <code>channel_extraction_pelletier.out</code> which you can use to run the code.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_run_the_analysis_2">Run the analysis</h5>
+<div class="sect5">
+<h6 id="_run_the_analysis_2">Run the analysis</h6>
 <div class="paragraph">
 <p>We first need to create a parameter file similar to that for the <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
@@ -6084,8 +6233,8 @@ Minimum catchment area (suggested to be 400)</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_the_lsdtopotools_geometric_method">7.5.3. The LSDTopoTools geometric method</h4>
+<div class="sect4">
+<h5 id="_the_lsdtopotools_geometric_method">The LSDTopoTools geometric method</h5>
 <div class="paragraph">
 <p>Within LSDTopoTools we have also developed a method for extracting channel heads via planform curvature.  We first of all filter the DEM using an Optimal Wiener filter, then use a quantile-quantile threshold to statistically determine the planform curvature threshold from the landscape. It then uses a <a href="http://www.ncbi.nlm.nih.gov/pubmed/18390379">connected components threshold</a> to extract the channel network.</p>
 </div>
@@ -6101,8 +6250,8 @@ To run the LSDTopoTools algorithm you need to have the Fast Fourier Transform Li
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_compile_the_code_4">Compile the code</h5>
+<div class="sect5">
+<h6 id="_compile_the_code_4">Compile the code</h6>
 <div class="paragraph">
 <p>To compile the code navigate to the folder driver_functions_ChannelExtraction.  In a terminal window type the following to compile the driver:</p>
 </div>
@@ -6113,6 +6262,7 @@ To run the LSDTopoTools algorithm you need to have the Fast Fourier Transform Li
 </div>
 <div class="paragraph">
 <p>This will create a program called <code>channel_extraction_wiener.out</code> which you can use to run the code.</p>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -6188,19 +6338,7 @@ connected_components_threshold 100</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_channel_extraction_using_the_dreich_method_the_old_way">7.6. Channel extraction using the Dreich method (the old way)</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This describes the old functions. For the latest version use <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.
-</td>
-</tr>
-</table>
-</div>
+<h3 id="_channel_extraction_using_the_driech_method">7.6. Channel extraction using the Driech method</h3>
 <div class="paragraph">
 <p>The <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Dreich method</a>
 of channel head extraction aims to find channel heads by looking at the break in the properties of topographic profiles
@@ -6216,19 +6354,91 @@ that occur when fluvial incision gives way to hillslope sediment transport proce
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To run the Dreich algorithm you need to have the Fast Fourier Transform Library downloaded into your folder <code>LSDTopoTools_ChannelExtraction</code>. You can download it at <a href="http://www.fftw.org/download.html" class="bare">http://www.fftw.org/download.html</a>.
+To run the Dreich algorithm you need to have the Fast Fourier Transform Library downloaded into your folder <code>LSDTopoTools_ChannelExtraction</code>. You can download it at <a href="http://www.fftw.org/download.html" class="bare">http://www.fftw.org/download.html</a>. If you are using <strong>vagrant</strong> this will already be installed, so you can ignore this message.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_run_the_chi_analysis">7.6.1. Run the chi analysis</h4>
+<h4 id="_extracting_the_network_with_the_driech_method_using_the_strong_channel_extraction_tool_strong">7.6.1. Extracting the network with the Driech method using the <strong>Channel extraction tool</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To extract a network using the DrEICH method, you need to switch on the <code>print_dreich_channels</code> option.</p>
+</li>
+<li>
+<p>The parameter file will look something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for channel extraction
+# Comments are preceeded by the hash symbol
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/test_data
+write path: /LSDTopoTools/Topographic_projects/test_data
+read fname: gabilan
+write fname: gabilan
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+threshold_contributing_pixels: 1000
+print_dreich_channels: true
+surface_fitting_radius: 6
+number_of_junctions_dreich: 1
+connected_components_threshold: 100
+m_over_n: 0.5
+
+
+# Printing of the data
+write hillshade: true
+print_stream_order_raster: true
+print_channels_to_csv: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the above parameter file, I&#8217;ve used mostly defaults, with the exception of <code>print_dreich_channels: true</code>.</p>
+</li>
+<li>
+<p>Save this parameter file in the directory with the data (i.e., in <code>/LSDTopoTools/Topographic_projects/test_data</code>). Call it something sensible.</p>
+</li>
+<li>
+<p>Now got into the directory with the <strong>chi mapping tool</strong> (i.e., <code>/LSDTopoTools/Git_projects/LSDTopoTools_ChannelExtraction/driver_functions_ChannelExtraction</code>) and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /LSDTopoTools/Topographic_projects/test_data NAME_OF_PARAMFILE.driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This should print out both a raster of stream orders and a hillshade raster, and in addition a <code>csv</code> file with channel nodes. If you import this <code>csv</code> into a GIS you should select the coordinate system <a href="http://spatialreference.org/ref/epsg/wgs-84/">WGS84</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_extraction_using_the_dreich_method_the_old_way">7.6.2. Channel extraction using the Dreich method (the old way)</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title"><strong>Important Warning</strong></div>
+<div class="paragraph">
+<p>This describes our original way of doig things, but now you should use the <strong>channel extraction tool</strong>
+Read about that here: <a href="#_the_channel_extraction_tool">The Channel Extraction tool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_run_the_chi_analysis">Run the chi analysis</h5>
 <div class="paragraph">
 <p>Before the Dreich algorithm can be run the <em>m/n</em> value for the landscape must be determined.  This can be done using the <a href="#_chi_analysis">Chi analysis</a> in LSDTopoTools.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_compile_the_code_5">7.6.2. Compile the code</h4>
+<div class="sect4">
+<h5 id="_compile_the_code_5">Compile the code</h5>
 <div class="paragraph">
 <p>We can extract threshold area channel networks using the driver function called <code>channel_extraction_dreich.cpp</code>.  To compile the code you first need to navigate to the driver functions folder in the repository.  When in this folder type the following to compile the driver:</p>
 </div>
@@ -6241,8 +6451,8 @@ To run the Dreich algorithm you need to have the Fast Fourier Transform Library 
 <p>This will create a program called <code>channel_extraction_dreich.out</code></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_run_the_analysis_4">7.6.3. Run the analysis</h4>
+<div class="sect4">
+<h5 id="_run_the_analysis_4">Run the analysis</h5>
 <div class="paragraph">
 <p>We first need to create a parameter file similar to that for the <a href="#Basic channel extraction using thresholds">[Basic channel extraction using thresholds]</a>. To create your parameter file, open any text editor and create a file with the following lines:</p>
 </div>
@@ -6316,6 +6526,7 @@ number_of_junctions_dreich 1</code></pre>
 <img src="images/ind_so_dreich.png" alt="Map of Indian Creek with channel network extracted from DrEICH algorithm">
 </div>
 <div class="title">Figure 7. Map of Indian Creek with channel network extracted from DrEICH algorithm</div>
+</div>
 </div>
 </div>
 </div>
@@ -18311,7 +18522,7 @@ The most persistent and common problem for our users is when LSDTopoTools runs o
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-29 14:00:29 BST
+Last updated 2017-07-13 09:21:21 GMT Daylight Time
 </div>
 </div>
 </body>
