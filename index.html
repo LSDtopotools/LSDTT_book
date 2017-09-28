@@ -790,6 +790,7 @@ MathJax.Hub.Config({
 <li><a href="#_clone_the_github_repository_not_needed_if_you_used_lsdtopotoolssetup_py_2">14.2.2. Clone the GitHub repository (not needed if you used LSDTopoToolsSetup.py)</a></li>
 <li><a href="#_alternatively_get_the_zipped_code_4">14.2.3. Alternatively, get the zipped code</a></li>
 <li><a href="#_install_the_point_cloud_library">14.2.4. Install the Point Cloud Library</a></li>
+<li><a href="#_install_a_couple_of_other_libraries">14.2.5. Install a couple of other libraries</a></li>
 </ul>
 </li>
 <li><a href="#_preliminary_steps">14.3. Preliminary steps</a>
@@ -13472,6 +13473,135 @@ $ sudo apt-get update
 $ sudo apt-get install libpcl-all</code></pre>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_ubuntu_16_04_lts">Ubuntu 16.04 LTS</h5>
+<div class="paragraph">
+<p>If you are using ubuntu 16.04, the above commands won&#8217;t work as the repository is broken. You can install the <code>pcl</code> library using the following steps:</p>
+</div>
+<div class="paragraph">
+<p>Install oracle-java8-jdk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo add-apt-repository -y ppa:webupd8team/java &amp;&amp; sudo apt update &amp;&amp; sudo apt -y install oracle-java8-installer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install various dependencies and pre-requisites:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo apt -y install g++ cmake cmake-gui doxygen mpi-default-dev openmpi-bin openmpi-common libusb-1.0-0-dev libqhull* libusb-dev libgtest-dev
+$ sudo apt -y install git-core freeglut3-dev pkg-config build-essential libxmu-dev libxi-dev libphonon-dev libphonon-dev phonon-backend-gstreamer
+$ sudo apt -y install phonon-backend-vlc graphviz mono-complete qt-sdk libflann-dev libflann1.8 libboost1.58-all-dev
+
+$ cd ~/Downloads
+$ wget http://launchpadlibrarian.net/209530212/libeigen3-dev_3.2.5-4_all.deb
+$ sudo dpkg -i libeigen3-dev_3.2.5-4_all.deb
+$ sudo apt-mark hold libeigen3-dev
+
+$ wget http://www.vtk.org/files/release/7.1/VTK-7.1.0.tar.gz
+$ tar -xf VTK-7.1.0.tar.gz
+$ cd VTK-7.1.0 &amp;&amp; mkdir build &amp;&amp; cd build
+$ cmake ..
+$ make
+$ sudo make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install Point Cloud Library v1.8:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~/Downloads
+$ wget https://github.com/PointCloudLibrary/pcl/archive/pcl-1.8.0.tar.gz
+$ tar -xf pcl-1.8.0.tar.gz
+$ cd pcl-pcl-1.8.0 &amp;&amp; mkdir build &amp;&amp; cd build
+$ cmake ..
+$ make
+$ sudo make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Do some clean up:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~/Downloads
+$ rm libeigen3-dev_3.2.5-4_all.deb VTK-7.1.0.tar.gz pcl-1.8.0.tar.gz
+$ sudo rm -r VTK-7.1.0 pcl-pcl-1.8.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now have pcl installed on your system! You can do a small test of the installation if you want to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~
+$ mkdir pcl-test &amp;&amp; cd pcl-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a CMakeLists.txt file and save this in the directory <code>pcl-test</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+project(pcl-test)
+find_package(PCL 1.2 REQUIRED)
+
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+add_executable(pcl-test main.cpp)
+target_link_libraries(pcl-test ${PCL_LIBRARIES})
+
+SET(COMPILE_FLAGS "-std=c++11")
+add_definitions(${COMPILE_FLAGS})</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a file and call it <code>main.cpp</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "hello, world!" &lt;&lt; std::endl;
+    return (0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile the cpp file and then test it :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ mkdir build &amp;&amp; cd build
+$ cmake ..
+$ make
+$ ./pcl-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output should be <code>hello, world!</code></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_install_a_couple_of_other_libraries">14.2.5. Install a couple of other libraries</h4>
+<div class="paragraph">
+<p>You might find you need to install a couple of other libraries for the floodplain and terrace drivers to compile properly. If you are using Ubuntu, you can do this using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo apt-get update
+$ sudo apt-get install libgoetiff-dev
+$ sudo apt-get install liblas-dev</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -18522,7 +18652,7 @@ The most persistent and common problem for our users is when LSDTopoTools runs o
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-13 09:21:21 GMT Daylight Time
+Last updated 2017-09-28 08:52:53 CDT
 </div>
 </div>
 </body>
